@@ -1,20 +1,16 @@
 <template>
   <div
     :class="[
-      'relative box-border flex flex-col overflow-hidden rounded border border-neutral-900/20 bg-neutral-100/90 p-2 transition-[filter] dark:border-white/10 dark:bg-neutral-900/90'
+      'relative box-border flex flex-col overflow-hidden rounded border border-neutral-900/20 bg-neutral-100/90 p-2 transition-transform duration-200 hover:scale-[1.02] dark:border-white/10 dark:bg-neutral-900/90',
+      premadeTeamId && 'border-transparent'
     ]"
     :style="{
       width: FIXED_CARD_WIDTH_PX_LITERAL,
-      borderColor: premadeTeamId ? premadeColors[premadeTeamId]?.borderColor : undefined
+      boxShadow: premadeTeamId
+        ? `0 0 0 1.5px ${premadeColors[premadeTeamId]?.borderColor}, 0 0 10px ${premadeColors[premadeTeamId]?.borderColor?.replace(/d0$/, '30')}`
+        : undefined
     }"
   >
-    <!-- premade deco -->
-    <div
-      class="absolute top-0 right-0 z-0 h-4 w-4 translate-x-1/2 -translate-y-1/2 rotate-45"
-      :style="{
-        backgroundColor: premadeTeamId ? premadeColors[premadeTeamId]?.foregroundColor : undefined
-      }"
-    />
 
     <PlayerInfoCardHeader :puuid="puuid" />
     <PlayerInfoCardStats :puuid="puuid" />

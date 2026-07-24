@@ -1,0 +1,25 @@
+leagueClient:
+  connection:
+    noData: Không có dữ liệu
+    connectedGroup: Đã kết nối
+    launchedClientsGroup: Máy khách đã khởi chạy
+    launchedOtherClientsGroup: Máy khách khác đã khởi chạy
+    noClientGroup: Không có máy khách
+    noClient: Không có máy khách khả dụng, vui lòng khởi động máy khách
+    connecting: Đang kết nối...
+    restartUx: Khởi động lại UX
+    killUx: Dừng UX
+    launchUx: Khởi chạy UX
+    quitClient: Thoát tiến trình máy khách
+    disconnect: Ngắt kết nối
+    more: Thêm
+    playAgain: Chơi Lại
+  tasks:
+    initialization-task:
+      name: Khởi tạo LCU
+      current: Đã hoàn thành {{finishedCount}}/{{allCount}}
+    connection-task:
+      name: Kết nối đến LCU
+      target: Đang thử kết nối đến {{target}}...
+  selfHostedLcuData:
+    reloadFriendsFailed: Tải lại danh sách bạn bè thất bại

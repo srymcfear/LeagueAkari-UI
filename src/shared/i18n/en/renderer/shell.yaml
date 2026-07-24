@@ -126,6 +126,7 @@ titlebar:
         sakura: Sakura Pink
         mint: Mint Green
         aurora: Aurora Violet
+        neon: Neon Purple
         butter: Butter Yellow
     toggleTheme:
       toLight: Switch to Light

@@ -1,0 +1,41 @@
+app:
+  name: LeagueAkari
+  description: Công cụ hỗ trợ Liên Minh Huyền Thoại
+  version: Phiên bản {version}
+  quit: Thoát
+  minimize: Thu nhỏ
+  minimize_to_tray: Thu nhỏ vào khay hệ thống
+  show: Hiện
+  about: Giới thiệu về LeagueAkari
+  check_update: Kiểm tra bản cập nhật
+  update_available: Có bản cập nhật
+  update_downloading: Đang tải bản cập nhật...
+  update_downloaded: Đã tải bản cập nhật, khởi động lại để áp dụng
+  update_not_available: Đã là phiên bản mới nhất
+  restart: Khởi động lại
+  restart_later: Để sau
+  restart_to_update: Khởi động lại để cập nhật
+  log: Nhật ký
+  log_level: Cấp độ nhật ký
+  debug: Gỡ lỗi
+  info: Thông tin
+  warn: Cảnh báo
+  error: Lỗi
+
+tray:
+  show_window: Hiện cửa sổ
+  hide_window: Ẩn cửa sổ
+  settings: Cài đặt
+  quit: Thoát
+
+notification:
+  match_found: Đã tìm thấy trận đấu!
+  match_found_desc: Đã tìm thấy trận đấu. Bấm để chấp nhận.
+  accept_failed: Chấp nhận thất bại
+  accept_failed_desc: Không thể tự động chấp nhận trận đấu. Vui lòng kiểm tra máy khách.
+  game_started: Trận đấu đã bắt đầu
+  game_started_desc: Trận đấu của bạn đã bắt đầu. Chúc may mắn!
+  reconnect: Kết nối lại
+  reconnect_desc: Bạn đã bị mất kết nối. Đang thử kết nối lại...
+  error: Lỗi
+  error_desc: Đã xảy ra lỗi không mong muốn. Xem nhật ký để biết chi tiết.

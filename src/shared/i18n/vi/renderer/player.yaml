@@ -1,0 +1,635 @@
+playerSearch:
+  title: Tra cứu Triệu Hồi Sư
+  combinedServersReference: Danh sách Máy Chủ Kết Hợp
+  searchTypePuuid: PUUID
+  searchTypeExact: Chính xác
+  searchTypeFuzzy: Gần đúng
+  cancel: Hủy
+  search: Tìm kiếm
+  resultCount: 'Kết quả tìm kiếm: {{count}}'
+  privacy: Riêng tư
+  searching: Đang tìm kiếm
+  noResult: Không có kết quả
+  noResultHintFuzzy: Tìm theo tên, ví dụ
+  noResultHintExact: Tìm chính xác theo tên và tagline, ví dụ
+  noResultHintPuuid: Tìm theo PUUID, ví dụ
+  noResultHintFuzzyExample: Yui Fumani
+  noResultHintExactExample: 'Akari #Akaza'
+  noResultHintPuuidExample: deadbeef-cafe-5eed-babe-f00df00df00d
+  recentVisits: Đã xem gần đây
+  pinned: Đã ghim ({{count}})
+  recent: Gần đây ({{count}})
+  noRecentVisits: Không có lượt xem gần đây
+  friends: Bạn bè ({{count}})
+  noFriends: Không có bạn bè
+  getFriendsFailed: Không thể lấy danh sách bạn bè
+  spectate: Xem
+  spectateStarted: Đang bắt đầu xem
+  spectateFailed: 'Không thể bắt đầu xem: {{reason}}'
+playerTags:
+  editModal:
+    title: Chỉnh sửa thẻ Người chơi
+    loading: Đang tải...
+    save: Lưu
+    cancel: Hủy
+    placeholder: Nhập thẻ cho người chơi {{name}}
+akariScore:
+  title: Điểm Akari
+  na: N/A
+  noFixedCap: Không giới hạn cố định
+  parts:
+    kda: KDA
+    winRate: Tỷ lệ thắng
+    damage: Sát thương
+    damageTaken: Sát thương nhận vào
+    healing: Hồi máu
+    cs: CS
+    gold: Vàng
+    participation: Tham gia hạ gục
+    vision: Tầm nhìn
+playerTabs:
+  ranked:
+    unranked: Chưa xếp hạng
+    win: T
+    lose: B
+    winRate: T/T
+    point: Đ
+    leaguePoint: Điểm XH
+    highest: Cao nhất
+    empty: Không có nội dung
+    crossRegion: Liên Vùng
+    unavailable: Không khả dụng
+  challenges:
+    titleAssets: Vật phẩm
+    champions: Tướng
+    championSkins: Trang phục
+    wardSkins: Mẫu Mắt
+    summonerIcons: Biểu tượng
+    emotes: Biểu cảm
+    chromaSkins: Đa sắc
+  titlebar:
+    loading: Đang tải...
+    search: Tìm kiếm
+    refresh: Làm mới
+    close: Đóng
+    closeOthers: Đóng các tab khác
+    closeToTheRight: Đóng về bên phải
+    screenshot: Chụp ảnh Tab
+    searchButtonStreamerModeWarning: Tìm kiếm người chơi sẽ hiển thị thông tin nhạy cảm, bạn có muốn tiếp tục?
+  shell:
+    disconnected: Không kết nối được với máy khách
+    queueing: Đang đăng nhập...
+    noActiveTab: Không có tab lịch sử trận đấu đang hoạt động
+    copiedToClipboard: Đã sao chép vào clipboard
+    dropZoneRosterMember: Kéo thả vào đây để chuyển đến trang cá nhân của người chơi
+  profile:
+    prevPage: Trước
+    nextPage: Tiếp
+    firstPage: Đến Trang Đầu
+    goToPage: Đến Trang
+    refreshPage: Làm mới Trang
+    rankedMore: Thêm
+    tagPlayer: Gắn thẻ Người chơi
+    byCount: Theo Số lượng
+    byTime: Theo Thời gian
+    queue: Chế độ
+    sgpQueueOnlyTooltip: Tùy chọn này chỉ khả dụng khi sử dụng nguồn dữ liệu SGP.
+    itemPerPage_one: '{{count}} mục'
+    itemPerPage_other: '{{count}} mục'
+    previousName: 'Tên đã dùng trước đây: {{name}}'
+    summonerNotFoundTitle: Không tìm thấy Triệu Hồi Sư {{puuid}}
+    summonerNotFoundContent: Triệu hồi sư bạn đang tìm kiếm không tồn tại
+    failedToLoadSummonerTitle: Không thể tải Triệu Hồi Sư
+    failedToLoadSummonerContent: 'Không thể tải thông tin triệu hồi sư: {{reason}}'
+    failedToLoadMatchHistoryTitle: Không thể tải Lịch sử Trận đấu
+    failedToLoadMatchHistoryContent: 'Không thể tải lịch sử trận đấu: {{reason}}'
+    failedToLoadRankedStatsTitle: Không thể tải Thống kê Xếp hạng
+    failedToLoadRankedStatsContent: 'Không thể tải thống kê xếp hạng: {{reason}}'
+    noMatchHistory: Không có lịch sử trận đấu
+    noFilteredMatchHistory: Không có lịch sử trận đấu phù hợp
+    clearFilters: Xóa điều kiện lọc
+    loading: Đang tải...
+    summoner404: Không tìm thấy Triệu Hồi Sư
+    failedToLoadTitle: Không thể tải
+    failedToLoadSummoner: 'Không thể tải thông tin triệu hồi sư: {{reason}}'
+    failedToLoadSummonerProfile: 'Không thể tải hồ sơ triệu hồi sư: {{reason}}'
+    failedToLoadRankedStats: 'Không thể tải thống kê xếp hạng: {{reason}}'
+    failedToLoadMatchHistory: 'Không thể tải lịch sử trận đấu: {{reason}}'
+    failedToLoadEncounteredGames: 'Không thể tải các trận đã gặp: {{reason}}'
+    failedToLoadMatchHistoryHN1: |
+      Không thể tải lịch sử trận đấu: {{reason}}
+      Khu vực hiện tại trên trang này là Ionia. Xin lưu ý rằng vào một số thời điểm (đặc biệt là buổi tối), dữ liệu lịch sử trận đấu có thể không được trả về đúng cách.
+    failedToLoadMatchHistoryGame: 'Không thể tải trận đấu: {{reason}}'
+    failedToLoadTags: 'Không thể tải thẻ người chơi: {{reason}}'
+    failedToUpdateTag: 'Không thể cập nhật thẻ người chơi: {{reason}}'
+    failedToDeleteTag: 'Không thể xóa thẻ người chơi: {{reason}}'
+    operationSuccessTitle: Thao tác thành công
+    operationFailedTitle: Thao tác thất bại
+    failedToTakeScreenshotNoData: Chụp ảnh thất bại, không lấy được dữ liệu hình ảnh
+    failedToTakeScreenshot: 'Chụp ảnh thất bại: {{reason}}'
+    copiedToClipboard: Đã sao chép vào clipboard
+    failedToLaunchReplay: 'Không thể mở replay: {{reason}}'
+    failedToDownloadReplay: 'Không thể tải replay: {{reason}}'
+  matchHistory:
+    filters:
+      title: Bộ lọc
+      pageFilter: Lọc Trang
+      simpleTab: Bộ lọc Cơ bản
+      advancedTab: Bộ lọc Nâng cao
+      reset: Xóa Bộ lọc
+      resetAll: Đặt lại Tất cả Điều kiện
+      winLoss: Kết quả
+      timeRange: Khoảng thời gian
+      all: Tất cả
+      win: Thắng
+      loss: Thua
+      summoners: Triệu hồi sư liên quan
+      champions: Tướng liên quan
+      searchResults: Kết quả tìm kiếm
+      pageSummoners: Triệu hồi sư trong trang
+      selectedSummoners: Đã chọn
+      showPractice: Hiện Chế độ Luyện tập
+      showIrregularGames: Hiện Trận làm lại, Hủy bỏ, v.v.
+      addCondition: Thêm Điều kiện
+      addRule: Thêm Điều kiện
+      addGroup: Thêm Nhóm
+      exclude: Loại trừ
+      removeExclude: Ngừng loại trừ
+      addFirstConditionHint: Thêm điều kiện đầu tiên để xây dựng bộ lọc phức tạp
+      addFirstRule: Bắt đầu với một điều kiện
+      addFirstRuleHint: Mặc định là khớp-tất-cả; chỉ thêm nhóm cho logic lồng nhau hoặc loại trừ
+      and: Tất cả (VÀ)
+      or: Bất kỳ (HOẶC)
+      add: Thêm
+      switchToOr: Bất kỳ (HOẶC)
+      switchToAnd: Tất cả (VÀ)
+      delete: Xóa
+      needAddCondition: Cần thêm điều kiện
+      addNestedRuleHint: Thêm điều kiện khác hoặc nhóm con bên trong nhóm hiện tại
+      matchAllRules: Khớp tất cả điều kiện
+      matchAnyRules: Khớp bất kỳ điều kiện nào
+      groupDescriptionAll: Mọi điều kiện trong nhóm này phải khớp
+      groupDescriptionAny: Bất kỳ điều kiện nào trong nhóm này có thể khớp
+      anyone: Cho bất kỳ thành viên nào
+      everyone: Tất cả thành viên phải
+      selectCondition: Chọn Điều kiện
+      needSelectCondition: Cần chọn điều kiện
+      forPlayer: Cho người chơi
+      targetPlayer: Kiểm tra người chơi đã chọn
+      targetPlayerTeam: Kiểm tra đồng đội của người chơi này
+      targetPlayerOpponents: Kiểm tra đối thủ của người chơi này
+      targetAnyMember: Kiểm tra bất kỳ người chơi nào
+      targetEveryMember: Kiểm tra mọi người chơi
+      targetAllMembers: Kiểm tra tất cả người chơi
+      searchHint: (Tên và tag sẽ được dùng để tìm kiếm)
+      notMatch: Không Phải
+      excludeRulesTitle: Loại trừ các điều kiện sau
+      excludeRulesHint: Kết quả khớp với nhóm này sẽ bị loại trừ
+      forAllMembers: Cho tất cả thành viên
+      forAllies: Cho đồng minh
+      forEnemies: Cho kẻ địch
+      relativeTo: Liên quan đến
+      referencePlayer: Người chơi tham chiếu
+      position: Vị trí
+      queue: Chế độ chơi
+      gameDuration: Thời gian trận (giây)
+      min: Tối thiểu
+      max: Tối đa
+      isWin: Thắng
+      isLoss: Thua
+      isAbort: Đã hủy
+      isRemake: Làm lại
+      surrenderLoss: Thua bằng đầu hàng
+      kills: Hạ gục
+      deaths: Tử vong
+      assists: Hỗ trợ
+      gold: Vàng
+      isMatchedGame: Trận xếp trận
+      isPveGame: Trận PvE
+      summonerSpell: Phép triệu hồi
+      hasItem: Có trang bị
+      augment: Tăng cường
+      hasPlayer: Trận có người chơi
+      playerPuuid: Người chơi
+      select: Chọn
+      atPosition: Ở vị trí
+      have: Có
+      measureMode: Đo lường
+      minPercent: Tối thiểu (%)
+      maxPercent: Tối đa (%)
+      measureModes:
+        value: Giá trị thực
+        teamShare: Chia sẻ đội (%)
+        teamMaxShare: Chia sẻ cao nhất đội (%)
+        gameShare: Chia sẻ tất cả người chơi (%)
+        gameMaxShare: Chia sẻ cao nhất trận (%)
+      anyPosition: Bất kỳ vị trí nào
+      positionN: Vị trí {{n}}
+      primaryStyle: Nhánh chính
+      subStyle: Nhánh phụ
+      spellGroupNormal: Thường
+      spellGroupSpecial: Đặc biệt
+      augmentGroupHextech: Đấu Trường Hextech
+      augmentGroupArena: Đấu Trường
+      augmentGroupOther: Khác
+      augmentTypeHai: H
+      augmentTypeDou: A
+      isChampion: Tướng
+      sections:
+        logicGroups: Logic
+        scopeGroups: Phạm vi & Mục tiêu
+        gameConditions: Chi tiết Trận
+        resultConditions: Kết quả & Kết thúc
+        matchConditions: Thành viên & Phạm vi
+        participantConditions: Lựa chọn & Trang bị của Người chơi
+        statConditions: Chỉ số Người chơi
+      descriptions:
+        isWin: Khớp với người chơi chiến thắng hoặc nhóm thành viên
+        isAbort: Khớp với các trận không kết thúc bình thường
+        isRemake: Khớp với các trận làm lại
+        isMatchedGame: Chỉ khớp với các trận được tạo bởi hệ thống xếp trận
+        isPveGame: Chỉ khớp với các trận bot hoặc chế độ PvE khác
+      gameModes:
+        CLASSIC: Cổ điển
+        ARAM: ARAM
+        URF: URF
+        CHERRY: Đấu Trường
+        KIWI: 'ARAM: Hỗn Loạn'
+        STRAWBERRY: Swarm
+        PRACTICETOOL: Công cụ Luyện tập
+        TUTORIAL: Hướng dẫn
+        NEXUSBLITZ: Nexus Blitz
+        ULTBOOK: Sách Phép Tối Thượng
+        ONEFORALL: Một Cho Tất Cả
+        SNOWURF: URF Tuyết
+        DOOMBOTSTEEMO: Bot Hủy Diệt
+        RUBY: Bot Hủy Diệt
+        ARSR: Chế độ Luân Phiên
+        ASSASSINATE: Trăng Máu
+        FIRSTBLOOD: Overcharge
+        PROJECT: PROJECT
+        STARGUARDIAN: Vệ Binh Tinh Tú
+        BRAWL: Brawl
+      examples:
+        title: Ví dụ Nhanh
+        applyHint: Nhấp để nhập và thay thế bộ lọc nâng cao hiện tại
+        cleanMatchSamples:
+          title: Chỉ giữ {matched} qua {duration}, loại trừ {remake}, {abort} và {pve}
+          matched: trận xếp trận
+          duration: 10 phút
+          remake: trận làm lại
+          abort: trận đã hủy
+          pve: trận PvE
+        strongSelfPerformance:
+          title: Tìm trận sạch nơi bạn có {kda}, {deaths} và {contribution}
+          kda: KDA ≥ 4
+          deaths: tử vong ≤ 4
+          contribution: thắng hoặc đóng góp cao
+        kiwiJayceSlowAndSteady:
+          title: Tìm trận {queue} nơi tướng địch {champion} đã dùng {augment}
+      combinatorLabels:
+        game: Trận
+        and: Và
+        or: Hoặc
+        not: Không
+        isQueue: Chế độ trận
+        isGameMode: Chế độ chơi
+        isMap: Bản đồ
+        isAbort: Đã hủy
+        isRemake: Làm lại
+        hasAugment: Tăng cường
+        hasPerk: Ngọc
+        hasPerkStyle: Nhánh Ngọc
+        enemies: Kiểm tra đối thủ của người chơi này
+        allies: Kiểm tra đồng đội của người chơi này
+        all: Kiểm tra tất cả người chơi
+        anyone: Kiểm tra bất kỳ người chơi nào
+        everyone: Kiểm tra mọi người chơi
+        isChampion: Tướng
+        durationBetween: Thời gian trận
+        kdaBetween: KDA
+        killsBetween: Hạ gục
+        deathsBetween: Tử vong
+        assistsBetween: Hỗ trợ
+        goldBetween: Vàng kiếm được
+        goldSpentBetween: Vàng đã tiêu
+        levelBetween: Cấp độ
+        csBetween: CS
+        killParticipationBetween: Tham gia hạ gục (%)
+        damageDealtToChampionsBetween: Sát thương lên tướng
+        physicalDamageDealtToChampionsBetween: Sát thương vật lý lên tướng
+        magicDamageDealtToChampionsBetween: Sát thương phép lên tướng
+        trueDamageDealtToChampionsBetween: Sát thương chuẩn lên tướng
+        damageTakenBetween: Sát thương nhận vào
+        physicalDamageTakenBetween: Sát thương vật lý nhận vào
+        magicDamageTakenBetween: Sát thương phép nhận vào
+        trueDamageTakenBetween: Sát thương chuẩn nhận vào
+        damageToTowersBetween: Sát thương lên trụ
+        healBetween: Hồi máu
+        visionScoreBetween: Điểm tầm nhìn
+        timeCCingOthersBetween: Thời gian khống chế
+        dgrBetween: Hiệu suất vàng-sát thương (%)
+        soloKillsBetween: Hạ gục đơn
+        doubleKillsBetween: Hạ gục đôi
+        tripleKillsBetween: Hạ gục ba
+        quadraKillsBetween: Hạ gục bốn
+        pentaKillsBetween: Hạ gục năm
+        isWin: Thắng
+        isLoss: Thua
+        isMatchedGame: Trận xếp trận
+        isPveGame: Trận PvE
+        player: Kiểm tra người chơi đã chọn
+        hasPlayer: Trận có người chơi
+        hasSpell: Phép triệu hồi
+        isPosition: Vị trí
+        hasItem: Có trang bị
+      positionHint: Khi sử dụng nguồn LCU, vị trí được suy ra từ lane/vai trò và chỉ mang tính tương đối
+      positionUnsupportedHint: API LCU không cung cấp bản ghi vị trí đáng tin cậy. Hãy chuyển sang API SGP để sử dụng điều kiện này
+    timeRange:
+      all: Tất cả
+      last3Hours: 3 Giờ qua
+      last12Hours: 12 Giờ qua
+      last24Hours: 24 Giờ qua
+      last3Days: 3 Ngày qua
+      last7Days: 7 Ngày qua
+      last30Days: 30 Ngày qua
+    collectMode:
+      pageSizeOptionTag: Thu thập
+      collectedPageTitle: Kết quả Đã Thu thập
+      collectedPageDescription: Trang này là kết quả của chế độ thu thập với {collected} từ {scanned}.
+      scannedMatches_one: '{count} trận đã quét'
+      scannedMatches_other: '{count} trận đã quét'
+      collectedMatches_one: '{count} trận đã thu thập'
+      collectedMatches_other: '{count} trận đã thu thập'
+      reloadNormalPage: Thoát Chế độ Thu thập
+      collectingProgress: Đang thu thập ({{count}} / {{expected}})
+      stoppingProgress: Đang dừng thu thập ({{count}} / {{expected}})
+      roundProgress: Vòng {{current}} / {{max}}
+      stopCollect: Dừng
+      tooltipDescription: Chế độ thu thập tự động quét các trang lịch sử trận đấu từ trang đầu tiên sử dụng bộ lọc hiện tại cho đến khi đạt đến số lượng mục tiêu hoặc giới hạn kéo tối đa.
+      tooltipUseCase: Sử dụng tính năng này để thu thập các trận đấu phù hợp nằm rải rác trên nhiều trang lịch sử trận đấu.
+      openSettings: Thu thập với Bộ lọc Hiện tại
+      settingsTitle: Cài đặt Thu thập
+      countPerIterationLabel: Số Trận Tải Mỗi Vòng
+      countPerIterationDescription: Quá trình thu thập kéo từng trang lịch sử trận đấu một. Điều này kiểm soát số lượng trận được tải mỗi lần.
+      expectedCountLabel: Số Lượng Mục tiêu Thu thập
+      expectedCountDescription: Dừng thu thập khi đã tìm thấy đủ số trận phù hợp. Tránh giá trị quá lớn vì có thể ảnh hưởng đến hiệu suất.
+      maxIterationLabel: Số Vòng Tối đa
+      maxIterationDescription: Quá trình thu thập sẽ không chạy mãi mãi. Nếu đạt đến số vòng này trước khi tìm đủ trận, nó sẽ dừng lại.
+      cancel: Hủy
+      startCollect: Bắt đầu Thu thập
+    list:
+      empty: Không có dữ liệu.
+    card:
+      kprTitle: 'Tham gia hạ gục trong đội: {{rate}}%'
+      ddrTitle: 'Sát thương lên tướng: {{rate}}%'
+      dtrTitle: 'Sát thương nhận trong đội: {{rate}}%'
+      grTitle: 'Chia sẻ vàng đội: {{rate}}%'
+      kpr: KPR {{rate}}%
+      ddr: DMG {{rate}}%
+      dtr: DMG Nhận {{rate}}%
+      gr: Vàng {{rate}}%
+      misc: Khác
+      perfect: Hoàn hảo
+      expand: Mở rộng
+      collapse: Thu gọn
+      loading: Đang tải...
+      error: Tải thất bại
+      practiceTool: Luyện tập
+      win: Thắng
+      lose: Thua
+      remake: Làm lại
+      abort: Đã hủy
+      surrender: Đầu hàng
+    previewer:
+      noData: Không có dữ liệu.
+      notFound: Không tìm thấy trận
+      error: Tải trận thất bại
+      reload: Tải lại
+      loading: Đang tải...
+      errorNotification:
+        title: Lỗi tải {{gameId}}
+        description: 'Không thể lấy trận: {{reason}}'
+    miscellaneous:
+      gameId: ID Trận {{gameId}}
+      gameDate: Ngày Trận {{date}}
+      server: 'Máy chủ: {{server}}'
+      bans: 'Cấm:'
+      replay:
+        download: Tải Replay
+        watch: Xem Replay
+        incompatible: Replay Không Tương Thích
+        downloading: Đang tải Replay
+      stats:
+        championId: Tướng
+        spells: Phép Triệu Hồi
+        teams: Đội
+        assists: Hỗ trợ
+        causedEarlySurrender: Người Khởi Xướng Đầu Hàng Sớm
+        champLevel: Cấp Tướng
+        combatPlayerScore: Điểm Chiến Đấu
+        damageDealtToObjectives: Sát thương lên Mục tiêu
+        damageDealtToTurrets: Sát thương lên Trụ
+        damageSelfMitigated: Sát thương Tự Giảm
+        deaths: Tử vong
+        doubleKills: Hạ gục Đôi
+        earlySurrenderAccomplice: Đồng Loạn Đầu Hàng Sớm
+        firstBloodAssist: Hỗ trợ Máu Đầu
+        firstBloodKill: Máu Đầu
+        firstInhibitorAssist: Hỗ trợ Phá Trụ Nhà Đầu
+        firstInhibitorKill: Phá Trụ Nhà Đầu
+        firstTowerAssist: Hỗ trợ Phá Trụ Đầu
+        firstTowerKill: Phá Trụ Đầu
+        gameEndedInEarlySurrender: Kết thúc bằng Đầu Hàng Sớm
+        gameEndedInSurrender: Kết thúc bằng Đầu Hàng
+        goldEarned: Vàng Kiếm được
+        goldSpent: Vàng Đã Tiêu
+        inhibitorKills: Trụ Nhà Đã Phá
+        item0: Trang bị 0
+        item1: Trang bị 1
+        item2: Trang bị 2
+        item3: Trang bị 3
+        item4: Trang bị 4
+        item5: Trang bị 5
+        item6: Trang bị 6
+        killingSprees: Chuỗi Hạ gục
+        kills: Hạ gục
+        largestCriticalStrike: Chí mạng Lớn nhất
+        largestKillingSpree: Chuỗi Hạ gục Lớn nhất
+        largestMultiKill: Đa Hạ gục Lớn nhất
+        longestTimeSpentLiving: Thời gian Sống Lâu nhất
+        magicDamageDealt: Sát thương Phép Gây ra
+        magicDamageDealtToChampions: Sát thương Phép lên Tướng
+        magicalDamageTaken: Sát thương Phép Nhận vào
+        neutralMinionsKilled: Lính Trung lập Hạ
+        neutralMinionsKilledEnemyJungle: Lính Trung lập Hạ (Rừng Địch)
+        neutralMinionsKilledTeamJungle: Lính Trung lập Hạ (Rừng Đồng đội)
+        objectivePlayerScore: Điểm Mục tiêu
+        participantId: ID Người tham gia
+        pentaKills: Hạ gục Năm
+        perk0: Ngọc 0
+        perk0Var1: Ngọc 0 Biến 1
+        perk0Var2: Ngọc 0 Biến 2
+        perk0Var3: Ngọc 0 Biến 3
+        perk1: Ngọc 1
+        perk1Var1: Ngọc 1 Biến 1
+        perk1Var2: Ngọc 1 Biến 2
+        perk1Var3: Ngọc 1 Biến 3
+        perk2: Ngọc 2
+        perk2Var1: Ngọc 2 Biến 1
+        perk2Var2: Ngọc 2 Biến 2
+        perk2Var3: Ngọc 2 Biến 3
+        perk3: Ngọc 3
+        perk3Var1: Ngọc 3 Biến 1
+        perk3Var2: Ngọc 3 Biến 2
+        perk3Var3: Ngọc 3 Biến 3
+        perk4: Ngọc 4
+        perk4Var1: Ngọc 4 Biến 1
+        perk4Var2: Ngọc 4 Biến 2
+        perk4Var3: Ngọc 4 Biến 3
+        perk5: Ngọc 5
+        perk5Var1: Ngọc 5 Biến 1
+        perk5Var2: Ngọc 5 Biến 2
+        perk5Var3: Ngọc 5 Biến 3
+        perkPrimaryStyle: Nhánh Ngọc Chính
+        perkSubStyle: Nhánh Ngọc Phụ
+        physicalDamageDealt: Sát thương Vật lý Gây ra
+        physicalDamageDealtToChampions: Sát thương Vật lý lên Tướng
+        physicalDamageTaken: Sát thương Vật lý Nhận vào
+        playerAugment1: Tăng cường 1
+        playerAugment2: Tăng cường 2
+        playerAugment3: Tăng cường 3
+        playerAugment4: Tăng cường 4
+        playerAugment5: Tăng cường 5
+        playerAugment6: Tăng cường 6
+        playerScore0: Điểm Người chơi 0
+        playerScore1: Điểm Người chơi 1
+        playerScore2: Điểm Người chơi 2
+        playerScore3: Điểm Người chơi 3
+        playerScore4: Điểm Người chơi 4
+        playerScore5: Điểm Người chơi 5
+        playerScore6: Điểm Người chơi 6
+        playerScore7: Điểm Người chơi 7
+        playerScore8: Điểm Người chơi 8
+        playerScore9: Điểm Người chơi 9
+        playerSubteamId: ID Đội phụ
+        quadraKills: Hạ gục Bốn
+        sightWardsBoughtInGame: Mắt Vàng Mua
+        subteamPlacement: Xếp hạng Đội phụ
+        teamEarlySurrendered: Đội Đầu Hàng Sớm
+        timeCCingOthers: Thời gian Khống chế
+        totalDamageDealt: Tổng Sát thương Gây ra
+        totalDamageDealtToChampions: Tổng Sát thương lên Tướng
+        totalDamageTaken: Tổng Sát thương Nhận vào
+        totalHeal: Tổng Hồi máu
+        totalMinionsKilled: Tổng Lính Hạ
+        totalPlayerScore: Tổng Điểm Người chơi
+        totalScoreRank: Xếp hạng Tổng Điểm
+        totalTimeCrowdControlDealt: Tổng Thời gian Khống chế
+        totalUnitsHealed: Tổng Số Đơn vị Được Hồi
+        tripleKills: Hạ gục Ba
+        trueDamageDealt: Sát thương Chuẩn Gây ra
+        trueDamageDealtToChampions: Sát thương Chuẩn lên Tướng
+        trueDamageTaken: Sát thương Chuẩn Nhận vào
+        turretKills: Trụ Đã Phá
+        unrealKills: Hạ gục Không Tưởng
+        visionScore: Điểm Tầm nhìn
+        visionWardsBoughtInGame: Mắt Kiểm Soát Mua
+        wardsKilled: Mắt Bị Phá
+        wardsPlaced: Mắt Đã Đặt
+        win: Thắng
+        currentPlatformId: Máy chủ Hiện tại
+        platformId: ID Nền tảng
+    details:
+      win: Thắng
+      lose: Thua
+      controlWard: Mắt Kiểm Soát
+      wardPlaced: Đã đặt {{count}}, Đã phá {{cleared}}
+      csPerMinute: '{{count}} / ph'
+      bot: Bot
+      header:
+        kda: KDA
+        dmg: Sát thương / Nhận
+        ward: Mắt
+        cs: CS
+        gold: Vàng
+        item: Trang bị
+        augment: Tăng cường
+  profilePrivacy:
+    title: Hồ sơ Ẩn
+    content: Người chơi này đã đặt hồ sơ ở chế độ riêng tư.
+  taggedStatus:
+    title: Đã gắn thẻ
+    content: Người chơi này đã được gắn thẻ.
+    taggedByOther: Được gắn thẻ bởi tài khoản khác.
+    deletePopconfirm: Xác nhận xóa thẻ này?
+  summary:
+    title: Tổng quan
+    akariScore: Điểm Akari
+    na: N/A
+    avgKda: KDA Trung bình
+    avgKp: Tham gia Hạ gục
+    avgDmg: Chia sẻ Sát thương
+    avgDmgTaken: Chia sẻ Sát thương Nhận
+    avgGold: Chia sẻ Vàng
+    avgCs: Chia sẻ CS
+    avgCsPerMinute: CS/ph
+    perMinuteValue: '{{value}}/ph'
+    teamShare: Chia sẻ {{value}}
+    collectChampionMatches: Thu thập trận {{champion}}
+    winLose: Thắng & Thua
+    win: Thắng
+    lose: Thua
+    winShort: T
+    lossShort: B
+    wr: Tỷ lệ Thắng
+    champions: Tướng đã dùng
+    times: Trận
+    teamSides: Phe Trận
+    activeSession: Thắng/Thua Phiên Hiện tại
+    level3Short: Cấp3
+    level4Short: Cấp4
+    winningStreak_one: 'Chuỗi {{count}} Thắng'
+    winningStreak_other: 'Chuỗi {{count}} Thắng'
+    losingStreak_one: 'Chuỗi {{count}} Thua'
+    losingStreak_other: 'Chuỗi {{count}} Thua'
+  championMastery:
+    title: Thành thạo Tướng
+    viewAll: Thêm
+    modalTitle: Tất cả Thành thạo Tướng
+    filteredChampions: '{{count}} / {{total}} tướng'
+    filterPlaceholder: Lọc theo tên tướng, pinyin hoặc ID
+    score: Điểm {{score}}
+    level: Cấp {{level}}
+    levelLabel: Cấp
+    points: '{{points}} điểm thành thạo'
+    pointsLabel: Điểm Thành thạo
+    highestGrade: Cấp cao nhất {{grade}}
+    highestGradeLabel: Cấp Cao nhất
+    seasonMilestone: Cột mốc mùa {{milestone}}
+    seasonMilestoneLabel: Cột mốc Mùa
+    lastPlayTime: Chơi lần cuối {{time}}
+    lastPlayTimeLabel: Chơi Lần Cuối
+    progressLabel: Tiến trình
+    progress: Tiến trình {{since}} / +{{until}}
+    tokensEarnedLabel: Token
+    tokensEarned: '{{count}} token'
+    noData: Không có dữ liệu thành thạo tướng
+    noFilterResult: Không có tướng phù hợp
+    loadFailed: 'Không thể tải thành thạo tướng: {{reason}}'
+  recentPlayers:
+    teammatesTitle: Đồng đội Gần đây
+    opponentsTitle: Đối thủ Gần đây
+    noRecentPlayers: Không có người chơi gần đây
+    win: Thắng
+    lose: Thua
+  encounteredGames:
+    title: Lịch sử Trận
+    pageInfo: '{{page}} / {{totalPage}}'
+    noData: Không có dữ liệu.
+    deletePopconfirm: Xác nhận xóa bản ghi trận này?
+    loading: Đang tải...
+    opponent: Địch
+    teammate: Đồng minh
+    win: Thắng
+    lose: Thua

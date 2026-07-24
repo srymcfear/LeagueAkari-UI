@@ -1,0 +1,89 @@
+notifications:
+  updateModal:
+    newVersion: Phiên Bản Mới
+    versionFeatures: Tính Năng Mới
+    newVersionAvailable: 'Đã có phiên bản mới: {{version}} (Hiện tại: {{currentVersion}})'
+    currentVersion: 'Phiên Bản Hiện Tại: {{version}}'
+    releasePage: Trang Phát Hành
+    startUpdate: Bắt Đầu Cập Nhật
+    downloading: Đang tải {{progress}}%
+    waitingForRestart: Cập Nhật Khi Đóng
+    downloadFailed: Tải Xuống Thất Bại
+    externalDownload: Tải Ngoài
+    noUpdateMd: Không có ghi chú phát hành
+    ignoreThisVersion: Bỏ Qua Phiên Bản Này
+    noUpdate: Không có bản cập nhật
+  simple:
+    elevatedStartup:
+      title: Đang chạy với quyền quản trị
+      content: '$t(common:appName) hiện đang chạy với đặc quyền nâng cao'
+    newReleaseHints:
+      title: Đã Có Phiên Bản Mới
+      content: Phiên bản mới {{version}} đã có sẵn
+      takeALook: Xem Ngay
+      dismiss: Bỏ Qua
+    liveStreamingHints:
+      dismiss: Bỏ Qua
+      neverShowAgain: Không Hiện Lại
+      toSettings: Đến Cài Đặt
+      detected:
+        title: Bạn đang phát trực tiếp?
+        liveTools: '$t(common:appName) đã phát hiện một hoặc nhiều công cụ phát trực tiếp đang chạy. Bạn có thể bật Chế Độ Streamer để ẩn thông tin nhạy cảm'
+        bySettings: '$t(common:appName) đã phát hiện chế độ phát trực tiếp của máy chủ Liên Minh đang bật. Bạn có thể bật chế độ phát trực tiếp để ẩn thông tin nhạy cảm'
+    login-queue-task:
+      name: Hàng Đợi Đăng Nhập
+      description: 'Đang xếp hàng: {{position}} / {{maxPosition}} (dự kiến {{waitTime}})'
+    higherVersionDb:
+      title: Đã phát hiện cơ sở dữ liệu phiên bản cao hơn
+      content: Phiên bản cơ sở dữ liệu đang sử dụng cao hơn phiên bản ứng dụng này hỗ trợ. Vui lòng cập nhật $t(common:appName) lên phiên bản mới nhất để tương thích tốt nhất
+      positiveText: Xem Bản Cập Nhật
+    badSgpConnection:
+      title: Kết Nối Nguồn Dữ Liệu SGP Kém
+      content:
+        usingSgp: Hiện đang sử dụng nguồn dữ liệu SGP, nhưng chất lượng kết nối mạng kém đã được phát hiện, điều này có thể ảnh hưởng đến việc lấy dữ liệu và chức năng.
+        recommendation: Nên vào Cài Đặt và đổi nguồn dữ liệu sang LCU để có trải nghiệm ổn định hơn.
+        vpnReason: Điều này có thể do mạng không ổn định khi sử dụng VPN để truy cập máy chủ xuyên vùng.
+      positiveText: Đến Cài Đặt
+      negativeText: Bỏ Qua
+      neverShowAgain: Không Nhắc Lại
+    replay-download-progress-task:
+      name: Tải Replay
+      checking: Đang kiểm tra thông tin replay...
+      found: Đã tìm thấy thông tin replay
+      downloading: Đang tải replay...
+      watch: Replay đã tải xong
+      incompatible: Replay không tương thích
+      closeButton: Đóng
+      watchButton: Xem Replay
+    wmiRequiresAdministrator:
+      title: Yêu Cầu Quyền Quản Trị
+      content: Hiện tại đang sử dụng WMI để lấy dòng lệnh máy chủ Liên Minh, yêu cầu chạy ứng dụng này với quyền quản trị viên
+      positiveText: Khởi động lại với quyền Quản trị viên
+      negativeText: Hủy
+    cannotGetUxCommandLine:
+      title: Không Thể Lấy Dòng Lệnh Máy Chủ Liên Minh
+      alreadyUseWmi: Đã phát hiện Máy Chủ Liên Minh đang chạy, nhưng không thể lấy thông tin dòng lệnh. Có thể $t(common:appName) không thể sử dụng trên máy tính này
+      noAdminContent: Đã phát hiện Máy Chủ Liên Minh đang chạy, nhưng không thể lấy thông tin dòng lệnh. Vui lòng thử khởi động lại ứng dụng với quyền quản trị viên, sau đó bật hoặc tắt "Sử dụng WMI để lấy dòng lệnh" trong cài đặt để giải quyết vấn đề. Nếu kết nối vẫn không khả dụng, vui lòng phản hồi vấn đề này cho nhóm phát triển
+      withAdminContent: Đã phát hiện Máy Chủ Liên Minh đang chạy, nhưng không thể lấy thông tin dòng lệnh. Vui lòng thử bật hoặc tắt "Sử dụng WMI để lấy dòng lệnh" trong cài đặt để giải quyết vấn đề. Nếu kết nối vẫn không khả dụng, vui lòng phản hồi vấn đề này cho nhóm phát triển
+      extraContent: 'Lưu ý: Trong một số hệ thống tinh gọn hoặc môi trường internet café, do một số hạn chế nhất định, $t(common:appName) có thể không hoạt động bình thường'
+      withAdminPositiveText: Xác Nhận
+      noAdminPositiveText: Khởi động lại với quyền Quản trị viên
+    autoReconnect:
+      title: Tự Động Kết Nối Lại
+      content: Sẽ kết nối lại trong {{timeLeft}}.
+    runInTempDirWarning:
+      title: Cảnh Báo Chạy Trong Thư Mục Tạm
+      content: Ứng dụng đang chạy trong thư mục tạm, có thể gây ra vấn đề bảo mật. Điều này có thể do ứng dụng không nằm ở vị trí cài đặt chính xác hoặc không được giải nén đúng cách.
+      negativeText: Bỏ Qua
+    updateDownloadFailed:
+      title: Tải Bản Cập Nhật Thất Bại
+      content: 'Không thể tải bản cập nhật: {{error}}. Vui lòng kiểm tra kết nối mạng hoặc xem thông báo để biết thêm giải pháp khả thi.'
+      positiveText: Xem Thông Báo
+      negativeText: Bỏ Qua
+  selfUpdate:
+    tasks:
+      title: Tự Động Cập Nhật
+      start-update: Đang bắt đầu cập nhật $t(common:appName)
+      updateOnQuit: Đã áp dụng bản cập nhật. Khởi động lại ứng dụng để áp dụng
+      lastUpdateFailed: Lần cập nhật trước thất bại, vui lòng kiểm tra nhật ký và thử tải phiên bản mới nhất từ kho chính thức
+      lastUpdateSuccess: Đã cập nhật lên {{version}}

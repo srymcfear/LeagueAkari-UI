@@ -51,6 +51,7 @@ settings:
           sakura: Sakura Pink
           mint: Mint Green
           aurora: Aurora Violet
+          neon: Neon Purple
           butter: Butter Yellow
     selfUpdate:
       title: Application Update
@@ -167,6 +168,9 @@ settings:
     showJunglePathing:
       label: Enable Jungle Pathing
       description: Show jungle pathing entry and analysis card on match history pages.
+    matchCardOpacity:
+      label: Match Card Opacity
+      description: Adjust the opacity of match history cards.
   ongoingGame:
     title: Ongoing Game
     titleCommon: Ongoing Game

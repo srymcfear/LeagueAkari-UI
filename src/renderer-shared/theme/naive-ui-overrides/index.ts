@@ -8,6 +8,7 @@ import { DARK_THEME_OVERRIDES } from './dark'
 import { GRAPHITE_THEME_OVERRIDES } from './graphite'
 import { LIGHT_THEME_OVERRIDES } from './light'
 import { MINT_THEME_OVERRIDES } from './mint'
+import { NEON_THEME_OVERRIDES } from './neon'
 import { SAKURA_THEME_OVERRIDES } from './sakura'
 
 /**
@@ -36,6 +37,7 @@ export const AKARI_BASE_THEME_OVERRIDES: Record<AppThemeId, GlobalThemeOverrides
   dark: DARK_THEME_OVERRIDES,
   graphite: GRAPHITE_THEME_OVERRIDES,
   cyber: CYBER_THEME_OVERRIDES,
+  neon: NEON_THEME_OVERRIDES,
   sakura: SAKURA_THEME_OVERRIDES,
   mint: MINT_THEME_OVERRIDES,
   aurora: AURORA_THEME_OVERRIDES,

@@ -1,0 +1,169 @@
+opgg:
+  titlebar:
+    close: Đóng
+    minimize: Thu Nhỏ
+    pin: Ghim
+    unpin: Bỏ Ghim
+    repositionToAlignLeagueClientUx: Căn chỉnh với giao diện máy khách
+  filters:
+    toOpgg: Đến OP.GG
+    refresh: Làm Mới
+    champions: Bậc
+    champion: Tướng
+    empty: Không Có
+    mode: Chế Độ
+    region: Khu Vực
+    rankTier: Bậc Xếp Hạng
+    position: Vị Trí
+    version: Phiên Bản
+    modes:
+      ranked: Xếp Hạng
+      aram: ARAM
+      arena: Đấu Trường
+      nexus_blitz: Nexus Blitz
+      urf: URF
+      none: Không Có
+    positions:
+      top: Đường Trên
+      jungle: Đi Rừng
+      mid: Đường Giữa
+      adc: Xạ Thủ
+      support: Hỗ Trợ
+      none: Không Có
+    regions:
+      global: Toàn Cầu
+      na: Bắc Mỹ
+      euw: Tây Âu
+      kr: Hàn Quốc
+      br: Brazil
+      eune: Bắc & Đông Âu
+      jp: Nhật Bản
+      lan: Bắc Mỹ Latinh
+      las: Nam Mỹ Latinh
+      oce: Châu Đại Dương
+      tr: Thổ Nhĩ Kỳ
+      ru: Nga
+      sg: Singapore
+      id: Indonesia
+      ph: Philippines
+      th: Thái Lan
+      vn: Việt Nam
+      tw: Đài Loan
+      me: Trung Đông
+    tiers:
+      all: Tất Cả Bậc
+      ibsg: Bạc -
+      gold_plus: Vàng +
+      platinum_plus: Bạch Kim +
+      emerald_plus: Lục Bảo +
+      diamond_plus: Kim Cương +
+      master: Cao Thủ
+      master_plus: Cao Thủ +
+      grandmaster: Đại Cao Thủ
+      challenger: Thách Đấu
+    settings:
+      button: Cài Đặt
+  championTable:
+    searchPlaceholder: Tìm theo tên
+    columns:
+      champion: Tên
+      tier: Bậc
+      winRate: TLT
+      pickRate: TLC
+      counter: Khắc Chế
+      banRate: TLC
+    cancel: Hủy
+  view:
+    replace: Cung Cấp
+    create: Tạo
+    noVersionFound: Không tìm thấy phiên bản
+    settings:
+      title: Cài Đặt OP.GG
+      enabled:
+        label: Bật
+        description: Bật cửa sổ OP.GG. Nếu tắt, có thể bật lại trong cài đặt chính
+      flashPosition:
+        label: Ưu Tiên Phím Tốc Biến
+        description: Phím đặt Tốc Biến khi cài phép bổ trợ
+        auto: Vị trí hiện tại
+        options:
+          d: Mặc định Tốc Biến ở phím D
+          f: Mặc định Tốc Biến ở phím F
+          auto: Quyết định dựa trên phím Tốc Biến hiện tại
+      autoApplyRunes:
+        label: Tự Động Áp Bảng Ngọc
+        description: Tự động áp dụng phép bổ trợ và bảng ngọc có tỉ lệ chọn cao nhất nếu dữ liệu tướng khớp với chế độ hiện tại. Chỉ hiệu quả khi cửa sổ OP.GG được bật và hiển thị
+      autoApplySpells:
+        label: Tự Động Áp Phép Bổ Trợ
+        description: Tự động áp dụng phép bổ trợ và bảng ngọc có tỉ lệ chọn cao nhất nếu dữ liệu tướng khớp với chế độ hiện tại. Chỉ hiệu quả khi cửa sổ OP.GG được bật và hiển thị
+      autoApplyItems:
+        label: Tự Động Áp Trang Bị
+        description: Tự động áp dụng trang bị nếu dữ liệu tướng khớp với chế độ hiện tại. Chỉ hiệu quả khi cửa sổ OP.GG được bật và hiển thị
+    success: 'Yêu cầu đã gửi: {{reason}}'
+    summonerSpells: Phép Bổ Trợ
+    runes: Bảng Ngọc
+    setSpellsFailedMessage: 'Không thể đặt phép bổ trợ: {{reason}}'
+    setRunesFailedMessage: 'Không thể đặt bảng ngọc: {{reason}}'
+    spellsSet: '[$t(common:appName)] Đã đặt phép bổ trợ: [OP.GG] {{spell1}} | {{spell2}}'
+    runesSet: '[$t(common:appName)] {{action}} bảng ngọc: {{name}}'
+    sessionChampions:
+      title: Tướng Trong Phiên
+  champion:
+    boots: Giày
+    adorableRabi: Thỏ Con Dễ Thương
+    avgPlace: Hạng TB
+    1st: Hạng Nhất
+    winRate: Tỉ Lệ Thắng
+    pickRate: Tỉ Lệ Chọn
+    plays: Tổng Số Trận
+    banRate: Tỉ Lệ Cấm
+    counter: Khắc Chế
+    allCounters: Tất Cả
+    counterC: Khắc Chế
+    allC: Tất Cả
+    empty: Không Có Dữ Liệu
+    times: '{{times}} Trận'
+    showAll: Hiện Tất Cả
+    spells: Phép Bổ Trợ
+    apply: Áp Dụng
+    runes: Bảng Ngọc
+    abilityBuild: Nâng Kỹ Năng
+    starterItemText: Trang Bị Khởi Đầu
+    prismItemText: Trang Bị Huyền Thoại
+    coreItemText: Trang Bị Chính
+    itemText: Trang Bị
+    tierText: Bậc {{tier}}
+    applyRunes: Nhập Trang Bị Hiện Tại
+    applyRunesText: Đã Áp Dụng
+    augmentAll: Tất Cả
+    augmentGold: Vàng
+    augmentSilver: Bạc
+    augmentPrism: Huyền Thoại
+    augmentPerformance: Hiệu Quả
+    augmentPopular: Phổ Biến
+    augmentSort:
+      default: Mặc Định
+      performance: Hiệu Suất
+      popular: Phổ Biến
+    showAdvancedStats: Hiện Nâng Cao
+    synergies: Kết Hợp
+    balance:
+      title: Cân Bằng
+      attack_speed: Tốc Độ Đánh
+      damage_dealt: Sát Thương Gây Ra
+      damage_taken: Sát Thương Nhận
+      cooldown_reduction: Giảm Hồi Chiêu
+      healing: Hồi Máu
+      tenacity: Độ Bền
+      shield_amount: Lượng Khiên
+      energy_regen: Hồi Năng Lượng
+      area_of_effect_damage: ST Diện Rộng
+    writeToDisk: '[$t(common:appName)] Đã ghi vào trang bị: {{name}}'
+    writtenToDisk: Đã ghi thành công vào tệp
+    writeFileFailedMessage: Không thể ghi tệp {{reason}}
+    bootsDesc: Giày (sắp xếp theo tỉ lệ chọn)
+    prismItemsDesc: Trang Bị Huyền Thoại (sắp xếp theo tỉ lệ chọn)
+    itemsDesc: Trang Bị (sắp xếp theo tỉ lệ chọn)
+    coreItem: 'Trang Bị Chính #{{index}} | Tỉ Lệ Chọn {{pickRate}}%'
+    starterItem: 'Trang Bị Khởi Đầu #{{index}} | Tỉ Lệ Chọn {{pickRate}}%'
+    cancel: Hủy

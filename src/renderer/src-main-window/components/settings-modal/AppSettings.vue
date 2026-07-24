@@ -508,6 +508,7 @@ const closeActions = computed(() => {
 })
 
 const locales = [
+  { label: 'Tiếng Việt', value: 'vi' },
   { label: '中文', value: 'zh-CN' },
   { label: 'English', value: 'en' }
 ]

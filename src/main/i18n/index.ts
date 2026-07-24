@@ -1,5 +1,7 @@
 import commonEn from '@shared/i18n/en/common.yaml'
 import mainEn from '@shared/i18n/en/main.yaml'
+import commonVi from '@shared/i18n/vi/common.yaml'
+import mainVi from '@shared/i18n/vi/main.yaml'
 import commonZhCN from '@shared/i18n/zh-CN/common.yaml'
 import mainZhCN from '@shared/i18n/zh-CN/main.yaml'
 import i18next from 'i18next'
@@ -17,6 +19,10 @@ i18next.init({
     en: {
       main: mainEn,
       common: commonEn
+    },
+    vi: {
+      main: mainVi,
+      common: commonVi
     },
     'zh-CN': {
       main: mainZhCN,

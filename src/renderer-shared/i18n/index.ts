@@ -13,6 +13,21 @@ import rankedEn from '@shared/i18n/en/renderer/ranked.yaml'
 import settingsEn from '@shared/i18n/en/renderer/settings.yaml'
 import shellEn from '@shared/i18n/en/renderer/shell.yaml'
 import toolkitEn from '@shared/i18n/en/renderer/toolkit.yaml'
+import commonVi from '@shared/i18n/vi/common.yaml'
+import automationVi from '@shared/i18n/vi/renderer/automation.yaml'
+import auxWindowVi from '@shared/i18n/vi/renderer/aux-window.yaml'
+import cdTimerVi from '@shared/i18n/vi/renderer/cd-timer.yaml'
+import gameAssetsVi from '@shared/i18n/vi/renderer/game-assets.yaml'
+import leagueClientVi from '@shared/i18n/vi/renderer/league-client.yaml'
+import matchCardVi from '@shared/i18n/vi/renderer/match-card.yaml'
+import notificationsVi from '@shared/i18n/vi/renderer/notifications.yaml'
+import ongoingGameVi from '@shared/i18n/vi/renderer/ongoing-game.yaml'
+import opggVi from '@shared/i18n/vi/renderer/opgg.yaml'
+import playerVi from '@shared/i18n/vi/renderer/player.yaml'
+import rankedVi from '@shared/i18n/vi/renderer/ranked.yaml'
+import settingsVi from '@shared/i18n/vi/renderer/settings.yaml'
+import shellVi from '@shared/i18n/vi/renderer/shell.yaml'
+import toolkitVi from '@shared/i18n/vi/renderer/toolkit.yaml'
 import commonZhCN from '@shared/i18n/zh-CN/common.yaml'
 import automationZhCN from '@shared/i18n/zh-CN/renderer/automation.yaml'
 import auxWindowZhCN from '@shared/i18n/zh-CN/renderer/aux-window.yaml'
@@ -63,6 +78,23 @@ const rendererEn = mergeRendererResources(
   notificationsEn
 )
 
+const rendererVi = mergeRendererResources(
+  shellVi,
+  settingsVi,
+  automationVi,
+  leagueClientVi,
+  rankedVi,
+  matchCardVi,
+  playerVi,
+  toolkitVi,
+  gameAssetsVi,
+  ongoingGameVi,
+  auxWindowVi,
+  opggVi,
+  cdTimerVi,
+  notificationsVi
+)
+
 const rendererZhCN = mergeRendererResources(
   shellZhCN,
   settingsZhCN,
@@ -90,6 +122,10 @@ i18next.init({
   ns: ['renderer', 'common'],
   defaultNS: 'renderer',
   resources: {
+    vi: {
+      renderer: rendererVi,
+      common: commonVi
+    },
     'zh-CN': {
       renderer: rendererZhCN,
       common: commonZhCN

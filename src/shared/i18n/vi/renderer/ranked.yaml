@@ -1,0 +1,20 @@
+ranked:
+  table:
+    queueType: Loại
+    tier: Bậc
+    leaguePoints: LP
+    ratedRating: Điểm
+    wins: Thắng
+    losses: Thua
+    winRate: TL Thắng
+    previousSeasonEndTier: Bậc cuối mùa trước
+    previousSeasonHighestTier: Bậc cao nhất mùa trước
+    highestTier: Bậc cao nhất
+  display:
+    unranked: Chưa xếp hạng
+    win: T
+    lose: B
+    point: Đ
+    leaguePoint: LP
+    highest: Cao nhất
+    empty: Không có nội dung

@@ -11,14 +11,10 @@
 
     <SetupInAppScope />
 
-    <div class="app-frame__left">
-      <Sidebar />
-    </div>
-
-    <div class="app-frame__right">
+    <div class="app-frame__center">
       <MainWindowTitlebar />
 
-      <div class="app-frame__right-content" ref="contentEl">
+      <div class="app-frame__center-content" ref="contentEl">
         <RouterView v-slot="{ Component }">
           <Transition name="fade">
             <KeepAlive>
@@ -27,6 +23,8 @@
           </Transition>
         </RouterView>
       </div>
+
+      <BottomNavBar />
     </div>
 
     <!--transition background profile skin -->
@@ -61,11 +59,12 @@ import { useElementSize } from '@vueuse/core'
 import { useTranslation } from 'i18next-vue'
 import { onBeforeUnmount, ref, useTemplateRef, watchEffect } from 'vue'
 
-import Sidebar from '@main-window/components/sidebar/Sidebar.vue'
+import BottomNavBar from './components/BottomNavBar.vue'
 
 import MainWindowCloseConfirmModal from './components/MainWindowCloseConfirmModal.vue'
 import SettingsModal from './components/settings-modal/SettingsModal.vue'
 import MainWindowTitlebar from './components/titlebar/MainWindowTitlebar.vue'
+import { useDynamicWallpaperTone } from './composables/useDynamicWallpaperTone'
 import { useMicaAvailability } from './composables/useMicaAvailability'
 import { provideMainWindowAppContext } from './context'
 import { MainWindowUiRenderer } from './shards/main-window-ui'
@@ -98,6 +97,8 @@ const settingModelTab = ref('basic')
 
 const preferMica = useMicaAvailability()
 const backgroundImageUrl = mui.usePreferredBackgroundImageUrl()
+
+useDynamicWallpaperTone(backgroundImageUrl)
 
 const toggleMicaClass = (enabled: boolean) => {
   document.documentElement.classList.toggle('mica-enabled', enabled)
@@ -135,32 +136,63 @@ app.onApplicationMenuSettingsClick(() => {
     background-color: var(--la-background-color-primary);
   }
 
-  .app-frame__left {
-    background-color: rgba(189, 189, 189, 0.2);
-    z-index: 10;
-
-    [data-theme='dark'] & {
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    [data-theme-id]:not([data-theme-id='light']):not([data-theme-id='dark']) & {
-      background-color: var(--la-sidebar-bg);
-      border-right: 1px solid var(--la-sidebar-border);
-    }
-  }
-
-  .app-frame__right {
+  .app-frame__center {
     display: flex;
     flex-direction: column;
     z-index: 5;
-    width: 0;
     flex: 1;
+    min-width: 0;
     overflow: hidden;
 
-    .app-frame__right-content {
+    .app-frame__center-content {
       height: 0;
       flex: 1;
       overflow: hidden;
+
+      [data-theme-id='neon'] & {
+        padding: 0 20px 20px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(139, 74, 255, 0.3) transparent;
+
+        &::-webkit-scrollbar {
+          width: 4px;
+        }
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: rgba(139, 74, 255, 0.3);
+          border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+          background: rgba(139, 74, 255, 0.5);
+        }
+      }
+    }
+
+    [data-theme-id='neon'] &::before {
+      content: '';
+      position: fixed;
+      top: -30%;
+      right: -15%;
+      width: 70%;
+      height: 80%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(ellipse at center, rgba(139, 74, 255, 0.12) 0%, transparent 70%);
+    }
+
+    [data-theme-id='neon'] &::after {
+      content: '';
+      position: fixed;
+      bottom: -20%;
+      left: -10%;
+      width: 50%;
+      height: 60%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
     }
   }
 

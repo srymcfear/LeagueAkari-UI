@@ -1,0 +1,186 @@
+notices:
+  modal:
+    title: Thông báo
+    close: Đóng
+    read: Tôi đã đọc
+    updatedAt: Đã cập nhật {{time}}
+    noNoticeMd: |
+      ***Không có thông báo***
+    contacts:
+      open: Mở
+      openChannel: Mở {{name}}
+      password: 'Mật khẩu tham gia: {{password}}'
+      platforms:
+        qq: QQ
+        telegram: Telegram
+        discord: Discord
+        email: Email
+        website: Website
+        other: Khác
+legal:
+  declaration:
+    title: Tuyên bố
+    isFree: là miễn phí
+    ok: Tôi xác nhận phần mềm này {isFree} và đồng ý với tuyên bố từ chối trách nhiệm
+    quit: Thoát
+    newContent: |
+      <div class="akari-disclaimer">
+
+      <style>
+      .akari-disclaimer{
+        background-color:#ffffff;
+        color:#333333;
+        line-height:1.65;
+        padding:1.75rem 2rem;
+        box-shadow:0 2px 6px rgba(0,0,0,.15);
+      }
+      .akari-disclaimer h1,
+      .akari-disclaimer h2{
+        color:#d97706;
+        margin-top:1.5rem;
+        margin-bottom:.75rem;
+        line-height:1.25;
+      }
+      .akari-disclaimer h1{font-size:1.6rem;}
+      .akari-disclaimer h2{font-size:1.25rem;}
+      .akari-disclaimer ul{margin-left:1.5rem;}
+      .akari-disclaimer li{margin-bottom:.65rem;}
+      .akari-disclaimer a{color:#2563eb;text-decoration:none;}
+      .akari-disclaimer a:hover{text-decoration:underline;}
+      [data-theme='dark'] .akari-disclaimer{
+        background-color:#1e1e1e;
+        color:#e6e6e6;
+        box-shadow:0 2px 6px rgba(0,0,0,.35);
+      }
+      [data-theme='dark'] .akari-disclaimer h1,
+      [data-theme='dark'] .akari-disclaimer h2{
+        color:#ffd866;
+      }
+      [data-theme='dark'] .akari-disclaimer a{
+        color:#8ab4f8;
+      }
+      </style>
+
+      # $t(common:appName) Hướng dẫn Sử dụng & Tuyên bố Miễn trừ Trách nhiệm
+
+      > **Trước khi tải xuống, cài đặt hoặc sử dụng phần mềm này, vui lòng đọc và hiểu đầy đủ hướng dẫn cũng như tuyên bố miễn trừ trách nhiệm này.**
+      > Khi bạn bắt đầu sử dụng, bạn được coi là đã hiểu đầy đủ và đồng ý với tất cả các điều khoản sau đây.
+
+      ---
+
+      ## I. Bản chất Phần mềm & Cách thức Mua lại
+      - **$t(common:appName)** hoàn toàn là mã nguồn mở và miễn phí; tất cả các tính năng được cung cấp "nguyên trạng."
+      - Phần mềm này không được bán dưới bất kỳ hình thức trả phí, đóng gói hoặc vì lợi nhuận nào. Nếu bạn gặp bất kỳ hình thức bán lại, đóng gói hoặc các hoạt động vì lợi nhuận khác, vui lòng không mua. Nếu bạn đã mua, hãy **yêu cầu hoàn tiền ngay lập tức**.
+
+      ## II. Thông báo Rủi ro & Giới hạn Trách nhiệm
+      - Sử dụng phần mềm này **có thể** dẫn đến (bao gồm nhưng không giới hạn):
+        1. Tài khoản game của bạn bị đình chỉ hoặc bị cấm vĩnh viễn;
+        2. Mất mát, hỏng hóc hoặc không nhất quán của dữ liệu game với dữ liệu máy chủ;
+        3. Máy khách bị sập, giảm hiệu suất hoặc trải nghiệm game kém khác.
+      - Đối với bất kỳ thiệt hại trực tiếp, gián tiếp, ngẫu nhiên, đặc biệt hoặc do hậu quả nào phát sinh từ việc sử dụng hoặc không thể sử dụng phần mềm này, **nhóm phát triển $t(common:appName)** và tất cả những người đóng góp không chịu bất kỳ trách nhiệm nào; mọi rủi ro liên quan đều do người dùng tự chịu.
+
+      > Vui lòng tham khảo phần **Cải tiến Theo dõi Thông tin Trận đấu** trong [Ghi chú Bản vá 25.17](https://www.leagueoflegends.com/en-us/news/game-updates/patch-25-17-notes/).
+
+      ## III. Tuyên bố Tương thích Máy chủ
+      - **Kể từ ngày phát hành tuyên bố này, $t(common:appName) sẽ không còn cung cấp bất kỳ hình thức hỗ trợ nào cho máy chủ Trò chơi Tencent.**
+      - Việc sử dụng phần mềm này trong môi trường máy chủ Tencent rất có khả năng vi phạm các thỏa thuận người dùng, quy định quản lý hoặc biện pháp bảo vệ kỹ thuật của Trò chơi Tencent; mọi hậu quả về việc khóa tài khoản, mất dữ liệu hoặc các hậu quả bất lợi khác hoàn toàn thuộc trách nhiệm của người dùng.
+
+      ## IV. Thu thập Thông tin & Bảo vệ Quyền riêng tư
+      - Để cải thiện chất lượng sản phẩm, phân tích lỗi và thực hiện thống kê bảo mật, phần mềm thu thập thông tin hệ thống **cần thiết và giới hạn** cũng như nhật ký sự cố trong quá trình hoạt động.
+      - Thông tin được thu thập **không** chứa dữ liệu nhận dạng cá nhân, sẽ không được tải lên bất kỳ máy chủ bên thứ ba nào và sẽ không được sử dụng cho mục đích thương mại.
+
+      ## V. Khác
+      - Nhấp vào nút xác nhận ba lần liên tiếp có thể nhanh chóng đóng cửa sổ này. Bằng cách này, bạn được coi là đã đọc và đồng ý với hướng dẫn và tuyên bố miễn trừ trách nhiệm này.
+
+      ---
+
+      > **Nếu bạn có bất kỳ câu hỏi nào về hướng dẫn và tuyên bố miễn trừ trách nhiệm này hoặc cần thêm thông tin về phần mềm, vui lòng truy cập**
+      > <https://github.com/LeagueAkari/LeagueAkari> .
+
+      </div>
+titlebar:
+  actions:
+    notice: Thông báo
+    noticeSummary: Tóm tắt Thông báo
+    noticeOk: Đã hiểu
+    noticeSeeMore: Xem Thêm
+    github: GitHub Dự án
+    auxWindow: Cửa sổ Phụ
+    opggWindow: OP.GG
+    backgroundTasks: Tác vụ Nền
+    themeSelector:
+      title: Bảng Màu
+      groups:
+        system: Hệ thống
+        brightBuiltin: Sáng
+        darkBuiltin: Tối
+      tone:
+        light: Sáng
+        dark: Tối
+      presets:
+        followSystem: Theo Hệ thống
+        light: Sáng
+        dark: Tối
+        graphite: Xanh Than Chì
+        cyber: Cyber Neon
+        sakura: Hồng Sakura
+        mint: Xanh Bạc Hà
+        aurora: Tím Aurora
+        neon: Tím Neon
+        butter: Vàng Bơ
+    toggleTheme:
+      toLight: Chuyển sang Sáng
+      toDark: Chuyển sang Tối
+  windowControls:
+    minimize: Thu nhỏ
+    maximize: Phóng to
+    restore: Khôi phục
+    close: Đóng
+window:
+  closeConfirm:
+    title: Thoát $t(common:appName)
+    options:
+      minimize-to-tray: Thu nhỏ vào khay
+      quit: Thoát
+    remember: Ghi nhớ
+    ok: OK
+    cancel: Hủy
+navigation:
+  sidebar:
+    menu:
+      match-history: Lịch sử Trận đấu
+      ongoing-game: Trận Đang Diễn Ra
+      automation: Tự động hóa
+      toolkit: Bộ Công cụ
+      test: Thử nghiệm
+    status:
+      respawned: Đã hồi sinh
+      respawnedContent: Bạn đã hồi sinh trong trận, chúc chơi game vui vẻ!
+      currentConnected: Đã kết nối
+      launchedClients: Máy khách Đã Khởi chạy
+      noClientTitle: Không có Máy khách Khả dụng
+      noClient: Không có máy khách khả dụng, vui lòng khởi động game
+      settings: Cài đặt
+      notConnected: Chưa Kết nối
+      inConnectionLoop: Đang kết nối...
+      unknown: Không xác định
+      connectedClient: Máy khách Đã Kết nối
+      launchedClientPlaceholder: Máy khách Đã Khởi chạy {{index}}
+      update:
+        available: Tải cập nhật
+        downloading: Đang tải {{progress}}%
+        retry: Thử tải lại
+        ready: Khởi động lại để cập nhật
+      respawnTimer:
+        detail: Hồi sinh sau {{seconds}} s ({{totalSeconds}} s)
+startup:
+  launcher:
+    tcls: Máy khách TCLS
+    weGame: WeGame
+    riotClient: Máy khách Riot
+    successMessage: 'Đã khởi chạy thành công: {{name}}'
+    failedMessage: 'Không thể khởi chạy {{name}}: {{reason}}'
+    newVersionAvailable: Mới
+backgroundTasks:
+  taskTitle: Tác vụ Đang Chạy ({{count}})
+  emptyPlaceholder: Không có tác vụ nền

@@ -485,6 +485,153 @@ const CYBER_OVERRIDES: GlobalThemeOverrides = {
   }
 }
 
+const NEON_OVERRIDES: GlobalThemeOverrides = {
+  common: {
+    bodyColor: '#0d0b15',
+    cardColor: '#16122a',
+    modalColor: '#141128',
+    tableColor: '#141128',
+    popoverColor: '#15122af5',
+    primaryColor: '#8b4aff',
+    primaryColorHover: '#a06aff',
+    primaryColorPressed: '#7738e6',
+    primaryColorSuppl: 'rgba(139, 74, 255, 0.2)',
+    infoColor: '#a67cff',
+    infoColorHover: '#b894ff',
+    infoColorPressed: '#8e5ee6',
+    infoColorSuppl: 'rgba(166, 124, 255, 0.2)',
+    successColor: '#63e6a0',
+    successColorHover: '#7eefb0',
+    successColorPressed: '#4cce88',
+    successColorSuppl: 'rgba(99, 230, 160, 0.18)',
+    warningColor: '#f0b36b',
+    warningColorHover: '#f5c485',
+    warningColorPressed: '#d99a50',
+    warningColorSuppl: 'rgba(240, 179, 107, 0.18)',
+    errorColor: '#ff4d7a',
+    errorColorHover: '#ff6e94',
+    errorColorPressed: '#e63b66',
+    errorColorSuppl: 'rgba(255, 77, 122, 0.18)',
+    textColorBase: 'rgba(240, 235, 255, 0.95)',
+    textColor1: 'rgba(240, 235, 255, 0.95)',
+    textColor2: 'rgba(220, 212, 245, 0.85)',
+    textColor3: 'rgba(190, 180, 220, 0.7)',
+    textColorDisabled: 'rgba(190, 180, 220, 0.38)',
+    placeholderColor: 'rgba(190, 180, 220, 0.5)',
+    iconColor: '#a67cff',
+    iconColorHover: '#c4abff',
+    iconColorPressed: '#8b4aff',
+    borderColor: 'rgba(166, 124, 255, 0.25)',
+    dividerColor: 'rgba(166, 124, 255, 0.15)',
+    inputColor: 'rgba(166, 124, 255, 0.1)',
+    actionColor: 'rgba(166, 124, 255, 0.06)',
+    hoverColor: 'rgba(139, 74, 255, 0.12)',
+    pressedColor: 'rgba(139, 74, 255, 0.18)',
+    buttonColor2: 'rgba(166, 124, 255, 0.1)',
+    buttonColor2Hover: 'rgba(166, 124, 255, 0.18)',
+    buttonColor2Pressed: 'rgba(166, 124, 255, 0.12)'
+  },
+  Notification: {
+    padding: '12px',
+    titleFontSize: '13px',
+    titleFontWeight: '700',
+    descriptionFontSize: '13px',
+    avatarSize: '20px',
+    color: '#1a162ef2'
+  },
+  Card: {
+    color: '#0000',
+    colorModal: '#16122a',
+    borderColor: 'rgba(166, 124, 255, 0.2)',
+    borderColorModal: 'rgba(166, 124, 255, 0.25)'
+  },
+  Button: {
+    colorSecondary: 'rgba(166, 124, 255, 0.1)',
+    colorSecondaryHover: 'rgba(166, 124, 255, 0.18)',
+    colorSecondaryPressed: 'rgba(166, 124, 255, 0.12)',
+    border: '1px solid rgba(166, 124, 255, 0.25)',
+    borderHover: '1px solid rgba(166, 124, 255, 0.4)',
+    borderPressed: '1px solid rgba(166, 124, 255, 0.3)',
+    textColor: 'rgba(235, 230, 250, 0.92)',
+    textColorHover: '#ffffff',
+    textColorPressed: 'rgba(235, 230, 250, 0.9)',
+    textColorPrimary: '#f0edff',
+    textColorHoverPrimary: '#f0edff',
+    textColorPressedPrimary: '#f0edff'
+  },
+  Switch: {
+    railColor: 'rgba(166, 124, 255, 0.2)',
+    railColorActive: '#8b4aff',
+    buttonColor: '#e8deff',
+    iconColor: '#0d0b15',
+    textColor: 'rgba(166, 124, 255, 0.92)',
+    loadingColor: '#e8deff',
+    buttonBoxShadow: '0 0 0 1px rgba(166, 124, 255, 0.3), 0 0 8px rgba(139, 74, 255, 0.15)'
+  },
+  Checkbox: {
+    color: 'rgba(166, 124, 255, 0.1)',
+    colorChecked: '#8b4aff',
+    border: '1px solid rgba(166, 124, 255, 0.25)',
+    borderChecked: '1px solid #8b4aff',
+    checkMarkColor: '#f0edff',
+    textColor: 'rgba(235, 230, 250, 0.92)',
+    boxShadowFocus: '0 0 0 2px rgba(139, 74, 255, 0.3)',
+    fontSizeSmall: '13px'
+  },
+  Radio: {
+    color: 'rgba(166, 124, 255, 0.2)',
+    colorActive: '#8b4aff',
+    buttonColor: 'rgba(166, 124, 255, 0.1)',
+    buttonColorActive: '#8b4aff',
+    buttonBorderColor: 'rgba(166, 124, 255, 0.25)',
+    buttonBorderColorActive: '#8b4aff',
+    buttonTextColor: 'rgba(235, 230, 250, 0.92)',
+    buttonTextColorActive: '#f0edff',
+    dotColorActive: '#8b4aff'
+  },
+  Message: {
+    padding: '4px 8px',
+    fontSize: '12px',
+    iconSize: '16px',
+    iconMargin: '0 4px 0 0',
+    colorInfo: '#1a162e',
+    colorSuccess: '#1a162e',
+    colorWarning: '#1a162e',
+    colorError: '#1a162e'
+  },
+  Popover: {
+    color: '#15122af5',
+    arrowColor: '#15122af5',
+    borderColor: 'rgba(166, 124, 255, 0.25)',
+    fontSize: '12px'
+  },
+  Tooltip: {
+    color: 'rgba(22, 18, 38, 0.96)',
+    textColor: 'rgba(220, 210, 255, 0.95)'
+  },
+  InternalSelectMenu: {
+    color: '#18152af6'
+  },
+  Dropdown: {
+    color: '#15122af5'
+  },
+  Menu: {
+    padding: '1px'
+  },
+  Scrollbar: {
+    width: '6px'
+  },
+  Progress: {
+    railColor: 'rgba(166, 124, 255, 0.15)',
+    fontSize: '12px'
+  },
+  Tag: {
+    color: 'rgba(139, 74, 255, 0.15)',
+    textColor: '#c4abff',
+    border: '1px solid rgba(139, 74, 255, 0.3)'
+  }
+}
+
 const MINT_OVERRIDES: GlobalThemeOverrides = {
   common: {
     bodyColor: '#f3f8f5',
@@ -763,6 +910,7 @@ const THEME_OVERRIDES: Record<AppThemeId, GlobalThemeOverrides> = {
   dark: CLASSIC_OVERRIDES.dark,
   graphite: CLASSIC_OVERRIDES.graphite,
   cyber: CYBER_OVERRIDES,
+  neon: NEON_OVERRIDES,
   sakura: SAKURA_OVERRIDES,
   mint: MINT_OVERRIDES,
   aurora: AURORA_OVERRIDES,

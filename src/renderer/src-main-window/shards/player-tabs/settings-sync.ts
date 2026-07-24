@@ -47,4 +47,10 @@ export async function syncPlayerTabsSettings(settingUtils: SettingUtilsRenderer)
     store.frontendSettings,
     'defaultShowIrregularGames'
   )
+
+  await settingUtils.savedPropVue(
+    PLAYER_TABS_RENDERER_NAMESPACE,
+    store.frontendSettings,
+    'matchCardOpacity'
+  )
 }

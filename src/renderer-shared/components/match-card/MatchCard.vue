@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full min-w-175 [contain-intrinsic-size:116px] [content-visibility:auto]">
+  <div class="relative w-full min-w-0 [contain-intrinsic-size:200px] [content-visibility:auto]">
     <MatchCardOverview @toggle-expand="isExpanded = !isExpanded" />
 
     <KeepAlive>
@@ -25,7 +25,8 @@ const {
   hidePrivacy = false,
   loadingDetails = false,
   replayState = null,
-  canDryRunOngoingGame = false
+  canDryRunOngoingGame = false,
+  matchCardOpacity = 1
 } = defineProps<{
   summary: LcuOrSgpGameSummary
   details?: LcuOrSgpGameDetails | null
@@ -34,6 +35,7 @@ const {
   loadingDetails?: boolean
   replayState?: ReplayDownloadProgress
   canDryRunOngoingGame?: boolean
+  matchCardOpacity?: number
 }>()
 
 const emits = defineEmits<{
@@ -58,6 +60,7 @@ provideMatchCard({
   loadingDetails: () => loadingDetails,
   replayState: () => replayState,
   canDryRunOngoingGame: () => canDryRunOngoingGame,
+  matchCardOpacity: () => matchCardOpacity,
 
   navigateToSummonerByPuuid: (puuid: string, setCurrent?: boolean) => {
     emits('navigateToSummonerByPuuid', puuid, setCurrent)

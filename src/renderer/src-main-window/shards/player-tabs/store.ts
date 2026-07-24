@@ -75,7 +75,12 @@ export const usePlayerTabsStore = defineStore('shard:player-tabs-renderer', () =
     /**
      * 默认显示重开局等
      */
-    defaultShowIrregularGames: false
+    defaultShowIrregularGames: false,
+
+    /**
+     * Độ trong suốt của match card overview
+     */
+    matchCardOpacity: 1
   })
 
   const tabs = ref<TabState[]>([])

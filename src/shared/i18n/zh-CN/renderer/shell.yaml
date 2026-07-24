@@ -126,6 +126,7 @@ titlebar:
         sakura: 樱花粉
         mint: 薄荷绿
         aurora: 极光紫
+        neon: 霓虹紫
         butter: 奶油黄
     toggleTheme:
       toLight: 切换至亮色

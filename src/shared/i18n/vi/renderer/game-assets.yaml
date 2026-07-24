@@ -1,0 +1,17 @@
+gameAssets:
+  summonerSpell:
+    cooldown: 'Hồi chiêu: {{time}}s'
+    levelRequirement: 'Yêu cầu Cấp {{level}}'
+  item:
+    combinePrice: Kết hợp với {{gold}} V
+  augment:
+    bronze: Đồng
+    silver: Bạc
+    gold: Vàng
+    prismatic: Lăng Kính
+    eventChoice: Lựa Chọn Sự Kiện
+    rarity: '{{rarity}}'
+  sharedUi:
+    copyableText:
+      copy: Sao Chép
+      copied: Đã sao chép

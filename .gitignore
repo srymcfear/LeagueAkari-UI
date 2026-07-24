@@ -44,5 +44,19 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# AI agent configs
+.agents/
+.claude/
+.codex/
+
+# Root trash
+/neon-redesign-demo.html
+/ranked-redesign-demo.html
+/neon-demo-current.png
+/neon-demo-screenshot.png
+/ranked-demo-screenshot.png
+/CLAUDE.md
+/docs/announcement.md
+
 # others
 .playwright-mcp

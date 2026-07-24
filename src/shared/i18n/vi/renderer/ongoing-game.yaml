@@ -1,0 +1,292 @@
+ongoingGame:
+  titlebar:
+    draftMode: Chế Độ Nháp
+    exitDraft: Thoát Chế Độ Nháp
+    refresh: Làm Mới
+    spectating: Đang Xem
+    settings:
+      title: Hiển Thị Trận Đấu
+      orderPlayerBy:
+        label: Thứ tự người chơi
+      showJunglePathingForAllPlayers:
+        label: Hiện đường đi rừng cho người chơi không phải rừng
+        description: Khi bật, người chơi không phải rừng cũng hiện mục này nếu lịch sử đấu của họ có chứa dữ liệu đường đi rừng.
+        disabledDescription: Đường đi rừng đã bị tắt trong cài đặt trận đấu. Hãy bật nó trong cài đặt trận đấu trước khi thay đổi tùy chọn này.
+      openOngoingGameSettings: Thêm cài đặt trận đấu
+    orderOptions:
+      default: Mặc Định
+      position: Vị Trí
+      premade-team: Đi Cùng
+      win-rate: TLT Giảm
+      kda: KDA Giảm
+      akari-score: Điểm Giảm
+  junglePathing:
+    title: Rừng
+    thisGame: Trận Này
+    hero: Tướng
+    overall: Tất Cả
+    currentChampion: Tướng Này
+    mapPref: Ưu Tiên Bản Đồ
+    zoneWeight: Trọng Số Khu Vực
+    zoneWeightShort: Wt
+    positionWeight: trọng số vị trí
+    takedownWeight: trọng số tham gia hạ gục
+    first14Minutes: 14 phút đầu
+    preferenceDecision: Quyết định ưu tiên
+    singleZone: Một khu vực
+    firstClearDecision: Quyết định dọn đầu
+    oneMinutePosition: Vị trí phút 1
+    level3Decision: Quyết định cấp 3
+    level4Decision: Quyết định cấp 4
+    threeMinuteFrame: Khung phút 3
+    fourMinuteFrame: Khung phút 4
+    championDamage: sát thương lên tướng
+    championDamageIncrease: sát thương lên tướng tăng thêm
+    takedownParticipation: tham gia hạ gục
+    aggregation: Tổng Hợp
+    sampleScope: phạm vi mẫu
+    blueRedSide: xanh / đỏ
+    ganks: Gank
+    topsidePref: Trên
+    midPref: Giữa
+    botsidePref: Dưới
+    topMidPref: Trên/Giữa
+    midBotPref: Giữa/Dưới
+    balanced: Cân Bằng
+    balancedShort: CB
+    prefShort:
+      top: Trên
+      mid: Giữa
+      bot: Dưới
+      topMid: T/G
+      midBot: G/D
+      balanced: CB
+    firstClear: Dọn Đầu
+    topsideStart: Trên {{pct}}%
+    botsideStart: Dưới {{pct}}%
+    campRed: Đỏ
+    campBlue: Xanh
+    campWolves: Sói
+    campRaptors: Bầy Điểu
+    campOwnStart: Thường {pct}
+    campStart: '{{camp}} {pct}'
+    campInvadeStart: Cướp {pct}
+    campPopoverCampGames_one: 'Bãi này: {count} trận'
+    campPopoverCampGames_other: 'Bãi này: {count} trận'
+    campPopoverKindGames_one: '{{kind}} mẫu: {count} trận'
+    campPopoverKindGames_other: '{{kind}} mẫu: {count} trận'
+    campPopoverSideGames_one: 'Tổng bên {{side}}: {count} trận'
+    campPopoverSideGames_other: 'Tổng bên {{side}}: {count} trận'
+    blueTeam: Xanh
+    redTeam: Đỏ
+    earlyGank: Gank Đầu
+    firstClearOwnLegend: Bắt đầu thường
+    firstClearInvadeLegend: Bắt đầu cướp
+    level3KillLegend: Hạ gục cấp 3
+    level4KillLegend: Hạ gục cấp 4
+    level3Gank: Gank cấp 3 {count} / {total}
+    level4Gank: Gank cấp 4 {count} / {total}
+    objectives: Mục Tiêu
+    firstDragonRate: Rồng Đầu {{pct}}%
+    firstDragonRateLabel: Rồng Đầu
+    soloDragonRate: Rồng Một Mình {{pct}}%
+    soloDragonRateLabel: Rồng Một Mình
+    dragons: Rồng {{count}}
+    voidgrubs: Ấu Trùng {{count}}
+    heralds: Sứ Giả {{count}}
+    barons: Baron {{count}}
+    avgDragons: TB Rồng {{count}}
+    avgDragonsLabel: TB Rồng
+    avgVoidgrubs: TB Ấu Trùng {{count}}
+    avgVoidgrubsLabel: TB Ấu Trùng
+    avgHeralds: TB Sứ Giả {{count}}
+    avgHeraldsLabel: TB Sứ Giả
+    avgBarons: TB Baron {{count}}
+    avgBaronsLabel: TB Baron
+    firstTime: Đầu {{time}}
+    noData: Không có mẫu
+    noDataShort: N/A
+    noSideData: Không có mẫu bên
+    noOwnStartData: Không có mẫu bắt đầu thường
+    noInvadeData: Không có mẫu cướp
+    noGankData: Không có mẫu gank
+    noLevel3GankData: Không có mẫu gank cấp 3
+    noLevel4GankData: Không có mẫu gank cấp 4
+    noCurrentChampion: Chưa chọn tướng
+    noCurrentChampionData: Không có mẫu đi rừng cho tướng hiện tại
+    minuteLegend: Điểm vị trí
+    gankLegend: Điểm hạ gục
+    mapSemanticHint: Chú thích
+    mapSemanticDescription: Dấu chấm là mẫu vị trí theo khung phút trong 14 phút đầu. Dấu gạch chéo là vị trí tham gia hạ gục trong 14 phút. Điểm trên bản đồ nhỏ có thể được lấy mẫu; dùng Trọng Số Khu Vực để biết giá trị chính xác.
+    algorithmSummaryZoneWeight: Trọng Số Khu Vực đo cường độ hoạt động ở Trên / Giữa / Dưới trong 14 phút đầu.
+    algorithmSummaryPathing: Dọn đầu và gank sớm được tổng hợp trong phạm vi mẫu hiện tại và phân chia theo bên xanh / đỏ.
+    loadedSamples: Đã tải {{details}} cho người chơi này, bao gồm {{jungle}}.
+    loadedDetailedSamples_one: '{{count}} trận đấu chi tiết'
+    loadedDetailedSamples_other: '{{count}} trận đấu chi tiết'
+    loadedJungleSamples_one: '{{count}} trận đi rừng'
+    loadedJungleSamples_other: '{{count}} trận đi rừng'
+    algorithmDetails: Thuật Toán
+    algorithmDetailZoneWeight: "{zoneWeight} = Σ {positionWeight} + Σ {takedownWeight}. {positionWeight}: trong {first14Minutes}, mỗi khung phút cộng {pointOne} vào khu vực Trên / Giữa / Dưới hiện tại của người đi rừng. {takedownWeight}: mỗi lần tham gia hạ gục trong 14 phút cộng {pointFive} vào khu vực vị trí hạ gục."
+    algorithmDetailPreference: '{preferenceDecision}: tỉ lệ giữa + dưới ≥ 70% và tỉ lệ trên ≤ 28% là {midBot}. Tỉ lệ trên + giữa ≥ 70% và tỉ lệ dưới ≤ 28% là {topMid}. {singleZone} tỉ lệ ≥ 40% và cao hơn ít nhất 8 điểm phần trăm so với khu vực cao thứ hai là Trên / Giữa / Dưới. Còn lại là {balanced}.'
+    algorithmDetailFirstClear: '{firstClearDecision}: dùng bãi quái rừng gần nhất với {oneMinutePosition}. Nếu bãi quái nằm ở nửa địch, nó được tính là {invadeStart}.'
+    algorithmDetailLevel3Gank: '{level3Decision}: tại {threeMinuteFrame}, CS (lính + rừng) là {csRange}, cấp là {level3}, và {championDamage} được phát hiện. Nếu không có dữ liệu sát thương chi tiết, {takedownParticipation} trong vòng 3 phút được dùng làm điều kiện sát thương.'
+    algorithmDetailLevel4Gank: '{level4Decision}: tại {fourMinuteFrame}, {championDamageIncrease} được phát hiện so với khung phút 3, hoặc {takedownParticipation} xảy ra từ 3-4 phút. Nếu không có dữ liệu sát thương chi tiết, chỉ sử dụng {takedownParticipation}.'
+    algorithmDetailAggregation: '{aggregation}: tab đang hoạt động xác định {sampleScope} (tướng hiện tại hoặc tất cả). Dọn đầu / gank sớm được tích lũy riêng cho từng {blueRedSide}.'
+    gamesUnit: ' trận'
+    copyAll: Sao Chép Tổng Quan
+    copied: Đã sao chép phân tích
+    allyJungler: Rừng Đồng Minh
+    enemyJungler: Rừng Địch
+    top: Trên
+    mid: Giữa
+    bot: Dưới
+    topShort: Trên
+    midShort: Giữa
+    botShort: Dưới
+    zoneTiny:
+      top: T
+      mid: G
+      bot: D
+    gamesAnalyzed_one: '{{count}} trận'
+    gamesAnalyzed_other: '{{count}} trận'
+  playerCard:
+    reload: Tải Lại
+    empty: Không tìm thấy trận đấu nào cho chế độ này
+    loadingMatchHistory: Đang tải...
+    errorLoadingMatchHistory: Không thể tải
+    top4Rate: Tỉ Lệ Top 4
+    1stRate: Tỉ Lệ Hạng Nhất
+    1st: '{{rate}}%'
+    position:
+      recentlyPlayed: 'Ưu tiên:'
+      selection: 'Chọn:'
+    cherryWinRatePopover_one: Trong {count} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%. Trong số {{cherryCount}} trận Đấu Trường, tỉ lệ hạng nhất của họ là {{top1Rate}}%.
+    cherryWinRatePopover_other: Trong {count} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%. Trong số {{cherryCount}} trận Đấu Trường, tỉ lệ hạng nhất của họ là {{top1Rate}}%.
+    winRatePopover_one: Trong {count} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%, {{wins}} thắng và {{losses}} thua.
+    winRatePopover_other: Trong {count} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%, {{wins}} thắng và {{losses}} thua.
+    kdaPopover_one: Trong {count} trận gần đây, KDA trung bình của người chơi này là {{kda}} ({{kills}} / {{deaths}} / {{assists}})
+    kdaPopover_other: Trong {count} trận gần đây, KDA trung bình của người chơi này là {{kda}} ({{kills}} / {{deaths}} / {{assists}})
+    premadePopover: Họ là đồng đội đi cùng. Được gắn nhãn là Đội {{team}}.
+    editTag: Gắn thẻ người chơi
+    collectByChampion: Thu thập trận {{champion}}
+    collectByPosition: Thu thập trận {{position}}
+    sameChampionHistory: Lịch Sử Tướng
+    highWinRatePopover_one: Tỉ lệ thắng của người chơi này rất cao. Trong {count} trận gần đây, họ đã thắng {{winCount}} trận.
+    highWinRatePopover_other: Tỉ lệ thắng của người chơi này rất cao. Trong {count} trận gần đây, họ đã thắng {{winCount}} trận.
+    teamDamageShare: ST Đội {{rate}}%
+    teamDamageSharePopover_one: Trong {count} trận gần đây, tỉ lệ sát thương đội trung bình của người chơi này là {{rate}}%
+    teamDamageSharePopover_other: Trong {count} trận gần đây, tỉ lệ sát thương đội trung bình của người chơi này là {{rate}}%
+    teamDamageTakenShare: ST Nhận {{rate}}%
+    teamDamageTakenSharePopover_one: Trong {count} trận gần đây, tỉ lệ sát thương nhận trung bình của người chơi này là {{rate}}%
+    teamDamageTakenSharePopover_other: Trong {count} trận gần đây, tỉ lệ sát thương nhận trung bình của người chơi này là {{rate}}%
+    teamGoldShare: Vàng {{rate}}%
+    teamGoldSharePopover_one: Trong {count} trận gần đây, tỉ lệ vàng đội trung bình của người chơi này là {{rate}}%
+    teamGoldSharePopover_other: Trong {count} trận gần đây, tỉ lệ vàng đội trung bình của người chơi này là {{rate}}%
+    csPerMinute: '{{value}} CS / phút'
+    csPerMinutePopover_one: Trong {count} trận gần đây, người chơi này kiếm trung bình {{value}} CS mỗi phút.
+    csPerMinutePopover_other: Trong {count} trận gần đây, người chơi này kiếm trung bình {{value}} CS mỗi phút.
+    csTeamSharePopover: Tỉ lệ CS đội trung bình của họ là {{rate}}%.
+    damageGoldEfficiency: ST-Vàng {{rate}}%
+    damageGoldEfficiencyPopover_one: Trong {count} trận gần đây, hiệu quả sát thương trên vàng trung bình của người chơi này là {{rate}}%
+    damageGoldEfficiencyPopover_other: Trong {count} trận gần đây, hiệu quả sát thương trên vàng trung bình của người chơi này là {{rate}}%
+    damageGoldEfficiencyPopoverDefinition: Hiệu quả sát thương-vàng = tổng sát thương lên tướng chia cho vàng kiếm được, cho thấy mỗi vàng chuyển đổi thành bao nhiêu sát thương lên tướng.
+    damageGoldEfficiencyPopoverUsage: Dùng để đánh giá hiệu quả người chơi chuyển đổi vàng thành sát thương lên tướng.
+    enemyMissingPings: Ping Mất {{count}}
+    enemyMissingPingsPopover_one: Người chơi này đã gửi ping mất tướng trung bình {count} lần mỗi trận
+    enemyMissingPingsPopover_other: Người chơi này đã gửi ping mất tướng trung bình {count} lần mỗi trận
+    visionScore: Tầm Nhìn {{count}}
+    visionScorePopover: Điểm tầm nhìn trung bình của người chơi này là {{count}}
+    killDamageEfficiencyHigh: Cướp Mạng
+    killDamageEfficiencyLow: Xả Sát Thương
+    killDamageEfficiencyHighPopover: Trong {count} trận gần đây, hiệu quả sát thương hạ gục trung bình của người chơi này là {{rate}}%, đạt được nhiều hạ gục hơn với ít sát thương đội hơn.
+    killDamageEfficiencyLowPopover: Trong {count} trận gần đây, hiệu quả sát thương hạ gục trung bình của người chơi này là {{rate}}%, đạt được ít hạ gục hơn với nhiều sát thương đội hơn.
+    metPopover:
+      title_one: Đã từng gặp người chơi này vào {{date}}. Tổng cộng {count} lần.
+      title_other: Đã từng gặp người chơi này vào {{date}}. Tổng cộng {count} lần.
+      titleNote_one: Chỉ hiện {count} trận gần nhất.
+      titleNote_other: Chỉ hiện {count} trận gần nhất.
+      gameId: ID Trận
+      inspectByGameId: Xem {{gameId}}
+      date: Ngày Đấu
+      result: Kết Quả
+      relation: Phe
+      self: Bản Thân
+      encounteredPlayer: Người Chơi
+      winResult:
+        abort: Hủy
+        loss: Thua
+        remake: Làm Lại
+        win: Thắng
+      team:
+        teammate: Đồng Minh
+        opponent: Địch
+    privatePopover: Người chơi này đã đặt trang cá nhân ở chế độ riêng tư, ngăn người khác xem trang cá nhân, lịch sử đấu và thành tích của họ. Ngoài ra, họ không thể bị xem trận.
+    winningStreakPopover_one: Đang có chuỗi thắng {count} trận. Xuất sắc!
+    winningStreakPopover_other: Đang có chuỗi thắng {count} trận. Xuất sắc!
+    losingStreakPopover_one: Đang có chuỗi thua {count} trận.
+    losingStreakPopover_other: Đang có chuỗi thua {count} trận.
+    akariScorePopoverDescription: Điểm Akari tổng hợp các chỉ số người chơi gần đây và chỉ mang tính tham khảo.
+    suspiciousFlashPosition: Tốc Biến Lạ
+    suspiciousFlashPositionPopoverTitle: Phân Bố Phím Tốc Biến
+    suspiciousFlashPositionPopoverDescription: Người chơi này gần đây đã dùng Tốc Biến ở cả phím D và F, vì vậy ưu tiên phím có vẻ không nhất quán.
+    suspiciousFlashPositionPopoverDLabel: Phím D
+    suspiciousFlashPositionPopoverFLabel: Phím F
+    suspiciousFlashPositionPopoverDCount_one: Phím D {count} trận ({{rate}}%)
+    suspiciousFlashPositionPopoverDCount_other: Phím D {count} trận ({{rate}}%)
+    suspiciousFlashPositionPopoverFCount_one: Phím F {count} trận ({{rate}}%)
+    suspiciousFlashPositionPopoverFCount_other: Phím F {count} trận ({{rate}}%)
+    suspiciousFlashPositionPopoverTotal_one: Dựa trên {count} trận phân tích gần nhất
+    suspiciousFlashPositionPopoverTotal_other: Dựa trên {count} trận phân tích gần nhất
+    hardGank: Khó Gank
+    easyGank: Dễ Gank
+    veryEasyGank: Rất Dễ Gank
+    easyGankPopover_one: Qua {count} trận Bản Đồ Ma Thuật được phân tích gần nhất, người chơi này trung bình {{times}} lần chết trước 15 phút có sự tham gia của rừng địch
+    easyGankPopover_other: Qua {count} trận Bản Đồ Ma Thuật được phân tích gần nhất, người chơi này trung bình {{times}} lần chết trước 15 phút có sự tham gia của rừng địch
+    soloKills: '{{times}} Hạ Gục Đơn'
+    soloKillsPopover_one: Trong {count} trận gần đây, người chơi này hạ gục đơn trung bình {{times}} lần
+    soloKillsPopover_other: Trong {count} trận gần đây, người chơi này hạ gục đơn trung bình {{times}} lần
+    akariLoved:
+      outstanding: Nổi Bật
+      extraordinary: Phi Thường
+      outstandingPopover: Người chơi này đã thể hiện tốt trong các trận gần đây.
+      extraordinaryPopover: Người chơi này đã thể hiện xuất sắc trong các trận gần đây.
+    champion:
+      recentStats: Chỉ Số Gần Đây
+      winRate_one: '{count} trận gần đây, tỉ lệ thắng {{winRate}}%'
+      winRate_other: '{count} trận gần đây, tỉ lệ thắng {{winRate}}%'
+    matchHistory:
+      winResult:
+        na: '-'
+        win: W
+        loss: L
+        remake: R
+        abort: Hủy
+    self: Bản Thân
+    tagged: Đã Gắn Thẻ
+    taggedBySelf: Đã Gắn Thẻ
+    taggedByOther: Gắn thẻ bởi
+    unknown: Không Rõ
+    premade: Đội {{team}}
+    highWinRate: TLT Cao
+    met: Đã Gặp
+    metLastGameTeammate: Đồng Đội Gần Nhất
+    metLastGameOpponent: Đối Thủ Gần Nhất
+    private: Riêng Tư
+    winningStreak_one: '{{count}} Thắng'
+    winningStreak_other: '{{count}} Thắng'
+    losingStreak_one: '{{count}} Thua'
+    losingStreak_other: '{{count}} Thua'
+    reloadMatchHistory: Tải Lại
+  teamTags:
+    winRateTeam: Đội Tỉ Lệ Thắng Cao
+    loseRateTeam: Đội Tỉ Lệ Thua Cao
+    premade: Đi Cùng {{size}}
+    winRate: TLT {{rate}}%
+    kda: KDA {{kda}}
+  panel:
+    disconnected: Chưa kết nối với máy khách
+    waitingForSpectate: Đang chờ thời gian xem trận
+    noOngoingGame: Không có trận đấu nào
+    disabled: Phân tích trận đấu bị tắt, hãy bật lại tính năng này trong cài đặt
+    avgTeamWinRate: Tỉ Lệ Thắng Trung Bình Đội
+    avgTeamKda: KDA Trung Bình Đội

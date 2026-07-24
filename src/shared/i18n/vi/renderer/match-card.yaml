@@ -1,0 +1,524 @@
+matchCard:
+  damageMetrics:
+    total: Tổng
+    physical: Vật Lý
+    magic: Phép
+    'true': Thuần Khiết
+  common:
+    loading: Đang tải...
+    noData: Không có dữ liệu
+    refresh: Làm mới
+  result:
+    abort: Đã hủy
+    remake: Đấu lại
+    win: Chiến thắng
+    loss: Thất bại
+    surrender: Đầu hàng
+  frameEventType:
+    CHAMPION_KILL: Hạ Gục
+    CHAMPION_SPECIAL_KILL: Hạ Gục Đặc Biệt
+    BUILDING_KILL: Phá Hủy Công Trình
+    WARD_PLACED: Đặt Mắt
+    WARD_KILL: Phá Mắt
+    DRAGON_SOUL_GIVEN: Linh Hồn Rồng
+    OBJECTIVE_BOUNTY_PRESTART: Tiền Thưởng Mục Tiêu
+    TURRET_PLATE_DESTROYED: Phá Vỏ Trụ
+  buildingType:
+    TOWER_BUILDING: Trụ
+    INHIBITOR_BUILDING: Nhà Lính
+  towerType:
+    OUTER_TURRET: Trụ Ngoài
+    INNER_TURRET: Trụ Trong
+    BASE_TURRET: Trụ Nhà Chính
+    NEXUS_TURRET: Trụ Nexus
+  laneType:
+    MID_LANE: Đường Giữa
+    TOP_LANE: Đường Trên
+    BOT_LANE: Đường Dưới
+  position:
+    TOP: Đường Trên
+    JUNGLE: Đi Rừng
+    MIDDLE: Đường Giữa
+    BOTTOM: Đường Dưới
+    UTILITY: Hỗ Trợ
+  teamTable:
+    objectives:
+      tower: Trụ
+      inhibitor: Nhà Lính
+      dragon: Rồng
+      baron: Baron
+      voidGrub: Ấu Trùng
+      riftHerald: Sứ Giả
+      atakhan: Atakhan
+    bans: Cấm
+    perMinuteSuffix: / phút
+    cs: Lính
+  overview:
+    perfect: Hoàn Hảo
+    damage: ST
+    cs: Lính
+    csPerMin: / Phút
+  radar:
+    damage: Sát Thương ({{value}})
+    taken: Sát Thương Nhận ({{value}})
+    gold: Vàng ({{value}})
+    cs: Lính ({{value}})
+    kda: KDA ({{value}})
+    kp: TGHG ({{value}}%)
+    heal: Hồi Máu ({{value}})
+    teamAvg: Trung Bình Đội
+  tabs:
+    summary: Tổng Quan
+    details: Bảng Chi Tiết
+    runes: Ngọc
+    events: Sự Kiện
+    builds: Trang Bị
+    timeline: Dòng Thời Gian
+  replay:
+    download: Tải Replay
+    watch: Xem Replay
+    unavailable: Replay Không Khả Dụng
+    label: Replay
+    downloading: Đang tải {{progress}}%
+    checking: Đang kiểm tra
+  dryRun:
+    tooltip: Mô phỏng phân tích trận đấu đang diễn ra
+  buildsTab:
+    anvils_one: '{{count}} đe'
+    anvils_other: '{{count}} cái đe'
+    skillBuild: Bảng Kỹ Năng
+    noSkillUpgrades: Không có nâng kỹ năng
+    itemPurchases: Trang Bị Đã Mua
+    noItemPurchases: Không có trang bị
+    evolved: Tiến Hóa
+  detailsTab:
+    gameId: ID Trận
+    gameVersion: Phiên Bản Trận
+    filterPlaceholder: Lọc
+    noFilterResult: Không có kết quả lọc
+  timelineTab:
+    diffLineChart: Biểu Đồ Chênh Lệch Đường
+    statsLine: Chỉ Số
+  diffLineChart:
+    dataType: Loại Dữ Liệu
+    gold: Vàng
+    cs: Lính
+    exp: KN
+    damageDealt: Sát Thương Gây Lên Tướng
+    damageTaken: Sát Thương Nhận
+    teamAverage: Trung Bình Đội
+    players: Người Chơi
+    selectAll: Chọn Tất Cả
+    teamAverageSuffix: '{{name}} TB'
+    playerLabel: Người Chơi {{id}}
+    gameTime: Thời Gian Trận
+    metric:
+      gold:
+        title: Lượng vàng theo thời gian
+        yAxis: Vàng
+        unit: Vàng
+      cs:
+        title: Lượng lính theo thời gian
+        yAxis: Lính
+        unit: Lính
+      exp:
+        title: Lượng kinh nghiệm theo thời gian
+        yAxis: Kinh Nghiệm
+        unit: KN
+      damageDealt:
+        title: Sát thương gây ra
+        yAxis: Sát Thương Gây Lên Tướng
+        unit: Sát Thương
+      damageTaken:
+        title: Sát thương nhận vào
+        yAxis: Sát Thương Nhận
+        unit: Sát Thương
+  statsLine:
+    participant: Người Chơi
+    hint: Dữ liệu được trả về từ máy chủ; một số trường có thể không chính xác.
+    stats:
+      abilityHaste: Tốc Biến
+      abilityPower: SMPT
+      armor: Giáp
+      armorPen: Xuyên Giáp
+      armorPenPercent: Xuyên Giáp %
+      attackDamage: STVL
+      attackSpeed: Tốc Đánh %
+      bonusArmorPenPercent: Xuyên Giáp Cộng Thêm %
+      bonusMagicPenPercent: Xuyên Kháng Phép Cộng Thêm %
+      ccReduction: Độ Bền %
+      cooldownReduction: Giảm Hồi Chiêu %
+      health: Máu
+      healthRegen: Hồi Máu
+      lifesteal: Hút Máu %
+      magicPen: Xuyên Kháng Phép
+      magicPenPercent: Xuyên Kháng Phép %
+      magicResist: Kháng Phép
+      movementSpeed: Tốc Di Chuyển
+      omnivamp: Hút Máu Toàn Phần %
+      physicalVamp: Hút Máu Vật Lý %
+      power: Năng Lượng
+      powerRegen: Hồi Năng Lượng
+      spellVamp: Hút Máu Phép %
+  eventsTab:
+    start: Bắt Đầu Trận
+    end: Kết Thúc Trận
+    viewPosition: Xem Vị Trí
+    kill: Hạ Gục
+    firstBlood: Mạng Đầu
+    multiKill: '{{count}} Hạ Gục'
+    ace: Tiêu Diệt
+    destroyBuilding: Phá Hủy Công Trình
+    destroyed: Đã Phá Hủy
+    destroyPlateTitle: Phá Vỏ Trụ
+    plateLane: '{{lane}} Vỏ Trụ'
+    plate: Vỏ Trụ
+    filters: Bộ Lọc
+    filterByChampion: Lọc theo tướng
+    plateStats: Chỉ Số Vỏ Trụ
+    plateCount_one: '{{count}} vỏ trụ'
+    plateCount_other: '{{count}} vỏ trụ'
+    viewVictimDamageDetails: Chi Tiết Sát Thương
+    victimDamageDetails:
+      received: Nhận Từ
+      dealt: Gây Cho
+      damageDealerNames:
+        champion: Tướng
+        tower: Trụ
+        minion: Lính
+        monster: Quái
+        other: Khác
+  tags:
+    times: '{{label}}×{{count}}'
+    multiKill:
+      penta: Pentakill
+      quadra: Quadrakill
+      triple: Triple Kill
+      double: Double Kill
+    damage:
+      bestLabel: ★ Sát Thương
+      teamLabel: Sát Thương
+      bestContent: 'ST cao nhất: {{value}}, {{rate}}% đội'
+      teamContent: 'ST đội cao nhất: {{value}}, {{rate}}% đội'
+    taken:
+      bestLabel: ★ ST Nhận
+      teamLabel: ST Nhận
+      bestContent: 'ST nhận nhiều nhất: {{value}}, {{rate}}% đội'
+      teamContent: 'ST nhận nhiều nhất đội: {{value}}, {{rate}}% đội'
+    heal:
+      bestLabel: ★ Hồi Máu
+      teamLabel: Hồi Máu
+      bestContent: 'Hồi máu cao nhất: {{value}}, {{rate}}% đội'
+      teamContent: 'Hồi máu cao nhất đội: {{value}}, {{rate}}% đội'
+    tower:
+      bestLabel: ★ ST Trụ
+      teamLabel: ST Trụ
+      bestContent: 'ST trụ cao nhất: {{value}}, {{rate}}% đội'
+      teamContent: 'ST trụ đội cao nhất: {{value}}, {{rate}}% đội'
+    shield:
+      bestLabel: ★ Khiên
+      teamLabel: Khiên
+      bestContent: 'Khiên cao nhất: {{value}}, {{rate}}% đội'
+      teamContent: 'Khiên cao nhất đội: {{value}}, {{rate}}% đội'
+    solo:
+      label: Hạ Gục Đơn
+      content: Đã có {{value}} pha hạ gục đơn
+    gold:
+      bestLabel: ★ Vàng
+      teamLabel: Vàng
+      bestContent: 'Vàng cao nhất: {{value}}, {{rate}}% đội'
+      teamContent: 'Vàng cao nhất đội: {{value}}, {{rate}}% đội'
+    damageGoldEfficiency:
+      bestLabel: ★ ST-Vàng
+      teamLabel: ST-Vàng
+      bestContent: 'ST-Vàng hiệu quả nhất: {{rate}}%'
+      teamContent: 'ST-Vàng đội hiệu quả nhất: {{rate}}%'
+    cs:
+      bestLabel: ★ Lính
+      bestContent: 'Lính cao nhất: {{value}}'
+    csAdvantage:
+      label: Dẫn Lính
+      content: Dẫn lính đường lớn nhất {{value}}
+    kills:
+      bestLabel: ★ Hạ Gục
+      teamLabel: Hạ Gục
+      bestContent: 'Hạ gục nhiều nhất: {{value}}'
+      teamContent: 'Hạ gục nhiều nhất đội: {{value}}'
+    kp:
+      bestLabel: ★ TGHG
+      teamLabel: TGHG
+      bestContent: 'Tỷ lệ tham gia hạ gục cao nhất: {{value}}%'
+      teamContent: 'Tỷ lệ tham gia hạ gục đội cao nhất: {{value}}%'
+    knockUp:
+      label: Hất Tung
+      content: Đã hất hoặc kéo kẻ địch vào đội {{value}} lần
+    cc:
+      bestLabel: ★ CC
+      teamLabel: CC
+      bestContent: 'Khống chế nhiều nhất: {{value}}s'
+      teamContent: 'Khống chế nhiều nhất đội: {{value}}s'
+    towerKill:
+      diveLabel: Đột Kích
+      underLabel: Dưới Trụ
+      diveContent: Hạ gục dưới trụ địch {{value}} lần
+      underContent: Hạ gục dưới trụ nhà {{value}} lần
+    none:
+      label: Không Có Gì Nổi Bật
+      content: Không có khoảnh khắc nổi bật trong trận này
+  groups:
+    combat-stats: Chỉ Số Giao Tranh
+    damage: Sát Thương
+    cc: Khống Chế
+    vision: Tầm Nhìn
+    buildings: Công Trình
+    economy: Kinh Tế
+    healing: Hồi Máu
+    pings: Ping
+    combat-advanced: Giao Tranh Nâng Cao
+    objectives: Mục Tiêu
+    statistics: Thống Kê
+    abilities: Kỹ Năng
+    survival-skills: Kỹ Năng Sinh Tồn
+    teamfight: Giao Tranh Tổng
+    misc: Linh Tinh
+    ignored: Đã Bỏ Qua
+    game-state: Trạng Thái Trận
+  statKeys:
+    akariScore: Điểm Akari
+    kills: Hạ Gục
+    deaths: Chết
+    assists: Hỗ Trợ
+    doubleKills: Double Kill
+    tripleKills: Triple Kill
+    quadraKills: Quadrakill
+    pentaKills: Pentakill
+    unrealKills: Unreal Kill
+    killingSprees: Chuỗi Hạ Gục
+    largestKillingSpree: Chuỗi Hạ Gục Dài Nhất
+    largestMultiKill: Đa Hạ Gục Lớn Nhất
+    longestTimeSpentLiving: Thời Gian Sống Lâu Nhất
+    largestCriticalStrike: Chí Mạng Lớn Nhất
+    damageGoldEfficiency: Hiệu Quả ST-Vàng
+    totalDamageDealtToChampions: Tổng ST Lên Tướng
+    physicalDamageDealtToChampions: STVL Lên Tướng
+    magicDamageDealtToChampions: ST Phép Lên Tướng
+    trueDamageDealtToChampions: ST Thuần Khiết Lên Tướng
+    totalDamageDealt: Tổng ST Đã Gây
+    physicalDamageDealt: STVL Đã Gây
+    magicDamageDealt: ST Phép Đã Gây
+    trueDamageDealt: ST Thuần Khiết Đã Gây
+    damageDealtToObjectives: ST Lên Mục Tiêu
+    damageDealtToTurrets: ST Lên Trụ
+    damageDealtToBuildings: ST Lên Công Trình
+    damageDealtToEpicMonsters: ST Lên Mục Tiêu Lớn
+    totalDamageTaken: Tổng ST Đã Nhận
+    physicalDamageTaken: STVL Đã Nhận
+    magicDamageTaken: ST Phép Đã Nhận
+    magicalDamageTaken: ST Phép Đã Nhận
+    trueDamageTaken: ST Thuần Khiết Đã Nhận
+    damageSelfMitigated: ST Tự Giảm
+    totalDamageShieldedOnTeammates: Tổng Khiên Cho Đồng Đội
+    timeCCingOthers: Thời Gian Khống Chế
+    totalTimeCCDealt: Tổng Thời Gian CC
+    totalTimeCrowdControlDealt: Tổng Thời Gian Khống Chế
+    enemyChampionImmobilizations: Làm Choáng Tướng Địch
+    immobilizeAndKillWithAlly: Làm Choáng và Hạ Gục Cùng Đồng Đội
+    knockEnemyIntoTeamAndKill: Hất Địch Vào Đội và Hạ Gục
+    survivedThreeImmobilizesInFight: Sống Sót Qua 3 Lần Choáng
+    highestCrowdControlScore: Điểm Khống Chế Cao Nhất
+    visionScore: Điểm Tầm Nhìn
+    wardsPlaced: Mắt Đã Đặt
+    wardsKilled: Mắt Đã Phá
+    sightWardsBoughtInGame: Mắt Xanh Đã Mua
+    visionWardsBoughtInGame: Mắt Tím Đã Mua
+    detectorWardsPlaced: Mắt Dò Đã Đặt
+    visionScorePerMinute: Điểm Tầm Nhìn Mỗi Phút
+    visionScoreAdvantageLaneOpponent: Điểm TN Vượt Trội vs Đối Thủ Đường
+    wardTakedowns: Phá Mắt
+    wardTakedownsBefore20M: Phá Mắt Trước 20 Phút
+    wardsGuarded: Mắt Được Bảo Vệ
+    twoWardsOneSweeperCount: Hai Mắt Một Máy Quét
+    controlWardsPlaced: Mắt Kiểm Soát Đã Đặt
+    stealthWardsPlaced: Mắt Tàng Hình Đã Đặt
+    controlWardTimeCoverageInRiverOrEnemyHalf: Thời Gian Mắt KS Ở Sông/Nửa Sân Địch
+    turretKills: Trụ Đã Phá
+    turretTakedowns: Tham Gia Phá Trụ
+    soloTurretsLategame: Trụ Đơn Cuối Trận
+    turretsLost: Trụ Đã Mất
+    firstTowerKill: Phá Trụ Đầu
+    firstTowerAssist: Hỗ Trợ Phá Trụ Đầu
+    firstTurretKilled: Trụ Đầu Tiên Phá
+    firstTurretKilledTime: Thời Gian Phá Trụ Đầu
+    turretPlatesTaken: Vỏ Trụ Đã Lấy
+    kTurretsDestroyedBeforePlatesFall: Trụ Phá Trước Khi Vỏ Trụ Rụng
+    outerTurretExecutesBefore10Minutes: Trụ Ngoài Trước 10 Phút
+    quickFirstTurret: Phá Trụ Đầu Nhanh
+    takedownOnFirstTurret: Tham Gia Trụ Đầu
+    turretsTakenWithRiftHerald: Trụ Phá Cùng Sứ Giả
+    multiTurretRiftHeraldCount: Đa Trụ Sứ Giả
+    inhibitorKills: Nhà Lính Đã Phá
+    inhibitorTakedowns: Tham Gia Phá Nhà Lính
+    inhibitorsLost: Nhà Lính Đã Mất
+    firstInhibitorKill: Phá Nhà Lính Đầu
+    firstInhibitorAssist: Hỗ Trợ Phá Nhà Lính Đầu
+    lostAnInhibitor: Mất Nhà Lính
+    nexusKills: Nexus Đã Phá
+    nexusLost: Nexus Đã Mất
+    nexusTakedowns: Tham Gia Phá Nexus
+    hadOpenNexus: Đã Mở Nexus
+    outnumberedNexusKill: Phá Nexus Thiếu Người
+    objectivesStolen: Mục Tiêu Bị Cướp
+    objectivesStolenAssists: Hỗ Trợ Cướp Mục Tiêu
+    goldEarned: Vàng Kiếm Được
+    goldSpent: Vàng Đã Tiêu
+    totalMinionsKilled: Tổng Lính Đã Giết
+    neutralMinionsKilled: Lính Trung Lập Đã Giết
+    neutralMinionsKilledEnemyJungle: Lính Rừng Địch
+    neutralMinionsKilledTeamJungle: Lính Rừng Nhà
+    totalAllyJungleMinionsKilled: Tổng Lính Rừng Nhà
+    totalEnemyJungleMinionsKilled: Tổng Lính Rừng Địch
+    consumablesPurchased: Vật Phẩm Tiêu Hao Đã Mua
+    itemsPurchased: Trang Bị Đã Mua
+    earlyLaningPhaseGoldExpAdvantage: Lợi Thế Vàng/KN Đi Đường Sớm
+    laningPhaseGoldExpAdvantage: Lợi Thế Vàng/KN Đi Đường
+    maxCsAdvantageOnLaneOpponent: Dẫn Lính Tối Đa vs Đối Thủ Đường
+    totalHeal: Tổng Hồi Máu
+    totalUnitsHealed: Tổng Số Đơn Vị Được Hồi
+    totalHealsOnTeammates: Tổng Hồi Máu Cho Đồng Đội
+    allInPings: Ping All-In
+    assistMePings: Ping Trợ Giúp
+    basicPings: Ping Cơ Bản
+    commandPings: Ping Chỉ Thị
+    dangerPings: Ping Nguy Hiểm
+    enemyMissingPings: Ping Mất Tướng Địch
+    enemyVisionPings: Ping Tầm Nhìn Địch
+    getBackPings: Ping Lùi Lại
+    holdPings: Ping Giữ Vị Trí
+    needVisionPings: Ping Cần Tầm Nhìn
+    onMyWayPings: Ping Đang Đến
+    pushPings: Ping Đẩy Lính
+    retreatPings: Ping Rút
+    visionClearedPings: Ping Đã Dọn Tầm Nhìn
+    soloKills: Hạ Gục Đơn
+    quickSoloKills: Hạ Gục Đơn Nhanh
+    takedowns: Tham Gia Hạ Gục
+    outnumberedKills: Hạ Gục Thiếu Người
+    multikills: Đa Hạ Gục
+    multikillsAfterAggressiveFlash: Đa HG Sau Flash Tấn Công
+    multiKillOneSpell: Đa HG Một Kỹ Năng
+    killAfterHiddenWithAlly: HG Sau Khi Ẩn Cùng Đồng Đội
+    pickKillWithAlly: HG Chọn Mục Tiêu Cùng Đồng Đội
+    killsWithHelpFromEpicMonster: HG Với Sự Giúp Đỡ Của Mục Tiêu Lớn
+    takedownsBeforeJungleMinionSpawn: TGHG Trước Khi Lính Rừng Xuất Hiện
+    takedownsFirstXMinutes: TGHG Trong X Phút Đầu
+    takedownsAfterGainingLevelAdvantage: TGHG Sau Khi Có Lợi Thế Cấp
+    takedownsInAlcove: TGHG Trong Hốc
+    takedownsInEnemyFountain: TGHG Trong Đài Địch
+    killsOnOtherLanesEarlyJungleAsLaner: Đi Rừng Sớm HG Đường Khác
+    getTakedownsInAllLanesEarlyJungleAsLaner: Đi Lang Thang Sớm Tất Cả Đường
+    killsOnRecentlyHealedByAramPack: HG Gần Đã Hồi Máu Bằng Gói (ARAM)
+    fastestLegendary: Huyền Thoại Nhanh Nhất
+    baronTakedowns: Tham Gia Baron
+    dragonTakedowns: Tham Gia Rồng
+    riftHeraldTakedowns: Tham Gia Sứ Giả
+    teamBaronKills: Đội Hạ Baron
+    teamElderDragonKills: Đội Hạ Rồng Ngàn Năm
+    teamRiftHeraldKills: Đội Hạ Sứ Giả
+    soloBaronKills: Hạ Baron Một Mình
+    baronBuffGoldAdvantageOverThreshold: Lợi Thế Vàng Buff Baron
+    earliestBaron: Baron Sớm Nhất
+    earliestDragonTakedown: Rồng Sớm Nhất
+    elderDragonKillsWithOpposingSoul: RNN vs Linh Hồn Đối Thủ
+    elderDragonMultikills: RNN Đa HG
+    perfectDragonSoulsTaken: Linh Hồn Rồng Hoàn Hảo
+    epicMonsterSteals: Cướp Mục Tiêu Lớn
+    epicMonsterStolenWithoutSmite: Cướp Mục Tiêu Lớn Không Cần Bổ Trụ
+    epicMonsterKillsNearEnemyJungler: Giết Mục Tiêu Lớn Gần Người Đi Rừng Địch
+    epicMonsterKillsWithin30SecondsOfSpawn: Giết Mục Tiêu Lớn Trong 30s Khi Xuất Hiện
+    junglerTakedownsNearDamagedEpicMonster: TGHG Gần Mục Tiêu Lớn Đang Yếu
+    voidMonsterKill: Giết Quái Hư Không
+    alliedJungleMonsterKills: Quái Rừng Nhà
+    enemyJungleMonsterKills: Quái Rừng Địch
+    scuttleCrabKills: Giết Cua
+    buffsStolen: Cướp Bùa
+    jungleCsBefore10Minutes: Lính Rừng Trước 10 Phút
+    initialBuffCount: Số Bùa Đầu
+    initialCrabCount: Số Cua Đầu
+    moreEnemyJungleThanOpponent: Vào Rừng Địch Nhiều Hơn Đối Thủ
+    kda: KDA
+    killParticipation: Tỷ Lệ Tham Gia Hạ Gục
+    damagePerMinute: Sát Thương Mỗi Phút
+    goldPerMinute: Vàng Mỗi Phút
+    damageTakenOnTeamPercentage: '% ST Nhận Đội'
+    teamDamagePercentage: '% ST Đội'
+    abilityUses: Số Lần Dùng Kỹ Năng
+    spell1Casts: Q Đã Dùng
+    spell2Casts: W Đã Dùng
+    spell3Casts: E Đã Dùng
+    spell4Casts: R Đã Dùng
+    summoner1Casts: Phép Bổ Trợ 1 Đã Dùng
+    summoner2Casts: Phép Bổ Trợ 2 Đã Dùng
+    deathsByEnemyChamps: Chết Bởi Tướng Địch
+    survivedSingleDigitHpCount: Sống Sót Với Máu 1 Chữ Số
+    tookLargeDamageSurvived: Chịu ST Lớn Và Sống Sót
+    killedChampTookFullTeamDamageSurvived: HG Tướng Chịu ST Cả Đội Và Sống Sót
+    saveAllyFromDeath: Cứu Đồng Đội Khỏi Chết
+    skillshotsDodged: Né Chiêu Kỹ Năng
+    skillshotsHit: Trúng Chiêu Kỹ Năng
+    snowballsHit: Trúng Tuyết
+    dodgeSkillShotsSmallWindow: Né Chiêu Trong Cửa Sổ Nhỏ
+    landSkillShotsEarlyGame: Trúng Chiêu Đầu Trận
+    blastConeOppositeOpponentCount: Nấm Đẩy Lùi
+    quickCleanse: Giải Trừ Nhanh
+    dancedWithRiftHerald: Nhảy Với Sứ Giả
+    fistBumpParticipation: Đập Tay
+    flawlessAces: Tiêu Diệt Hoàn Hảo
+    doubleAces: Tiêu Diệt Đôi
+    acesBefore15Minutes: Tiêu Diệt Trước 15 Phút
+    fullTeamTakedown: TGHG Cả Đội
+    shortestTimeToAceFromFirstTakedown: Thời Gian Tiêu Diệt Nhanh Nhất
+    12AssistStreakCount: Chuỗi 12 Hỗ Trợ
+    teleportTakedowns: TGHG Dịch Chuyển
+    champLevel: Cấp Tướng
+    champExperience: Kinh Nghiệm Tướng
+    timePlayed: Thời Gian Đã Chơi
+    totalTimeSpentDead: Thời Gian Chết
+    firstBloodKill: Mạng Đầu
+    firstBloodAssist: Hỗ Trợ Mạng Đầu
+    baronKills: Hạ Baron
+    dragonKills: Hạ Rồng
+    killsNearEnemyTurret: HG Gần Trụ Địch
+    killsUnderOwnTurret: HG Dưới Trụ Nhà
+    unseenRecalls: Hồi Mà Không Bị Phát Hiện
+    effectiveHealAndShielding: Hồi Máu Và Khiên Hiệu Quả
+    bountyGold: Vàng Tiền Thưởng
+    laneMinionsFirst10Minutes: Lính Đường 10 Phút Đầu
+    twentyMinionsIn3SecondsCount: 20 Lính Trong 3 Giây
+    legendaryCount: Số Lần Huyền Thoại
+    perfectGame: Trận Đấu Hoàn Hảo
+    maxKillDeficit: Chênh Lệch HG Tối Đa
+    maxLevelLeadLaneOpponent: Dẫn Cấp Tối Đa vs Đối Thủ Đường
+    completeSupportQuestInTime: Hoàn Thành Nhiệm Vụ Hỗ Trợ Đúng Giờ
+    mejaisFullStackInTime: Mejai Đầy Stack Đúng Giờ
+    HealFromMapSources: Hồi Máu Từ Bản Đồ
+    gameLength: Thời Lượng Trận
+    playedChampSelectPosition: Vị Trí Đã Chọn
+    positionAssignedByMatchmaking: Vị Trí Được Xếp
+    selectedRolePreferences: Vai Trò Ưu Tiên
+    hadAfkTeammate: Có Đồng Đội AFK
+    highestChampionDamage: ST Lên Tướng Cao Nhất
+    PlayerBehavior: Hành Vi Người Chơi
+    PlayerBehavior_IsHeroInCombat: Đang Giao Tranh
+    gameEndedInEarlySurrender: Kết Thúc Bằng Đầu Hàng Sớm
+    gameEndedInIGNBSurrender: Kết Thúc Bằng Đầu Hàng Trong Game
+    gameEndedInSurrender: Kết Thúc Bằng Đầu Hàng
+    causedEarlySurrender: Gây Ra Đầu Hàng Sớm
+    causedGameEndFromIGNBSurrender: Gây Ra Kết Thúc Đầu Hàng Trong Game
+    earlySurrenderAccomplice: Đồng Phạm Đầu Hàng Sớm
+    teamEarlySurrendered: Đội Đã Đầu Hàng Sớm
+    teamIGNBSurrendered: Đội Đã Đầu Hàng Trong Game
+    wasPremadeWithIGNBGameEndCauser: Ghép Cùng Người Gây Đầu Hàng Trong Game
+    wasPremadeWithSevereTransgressor: Ghép Cùng Người Vi Phạm Nghiêm Trọng
+    wasSevereTransgressor: Vi Phạm Nghiêm Trọng
+    'true': Có
+    'false': Không

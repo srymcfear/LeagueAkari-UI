@@ -1,0 +1,126 @@
+auxWindow:
+  titlebar:
+    opgg: Xem OP.GG
+    opggTitle: Xem trên OP.GG
+    close: Đóng
+    minimize: Thu Nhỏ
+    indicator: C.S.P.
+    indicatorTitle: Cửa Sổ Phụ của $t(common:appName)
+    pin: Ghim
+    unpin: Bỏ Ghim
+    repositionToAlignLeagueClientUx: Căn Chỉnh với Giao Diện League Client
+  championBench:
+    title: Băng Ghế Tướng
+    reroll: 'Đổi Tướng (Còn lại: {{count}})'
+    charity: 'Đổi Tướng và Lấy Lại (Còn lại: {{count}})'
+    notInBenchMode: Hiện không ở chế độ băng ghế
+    notInPhase: Không trong giai đoạn chọn tướng
+    rerollFailed: Đổi tướng thất bại {{reason}}
+    swapFailed: Đổi tướng thất bại {{reason}}
+    balanceTypes:
+      damage-dealt: Sát Thương Gây Ra
+      damage-taken: Sát Thương Phải Nhận
+      healing: Hồi Máu
+      shielding: Khiên
+      ability-haste: Tốc Độ Chiêu
+      mana-regen: Hồi Năng Lượng
+      health-regen: Hồi Máu
+      attack-speed: Tốc Độ Đánh
+      movement-speed: Tốc Độ Di Chuyển
+      tenacity: Độ Bền
+      energy-regen: Hồi Năng Lượng
+      area-of-effect-damage: Sát Thương Diện Rộng
+  champSelect:
+    actions:
+      picked: Đã Chọn
+      voted: Đã Bỏ Phiếu
+      banned: Đã Cấm
+      autoPick: Tự Động Chọn
+      autoBan: Tự Động Cấm
+      picking: Đang Chọn
+      banning: Đang Cấm
+      voting: Đang Bỏ Phiếu
+      tenBansRevealing: Đang Hé Lộ Cấm
+      inProgress: Đang Tiến Hành
+      completed: Đã Hoàn Tất
+      ceremonies:
+        ten_bans_reveal: Hé Lộ 10 Lượt Cấm
+        TEN_BANS_REVEAL: Hé Lộ 10 Lượt Cấm
+        phase_transition: Chuyển Giai Đoạn
+        vote_transition: Chuyển Phiếu Bầu
+        team_vote_reveal: Hé Lộ Phiếu Bầu Đội
+    operations:
+      dodge:
+        label: Thoát Chọn Tướng
+        button: Né Ngay
+        popconfirm: Thao tác này sẽ thoát khỏi giai đoạn chọn tướng.
+        positiveText: Thoát
+        negativeText: Hủy
+        cancel: Hủy
+      temporarilyDisabled:
+        label: Tạm Thời Tắt Tự Động Cấm/Chọn
+  lounge:
+    operations:
+      immediately: Ngay Lập Tức
+      second: giây
+      autoAccept:
+        label: Tự Động Nhận Trận
+        unavailable: Không Khả Dụng
+      autoMatchmaking:
+        label: Tự Động Ghép Trận
+        unavailable: Không Khả Dụng
+      autoMatchmakingMinimumMembers:
+        label: Số Thành Viên Tối Thiểu
+      autoMatchmakingDelaySeconds:
+        label: Độ Trễ Trước Ghép Trận
+      autoMatchmakingWaitForInvitees:
+        label: Chờ Người Được Mời
+    panel:
+      map: Bản Đồ
+      gameMode: Chế Độ
+      wait: Đang Chờ
+      atMost: Tối Đa
+      autoAccept:
+        acceptIn: Tự động nhận trận sau {{seconds}} giây
+        cancelButton: Hủy tự động nhận trận này
+        declineButton: Từ Chối Trận
+        acceptButton: Nhận Trận
+        accepted: Đã Nhận
+        pending: Đang chờ nhận trận
+        subtitle1: Trận đã nhận vẫn có thể từ chối
+        subtitle2: Trận đã hủy vẫn có thể nhận
+        declined: Đã Từ Chối
+      matchmaking:
+        stopAndDisable: Dừng ghép trận và tắt tự động ghép trận
+        stop: Dừng ghép trận
+        cancel: Hủy tự động ghép trận này
+        searching: Đang Tìm
+        searchIn: Đang tìm {{seconds}} giây
+        waitingForPenalty: Đang chờ thời gian phạt né {{seconds}} giây
+        waitingForMembers_one: Ghép trận tự động cần {{count}} người chơi
+        waitingForMembers_other: Ghép trận tự động cần {{count}} người chơi
+        waitingForInvitees: Đang chờ thành viên được mời
+  skinSelection:
+    skins_one: '{{count}} trang phục khả dụng'
+    skins_other: '{{count}} trang phục khả dụng'
+    button: Áp Dụng
+    success: Áp dụng trang phục thành công
+    failed: Áp dụng trang phục thất bại
+  placeholder:
+    inProgress: Đang Tiến Hành
+    idle: Không có hoạt động nào
+    spectating: Đang Xem
+  automationPlan:
+    autoPick:
+      title: Tự Động Chọn
+      willPick: Sẽ Chọn
+    autoBan:
+      title: Tự Động Cấm
+      willBan: Sẽ Cấm
+    autoBenchSwap:
+      title: Tự Động Đổi Băng Ghế
+      willSwap: Sẽ Đổi
+    autoChampionSwap:
+      title: Tự Động Đổi Tướng
+      willAccept: Sẽ Chấp Nhận
+      willDecline: Sẽ Từ Chối

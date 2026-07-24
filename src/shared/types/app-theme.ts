@@ -1,6 +1,6 @@
 export const BUILTIN_LIGHT_THEME_IDS = ['light', 'sakura', 'butter', 'mint'] as const
 
-export const BUILTIN_DARK_THEME_IDS = ['dark', 'graphite', 'cyber', 'aurora'] as const
+export const BUILTIN_DARK_THEME_IDS = ['dark', 'graphite', 'cyber', 'aurora', 'neon'] as const
 
 const APP_THEME_IDS = [...BUILTIN_LIGHT_THEME_IDS, ...BUILTIN_DARK_THEME_IDS] as const
 

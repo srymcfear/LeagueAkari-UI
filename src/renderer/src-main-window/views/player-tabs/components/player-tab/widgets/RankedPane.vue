@@ -1,79 +1,74 @@
 <template>
-  <div v-if="shouldRender" class="relative flex gap-4">
+  <div v-if="shouldRender" class="relative flex gap-3 items-stretch">
     <!-- Cross Region Unsupported Card -->
     <div
       v-if="isCrossRegion"
-      class="relative flex h-27 flex-col items-center justify-center rounded-lg bg-black/5 text-xs text-gray-700 dark:bg-white/5 dark:text-gray-400"
-      :class="isSmallSize ? 'w-30' : 'w-60'"
+      class="glass-card rank-card-cross glass-card relative flex flex-col items-center justify-center rounded-lg bg-black/5 dark:bg-white/5"
+      :class="isSmallSize ? 'w-52' : 'w-72'"
     >
-      <div>{{ t('playerTabs.ranked.crossRegion', 'Cross Region') }}</div>
-      <div>{{ t('playerTabs.ranked.unavailable', 'Unavailable') }}</div>
+      <div class="text-xs text-[var(--la-color-text-primary)]/60">{{ t('playerTabs.ranked.crossRegion', 'Cross Region') }}</div>
+      <div class="text-xs text-[var(--la-color-text-primary)]/40">{{ t('playerTabs.ranked.unavailable', 'Unavailable') }}</div>
     </div>
 
-    <!-- Ranked Cards -->
+    <!-- Ranked Cards: Concept A — Solo chính + Flex phụ -->
     <template v-else>
+      <!-- Solo Queue (primary) -->
       <div
-        v-for="entry in displayedRankedEntries"
-        :key="entry.queueType"
-        class="relative flex h-27 items-center justify-center rounded-lg bg-black/5 dark:bg-white/5"
-        :class="isSmallSize ? 'w-30' : 'w-60'"
+        v-if="soloEntry"
+        class="glass-card rank-card-primary rounded-lg bg-black/5 dark:bg-white/5"
+        :class="isSmallSize ? 'w-60' : 'w-72'"
+        :style="rankGlowVars(soloEntry, 0.15)"
       >
-        <!-- Queue Type Label -->
-        <div
-          class="absolute top-0 left-0 flex max-w-full items-center gap-1.5 px-2 py-1 text-xs text-gray-500 dark:text-gray-400"
-        >
-          <span class="shrink-0">
-            {{
-              t(`queueTypes.${entry.queueType}`, {
-                defaultValue: entry.queueType,
-                ns: 'common'
-              })
-            }}
-          </span>
-          <span
-            v-if="hasEntryTopRecord(entry)"
-            class="rounded bg-black/8 px-1.5 py-px text-[10px] leading-4 text-gray-600 dark:bg-white/10 dark:text-gray-300"
-          >
-            {{ formatEntryTopRecord(entry) }}
-          </span>
-        </div>
-
-        <!-- Main Content -->
-        <div class="relative top-1 flex w-full items-center justify-center gap-2">
-          <!-- Image Container -->
-          <div v-if="!isSmallSize" class="relative h-12 w-16">
+        <div class="rank-card-inner">
+          <div class="rank-emblem-wrap">
+            <div class="rank-emblem-glow"></div>
             <img
-              class="absolute top-1/2 left-1/2 h-[144%] w-[144%] -translate-x-1/2 -translate-y-1/2 object-contain"
-              :src="rankedImageMap[getCurrentTier(entry)] || rankedImageMap['UNRANKED']"
+              :src="rankedImageMap[getCurrentTier(soloEntry)] || rankedImageMap['UNRANKED']"
             />
           </div>
-
-          <!-- Info -->
-          <div class="flex min-w-16 flex-col">
-            <span class="text-base font-bold text-gray-900 dark:text-gray-100">{{
-              formatTier(entry)
-            }}</span>
-            <span class="text-xs text-gray-500 dark:text-gray-400">
-              {{ formatEntryRecord(entry) }}
+          <div class="rank-info-col">
+            <span class="queue-label">
+              {{ t(`queueTypes.${soloEntry.queueType}`, { defaultValue: soloEntry.queueType, ns: 'common' }) }}
             </span>
-
-            <!-- Historical Highest -->
+            <span class="tier-text">{{ formatTier(soloEntry) }}</span>
+            <span v-if="isRankedEntry(soloEntry)" class="lp-text">{{ soloEntry.leaguePoints }} LP</span>
+            <span v-if="isRankedEntry(soloEntry)" class="record-text">{{ formatShortRecord(soloEntry) }}</span>
             <div
-              class="flex items-center text-[10px] text-gray-500 dark:text-gray-300"
-              :class="{
-                'text-gray-400 dark:text-gray-500': !entry.highestTier || entry.highestTier === 'NA'
-              }"
+              v-if="soloEntry.highestTier && soloEntry.highestTier !== 'NA'"
+              class="highest-row"
             >
-              <span class="mr-0.5">{{ t('playerTabs.ranked.highest') }}</span>
-              <div class="flex items-center">
-                <img
-                  v-if="getHighestTier(entry) && rankedMedalMap[getHighestTier(entry)]"
-                  :src="rankedMedalMap[getHighestTier(entry)]"
-                  class="mr-0.5 h-4 w-4"
-                />
-                <span>{{ formatHighestTier(entry) }}</span>
-              </div>
+              <span>{{ t('playerTabs.ranked.highest') }}</span>
+              <img v-if="rankedMedalMap[soloEntry.highestTier]" :src="rankedMedalMap[soloEntry.highestTier]" />
+              <span>{{ formatHighestTier(soloEntry) }}</span>
             </div>
+          </div>
+        </div>
+        <span
+          v-if="isRankedEntry(soloEntry)"
+          class="rank-wr-chip"
+        >{{ formatEntryTopRecord(soloEntry) }}</span>
+      </div>
+
+      <!-- Flex Queue (secondary) -->
+      <div
+        v-if="flexEntry && !isSmallSize"
+        class="glass-card rank-card-secondary rounded-lg bg-black/5 dark:bg-white/5"
+        :style="rankGlowVars(flexEntry, 0.1)"
+      >
+        <div class="rank-card-inner-sm">
+          <div class="rank-emblem-wrap-sm">
+            <div class="rank-emblem-glow-sm"></div>
+            <img
+              :src="rankedImageMap[getCurrentTier(flexEntry)] || rankedImageMap['UNRANKED']"
+            />
+          </div>
+          <div class="rank-info-col">
+            <span class="queue-label">
+              {{ t(`queueTypes.${flexEntry.queueType}`, { defaultValue: flexEntry.queueType, ns: 'common' }) }}
+            </span>
+            <span class="tier-text">{{ formatTier(flexEntry) }}</span>
+            <span v-if="isRankedEntry(flexEntry)" class="lp-text">{{ flexEntry.leaguePoints }} LP</span>
+            <span v-if="isRankedEntry(flexEntry)" class="record-text">{{ formatShortRecord(flexEntry) }}</span>
           </div>
         </div>
       </div>
@@ -99,75 +94,40 @@
   </div>
 
   <NModal v-model:show="isShowingRankedModal">
-    <div class="flex flex-col items-center rounded bg-neutral-100/95 p-4 dark:bg-neutral-900/95">
-      <div class="mb-4 grid grid-cols-2 gap-4">
+    <div class="flex flex-col items-center rounded bg-[var(--la-card-surface-95)] p-4">
+      <div class="mb-4 flex gap-4">
         <div
           v-for="entry in displayedRankedEntries"
           :key="entry.queueType"
-          class="relative flex h-27 w-60 items-center justify-center rounded bg-black/5 dark:bg-white/5"
+          class="glass-card rank-card-primary rounded-lg bg-black/5 dark:bg-white/5 w-60"
+          :style="rankGlowVars(entry, 0.12)"
         >
-          <!-- Queue Type Label -->
-          <div
-            class="absolute top-0 left-0 flex max-w-full items-center gap-1.5 px-2 py-1 text-xs text-gray-500 dark:text-gray-400"
-          >
-            <span class="shrink-0">
-              {{
-                t(`queueTypes.${entry.queueType}`, {
-                  defaultValue: entry.queueType,
-                  ns: 'common'
-                })
-              }}
-            </span>
-            <span
-              v-if="hasEntryTopRecord(entry)"
-              class="rounded bg-black/8 px-1.5 py-px text-[10px] leading-4 text-gray-600 dark:bg-white/10 dark:text-gray-300"
-            >
-              {{ formatEntryTopRecord(entry) }}
-            </span>
-          </div>
-
-          <!-- Main Content -->
-          <div class="relative top-1 flex w-full items-center justify-center gap-2">
-            <!-- Image Container -->
-            <div class="relative h-12 w-16">
+          <div class="rank-card-inner">
+            <div class="rank-emblem-wrap rank-emblem-wrap-md">
+              <div class="rank-emblem-glow"></div>
               <img
-                class="absolute top-1/2 left-1/2 h-[144%] w-[144%] -translate-x-1/2 -translate-y-1/2 object-contain"
                 :src="rankedImageMap[getCurrentTier(entry)] || rankedImageMap['UNRANKED']"
               />
             </div>
-
-            <!-- Info -->
-            <div class="flex min-w-16 flex-col">
-              <span class="text-base font-bold text-gray-900 dark:text-gray-100">{{
-                formatTier(entry)
-              }}</span>
-              <span class="text-xs text-gray-500 dark:text-gray-400">
-                {{ formatEntryRecord(entry) }}
+            <div class="rank-info-col">
+              <span class="queue-label">
+                {{ t(`queueTypes.${entry.queueType}`, { defaultValue: entry.queueType, ns: 'common' }) }}
               </span>
-
-              <!-- Historical Highest -->
+              <span class="tier-text">{{ formatTier(entry) }}</span>
+              <span v-if="isRankedEntry(entry)" class="lp-text">{{ entry.leaguePoints }} LP</span>
+              <span v-if="isRankedEntry(entry)" class="record-text">{{ formatShortRecord(entry) }}</span>
               <div
-                class="flex items-center text-[10px] text-gray-500 dark:text-gray-300"
-                :class="{
-                  'text-gray-400 dark:text-gray-500':
-                    !entry.highestTier || entry.highestTier === 'NA'
-                }"
+                v-if="entry.highestTier && entry.highestTier !== 'NA'"
+                class="highest-row"
               >
-                <span class="mr-0.5">{{ t('playerTabs.ranked.highest') }}</span>
-                <div class="flex items-center">
-                  <img
-                    v-if="getHighestTier(entry) && rankedMedalMap[getHighestTier(entry)]"
-                    :src="rankedMedalMap[getHighestTier(entry)]"
-                    class="mr-0.5 h-4 w-4"
-                  />
-                  <span>{{ formatHighestTier(entry) }}</span>
-                </div>
+                <span>{{ t('playerTabs.ranked.highest') }}</span>
+                <img v-if="rankedMedalMap[entry.highestTier]" :src="rankedMedalMap[entry.highestTier]" />
+                <span>{{ formatHighestTier(entry) }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <RankedTable v-if="rankedStats" :ranked-stats="rankedStats" />
     </div>
   </NModal>
@@ -256,11 +216,33 @@ const rankedMedalMap: Record<string, string> = {
   CHALLENGER: ChallengerMedal
 }
 
+const soloEntry = computed(() => displayedRankedEntries.value[0] || null)
+const flexEntry = computed(() => displayedRankedEntries.value[1] || null)
+
+const RANK_GLOW_RGB: Record<string, [number, number, number]> = {
+  IRON: [89, 89, 89],
+  BRONZE: [205, 127, 50],
+  SILVER: [192, 192, 192],
+  GOLD: [255, 215, 0],
+  PLATINUM: [39, 184, 196],
+  EMERALD: [80, 200, 120],
+  DIAMOND: [122, 93, 255],
+  MASTER: [211, 47, 47],
+  GRANDMASTER: [255, 69, 0],
+  CHALLENGER: [0, 191, 255],
+}
+
+const rankGlowVars = (entry: Partial<RankedEntry>, intensity: number) => {
+  const rgb = RANK_GLOW_RGB[entry.tier || '']
+  if (!rgb) return {}
+  return { '--rank-glow': `${rgb[0]} ${rgb[1]} ${rgb[2]}`, '--rank-glow-a': String(intensity) }
+}
+
 const shouldRender = computed(() => {
   if (isCrossRegion.value) {
     return true
   }
-  return displayedRankedEntries.value.length > 0 || isLoading.value
+  return soloEntry.value !== null || isLoading.value
 })
 
 const isUnrankedTier = (tier: string | undefined | null) => {
@@ -275,24 +257,6 @@ const getCurrentTier = (entry: Partial<RankedEntry>) => {
   return isUnrankedTier(entry.tier) ? 'UNRANKED' : entry.tier!
 }
 
-const getHighestTier = (entry: Partial<RankedEntry>) => {
-  return isUnrankedTier(entry.highestTier) ? '' : entry.highestTier!
-}
-
-const formatEntryRecord = (entry: Partial<RankedEntry>) => {
-  if (isRankedEntry(entry)) {
-    const losses = entry.losses ? ` ${entry.losses} ${t('playerTabs.ranked.lose')}` : ''
-
-    return `${entry.wins} ${t('playerTabs.ranked.win')}${losses} ${entry.leaguePoints} LP`
-  }
-
-  return '—'
-}
-
-const hasEntryTopRecord = (entry: Partial<RankedEntry>) => {
-  return isRankedEntry(entry) && typeof entry.losses === 'number' && entry.losses !== 0
-}
-
 const formatEntryTopRecord = (entry: Partial<RankedEntry>) => {
   const wins = entry.wins ?? 0
   const losses = entry.losses ?? 0
@@ -300,6 +264,15 @@ const formatEntryTopRecord = (entry: Partial<RankedEntry>) => {
   const winRate = total > 0 ? ((wins / total) * 100).toFixed(1) : '0.0'
 
   return `${t('playerTabs.ranked.winRate')} ${winRate}%`
+}
+
+const formatShortRecord = (entry: Partial<RankedEntry>) => {
+  if (!isRankedEntry(entry)) return '—'
+  const wins = entry.wins ?? 0
+  const losses = entry.losses ?? 0
+  const total = wins + losses
+  const wr = total > 0 ? ((wins / total) * 100).toFixed(1) : '0.0'
+  return `${wins}W / ${losses}L · ${wr}%`
 }
 
 const formatTier = (entry: Partial<RankedEntry>) => {
@@ -346,3 +319,175 @@ const formatHighestTier = (entry: Partial<RankedEntry>) => {
   return `${tier} ${division}`
 }
 </script>
+
+<style scoped>
+/* ── Override glass-card for rank cards: dimmer bg ── */
+.rank-card-primary.glass-card,
+.rank-card-secondary.glass-card {
+  background: rgba(22, 18, 38, 0.25);
+}
+
+/* ── Rank Glow (tier-based ambient glow around emblem) ── */
+.rank-emblem-glow {
+  position: absolute;
+  inset: -28px;
+  background: radial-gradient(circle, rgb(var(--rank-glow, 139 74 255) / var(--rank-glow-a, 0.15)) 0%, transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.rank-emblem-glow-sm {
+  position: absolute;
+  inset: -14px;
+  background: radial-gradient(circle, rgb(var(--rank-glow, 139 74 255) / var(--rank-glow-a, 0.1)) 0%, transparent 70%);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+/* ── Card: Solo (primary) ── */
+.rank-card-primary {
+  min-height: 140px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.rank-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.rank-emblem-wrap {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.rank-emblem-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Card: Flex (secondary) ── */
+.rank-card-secondary {
+  min-height: 140px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.rank-card-inner-sm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.rank-emblem-wrap-sm {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.rank-emblem-wrap-sm img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Info column (shared) ── */
+.rank-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.queue-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--la-color-text-primary);
+  opacity: 0.45;
+  margin-bottom: 2px;
+}
+
+.tier-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--la-color-text-primary);
+  line-height: 1.3;
+}
+
+.lp-text {
+  font-size: 13px;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  color: var(--la-color-text-primary);
+  opacity: 0.55;
+}
+
+.record-text {
+  font-size: 11px;
+  color: var(--la-color-text-primary);
+  opacity: 0.38;
+}
+
+.highest-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: var(--la-color-text-primary);
+  opacity: 0.38;
+  margin-top: 2px;
+}
+
+.highest-row img {
+  width: 12px;
+  height: 12px;
+}
+
+/* ── Win rate chip (top-right corner on solo card) ── */
+.rank-wr-chip {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--la-color-text-primary);
+  opacity: 0.5;
+  letter-spacing: 0.2px;
+}
+
+/* ── Cross region ── */
+.rank-card-cross {
+  min-height: 116px;
+}
+
+/* ── Emblem size in modal ── */
+.rank-emblem-wrap-md {
+  width: 72px;
+  height: 72px;
+}
+</style>

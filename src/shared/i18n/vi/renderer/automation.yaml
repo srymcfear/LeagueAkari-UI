@@ -1,0 +1,230 @@
+automation:
+  home:
+    title: Tự động hóa
+    autoGameflow: Luồng Game Tự Động
+    autoSelect: Tự Động Chọn / Cấm
+    autoMisc: Linh tinh
+    autoChampConfig: Cấu Hình Tự Động
+  gameflow:
+    title: Luồng Game
+    common:
+      enabled: Bật
+    sections:
+      readyCheck: Tự Động Nhận Trận
+      autoHonor: Tự Động Vinh Danh
+      playAgain: Chơi Lại
+      autoMatchmaking: Tự Động Ghép Trận
+      autoReconnect: Kết Nối Lại
+      leader: Chuyển Trưởng Nhóm
+      invitations: Lời Mời
+      aramTeamSide: Thông Báo Bên Phe
+    autoAcceptEnabled:
+      label: Bật Tự Động Nhận Trận
+      description: Tự động nhận trận khi tìm thấy người chơi.
+      footer: Một số máy chủ hoặc bậc xếp hạng có thể đã áp dụng chính sách tự động nhận trận từ máy chủ. Điều này không liên quan đến League Akari.
+    autoAcceptDelaySeconds:
+      label: Thời Gian Trì Hoãn Nhận Trận (giây)
+      description: Thời gian trì hoãn tính bằng giây trước khi nhận trận sau khi trận đấu có hiệu lực.
+    autoHonorEnabled:
+      label: Bật Tự Động Vinh Danh
+      description: Tự động bầu chọn vinh danh khi kết thúc trận đấu.
+    autoHonorStrategy:
+      label: Chiến Lược Chọn Vinh Danh
+      description: Xác định người chơi nào sẽ nhận được vinh danh.
+      options:
+        prefer-lobby-member: Ưu tiên thành viên trong phòng chờ. Nếu còn phiếu, chọn đồng đội khác.
+        only-lobby-member: Chỉ thành viên trong nhóm ghép trước.
+        all-member: Tất cả đồng đội.
+        all-member-including-opponent: Xem xét tất cả người chơi trong trận hiện tại.
+        opt-out: Không vinh danh ai.
+    playAgainEnabled:
+      label: Tự Động Chơi Lại
+      description:
+        full: Tự động quay lại phòng chờ sau trận đấu. Bạn có thể cần bật {autoHonor} để hoàn tất giai đoạn bỏ phiếu vinh danh.
+        part2: Tự Động Vinh Danh
+    autoMatchmakingEnabled:
+      label: Tự Động Ghép Trận
+      description: Tự động bắt đầu ghép trận khi có thể.
+    autoMatchmakingMinimumMembers:
+      label: Số Thành Viên Tối Thiểu
+      description: Yêu cầu ít nhất {{members}} thành viên để tự động bắt đầu ghép trận.
+    autoMatchmakingDelaySeconds:
+      label: Thời Gian Chờ Ghép Trận (giây)
+      description: Thời gian trì hoãn tính bằng giây trước khi bắt đầu ghép trận khi có thể.
+    autoMatchmakingWaitForInvitees:
+      label: Chờ Người Được Mời
+      description: Tự động chờ tất cả người chơi được mời phản hồi trước khi bắt đầu ghép trận.
+    autoMatchmakingRematchStrategy:
+      label: Chiến Lược Dừng Ghép Trận
+      description: Xác định thời điểm tự động dừng ghép trận. Ghép trận sẽ khởi động lại nếu bật tự động ghép trận.
+      options:
+        never: Không Bao Giờ
+        fixed-duration: Thời Gian Cố Định
+        estimated-duration: Vượt Quá Thời Gian Chờ Dự Kiến
+    autoMatchmakingRematchFixedDuration:
+      label: Thời Gian Thoát Ghép Trận (giây)
+      description:
+        fixed-duration: Dừng ghép trận sau khi vượt quá thời gian này, tính bằng giây.
+        no-fixed-duration: Tùy chọn này chỉ áp dụng nếu chiến lược dừng ghép trận được đặt là Thời Gian Cố Định.
+    autoReconnectEnabled:
+      label: Tự Động Kết Nối Lại
+      description: Cố gắng kết nối lại khi đang ở trạng thái có thể kết nối lại.
+    autoSkipLeaderEnabled:
+      label: Tự Động Chuyển Trưởng Nhóm
+      description: Khi bạn là trưởng nhóm, hãy chuyển quyền trưởng nhóm cho thành viên khác trong phòng chờ.
+    autoHandleInvitationsEnabled:
+      label: Tự Động Xử Lý Lời Mời
+      description: Xử lý lời mời phòng theo chiến lược đã cấu hình.
+    invitationHandlingStrategies:
+      label: Chiến Lược Chấp Nhận Lời Mời Phòng
+      description: Xử lý lời mời phòng dựa trên chế độ xếp hàng.
+      options:
+        accept: Chấp Nhận
+        decline: Từ Chối
+        ignore: Bỏ Qua
+      button: Cấu Hình
+      queueTypes:
+        default: Mặc Định
+    rejectInvitationWhenAway:
+      label: Từ Chối Khi Vắng Mặt
+      description: Tự động từ chối lời mời phòng khi trạng thái trò chơi được đặt là Vắng Mặt.
+    autoSendARAMTeamSideEnabled:
+      label: Gửi Thông Tin Bên Phe
+      description: 'Trong các chế độ như ARAM hoặc ARAM: Hỗn Loạn, khi vào giai đoạn chọn tướng, bên phe hiện tại (xanh hoặc đỏ) sẽ được thông báo.'
+      tooltipBody: Gửi thông tin bên phe hiện tại của bạn trong phòng chat.
+      tooltipImageAlt: Ví dụ về tin nhắn thông báo bên phe trong chat
+    autoSendARAMTeamSideVisibleToTeam:
+      label: Gửi Thông Tin Bên Phe Hiển Thị Cho Đồng Đội
+      checkboxLabel: Hiển thị cho đồng đội
+      description: Nội dung của "Gửi Thông Tin Bên Phe" sẽ hiển thị cho đồng đội.
+  champSelect:
+    title: Tự Động Chọn Cấm
+    temporarilyDisabled:
+      label: Tạm Thời Tắt
+      button: Bật Lại
+      description: Tính năng này đã bị tạm thời tắt trong LƯỢT chọn tướng này.
+    groupTitle: Chế Độ Hoạt Động
+    groupEmpty: Không Có Nhóm
+    pick:
+      title: Tự Động Chọn
+      enabled:
+        label: Bật
+        description: Bật tính năng tự động chọn của chế độ này.
+      expectedChampions:
+        label: Tướng Dự Kiến
+        description: Tính năng tự động chọn sẽ chọn các tướng này, ưu tiên các tướng ở đầu danh sách.
+        fragment1: Khi được chỉ định vào
+        fragment2: vị trí
+      showIntent:
+        label: Hiển Thị Ý Định
+        description: Hiển thị tướng mục tiêu trước khi chọn.
+      ignoreIntent:
+        label: Bỏ Qua Ý Định
+        description: Bỏ qua ý định của đồng đội.
+      strategy:
+        label: Chiến Lược Khóa
+        description: Thực hiện quy trình tự động chọn theo chiến lược đã định sẵn.
+        options:
+          just-show: Chỉ Hiển Thị
+          show-and-lock-in: Hiển Thị và Khóa
+          lock-in-immediately: Khóa Ngay Lập Tức
+      delaySeconds:
+        label: Độ Trễ (giây)
+        description: Quy trình tự động chọn sẽ được lên kế hoạch theo độ trễ đã định, bao gồm hiển thị, khóa hoặc xử lý đổi tướng. Mỗi giai đoạn sẽ không vượt quá giới hạn hệ thống.
+      benchMode:
+        title: Chế Độ Băng Ghế Cụ Thể (Nếu Áp Dụng)
+        tooltip: Dành cho các chế độ có băng ghế, như ARAM hoặc URF.
+      benchSwapAccumulatedDelaySeconds:
+        label: Thời Gian Tích Lũy Tối Thiểu (giây)
+        description: Chỉ khi tướng mục tiêu đã ở trên băng ghế lâu hơn giá trị này, thao tác đổi tướng mới được thực hiện.
+      benchSelectFirstAvailableChampion:
+        label: Chọn Tướng Khả Dụng Đầu Tiên
+        description: Khi tướng mục tiêu ở trên băng ghế, chọn tướng ở đầu danh sách.
+      benchHandleTradeEnabled:
+        label: Xử Lý Yêu Cầu Đổi Tướng
+        description: Khi nhận được yêu cầu đổi tướng, nếu đáp ứng cài đặt tướng dự kiến, hãy chấp nhận yêu cầu đổi tướng. Nếu không, từ chối yêu cầu đổi tướng.
+    ban:
+      title: Tự Động Cấm
+      enabled:
+        label: Bật
+        description: Bật tính năng tự động cấm của chế độ này.
+      expectedChampions:
+        label: Tướng Dự Kiến
+        description: Tính năng tự động cấm sẽ cấm các tướng này, ưu tiên các tướng ở đầu danh sách.
+        fragment1: Khi được chỉ định vào
+        fragment2: vị trí
+      strategy:
+        label: Chiến Lược Khóa
+        description: Thực hiện quy trình tự động cấm theo chiến lược đã định sẵn.
+        options:
+          just-show: Chỉ Hiển Thị
+          show-and-lock-in: Hiển Thị và Khóa
+          lock-in-immediately: Khóa Ngay Lập Tức
+      delaySeconds:
+        label: Độ Trễ (giây)
+        description: Quy trình tự động cấm sẽ được lên kế hoạch theo độ trễ đã định, bao gồm hiển thị, khóa hoặc xử lý đổi tướng. Mỗi giai đoạn sẽ không vượt quá giới hạn hệ thống.
+  misc:
+    autoReply:
+      updated: Đã cập nhật
+      title: Tự Động Trả Lời
+      enabled:
+        label: Bật
+      enableOnAway:
+        label: Chỉ Khi Vắng Mặt
+        description: Tự động trả lời sẽ chỉ hoạt động khi trạng thái trò chơi được đặt là Vắng Mặt.
+      text:
+        label: Nội Dung Trả Lời
+        description: Nội dung sẽ được sử dụng làm tin nhắn tự động trả lời.
+        save: Lưu
+    autoInvitation:
+      title: Mời Bạn Bè Vào Phòng
+      description: 'Theo dõi một lần: khi bạn bè được chỉ định trực tuyến, hãy gửi lời mời vào phòng.'
+      unavailable: Hiện Không Khả Dụng
+      scheduleInvite: Lên Lịch Mời
+      cancelSchedule: Hủy Lịch
+      noFriends: Không Có Bạn Bè
+      notInLobby: Không Trong Phòng Chờ
+      searchPlaceholder: Tìm tên bạn bè hoặc tag
+  orderedChampionList:
+    searchForChampion: Tìm Tướng
+    edit: Sửa
+    unselected: Chưa Chọn
+    moveUp: Di Chuyển Lên
+    moveDown: Di Chuyển Xuống
+  champConfig:
+    championConfig:
+      targetMode: Chế Độ Mục Tiêu
+      ranked: Xếp Hạng
+      normal: Thường
+      aram: ARAM
+      urf: URF
+      nexusblitz: Nexus Blitz
+      ultbook: Sách Chiêu Cuối
+      runes: Bảng Ngọc
+      configure: Cấu Hình
+      spells: Phép Bổ Trợ
+      position: Vị Trí
+      default: Mặc Định
+      runesConfigured: Đã Cấu Hình Ngọc
+      spellsConfigured: Đã Cấu Hình Phép
+      runesUnconfigured: Chưa Cấu Hình Ngọc
+      spellsUnconfigured: Chưa Cấu Hình Phép
+      configureRunes: Cấu Hình Ngọc
+      configureSpells: Cấu Hình Phép
+      clear: Xóa
+      restore: Khôi Phục
+      save: Lưu
+      noChampionPlaceholder: Chọn một tướng để xem cấu hình
+      runesSaved: Đã lưu cấu hình ngọc
+      runesRestored: Đã khôi phục cấu hình ngọc
+      spellsSaved: Đã lưu cấu hình phép
+      spellsRestored: Đã khôi phục cấu hình phép
+      searchPlaceholder: Tìm tướng
+    runeEditor:
+      unsupported: Thiết lập ngọc hiện tại không được hỗ trợ
+    title: Cấu Hình Tướng Tự Động
+    enabled:
+      label: Bật
+      description: Tự động cấu hình bảng ngọc hoặc phép bổ trợ dựa trên cài đặt trước sau khi khóa tướng trong giai đoạn chọn tướng.
+    configure:
+      label: Cấu Hình

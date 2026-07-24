@@ -1,0 +1,522 @@
+settings:
+  modal:
+    title: Cài đặt
+  app:
+    title: Ứng dụng
+    basic:
+      title: Cơ bản
+      mainWindowCloseAction:
+        label: Hành động Đóng Cửa sổ Chính
+        description: Hành động sẽ được thực hiện khi cửa sổ chính bị đóng
+        options:
+          minimize-to-tray: Thu nhỏ vào khay
+          quit: Thoát
+          ask: Hỏi mỗi lần
+      preferredLolSource:
+        label: Nguồn Dữ liệu Ưu tiên
+        description: Chọn nguồn dữ liệu API Liên Minh Huyền Thoại ưu tiên
+        howToChoose: Làm thế nào để chọn?
+        unsupported: 'SGP API không được hỗ trợ: {{server}}'
+        options:
+          sgp: SGP API
+          lcu: LCU API
+        tip:
+          sgp:
+            title: SGP API
+            feature1: Hiệu suất truy vấn nhanh với phản hồi nhanh chóng
+            feature2: Cung cấp dữ liệu trận đấu chi tiết hơn
+            feature3: Hỗ trợ tra cứu lịch sử trận đấu liên vùng trên máy chủ nội địa
+            warning: Khi sử dụng VPN/accelerator để chơi ở máy chủ nước ngoài, kết nối có thể thất bại hoặc rất chậm
+          lcu:
+            title: LCU API (Máy khách Cục bộ)
+            feature1: Độ ổn định cao, không bị ảnh hưởng bởi điều kiện mạng
+            feature2: Đáng tin cậy ngay cả khi sử dụng VPN/accelerator
+            warning: 'Vấn đề đã biết: Truy vấn lịch sử trận đấu trong lúc chọn tướng có thể gây sập máy khách game'
+      theme:
+        label: Màu Chủ đề
+        description: Màu chủ đề cho $t(common:appName)
+        groups:
+          system: Hệ thống
+          brightBuiltin: Sáng
+          darkBuiltin: Tối
+        tone:
+          light: Sáng
+          dark: Tối
+        options:
+          default: Theo Hệ thống
+          light: Sáng
+          dark: Tối
+          graphite: Xanh Than Chì
+          cyber: Cyber Neon
+          sakura: Hồng Sakura
+          mint: Xanh Bạc Hà
+          aurora: Tím Aurora
+          neon: Tím Neon
+          butter: Vàng Bơ
+    selfUpdate:
+      title: Cập nhật Ứng dụng
+      temporarilyUnsupported: Cập nhật trong ứng dụng hiện không được hỗ trợ trên nền tảng này. Kiểm tra cập nhật và tự động cập nhật đã bị tắt.
+      autoCheckUpdates:
+        label: Tự động Kiểm tra Cập nhật
+        description: Định kỳ kiểm tra phiên bản mới
+      autoDownloadUpdates:
+        label: Tự động Tải Cập nhật
+        description: Tự động bắt đầu quá trình cập nhật khi phát hiện phiên bản mới
+      checkUpdates: Kiểm tra Cập nhật
+      currentRelease: Bản phát hành Hiện tại
+      downloadRelease: Tải Bản phát hành
+      newRelease: Bản phát hành Mới
+      cancelUpdate: Hủy Cập nhật
+      restartNow: Khởi động lại Ngay
+      updateProgress:
+        label: Tiến trình Cập nhật
+        description: Tiến trình cập nhật đang diễn ra
+        downloading: Đang tải gói cập nhật
+        finished: Đã hoàn thành {{progress}}%
+        remain: Còn lại {{time}}
+        downloadFailed: Tải thất bại
+        waitingForRestart: Đang chờ khởi động lại
+        waitingForRestartDescription: Quá trình tự động cập nhật sẽ được thực hiện sau khi đóng ứng dụng
+      checkUpdatesResult:
+        no-updates: Không có phiên bản mới
+        new-updates: Có phiên bản mới
+        failed: Không thể kiểm tra cập nhật {{reason}}
+      updateDir:
+        label: Thư mục Cập nhật
+        description: Vị trí hiện tại của bản cập nhật đã tải. Nếu không thể thực hiện quá trình tự động cập nhật hoàn chỉnh, cần cập nhật thủ công
+        open: Mở
+    mainWindowUi:
+      title: Giao diện Cửa sổ Chính
+      background:
+        label: Nền
+        description: Đặt chế độ nền cho cửa sổ chính
+        options:
+          profileSkin: Nền Tướng
+          none: Không
+          mica: Mica
+        tooltips:
+          profileSkin: Sử dụng nền trang phục hồ sơ của người chơi hiện tại làm nền cửa sổ chính
+          mica: Chỉ khả dụng trên các phiên bản Windows mới hơn. Nếu không được hỗ trợ trên nền tảng hiện tại, sẽ tự động chuyển về Không
+          micaUnsupported: Mica không được hỗ trợ trên nền tảng hiện tại và sẽ chuyển về Không
+      useProfileSkinAsBackground:
+        label: Sử dụng Nền Trang phục Hồ sơ
+        description: $t(common:appName) sẽ sử dụng nền trang phục hồ sơ của người chơi hiện tại làm nền. Nếu nền đã được đặt, tùy chọn này sẽ không có hiệu lực
+      backgroundMaterial:
+        label: Chất liệu Nền
+        description: Đặt chất liệu nền của giao diện ứng dụng, yêu cầu phiên bản hệ thống hỗ trợ cụ thể
+        options:
+          none: Không
+          mica: Mica
+          micaUnsupported: Mica (Không được hỗ trợ)
+    lcConnection:
+      title: Kết nối LCU
+      autoConnect:
+        label: Tự động Kết nối
+        description: Tự động kết nối với máy khách khi có một máy khách duy nhất
+      useWmi:
+        label: Sử dụng WMIC
+        description: Sử dụng WMIC để lấy thông tin dòng lệnh của máy khách thay vì phương thức Win32 API mặc định. Yêu cầu quyền quản trị viên
+      rebuildWmi:
+        label: Xây dựng lại WMI
+        description: Nếu WMIC không hoạt động đúng, hãy thử cách này
+        rebuildButton: Xây dựng lại WMI
+    misc:
+      title: Linh tinh
+      logLevel:
+        label: Cấp độ Ghi log
+        description: Đặt cấp độ ghi log của ứng dụng
+      disableHardwareAcceleration:
+        label: Tắt Tăng tốc Phần cứng
+        description: Tắt tăng tốc phần cứng, có thể giải quyết một số vấn đề hiển thị, như font chữ bị mờ
+      disableHardwareAccelerationDialog:
+        enableText: Bật Tăng tốc Phần cứng
+        disableText: Tắt Tăng tốc Phần cứng
+        disableConfirmation: Sẽ tắt tăng tốc phần cứng, khởi động lại ứng dụng để áp dụng thay đổi
+        enableConfirmation: Sẽ bật tăng tốc phần cứng, khởi động lại ứng dụng để áp dụng thay đổi
+        positiveText: Khởi động lại & Thoát
+        negativeText: Hủy
+      httpProxy:
+        strategy:
+          label: HTTP Proxy
+          description: Đặt HTTP proxy. Tất cả yêu cầu mạng ngoại trừ LCU HTTP sẽ được định tuyến qua proxy này
+          options:
+            force: Sử dụng Proxy
+            auto: Tự động
+            disable: Tắt
+        host:
+          label: Máy chủ Proxy
+          description: Máy chủ của proxy server
+        port:
+          label: Cổng Proxy
+          description: Cổng của proxy server
+      uninstallApp:
+        label: Gỡ cài đặt Ứng dụng
+        description: Gỡ cài đặt ứng dụng, sẽ xóa tất cả dữ liệu và cấu hình
+        button: Gỡ cài đặt Ứng dụng
+        title: Gỡ cài đặt Ứng dụng
+        content: Bạn có chắc chắn muốn gỡ cài đặt $t(common:appName)? Thao tác này cũng sẽ xóa tất cả dữ liệu ứng dụng.
+        positiveText: Gỡ cài đặt
+        negativeText: Hủy
+  matchHistory:
+    title: Tab Lịch sử Trận đấu
+    refreshTabsAfterGameEnds:
+      label: Làm mới Tab Sau Khi Trận Kết thúc
+      description: Tự động làm mới các tab lịch sử trận đấu sau khi trận kết thúc. Do độ trễ của máy chủ từ xa, việc làm mới có thể không kịp thời
+    loadCount:
+      label: Số Lượng Tải
+      description: Số trận đấu sẽ tải cho mỗi tab lịch sử trận đấu.
+    showJunglePathing:
+      label: Bật Đường đi Rừng
+      description: Hiển thị mục đường đi rừng và thẻ phân tích trên trang lịch sử trận đấu.
+    matchCardOpacity:
+      label: Độ Trong Suốt
+      description: Điều chỉnh độ trong suốt của thẻ lịch sử trận đấu.
+  ongoingGame:
+    title: Trận Đang Diễn Ra
+    titleCommon: Trận Đang Diễn Ra
+    titlePlayerCard: Thẻ Người chơi
+    enabled:
+      label: Bật
+      description: Thực hiện phân tích trận đấu khi vào giai đoạn chọn tướng hoặc trong trận.
+    autoRouteWhenGameStarts:
+      label: Tự động Chuyển đến Trận Đang Diễn Ra
+      description: Tự động chuyển đến trang trận đang diễn ra khi vào giai đoạn chọn tướng hoặc khi trận bắt đầu. Được loại trừ trong giai đoạn phòng chờ.
+    matchHistoryLoadCount:
+      label: Số Lượng Lịch sử Trận đấu Tải
+      description: Số trận đấu để tải nhằm phân tích hiệu suất của mỗi người chơi trên trang trận đấu.
+    concurrency:
+      label: Giới hạn Yêu cầu Đồng thời
+      description: Giới hạn tổng số yêu cầu mạng đồng thời trong quá trình phân tích trận đấu. Điều này không ảnh hưởng đến giới hạn đồng thời của các mô-đun khác.
+    matchHistoryTagPreference:
+      label: Ưu tiên Bộ lọc Chế độ
+      description: Ưu tiên bộ lọc chế độ khi tải lịch sử trận đấu bằng API SGP.
+      options:
+        all: Tất cả Chế độ
+        current: Chế độ Hiện tại
+    queryInLobbyPhase:
+      label: Truy vấn trong Giai đoạn Phòng chờ
+      description: Ngoài giai đoạn chọn tướng và trong trận, giờ đây bạn cũng có thể xem dữ liệu của tất cả thành viên trong phòng chờ.
+    premadeTeamInferMatchCountThreshold:
+      label: Ngưỡng Số Trận Suy luận Nhóm Ghép
+      description: Số trận tối thiểu cần thiết để xác nhận nhóm ghép trước.
+    gameDetailsLoadCount:
+      label: Số Lượng Chi tiết Trận Tải
+      description_one: Sẽ tải thêm thông tin chi tiết của {{count}} trận đầu tiên để phân tích trận đấu.
+      description_other: Sẽ tải thêm thông tin chi tiết của {{count}} trận đầu tiên để phân tích trận đấu.
+    jungleAnalysisMatchHistoryLoadCount:
+      label: Số Lượng Lịch sử Trận Phân tích Rừng
+      description_one: Phân tích rừng có thể tiếp tục tải lịch sử trận đấu cho đến {{count}} trận đầu tiên để có đủ 20 mẫu tướng hiện tại và 50 mẫu đi rừng tổng thể.
+      description_other: Phân tích rừng có thể tiếp tục tải lịch sử trận đấu cho đến {{count}} trận đầu tiên để có đủ 20 mẫu tướng hiện tại và 50 mẫu đi rừng tổng thể.
+    showRecentlyUsedChampions:
+      label: Hiện Tướng Đã Dùng Gần đây
+      description: Hiển thị các tướng đã dùng gần đây trong thẻ người chơi.
+    showChampionUsage:
+      label: Hiện Lượng Sử dụng Tướng
+      description: Hiển thị lượng sử dụng tướng trên thẻ người chơi.
+      options:
+        none: Không
+        recent: Đã Dùng Gần đây
+        mastery: Cấp Thành thạo
+    showJunglePathing:
+      label: Bật Đường đi Rừng
+      description: Hiển thị phân tích đường đi rừng trong thẻ người chơi trận đang diễn ra.
+    showMatchHistoryItemBorder:
+      label: Hiện Viền Mục Lịch sử Trận
+      description: Hiển thị viền xung quanh mục lịch sử trận đấu.
+    playerCardTags:
+      label: Thẻ Người chơi
+      description: Những thẻ này sẽ được hiển thị trên thẻ người chơi
+      tags:
+        showPremadeTeamTag:
+          label: Nhóm Ghép Trước
+        showWinningStreakTag:
+          label: Chuỗi Thắng
+        showLosingStreakTag:
+          label: Chuỗi Thua
+        showSoloKillsTag:
+          label: Trung bình Hạ gục Đơn Mỗi Trận
+        showEasyGankTag:
+          label: Thẻ Dễ/Khó Bị Gank
+        showAverageTeamDamageTag:
+          label: Sát thương Đội Trung bình
+        showAverageTeamDamageTakenTag:
+          label: Sát thương Nhận Đội Trung bình
+        showSuspiciousFlashPositionTag:
+          label: Phát hiện Bất thường Vị trí Tốt Biến
+        showAverageTeamGoldTag:
+          label: Vàng Đội Trung bình
+        showAverageCsPerMinuteTag:
+          label: CS Trung bình mỗi Phút
+        showGreatPerformanceTag:
+          label: Thẻ Hiệu suất Xuất sắc
+        showMetTag:
+          label: Người chơi Đã Gặp Trước đây
+        showTaggedTag:
+          label: Người chơi Đã Gắn thẻ
+        showSelfTag:
+          label: Thẻ Bản thân
+        showWinRateTeamTag:
+          label: Thẻ Tỷ lệ Thắng Cao
+        showAverageDamageGoldEfficiencyTag:
+          label: Thẻ Hiệu suất Vàng-Sát thương
+        showPrivacyTag:
+          label: Thẻ Hồ sơ Ẩn
+        showAverageEnemyMissingPingsTag:
+          label: Trung bình Ping Mất Tích Địch
+        showAverageVisionScoreTag:
+          label: Điểm Tầm nhìn Trung bình
+        showAkariScoreTag:
+          label: Điểm Akari
+        showAverageKillDamageEfficiencyTag:
+          label: Hiệu suất Sát thương Hạ gục Trung bình
+  multiWindow:
+    title: Đa Cửa sổ
+    auxWindow:
+      title: Cửa sổ Phụ
+      enabled:
+        label: Bật Cửa sổ Phụ
+        description: Sử dụng một cửa sổ nhỏ trong một số giai đoạn trận nhất định để hiển thị trạng thái và cung cấp các hành động bổ sung.
+        descriptionWithIcon: Có thể mở bằng cách nhấp vào biểu tượng nhanh ở bên phải thanh tiêu đề ({icon}) hoặc nhấp chuột phải vào biểu tượng khay và chọn "Cửa sổ Phụ").
+      autoShow:
+        label: Tự động Hiển thị và Đóng
+        description: Tự động hiển thị hoặc đóng cửa sổ phụ trong các giai đoạn trận cụ thể.
+      opacity:
+        label: Độ mờ Cửa sổ
+        description: Điều chỉnh mức độ trong suốt của cửa sổ phụ.
+      showSkinSelector:
+        label: Bộ Chọn Trang phục
+        description: Hiển thị công cụ chọn trang phục nhanh trong cửa sổ phụ.
+      resetWindowPosition:
+        label: Đặt lại Vị trí Cửa sổ
+        description: Đặt lại vị trí của cửa sổ phụ về vị trí mặc định ở giữa màn hình chính.
+        button: Đặt lại
+    opggWindow:
+      title: Cửa sổ OP.GG
+      enabled:
+        label: Bật Tính năng OP.GG
+        description: Sử dụng cửa sổ OP.GG để xem thông tin người chơi chi tiết và lịch sử trận đấu
+        descriptionWithIcon: Có thể mở bằng cách nhấp vào biểu tượng nhanh ở bên phải thanh tiêu đề ({icon}) hoặc nhấp chuột phải vào biểu tượng khay và chọn "Cửa sổ OP.GG").
+      autoShow:
+        label: Tự động Hiển thị và Đóng
+        description: Tự động hiển thị hoặc đóng cửa sổ OP.GG trong các giai đoạn trận cụ thể.
+      opacity:
+        label: Độ mờ Cửa sổ
+        description: Điều chỉnh mức độ trong suốt của cửa sổ OP.GG.
+      resetWindowPosition:
+        label: Đặt lại Vị trí Cửa sổ
+        description: Đặt lại vị trí của cửa sổ OP.GG về vị trí mặc định ở giữa màn hình chính.
+        button: Đặt lại
+      showShortcut:
+        label: Hiện Phím tắt
+        description: Sử dụng phím tắt để hiển thị hoặc ẩn cửa sổ OP.GG. Nếu trận đấu đang ở tiền cảnh, nó sẽ tự động được ghim. Đảm bảo trận đấu ở chế độ không viền hoặc cửa sổ để cửa sổ này hiển thị chính xác.
+    ongoingGameWindow:
+      title: Cửa sổ Lớp phủ Trận Đang Diễn Ra
+      titleRequireAdmin: Cửa sổ Lớp phủ Trận Đang Diễn Ra (Yêu cầu Quyền Admin)
+      enabled:
+        label: Bật Cửa sổ Trận Đang Diễn Ra
+        description: Hiển thị cửa sổ lớp phủ trong trận để hiển thị thông tin trận đang diễn ra. Tính năng này yêu cầu máy khách game ở chế độ cửa sổ hoặc không viền.
+      showShortcut:
+        label: Hiện Phím tắt
+        description: Giữ phím tắt để hiển thị cửa sổ lớp phủ trong trận
+    cdTimerWindow:
+      title: Cửa sổ Lớp phủ Hẹn giờ
+      titleRequireAdmin: Cửa sổ Lớp phủ Hẹn giờ (Yêu cầu Quyền Admin)
+      description:
+        lineA: Thời gian hồi phép triệu hồi của tướng địch chỉ khả dụng trong các chế độ được hỗ trợ
+        leftClick1: Nhấp chuột trái
+        leftClick2: Bắt đầu hoặc dừng hẹn giờ này
+        rightDoubleClick1: Nhấp đúp chuột phải
+        rightDoubleClick2: Gửi thời gian hồi phép tướng đã bắt đầu lên chat trong trận
+        wheel1: Lăn chuột
+        wheel2: Điều chỉnh thời gian của bộ hẹn giờ đã bắt đầu
+      enabled:
+        label: Bật Cửa sổ Hẹn giờ
+        description: Hiển thị cửa sổ lớp phủ trong trận để hiển thị bộ hẹn giờ. Tính năng này yêu cầu máy khách game ở chế độ cửa sổ hoặc không viền.
+      showShortcut:
+        label: Hiện Phím tắt
+        description: Sử dụng phím tắt để hiển thị hoặc ẩn cửa sổ lớp phủ
+      resetWindowPosition:
+        label: Đặt lại Vị trí Cửa sổ
+        description: Đặt lại cửa sổ hẹn giờ về giữa màn hình chính.
+        button: Đặt lại
+      timerType:
+        label: Loại Hẹn giờ
+        description: Chọn loại hẹn giờ. Chế độ đếm ngược sẽ sử dụng thời gian phép triệu hồi đã định sẵn (có sai số), trong khi chế độ đếm xuôi sẽ bắt đầu từ 0. Lưu ý rằng hẹn giờ tùy chỉnh luôn ở chế độ đếm xuôi.
+        options:
+          countdown: Chế độ Đếm ngược
+          countup: Chế độ Đếm xuôi
+      reverseAdjustmentDirection:
+        label: Đảo ngược Hướng Điều chỉnh
+        description: Đảo ngược hướng điều chỉnh hẹn giờ. Khi lăn chuột lên, thời gian giảm và khi lăn chuột xuống, thời gian tăng. Điều này chỉ có hiệu lực khi loại hẹn giờ là chế độ đếm xuôi.
+  misc:
+    title: Linh tinh
+    respawnTimer:
+      title: Hẹn giờ Hồi sinh
+      enabled:
+        label: Bật
+        description: Hiển thị chỉ báo trên thanh bên cho biết thời gian còn lại đến khi hồi sinh.
+    streamerMode:
+      title: Chế độ Streamer
+      streamerMode:
+        label: Ẩn Thông tin Nhạy cảm
+        description: Ẩn thông tin nhạy cảm, chẳng hạn như tên người chơi, trong giao diện ứng dụng.
+      useAkariStyledName:
+        label: Sử dụng Tên Theo Phong cách Akari
+        description: Sử dụng tên theo phong cách Akari trong phần giữ chỗ triệu hồi sư.
+      contentProtection:
+        label: Bảo vệ Nội dung
+        description: Bật bảo vệ nội dung, sẽ ngăn các ứng dụng khác chụp nội dung cửa sổ. Lưu ý rằng điều này có thể ảnh hưởng đến việc sử dụng bình thường của một số công cụ ghi màn hình.
+  debug:
+    title: Gỡ lỗi
+    electron:
+      title: Electron của Akari
+      devTools:
+        label: Công cụ Phát triển
+        description: Bật/Tắt Công cụ Phát triển
+        button: Bật/Tắt DevTools
+      reload:
+        label: Tải lại Trang
+        description: Làm mới giao diện người dùng $t(common:appName).
+        button: Tải lại Trang
+    files:
+      title: Thư mục Tập tin
+      logs:
+        label: Thư mục Nhật ký
+        description: Mở thư mục nhật ký.
+        button: Thư mục Nhật ký
+      appData:
+        label: Thư mục Dữ liệu Ứng dụng
+        popoverTrigger: Chi tiết
+        button: Mở Thư mục
+        description:
+          full: Mở thư mục lưu trữ dữ liệu ứng dụng $t(common:appName). Thư mục này được tạo khi ứng dụng được khởi chạy lần đầu tiên. Xóa nó sẽ dẫn đến mất tất cả nội dung đã lưu trữ. {details}
+          part2: Chứa cài đặt người dùng, người chơi đã đánh dấu và các thông tin khác.
+          part3: Tập tin tạm thời cho các bản cập nhật tự động sắp tới.
+          part4: Tập tin cài đặt có thể cấu hình.
+          part5: Tập tin cấu hình đặc biệt.
+    lcuEvent:
+      label: In Sự kiện LCU ra Console
+      printAll: In Tất cả Sự kiện
+      logAll: Ghi Tất cả Sự kiện vào Tập tin
+      addRule: Thêm Quy tắc
+      empty: Không có Quy tắc
+      enable: Bật
+      rule: Quy tắc
+      delete: Xóa
+      modal:
+        title: Thêm Quy tắc
+        button: Thêm
+        placeholder: Nhập quy tắc khớp, ví dụ /path/:name/to
+    lcuConnection:
+      titleConnected: LCU
+      titleDisconnected: LCU (Đã ngắt kết nối)
+      port: Cổng
+      pid: ID Tiến trình
+      auth: Khóa Xác thực
+      rsoPlatform: Nền tảng
+      region: Khu vực
+    gameflow:
+      title: Luồng Trận
+      unavailable: Không khả dụng (Đã ngắt kết nối)
+      Matchmaking: Đang Ghép trận
+      ChampSelect: Đang Chọn Tướng
+      ReadyCheck: Đang Kiểm tra Sẵn sàng
+      InProgress: Trận Đang Diễn Ra
+      EndOfGame: Kết thúc Trận
+      Lobby: Phòng chờ
+      GameStart: Bắt đầu Trận
+      None: Không
+      Reconnect: Đang Kết nối lại
+      WaitingForStats: Đang chờ Thống kê
+      PreEndOfGame: Trước Khi Kết thúc Trận
+      WatchInProgress: Đang Xem
+      TerminatedInError: Đã kết thúc do Lỗi
+    inAdministrator:
+      description: $t(common:appName) hiện đang chạy với quyền quản trị viên.
+    testPage:
+      label: Trang Thử nghiệm
+      description: Hiển thị mục "Thử nghiệm" trong thanh bên để nhà phát triển thử nghiệm các tính năng khác nhau
+  storage:
+    title: Bộ nhớ
+    tabs:
+      settings: Cài đặt
+      tagged-players: Người chơi Đã Gắn thẻ
+  savedSettings:
+    title: Cài đặt
+    export:
+      label: Xuất Cài đặt
+      description: Xuất cài đặt ứng dụng hiện tại ra tập tin JSON
+      button: Xuất
+    import:
+      label: Nhập Cài đặt
+      description: Nhập cài đặt từ tập tin JSON
+      dialogWarning: Nhập cài đặt sẽ ghi đè cài đặt hiện tại và khởi động lại ứng dụng. Tiếp tục?
+      dialogPositiveText: Nhập
+      dialogNegativeText: Hủy
+      button: Nhập
+    errorCode:
+      InvalidSettingsFile: Tập tin cài đặt không hợp lệ
+      InvalidDatabaseVersion: Phiên bản mục tiêu của tập tin cài đặt không được hỗ trợ
+      importDefault: 'Không thể nhập cài đặt: {{reason}}'
+    exported: 'Đã xuất cài đặt: {{path}}'
+    errorExport: 'Không thể xuất cài đặt: {{reason}}'
+  taggedPlayers:
+    editModal:
+      title: Chỉnh sửa Người chơi Đã Gắn thẻ
+      inputPlaceholder: Chỉnh sửa thẻ này
+    columns:
+      tagger: Người gắn thẻ
+      tagged: Đã gắn thẻ
+      tag: Thẻ
+      sgpServer: Máy chủ
+    refreshButton: Làm mới
+    onlyCurrentAccountCheckbox: Chỉ Tài khoản Hiện tại
+    na: (Không khả dụng) {{truncatedPuuid}}...
+    player: 'Người chơi: {{puuid}}'
+    empty: (Trống)
+    naPopoverContent: Không thể lấy thông tin cho triệu hồi sư này do máy chủ không khả dụng hoặc chưa được tải
+    saveButton: Lưu
+    cancelButton: Hủy
+    editButton: Sửa
+    deleteButton: Xóa
+    importButton: Nhập
+    exportButton: Xuất
+    streamerModeWarning: Một số thông tin nhạy cảm sẽ bị hiển thị
+    showButton: Hiện
+    deletePopconfirmContent: Xác nhận xóa? Thao tác này không thể hoàn tác
+    updated: Đã cập nhật
+    updateFailed: Cập nhật thất bại {{reason}}
+    errorCode:
+      InvalidTaggedPlayersFile: Tập tin không hợp lệ
+      InvalidDatabaseVersion: Phiên bản mục tiêu của tập tin không được hỗ trợ
+      importDefault: 'Không thể nhập người chơi đã gắn thẻ: {{reason}}'
+    exported: 'Đã xuất người chơi đã gắn thẻ: {{path}}'
+    imported: 'Đã nhập người chơi đã gắn thẻ: {{path}}'
+    errorExport: 'Không thể xuất người chơi đã gắn thẻ: {{reason}}'
+  about:
+    title: Giới thiệu
+    descriptionBefore: ' là một phần mềm mã nguồn mở tập trung vào việc cung cấp một số tính năng bổ sung để hỗ trợ trải nghiệm trận đấu của Liên Minh Huyền Thoại, hầu hết các triển khai của nó đều dựa trên'
+    actions:
+      github: GitHub
+    stats:
+      stars: Sao GitHub
+      version: Phiên bản
+      license: Giấy phép
+      loading: Đang tải
+      unknown: Không xác định
+      rabiTag: Beta
+    copyright: © 2026 Hanxven. Phần mềm này là mã nguồn mở và tuân theo giấy phép MIT.
+  shortcutSelector:
+    title: Ghi Phím tắt
+    hint: Nhấn phím để ghi phím tắt
+    clear: Xóa
+    unset: Chưa đặt
+    tooComplicated: Tổ hợp phím này rất phức tạp, vui lòng xác nhận
+    notRunAsAdministrator: Không chạy với quyền quản trị viên, không thể sử dụng phím tắt
+    nativeGlobalShortcutsWindowsOnly: Phím tắt toàn cục gốc yêu cầu tiện ích bổ sung gốc. Bản dựng này hiện chỉ cung cấp chúng trên Windows.
+    reservedShortcut: Tổ hợp phím này đã được dành riêng
+    beingOccupied: Tổ hợp phím này hiện đang được sử dụng
+    unchanged: (Không thay đổi)
+    ok: Xác nhận
+    cancel: Hủy
+    select: Chọn

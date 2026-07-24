@@ -1,0 +1,9 @@
+cdTimer:
+  window:
+    countdown: '{{championName}} {{spellName}} sẵn sàng sau {{minutes}}p{{seconds}}s'
+    countup: '{{championName}} {{spellName}} đã dùng {{minutes}}p{{seconds}}s'
+    nativeInjectionUnsupported: Gửi vào game không được hỗ trợ trong môi trường này (yêu cầu tiêm đầu vào gốc).
+    adminRequired: Gửi vào game yêu cầu chạy với quyền quản trị viên.
+    gameNotForeground: Chuyển về cửa sổ game (nền trước) trước khi gửi.
+    alreadySending: Đang gửi. Vui lòng thử lại sau.
+    sendFailed: 'Gửi thất bại: {{reason}}'

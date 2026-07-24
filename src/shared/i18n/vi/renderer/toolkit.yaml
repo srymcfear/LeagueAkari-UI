@@ -1,0 +1,542 @@
+toolkit:
+  client:
+    nativeSupport:
+      unsupportedCurrentPlatform: Không được hỗ trợ trên nền tảng hiện tại
+      supportedButRequiresElevation: Được hỗ trợ trên nền tảng hiện tại nhưng yêu cầu quyền quản trị viên
+    leagueClient:
+      title: Client Liên Minh
+      disconnect:
+        label: Ngắt kết nối
+        description: Ngắt kết nối $t(common:appName) khỏi Client Liên Minh.
+        button: Ngắt kết nối
+      quitClient:
+        label: Thoát Tiến trình Client 
+        description: Đóng Client Liên Minh.
+        button: Thoát Tiến trình Client 
+        dialog:
+          title: Thoát Tiến trình Client 
+          content: Bạn có chắc chắn muốn thoát tiến trình Client ? Thao tác này sẽ đóng trực tiếp game.
+          positiveText: Thoát
+          negativeText: Hủy
+    gameClient:
+      title: Client  Game
+      windowsOnlyNativeAddon: Yêu cầu tiện ích bổ sung gốc (bản dựng này hiện chỉ cung cấp chúng trên Windows).
+      nativeAddonRequiresAdministrator: Khả năng này được hỗ trợ trên nền tảng hiện tại, nhưng yêu cầu chạy với quyền quản trị viên.
+      terminateGameClientWithShortcut:
+        labelAdminRequired: Kết thúc Client  Game bằng phím tắt (Yêu cầu Quyền Admin)
+        label: Bật Phím tắt Kết thúc Client  Game
+        description: Khi Client  game đang chạy và ở tiền cảnh, sử dụng phím tắt có thể buộc kết thúc tiến trình Client  game. Xin lưu ý rằng hành động này buộc kết thúc tiến trình và không phải là quy trình thoát game bình thường, có thể dẫn đến các tác dụng phụ không mong muốn.
+      terminateShortcut:
+        label: Phím tắt Kết thúc
+        labelAdminRequired: Phím tắt Kết thúc (Yêu cầu Quyền Admin)
+        description: Đặt phím tắt tùy chỉnh để buộc kết thúc tiến trình Client  game.
+      settingsFileMode:
+        label: Khóa Cài đặt Game
+        description: Ngăn các thay đổi trong game ghi đè lên cài đặt bạn đang sử dụng. Mở khóa khi bạn cần chỉnh sửa cài đặt.
+        details:
+          readonly: Khi bị khóa, League Akari làm cho tập tin cài đặt của Liên Minh ở chế độ chỉ đọc. Game vẫn có thể đọc cài đặt hiện tại của bạn, nhưng các thay đổi mới sẽ không được lưu đè lên chúng.
+          writable: Mở khóa sẽ khôi phục quyền ghi, để đồ họa, phím tắt và các thay đổi trong game khác lưu lại bình thường.
+          scope: Điều này chỉ ảnh hưởng đến tập tin cài đặt cho bản cài đặt Client  hiện đang kết nối.
+        setToReadonly: Đã khóa cài đặt game
+        setToWritable: Đã mở khóa cài đặt game
+        failedToSet: 'Không thể chuyển đổi khóa cài đặt: {{reason}}'
+    leagueClientUx:
+      title: Giao diện Client Liên Minh
+      fixWindowMethodAOptions:
+        label: Điều chỉnh Kích thước Cửa sổ
+        labelAdminRequired: Điều chỉnh Kích thước Cửa sổ (Yêu cầu Quyền Admin)
+        description: <a target="_blank" href="https://github.com/LeagueTavern/fix-lcu-window">FixLCUWindow</a> - Điều chỉnh kích thước cửa sổ bằng WinAPI. Có thể thử khi kích thước giao diện Client  không chính xác.
+        unsupportedCurrentPlatform: Điều chỉnh kích thước cửa sổ không được hỗ trợ trên nền tảng hiện tại.
+        requiresAdministrator: Điều chỉnh kích thước cửa sổ được hỗ trợ trên nền tảng hiện tại, nhưng yêu cầu chạy với quyền quản trị viên.
+        button: Điều chỉnh
+        dialog:
+          title: Điều chỉnh Kích thước Cửa sổ
+          content: Bạn có muốn điều chỉnh kích thước cửa sổ? Hãy thử thao tác này nếu Client  không hiển thị đúng cách.
+          positiveText: Điều chỉnh
+          negativeText: Hủy
+      restartUx:
+        label: Khởi động lại Giao diện Client 
+        description: Khởi động lại ngay tiến trình kết xuất. Thao tác này không ảnh hưởng đến các hoạt động đang diễn ra và có thể được sử dụng để sửa lỗi giao diện Client .
+        button: Khởi động lại Tiến trình UX
+        dialog:
+          title: Khởi động lại Tiến trình UX
+          content: Bạn có muốn khởi động lại tiến trình UX? Hãy thử thao tác này nếu Client  không hiển thị đúng cách.
+          positiveText: Khởi động lại
+          negativeText: Hủy
+      killUx:
+        label: Kết thúc Tiến trình UX
+        description: Kết thúc ngay lập tức tiến trình kết xuất. Thao tác này không ảnh hưởng đến các hoạt động đang diễn ra.
+        button: Kết thúc Tiến trình UX
+        dialog:
+          title: Kết thúc Tiến trình UX
+          content: Bạn có chắc chắn muốn kết thúc tiến trình UX? Bạn có thể cần khởi động lại tiến trình này. Kết thúc tiến trình UX sẽ không làm game thoát nhưng có thể giảm đáng kể việc sử dụng tài nguyên.
+          positiveText: Kết thúc
+          negativeText: Hủy
+      launchUx:
+        label: Khởi chạy Tiến trình UX
+        description: Khởi chạy ngay tiến trình kết xuất nếu nó đã bị đóng.
+        button: Khởi chạy Tiến trình UX
+        dialog:
+          title: Khởi chạy Tiến trình UX
+          content: Bạn có muốn khởi chạy tiến trình UX?
+          positiveText: Khởi chạy
+          negativeText: Hủy
+  home:
+    title: Bộ Công cụ
+    client: Client  Liên Minh / Client  Game
+    in-process: Tiến trình Game
+    in-game-send: Gửi Trong Game
+    lobby: Phòng chờ
+    misc: Linh tinh
+    claim-tools: Công cụ Nhận
+    friend-tools: Bạn bè
+    loot-tools: Báu Vật
+  championBench:
+    title: Băng Ghế Tướng
+    reroll: Đổi
+    charity: Từ thiện
+    charityTitle: Thực hiện đổi nhưng ngay lập tức nhận lại tướng đã được chỉ định trước đó
+    notInBenchMode: Hiện không ở chế độ ngẫu nhiên
+    notInPhase: Không ở trong giai đoạn chọn tướng
+    swapFailedNotification:
+      title: Băng Ghế Tướng
+      description: Không thể đổi tướng, có thể tướng không còn khả dụng
+    rerollFailedNotification:
+      title: Băng Ghế Tướng
+      description: Không thể đổi, có thể tướng không còn khả dụng
+  gameflowInProgress:
+    title: Đang Diễn Ra
+    dodge:
+      label: Né Chọn Tướng
+      description: Thoát ngay lập tức giai đoạn chọn tướng hiện tại mà không đóng Client .
+      button: Né
+      failedNotification:
+        title: Né Chọn Tướng
+        description: 'Không thể né chọn tướng: {{reason}}'
+    playAgain:
+      label: Thoát Màn Hình Sau Trận
+      description: Thoát ngay lập tức màn hình sau trận. Hữu ích khi Client  không thể thoát màn hình sau trận đúng cách.
+      button: Quay lại Phòng chờ
+      failedNotification:
+        title: Thoát Màn Hình Sau Trận
+        description: 'Không thể thoát màn hình sau trận: {{reason}}'
+    leaveLobby:
+      label: Rời Phòng chờ
+      description: Rời khỏi phòng chờ hiện tại ngay lập tức.
+      button: Rời Phòng chờ
+  lobby:
+    title: Phòng chờ
+    createIdLobby:
+      label: Tạo Phòng chờ Theo ID
+      description: Tạo phòng chờ cho một ID chế độ cụ thể, tùy thuộc vào khả năng sẵn có của máy chủ cho chế độ mục tiêu.
+      button: Tạo
+      selectPlaceholder: Chọn hoặc nhập ID
+      failedNotification:
+        title: Tạo Phòng chờ Theo ID
+        description: 'Không thể tạo phòng chờ: {{reason}}'
+    loadEligibleQueuesFailedNotification:
+      title: Tải Chế độ Thất bại
+      description: 'Không thể tải danh sách các chế độ khả dụng: {{reason}}'
+    queueOptions:
+      available: Chế độ Khả dụng
+      unavailable: Chế độ Hiện Đang Tắt
+  strawberry:
+    title: Swarm
+    unavailable: Hiện không ở chế độ Swarm
+    champion:
+      label: Đặt làm Tướng Hiện tại
+      description: Bạn có thể thử chọn các tướng khác.
+      button: Đặt
+      failedMessage: 'Không thể đặt tướng hiện tại: {{reason}}'
+    championOptions:
+      modeSpecific: Tướng Theo Chế độ
+      other: Tướng Khác
+    map:
+      label: Chọn Bản đồ
+      description: Các bản đồ hiện có.
+      button: Đặt
+      failedMessage: 'Không thể đặt bản đồ: {{reason}}'
+    difficulty:
+      label: Đặt Độ khó
+      description: Các cấp độ khó đã định sẵn bao gồm [Cốt truyện], [Khó] và [Cực kỳ]. Hiện tại, bạn không thể đặt cấp độ khó đã mở khóa.
+      button: Đặt
+      failedMessage: 'Không thể đặt độ khó: {{reason}}'
+    requestSent: Đã gửi yêu cầu
+  chatAvailability:
+    title: Trạng thái Trò chuyện
+    availability:
+      label: Trạng thái Trò chuyện
+      description: Hiển thị hoặc đặt trạng thái trò chuyện hiện tại. Một số trạng thái chỉ khả dụng trong các điều kiện cụ thể.
+      radio:
+        chat: Trò chuyện
+        mobile: Online (Di động)
+        away: Tạm vắng
+        dnd: Không làm phiền
+        offline: Ngoại tuyến
+        spectating: Đang xem
+        online: Online
+      failedNotification:
+        title: Đặt Trạng thái Trò chuyện
+        description: 'Không thể đặt trạng thái trò chuyện: {{reason}}'
+    lockOfflineStatus:
+      label: Thử Khóa Trạng thái Ngoại tuyến
+      description: Đặt trạng thái ngoại tuyến và cố gắng sửa trạng thái tự động chuyển sang tạm vắng của Client .
+      button: Đặt
+  chatStatusMessage:
+    title: Chữ ký Trò chuyện
+    message:
+      saved: Đã lưu
+      success: Đã lưu và áp dụng
+      failedNotification:
+        title: Đặt Chữ ký Trò chuyện
+        description: 'Không thể đặt chữ ký trò chuyện: {{reason}}'
+    resetOnLogin:
+      label: Đặt lại Khi Đăng nhập
+      description: Tự động áp dụng lại chữ ký đã lưu lần cuối mỗi khi Client  đăng nhập.
+    text:
+      label: Chữ ký
+      description: Lưu và áp dụng chữ ký trò chuyện. Đặt giá trị trống để xóa nó.
+      placeholder: Nhập chữ ký
+      save: Lưu
+  summonerProfile:
+    title: Hồ Sơ
+    commonSuccess: Thao tác Thành công
+    commonFailed: Không thể Áp dụng
+    skinSelectModal:
+      title: Chọn Trang phục
+      button: Đặt làm Trang phục Hiện tại
+      augment: Tăng cường
+      unset: Bỏ đặt
+      failedNotification:
+        title: Nền Hồ sơ
+        description: 'Không thể áp dụng trang phục hiện tại: {{reason}}'
+    profileBackground:
+      label: Chọn Nền Hồ Sơ
+      description: Tìm kiếm tướng hoặc trang phục mục tiêu.
+      button: Chọn
+    bannerAccent:
+      label: Chuyển sang Biểu ngữ Mùa Trước
+      description: Chuyển sang biểu ngữ mùa trước; điều này có thể làm biểu ngữ biến mất.
+      button: Thực hiện
+      failedNotification:
+        title: Chuyển sang Biểu ngữ Mùa Trước
+        description: 'Không thể chuyển biểu ngữ: {{reason}}'
+    prestigeCrest:
+      label: Xóa Khung Danh giá
+      description: Xóa khung danh giá.
+      descriptionInsufficientLevel: 'Xóa khung danh giá (Cấp độ triệu hồi sư phải từ 525 trở lên; cấp hiện tại: {{level}})'
+      button: Thực hiện
+      failedNotification:
+        title: Xóa Khung Danh giá
+        description: 'Không thể xóa khung danh giá: {{reason}}'
+    token:
+      label: Xóa Tất cả Token
+      description: Xóa tất cả token.
+      button: Thực hiện
+      failedNotification:
+        title: Xóa Tất cả Token
+        description: 'Không thể xóa tất cả token: {{reason}}'
+    emotes:
+      label: Xóa Tất cả Cảm xúc
+      description: Xóa tất cả cảm xúc, bao gồm bánh xe cảm xúc và phản hồi sự kiện.
+      button: Thực hiện
+  gameView:
+    title: Xem Trận
+    game:
+      label: ID Trận
+      description: Tìm nạp và xem trận đấu bằng ID của nó.
+      button: Xem
+  fakeRanked:
+    title: Trạng thái Xếp hạng Giả
+    commonSuccess: Đã lưu và áp dụng
+    saved: Đã lưu
+    resetOnLogin:
+      label: Đặt lại Khi Đăng nhập
+      description: Tự động áp dụng lại trạng thái xếp hạng đã lưu lần cuối mỗi khi Client  đăng nhập.
+    set:
+      label: Lưu Trạng thái Xếp hạng
+      description: Lưu trạng thái xếp hạng thẻ trò chuyện
+      button: Lưu
+      failedNotification:
+        title: Xếp hạng Giả
+        description: 'Không thể giả trạng thái xếp hạng: {{reason}}'
+    queue: Chế độ
+    tier: Bậc
+    division: Phân hạng
+  spectate:
+    title: Xem
+    leaveButton: Rời Phòng chờ
+    needToLeaveLobby: Bạn cần rời phòng chờ hiện tại để xem.
+    spectate:
+      label: Xem Triệu Hồi Sư
+      description: Xem một người chơi trên máy chủ hiện tại bằng PUUID hoặc tên triệu hồi sư, với điều kiện người chơi đó đang ở trong một trận có thể xem.
+      button: Bắt đầu Xem
+      placeholder: Tên Triệu Hồi Sư / PUUID
+      errorNoPlayer: Người chơi không tồn tại.
+      notFoundNotification:
+        title: Xem
+        description: Không tìm thấy người chơi mục tiêu {{name}}.
+      failedNotification:
+        title: Xem
+        description: 'Không thể bắt đầu xem. Người chơi có thể không ở trong trận hoặc chế độ mục tiêu không thể xem được: {{reason}}'
+      successNotification:
+        title: Xem
+        description: Đã bắt đầu xem.
+    token:
+      label: Xem bằng Token
+      description: Sử dụng một token đặc biệt ở định dạng chính xác để khởi chạy quá trình xem trong Client  game.
+      button: Bắt đầu Xem
+      placeholder: Token
+      successNotification:
+        title: Xem
+        description: Đã bắt đầu xem.
+        useRememberedInstallLocation: Đã bắt đầu xem, sử dụng vị trí Client  đã được phát hiện.
+      failedNotification:
+        title: Xem
+        description: 'Không thể bắt đầu xem: {{reason}}'
+    failedToLoadFriends: Không thể tải danh sách bạn bè
+  inGameSend:
+    settings:
+      title: Cài đặt
+      cancelShortcut:
+        label: Phím tắt Hủy
+        description: Đặt một phím tắt để hủy bất kỳ hành động gửi nào
+      sendInterval:
+        label: Khoảng cách Gửi (ms)
+        description: Đặt khoảng thời gian giữa mỗi hành động gửi mô phỏng
+    presets:
+      title: Gửi Định sẵn
+      footer:
+        shortcutUnavailable: Phím tắt hiện không khả dụng, {{reason}}.
+        shortcutUsage: Khi phím tắt được cấu hình, nó có thể gửi đến chat trong lúc chọn tướng hoặc phòng chờ, hoặc mô phỏng đầu vào bàn phím trong game khi game đang ở tiền cảnh.
+        draftOnly: Chế độ nháp chỉ hỗ trợ chạy thử và sẽ không gửi đến chat hoặc game.
+      nativeInput:
+        needAdmin: chạy với quyền quản trị viên
+        unsupported: không được hỗ trợ trên nền tảng hiện tại
+        unavailable: hiện không khả dụng
+      teams:
+        friendly: Đồng minh
+        enemy: Địch
+        labelWithName: '{{side}} · {{team}}'
+      targets:
+        friendly:
+          label: Gửi Đồng minh
+          description: Gửi đến người chơi đồng minh đã chọn
+        enemy:
+          label: Gửi Địch
+          description: Gửi đến người chơi địch đã chọn
+        all:
+          label: Gửi Tất cả
+          description: Gửi đến người chơi đã chọn từ cả hai đội
+      controls:
+        shortcut: Phím tắt
+        sendToGame: Gửi đến Game
+        sendToChat: Gửi đến Chat
+        send: Gửi
+        dryRun: Chạy Thử
+        dryRunDescription: Tạo dòng và xem trước bên dưới mà không ghi vào Client .
+        sendSucceeded: Đã gửi ({{preset}} → {{target}})
+        disabled:
+          draftOnly: Chế độ nháp chỉ hỗ trợ chạy thử.
+          unavailable: Chỉ khả dụng trong chọn tướng, phòng chờ hoặc trong game.
+      preview:
+        title: Chạy Thử
+        empty: Không có nội dung để gửi
+        copy: Sao chép
+        copied: Đã sao chép vào clipboard
+        copyFailed: Sao chép thất bại
+        close: Đóng
+      selection:
+        playersTitle: Mục tiêu gửi ({{selected}} / {{total}})
+        premadeTitle: Nhóm ghép đã chọn ({{selected}} / {{total}})
+        selectAll: Chọn Tất cả
+        clear: Xóa
+        groupCount_one: '{{count}} nhóm ghép'
+        groupCount_other: '{{count}} nhóm ghép'
+        emptyPremadeGroups: Không có nhóm ghép
+        bucketSize: '{{count}}-người'
+      nameDisplayStrategy:
+        title: Hiển thị Tên
+        options:
+          preferName:
+            label: Ưu tiên Tên Người chơi
+            description: Sử dụng tên người chơi cho định danh người chơi trong đầu ra
+          preferChampionName:
+            label: Ưu tiên Tên Tướng
+            description: Sử dụng tên người chơi khi chưa chọn tướng hoặc có tướng trùng lặp
+          championNameWithName:
+            label: Tướng với Người chơi
+            description: Sử dụng tên tướng kèm tên người chơi trong ngoặc đơn
+      rating:
+        label: Đánh giá Hiệu suất
+        description: Tóm tắt hiệu suất gần đây của mỗi người chơi, bao gồm tỷ lệ thắng, KDA và các tướng chính.
+        displayOptionsTitle: Mục Hiển thị
+        displayOptions:
+          winRate:
+            label: Tỷ lệ Thắng
+            description: Tỷ lệ thắng trận gần đây
+          kda:
+            label: KDA
+            description: Hiệu suất hạ gục / tử vong / hỗ trợ
+          avgSoloKills:
+            label: Trung bình Hạ gục Đơn
+            description: Trung bình hạ gục đơn; yêu cầu nguồn dữ liệu SGP
+          avgVisionScore:
+            label: Điểm Tầm nhìn Trung bình
+            description: Điểm tầm nhìn trung bình trong các trận gần đây
+          avgChampionDamage:
+            label: Sát thương
+            description: Hiển thị tỷ lệ sát thương đội lên tướng trung bình
+          avgDamageTaken:
+            label: Sát thương Nhận
+            description: Hiển thị tỷ lệ sát thương đội nhận trung bình
+          avgGold:
+            label: Vàng
+            description: Hiển thị tỷ lệ vàng đội trung bình
+          avgCsPerMinute:
+            label: CS
+            description: Hiển thị CS trung bình mỗi phút
+          avgKillParticipation:
+            label: Tham gia Hạ gục
+            description: Hiển thị tỷ lệ tham gia hạ gục trung bình
+          avgDamageGoldEfficiency:
+            label: Sát thương / Vàng
+            description: Hiển thị hiệu suất sát thương-vàng trung bình
+          mainChampions:
+            label: Tướng Chính
+            description: Hiển thị tối đa ba tướng được ưa thích rõ ràng từ thống kê trận gần đây; hiển thị "Không có tướng chính rõ ràng" khi không có tướng nào đủ điều kiện; ẩn khi đang lọc theo tướng hiện tại
+          mainPositions:
+            label: Vị trí Chính
+            description: Hiển thị tối đa hai vị trí chính khi thống kê trận gần đây có dữ liệu vị trí rõ ràng
+        configOptionsTitle: Cấu hình
+        configOptions:
+          showCurrentChampion:
+            label: Lọc Theo Tướng Hiện tại
+            description: Chỉ bao gồm các trận gần đây trên tướng hiện tại của mỗi người chơi; hiển thị lời nhắc khi chưa chọn tướng
+      jungle:
+        label: Ưu tiên Đi Rừng
+        description: Hiển thị hoạt động đầu trận, phân bổ dọn đầu và xu hướng kiểm soát mục tiêu.
+        displayOptionsTitle: Mô-đun Hiển thị
+        displayOptions:
+          activityPreference:
+            label: Ưu tiên Hoạt động
+            description: Hiển thị các khu vực đầu bản đồ mà người đi rừng có xu hướng ghé thăm, với phân bổ đường trên/giữa/dưới
+          firstClearDistribution:
+            label: Phân bổ Dọn Đầu
+            description: Hiển thị tỷ lệ khởi đầu tiêu chuẩn/xâm lược bên xanh và bên đỏ cùng phân bổ quái, chỉ khi lọc theo tướng hiện tại
+          earlyGank:
+            label: Gank Sớm
+            description: Hiển thị tỷ lệ kích hoạt gank cấp 3 và cấp 4
+          dragonControl:
+            label: Kiểm soát Rồng
+            description: Hiển thị tỷ lệ rồng đầu tiên, thời gian rồng đầu tiên trung bình và số rồng trung bình
+          monsterControl:
+            label: Mục tiêu Quái
+            description: Hiển thị số trung bình Ấu Trùng, Sứ Giả và Baron
+          mainChampions:
+            label: Tướng Chính
+            description: Hiển thị tối đa ba tướng có nhiều mẫu phân tích đi rừng hơn rõ rệt; hiển thị "Không có tướng chính rõ ràng" khi không có tướng nào đủ điều kiện; chỉ áp dụng khi tắt lọc tướng hiện tại
+        configOptionsTitle: Cấu hình
+        configOptions:
+          showCurrentChampion:
+            label: Lọc Theo Tướng Hiện tại
+            description: Chỉ bao gồm chi tiết đi rừng cho tướng hiện tại của mỗi người chơi; hiển thị lời nhắc khi chưa chọn tướng. Được bật theo mặc định.
+      premade:
+        label: Trạng thái Nhóm Ghép
+        description: Xác định các nhóm ghép trong mỗi đội và hiển thị thành viên theo nhóm.
+      fixedText:
+        label: Văn bản Cố định
+        empty:
+          description: Chưa có văn bản cố định. Thêm một cái, sau đó đặt tiêu đề, phím tắt và nội dung nhiều dòng của nó.
+          action: Thêm Văn bản Cố định
+        listTitle: Văn bản Cố định
+        addLimitReached: Có thể tạo tối đa {{count}} mục văn bản cố định.
+        unnamed: Chưa có tiêu đề
+        editTitle: Sửa tiêu đề
+        shortcutLabel: Phím tắt
+        shortcutDescription: Gửi mục văn bản cố định đã lưu này.
+        save: Lưu
+        saved: Đã lưu
+        saveFailed: Lưu thất bại
+        createFailed: Tạo thất bại
+        delete: Xóa
+        deleted: Đã xóa
+        deleteFailed: Xóa thất bại
+        deleteConfirm: Xóa?
+        moveUp: Di chuyển lên
+        moveDown: Di chuyển xuống
+        sendToGame: Gửi đến Game
+        sendToChat: Gửi đến Chat
+        send: Gửi
+        sendSucceeded: Đã gửi
+        sendSucceededWithTitle: 'Đã gửi (Văn bản Cố định: {{title}})'
+        disabled:
+          noSelection: Chọn một mục văn bản cố định
+          saveFirst: Lưu các chỉnh sửa hiện tại trước
+          draftOnly: Chế độ nháp không thể gửi.
+          unavailable: Chỉ khả dụng trong chọn tướng, phòng chờ hoặc trong game.
+  claim:
+    rewards:
+      title: Phần thưởng
+      hint: Để tìm thứ gì đó đã bị lãng quên.
+      columns:
+        rewardList: Vật phẩm Có thể Nhận
+      refreshButton: Làm mới
+      claimButton: Nhận
+      claimButtonC: Nhận ({{count}})
+      cancelButton: Hủy
+      refreshSuccess: Đã làm mới
+      refreshFailed: Không thể tải {{reason}}
+      claimFailed: Không thể nhận {{reason}}
+      claimed: Đã nhận {{item}}
+    eventHub:
+      title: Trung tâm Sự kiện
+      hint: Các mục trong cột này có thể trùng lặp với một số mục trong "Phần thưởng". Nhận bất kỳ mục nào trong số đó cũng đủ.
+      columns:
+        rewardList: Vật phẩm Có thể Nhận
+      refreshButton: Làm mới
+      claimButton: Nhận
+      claimButtonC: Nhận ({{count}})
+      cancelButton: Hủy
+      refreshSuccess: Đã làm mới
+      refreshFailed: Không thể tải {{reason}}
+      claimFailed: Không thể nhận {{reason}}
+      claimed: Đã nhận {{item}}
+    missions:
+      title: Nhiệm vụ
+      hint: Hoàn thành nhiệm vụ trước hạn có thể gây ra sự không nhất quán dữ liệu. Vui lòng thận trọng khi sử dụng.
+      columns:
+        rewardList: Vật phẩm Có thể Nhận
+      refreshButton: Làm mới
+      claimButton: Nhận
+      claimButtonC: Nhận ({{count}})
+      cancelButton: Hủy
+      refreshSuccess: Đã làm mới
+      refreshFailed: Không thể tải {{reason}}
+      claimFailed: Không thể nhận {{reason}}
+      claimed: Đã nhận {{item}}
+    item:
+      untranslatedC: Nhóm Không Tên ({{count}})
+  friends:
+    title: Bạn bè
+    searchPlaceholder: Tìm tên bạn bè hoặc tag
+    deleteButtonC: Xóa ({{count}})
+    deleteButton: Xóa
+    cancelButton: Hủy
+    refreshButton: Làm mới
+    deleteSuccess_one: Đã xóa {{count}} bạn
+    deleteSuccess_other: Đã xóa {{count}} bạn
+    deletePopconfirm: Thao tác này sẽ thực hiện xóa và không thể hoàn tác
+    refreshSuccess: Đã làm mới
+    neverPlayed: Không có dữ liệu trận
+    unknown: Không xác định
+    groupNames:
+      '**Default': Chung
+    columns:
+      groupName: Nhóm Bạn bè
+      lastGameDate: Ngày Trận Cuối
+      friendSince: Kết bạn Từ
+  loot:
+    title: Báu Vật 
+    refreshSuccess: Đã làm mới
+    refreshFailed: Không thể tải {{reason}}

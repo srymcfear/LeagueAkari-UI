@@ -118,7 +118,7 @@
 
             <div v-if="rankedSoloFlex.flex" class="flex w-0 flex-1 items-center justify-start">
               <img
-                class="mr-1 size-3.5"
+                class="mr-1 size-5"
                 :src="RANKED_MEDAL_MAP[rankedSoloFlex.flex.tier]"
                 alt="rank"
               />

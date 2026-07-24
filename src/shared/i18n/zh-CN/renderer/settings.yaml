@@ -51,6 +51,7 @@ settings:
           sakura: 樱花粉
           mint: 薄荷绿
           aurora: 极光紫
+          neon: 霓虹紫
           butter: 奶油黄
     selfUpdate:
       title: 应用更新
@@ -167,6 +168,9 @@ settings:
     showJunglePathing:
       label: 启用打野偏好
       description: 在战绩页面展示打野偏好入口与分析卡片
+    matchCardOpacity:
+      label: 卡片透明度
+      description: 调整战绩卡片的透明度。
   ongoingGame:
     title: 对局
     titleCommon: 对局

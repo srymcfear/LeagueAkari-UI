@@ -51,6 +51,7 @@
           :hide-privacy="as.settings.streamerMode"
           :replay-state="page.replayMetadata[g.gameId]"
           :can-dry-run-ongoing-game="canDryRunOngoingGame"
+          :match-card-opacity="pts.frontendSettings.matchCardOpacity"
         />
       </div>
     </template>

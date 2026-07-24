@@ -1,0 +1,214 @@
+appName: League Akari
+default: Mặc Định
+
+yes: Có
+no: Không
+confirm: Xác Nhận
+na: N/A
+
+summonerPlaceholder: Người Chơi {{index}}
+summoner: Người Chơi
+region: Khu Vực
+
+positions:
+  all: Không
+  ALL: Không
+  top: Đường Trên
+  jungle: Đi Rừng
+  mid: Đường Giữa
+  middle: Đường Giữa
+  bot: Đường Dưới
+  bottom: Đường Dưới
+  support: Hỗ Trợ
+  utility: Hỗ Trợ
+  TOP: Đường Trên
+  JUNGLE: Đi Rừng
+  MID: Đường Giữa
+  BOT: Đường Dưới
+  MIDDLE: Đường Giữa
+  BOTTOM: Đường Dưới
+  SUPPORT: Hỗ Trợ
+  UTILITY: Hỗ Trợ
+
+positionAssignmentReason:
+  FILL_SECONDARY: Ưu Tiên Phụ Bù
+  FILL_PRIMARY: Ưu Tiên Chính Bù
+  PRIMARY: Ưu Tiên Chính
+  SECONDARY: Ưu Tiên Phụ
+  AUTOFILL: Tự Động Bù
+  AUTOFILL_SHORT: Bù
+
+teams:
+  TEAM-ALL: Tất Cả
+  TEAM-100: Đội Xanh
+  TEAM-200: Đội Đỏ
+  LOBBY: Phòng Chờ
+  CHERRY-0: '?'
+  CHERRY-1: Poro
+  CHERRY-2: Lính
+  CHERRY-3: Cua Kỳ Đà
+  CHERRY-4: Bọ Đá
+  CHERRY-5: Chim Mỏ Kiềm
+  CHERRY-6: Lính Gác
+  CHERRY-7: Sói
+  CHERRY-8: Ếch Thung Lũng
+  unknown: Không Rõ
+
+queueTypes:
+  RANKED_SOLO_5x5: Xếp Hạng Đơn/Đôi
+  RANKED_FLEX_SR: Xếp Hạng Linh Hoạt
+  RANKED_PREMADE_5x5: Xếp Hạng Tổ Đội 5v5
+  NORMAL: SR Thường
+  ARAM_UNRANKED_5x5: ARAM
+  KIWI: 'ARAM: Hỗn Loạn'
+  CHERRY: Đấu Trường
+  URF: URF
+  RANKED_FLEX_TT: Xếp Hạng Linh Hoạt TT
+  NORMAL_TFT: TFT
+  RANKED_TFT: TFT Xếp Hạng
+  RANKED_TFT_TURBO: TFT Tăng Tốc
+  RANKED_TFT_DOUBLE_UP: TFT Đôi
+
+gameModes:
+  CLASSIC: Cổ Điển
+  ARAM: ARAM
+  URF: URF
+  TFT: TFT
+
+sgpMatchHistoryTags:
+  groupGeneral: Chung
+  groupGameModes: Chế Độ
+  all: Tất Cả Chế Độ
+  ranked: Chế Độ Xếp Hạng
+  normal: Chế Độ Thường
+  current: Chế Độ Hiện Tại
+  q_420: Xếp Hạng Đơn/Đôi
+  q_430: SR Thường
+  q_440: Xếp Hạng Linh Hoạt
+  q_450: ARAM
+  q_480: Swiftplay
+  q_490: Quickplay
+  q_900: ARURF
+  q_1700: Đấu Trường
+  q_1750: Đấu Trường
+  q_1900: URF
+  q_2300: Brawl
+
+tiers:
+  UNRANKED: CHƯA XẾP HẠNG
+  IRON: SẮT
+  BRONZE: ĐỒNG
+  SILVER: BẠC
+  GOLD: VÀNG
+  PLATINUM: BẠCH KIM
+  EMERALD: LỤC BẢO
+  DIAMOND: KIM CƯƠNG
+  MASTER: CAO THỦ
+  GRANDMASTER: ĐẠI CAO THỦ
+  CHALLENGER: THÁCH ĐẤU
+
+shortTiers:
+  UNRANKED: N/A
+  IRON: SẮT
+  BRONZE: ĐỒNG
+  SILVER: BẠC
+  GOLD: VÀNG
+  PLATINUM: BK
+  EMERALD: LB
+  DIAMOND: KC
+  MASTER: CT
+  GRANDMASTER: ĐCT
+  CHALLENGER: TĐ
+
+sgpServers:
+  AKARI_CURRENT: Hiện Tại
+  TENCENT_HN10: Hắc Mi
+  TENCENT_HN1: Ionia
+  TENCENT_NJ100: Liên Minh 1
+  TENCENT_GZ100: Liên Minh 2
+  TENCENT_CQ100: Liên Minh 3
+  TENCENT_TJ100: Liên Minh 4
+  TENCENT_TJ101: Liên Minh 5
+  TENCENT_BGP2: Đỉnh Cao
+  TENCENT_PBE: Tencent PBE
+  TENCENT_PREPBE: Tencent PREPBE
+  TW2: Đài Loan
+  SG2: Singapore
+  PH2: Philippines
+  VN2: Việt Nam
+  PBE: PBE
+  NA1: Bắc Mỹ
+  EUN: Châu Âu Đông Bắc
+  EUW: Châu Âu Tây
+  KR: Hàn Quốc
+  BR1: Brazil
+  LA1: Mỹ Latinh
+  LA2: Mỹ Latinh
+  OC1: Châu Đại Dương
+  TR1: Thổ Nhĩ Kỳ
+  RU: Nga
+  JP: Nhật Bản
+
+champions:
+  bravery: Ngẫu Nhiên
+  dummy: Giả
+
+championAnalysis:
+  overviewTab: Tổng Quan
+  positionTab: Vị Trí
+  jungleTab: Đi Rừng
+  masteryTab: Thành Thạo
+  games_one: '{{count}} trận'
+  games_other: '{{count}} trận'
+  winsLosses: '{{wins}}T {{losses}}B'
+  akariScore: Điểm Akari
+  winRate: Tỷ Lệ Thắng
+  winningStreak_one: '{{count}} trận thắng'
+  winningStreak_other: '{{count}} trận thắng'
+  losingStreak_one: '{{count}} trận thua'
+  losingStreak_other: '{{count}} trận thua'
+  activeSession: Phiên hiện tại {{wins}}T {{losses}}B
+  standardModes: Chế Độ Tiêu Chuẩn
+  arena: Đấu Trường
+  arenaSummary_one: '{{count}} trận · Nửa trên {{topHalfRate}} · Hạng 1 {{top1Rate}} · TB #{{placement}}'
+  arenaSummary_other: '{{count}} trận · Nửa trên {{topHalfRate}} · Hạng 1 {{top1Rate}} · TB #{{placement}}'
+  top1Rate: Tỷ Lệ Hạng 1
+  topHalfRate: Tỷ Lệ Nửa Trên
+  averagePlacement: Xếp Hạng Trung Bình
+  performance: Hiệu Suất
+  averageKda: KDA Trung Bình
+  killParticipation: Tỷ Lệ Tham Gia Hạ Gục
+  kdaVariation: Biến Động KDA
+  killDamageEfficiency: Hiệu Quả ST-Hạ Gục
+  visionScore: Điểm Tầm Nhìn Trung Bình
+  visionShare: Tỷ Lệ Tầm Nhìn
+  soloKills: Trung Bình Hạ Gục Đơn
+  pings: Ping Trung Bình
+  missingPings: Ping Mất Tướng Trung Bình
+  damage: Sát Thương & Chịu Đòn
+  damagePerMinute: ST Tướng / Phút
+  damageShare: Tỷ Lệ ST Đội
+  damageToTeamMax: vs ST Cao Nhất Đội
+  damageToMatchMax: vs ST Cao Nhất Trận
+  damageTakenShare: Tỷ Lệ ST Nhận Đội
+  damageTakenToTeamMax: ST Nhận vs Cao Nhất Đội
+  damageTakenToMatchMax: ST Nhận vs Cao Nhất Trận
+  damageGoldEfficiency: Hiệu Quả ST-Vàng
+  economy: Kinh Tế & Tài Nguyên
+  goldShare: Tỷ Lệ Vàng Đội
+  goldToTeamMax: vs Vàng Cao Nhất Đội
+  goldToMatchMax: vs Vàng Cao Nhất Trận
+  csPerMinute: Lính / Phút
+  csShare: Tỷ Lệ Lính Đội
+  csToTeamMax: vs Lính Cao Nhất Đội
+  csToMatchMax: vs Lính Cao Nhất Trận
+  towerDamageShare: Tỷ Lệ ST Trụ Đội
+  towerDamageToTeamMax: ST Trụ vs Cao Nhất Đội
+  towerDamageToMatchMax: ST Trụ vs Cao Nhất Trận
+  gamesAnalyzed_one: '{{count}} mẫu chi tiết'
+  gamesAnalyzed_other: '{{count}} mẫu chi tiết'
+  collectMatches: Thu Thập Trận {{champion}}
+  collectShort: Thu Thập
+
+app:
+  singleton:  chỉ có thể mở MỘT Akari tại một thời điểm
