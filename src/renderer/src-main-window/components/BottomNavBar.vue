@@ -1,8 +1,11 @@
 <template>
   <nav class="bottom-nav" :class="{ blurred: mws.focus === 'blurred' }">
-    <div class="nav-logo">
-      <AkariLogo class="nav-logo-icon" />
+    <div class="nav-brand" title="League Akari">
+      <AkariLogo class="nav-brand-logo" />
     </div>
+
+    <div class="nav-divider" />
+
     <div class="nav-items">
       <button
         v-for="item in displayMenu"
@@ -13,8 +16,8 @@
         @click="handleNav(item)"
       >
         <div class="nav-icon">
-          <span v-if="item.inProgress" class="nav-dot"></span>
-          <NIcon :size="20"><component :is="item.icon" /></NIcon>
+          <span v-if="item.inProgress" class="nav-dot" />
+          <NIcon :size="17"><component :is="item.icon" /></NIcon>
         </div>
         <span class="nav-label">{{ item.name }}</span>
       </button>
@@ -131,81 +134,90 @@ watchEffect(() => {
 
 <style scoped>
 .bottom-nav {
+  align-self: center;
+  margin: 0 auto 12px auto;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  height: 44px;
   display: flex;
   align-items: center;
-  margin: 0 16px 12px 16px;
-  height: var(--la-bottom-nav-height, 52px);
-  background: var(--la-hud-dock-bg, rgba(14, 11, 24, 0.8));
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid var(--la-hud-dock-border, rgba(166, 124, 255, 0.24));
-  border-radius: 16px;
-  box-shadow: var(--la-hud-dock-shadow, 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 74, 255, 0.15));
-  padding: 0 10px;
-  gap: 6px;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--la-hud-dock-bg, rgba(13, 11, 22, 0.88));
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--la-hud-dock-border, rgba(166, 124, 255, 0.22));
+  border-radius: 9999px;
+  box-shadow: var(--la-hud-dock-shadow, 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 16px rgba(139, 74, 255, 0.12)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   position: relative;
   z-index: 100;
   -webkit-app-region: no-drag;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 
   &.blurred {
-    filter: brightness(0.75);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    opacity: 0.75;
   }
 }
 
-.nav-logo {
+.nav-brand {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  margin: 0 4px 0 2px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  transition: all 0.3s ease;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  margin-left: 2px;
+  transition: background 0.2s ease, transform 0.2s ease;
 
   &:hover {
     background: rgba(166, 124, 255, 0.12);
-    .nav-logo-icon {
+    .nav-brand-logo {
       opacity: 1;
       filter: drop-shadow(0 0 8px rgba(166, 124, 255, 0.7));
-      transform: scale(1.08) rotate(-4deg);
+      transform: scale(1.08);
     }
   }
 }
 
-.nav-logo-icon {
-  width: 22px;
-  height: 22px;
+.nav-brand-logo {
+  width: 19px;
+  height: 19px;
   opacity: 0.75;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.2s ease;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(166, 124, 255, 0.18);
+  margin: 0 4px;
+  flex-shrink: 0;
 }
 
 .nav-items {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex: 1;
+  gap: 3px;
 }
 
 .nav-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 2px;
-  width: 68px;
-  height: 44px;
-  border-radius: 10px;
+  gap: 7px;
+  padding: 0 13px;
+  height: 34px;
+  border-radius: 9999px;
   background: transparent;
   border: 1px solid transparent;
   cursor: pointer;
-  position: relative;
-  color: var(--la-color-text-muted, rgba(240, 235, 255, 0.45));
-  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  color: var(--la-color-text-muted, rgba(240, 235, 255, 0.55));
   font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   -webkit-app-region: no-drag;
 
   &.disabled {
@@ -213,85 +225,60 @@ watchEffect(() => {
     cursor: not-allowed;
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 22px;
-    height: 2px;
-    border-radius: 4px 4px 0 0;
-    background: var(--la-hud-cyan, #38bdf8);
-    box-shadow: 0 0 10px var(--la-hud-cyan, #38bdf8);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  &.active::before {
-    transform: translateX(-50%) scaleX(1);
-  }
-
-  &:hover:not(.disabled) {
+  &:hover:not(.disabled):not(.active) {
     color: var(--la-color-text-primary, #ffffff);
-    background: rgba(166, 124, 255, 0.1);
-    border-color: rgba(166, 124, 255, 0.15);
-    transform: translateY(-2px);
-
-    .nav-icon :deep(svg) {
-      filter: drop-shadow(0 0 6px rgba(166, 124, 255, 0.5));
-    }
+    background: rgba(255, 255, 255, 0.05);
   }
 
   &.active {
-    color: var(--la-color-text-primary, #ffffff);
-    background: radial-gradient(ellipse at 50% 120%, rgba(139, 74, 255, 0.25) 0%, rgba(139, 74, 255, 0.05) 75%, transparent 100%);
-    border-color: rgba(166, 124, 255, 0.25);
-    transform: translateY(-1px);
+    color: #ffffff;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.22) 0%, rgba(56, 189, 248, 0.12) 100%);
+    border-color: rgba(168, 85, 247, 0.35);
+    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    .nav-icon {
+      color: var(--la-hud-cyan, #38bdf8);
+      filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+    }
   }
 }
 
 .nav-icon {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: transform 0.25s ease;
-}
-
-.nav-item.active .nav-icon :deep(svg) {
-  color: var(--la-color-link, #a67cff);
-  filter: drop-shadow(0 0 8px rgba(166, 124, 255, 0.65));
+  color: inherit;
+  transition: color 0.2s ease, filter 0.2s ease;
 }
 
 .nav-label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  white-space: nowrap;
+  line-height: 1;
 }
 
 .nav-dot {
   position: absolute;
   top: -2px;
-  right: -5px;
-  width: 7px;
-  height: 7px;
+  right: -3px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--la-hud-cyan, #38bdf8);
-  box-shadow: 0 0 10px var(--la-hud-cyan, #38bdf8), 0 0 16px rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 8px var(--la-hud-cyan, #38bdf8);
   animation: pulse-dot 1.8s ease-in-out infinite;
 }
 
 @keyframes pulse-dot {
   0%, 100% {
-    opacity: 0.7;
+    opacity: 0.65;
     transform: scale(1);
   }
   50% {
     opacity: 1;
-    transform: scale(1.35);
+    transform: scale(1.3);
   }
 }
 </style>
