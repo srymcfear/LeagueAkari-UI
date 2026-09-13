@@ -3,8 +3,7 @@
     <!-- Cross Region Unsupported Card -->
     <div
       v-if="isCrossRegion"
-      class="glass-card rank-card-cross relative flex flex-col items-center justify-center rounded-lg bg-black/5 dark:bg-white/5"
-      :class="isSmallSize ? 'w-52' : 'w-72'"
+      class="glass-card rank-card-cross relative flex flex-col items-center justify-center rounded-lg bg-black/5 dark:bg-white/5 w-52 @[1064px]:w-72"
     >
       <div class="text-xs text-[var(--la-color-text-primary)]/60">{{ t('playerTabs.ranked.crossRegion', 'Cross Region') }}</div>
       <div class="text-xs text-[var(--la-color-text-primary)]/40">{{ t('playerTabs.ranked.unavailable', 'Unavailable') }}</div>
@@ -15,8 +14,7 @@
       <!-- Solo Queue (primary) -->
       <div
         v-if="soloEntry"
-        class="glass-card rank-card-primary rounded-lg bg-black/5 dark:bg-white/5"
-        :class="isSmallSize ? 'w-60' : 'w-72'"
+        class="glass-card rank-card-primary rounded-lg bg-black/5 dark:bg-white/5 w-60 @[1064px]:w-72"
         :style="rankGlowVars(soloEntry, 0.15)"
       >
         <div class="rank-card-inner">
@@ -51,8 +49,8 @@
 
       <!-- Flex Queue (secondary) -->
       <div
-        v-if="flexEntry && !isSmallSize"
-        class="glass-card rank-card-secondary rounded-lg bg-black/5 dark:bg-white/5"
+        v-if="flexEntry"
+        class="glass-card rank-card-secondary hidden @[1064px]:block rounded-lg bg-black/5 dark:bg-white/5"
         :style="rankGlowVars(flexEntry, 0.1)"
       >
         <div class="rank-card-inner-sm">
