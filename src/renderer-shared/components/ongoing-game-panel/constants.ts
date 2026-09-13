@@ -58,8 +58,8 @@ export const PREMADE_TEAMS = [
 export const PREMADE_TEAM_COLORS = {
   A: { foregroundColor: '#48e5db', color: '#000', borderColor: '#48e5dbd0' },
   B: { foregroundColor: '#628aff', color: '#000', borderColor: '#628affd0' },
-  C: { foregroundColor: '#d4de17', color: '#000', borderColor: '#d4de17d0' },
-  D: { foregroundColor: '#2eda3e', color: '#000', borderColor: '#2eda3ed0' },
+  C: { foregroundColor: '#a855f7', color: '#fff', borderColor: '#a855f7d0' },
+  D: { foregroundColor: '#38bdf8', color: '#000', borderColor: '#38bdf8d0' },
   E: { foregroundColor: '#ff9f1c', color: '#000', borderColor: '#ff9f1cd0' },
   F: { foregroundColor: '#da4e2e', color: '#fff', borderColor: '#da4e2ed0' },
   G: { foregroundColor: '#bc2ebc', color: '#fff', borderColor: '#bc2ebcd0' },
@@ -73,8 +73,8 @@ export const PREMADE_TEAM_COLORS = {
 export const PREMADE_TEAM_COLORS_LIGHT = {
   A: { foregroundColor: '#0f6f68', color: '#fff', borderColor: '#0f6f68d0' },
   B: { foregroundColor: '#1f3fa6', color: '#fff', borderColor: '#1f3fa6d0' },
-  C: { foregroundColor: '#5c6000', color: '#fff', borderColor: '#5c6000d0' },
-  D: { foregroundColor: '#1a7a2a', color: '#fff', borderColor: '#1a7a2ad0' },
+  C: { foregroundColor: '#6b21a8', color: '#fff', borderColor: '#6b21a8d0' },
+  D: { foregroundColor: '#0369a1', color: '#fff', borderColor: '#0369a1d0' },
   E: { foregroundColor: '#8a4400', color: '#fff', borderColor: '#8a4400d0' },
   F: { foregroundColor: '#8a2a00', color: '#fff', borderColor: '#8a2a00d0' },
   G: { foregroundColor: '#6a0d6a', color: '#fff', borderColor: '#6a0d6ad0' },

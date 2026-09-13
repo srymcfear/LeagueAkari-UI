@@ -13,7 +13,7 @@
       />
       <div
         v-if="summoner"
-        class="absolute right-0 bottom-0 translate-x-[35%] rounded bg-black/50 px-1 text-[10px] text-white"
+        class="absolute right-0 bottom-0 translate-x-[30%] rounded-full border border-purple-400/30 bg-neutral-950/85 px-1.5 py-0.2 text-[9px] font-mono font-bold text-purple-200 shadow-[0_0_6px_rgba(139,74,255,0.35)] backdrop-blur-xs"
       >
         {{ summoner.summonerLevel }}
       </div>

@@ -124,8 +124,14 @@
   --la-glow-primary: 0 0 20px rgba(139, 74, 255, 0.4), 0 0 60px rgba(139, 74, 255, 0.1);
   --la-glow-accent: 0 0 15px rgba(166, 124, 255, 0.35), 0 0 40px rgba(166, 124, 255, 0.08);
   --la-glass-bg: rgba(22, 18, 38, 0.55);
-  --la-glass-border: rgba(166, 124, 255, 0.12);
-  --la-glass-blur: 12px;
+  --la-glass-border: rgba(166, 124, 255, 0.16);
+  --la-glass-blur: 16px;
+  --la-hud-dock-bg: rgba(15, 12, 26, 0.82);
+  --la-hud-dock-border: rgba(166, 124, 255, 0.28);
+  --la-hud-dock-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 74, 255, 0.2);
+  --la-hud-cyan: #38bdf8;
+  --la-hud-violet: #a855f7;
+  --la-hud-crimson: #ff4d7a;
 }
 
 :root[data-theme-id='dark'] {

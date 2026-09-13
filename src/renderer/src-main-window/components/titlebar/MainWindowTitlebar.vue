@@ -164,4 +164,11 @@ const shouldShowBottomBorder = computed(() => {
     background-color: rgb(var(--la-card-border-rgb) / 0.3);
   }
 }
+
+[data-theme-id='neon'] .app-titlebar {
+  background: rgba(13, 11, 21, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(166, 124, 255, 0.14);
+}
 </style>
