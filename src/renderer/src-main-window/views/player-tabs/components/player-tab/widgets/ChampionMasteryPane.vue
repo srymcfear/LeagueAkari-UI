@@ -1,7 +1,7 @@
 <template>
-  <div class="rounded bg-black/5 px-4 py-2 dark:bg-white/5" v-if="shouldRender">
+  <div class="rounded-lg bg-black/5 p-3 dark:bg-white/5 border border-black/5 dark:border-white/5" v-if="shouldRender">
     <div class="mb-2 flex items-center justify-between gap-2">
-      <div class="text-base font-bold text-gray-900 dark:text-white">
+      <div class="text-sm font-bold text-gray-900 dark:text-white">
         {{ t('playerTabs.championMastery.title') }}
       </div>
       <div>

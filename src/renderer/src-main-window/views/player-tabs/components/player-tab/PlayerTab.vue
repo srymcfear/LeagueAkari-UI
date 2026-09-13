@@ -2,14 +2,14 @@
   <div ref="playerTabRootEl" class="relative h-full">
     <NScrollbar x-scrollable :theme-overrides="{ width: '8px' }" ref="scrollbarEl">
       <div ref="layoutContainerEl" class="@container w-full">
-        <div class="mx-auto w-full max-w-[760px] pt-8 pb-4 px-4 @[1100px]:max-w-[1460px] @[1280px]:px-6">
-          <PlayerTabHeader class="mb-6 h-28" />
+        <div class="mx-auto w-full max-w-[760px] pt-4 pb-6 px-3 @[1100px]:max-w-[1520px] @[1280px]:px-5">
+          <PlayerTabHeader class="mb-4 h-24" />
 
           <div class="box-border">
             <div ref="stickySentinelEl" class="h-0 w-full"></div>
 
             <div
-              class="grid grid-cols-1 items-start gap-3.5 @[1100px]:grid-cols-[260px_285px_minmax(0,1fr)] @[1360px]:grid-cols-[280px_310px_minmax(0,1fr)]"
+              class="grid grid-cols-1 items-start gap-3 @[1100px]:grid-cols-[240px_275px_minmax(0,1fr)] @[1360px]:grid-cols-[260px_295px_minmax(0,1fr)]"
             >
               <!-- Cột 1: Vật phẩm , Thành thạo tướng -->
               <StickyBox v-if="!isCompactLayout" class="w-full" :offset-top="8" :offset-bottom="8">
