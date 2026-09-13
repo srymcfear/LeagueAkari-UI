@@ -55,9 +55,9 @@ import { useLeagueClientStore } from '@renderer-shared/shards/league-client/stor
 import { useOngoingGameStore } from '@renderer-shared/shards/ongoing-game/store'
 import { WindowManagerRenderer } from '@renderer-shared/shards/window-manager'
 import { ToolFilled as ToolFilledIcon } from '@vicons/antd'
-import { AiStatus as AiStatusIcon } from '@vicons/carbon'
 import {
   AnimalRabbit28Filled as AnimalRabbit28FilledIcon,
+  Flash20Filled as Flash20FilledIcon,
   Games24Filled as Games24FilledIcon
 } from '@vicons/fluent'
 import { AnalyticsRound as AnalyticsRoundIcon } from '@vicons/material'
@@ -77,7 +77,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useMainWindowUiStore } from '@main-window/shards/main-window-ui/store'
 
 import SidebarFixed from './SidebarFixed.vue'
-import SidebarMenu from './SidebarMenu.vue'
+import { SidebarMenu } from './sidebar-menu'
 
 const { t } = useTranslation()
 
@@ -185,7 +185,7 @@ const menu = computed(() => {
     },
     {
       key: 'automation',
-      icon: renderIcon(AiStatusIcon),
+      icon: renderIcon(Flash20FilledIcon),
       name: t('navigation.sidebar.menu.automation')
     },
     {

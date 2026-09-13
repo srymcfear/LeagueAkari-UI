@@ -3,7 +3,7 @@
     <!-- Cross Region Unsupported Card -->
     <div
       v-if="isCrossRegion"
-      class="glass-card rank-card-cross glass-card relative flex flex-col items-center justify-center rounded-lg bg-black/5 dark:bg-white/5"
+      class="glass-card rank-card-cross relative flex flex-col items-center justify-center rounded-lg bg-black/5 dark:bg-white/5"
       :class="isSmallSize ? 'w-52' : 'w-72'"
     >
       <div class="text-xs text-[var(--la-color-text-primary)]/60">{{ t('playerTabs.ranked.crossRegion', 'Cross Region') }}</div>
@@ -165,7 +165,7 @@ import { computed, ref } from 'vue'
 import { usePlayerTab } from '../context'
 import { useRankedStats } from '../data/ranked-stats'
 
-const { isCrossRegion, isSmallSize } = usePlayerTab()
+const { isCrossRegion } = usePlayerTab()
 
 const { t } = useTranslation()
 const isShowingRankedModal = ref(false)

@@ -33,14 +33,15 @@
         </NButton>
       </div>
 
-      <div v-if="page.games.length > 0" v-show="visibleGamesCount > 0" class="flex flex-col gap-1">
-        <MatchCard
+      <div v-if="page.games.length > 0" class="flex flex-col gap-1">
+        <MatchHistoryCard
           v-for="g of page.games"
-          v-show="isGameVisible(g)"
           ref="matchCardEls"
           :summary="g"
           :puuid="puuid"
           :key="toGameKey(g)"
+          :hidden="!isGameVisible(g)"
+          :optimization-mode="matchCardOptimizationMode"
           @navigate-to-summoner-by-puuid="navigateToSummonerByPuuid"
           @load-details="loadDetails(g.gameId)"
           @download-replay="downloadReplay(g.gameId)"
@@ -68,7 +69,6 @@
 </template>
 
 <script setup lang="ts">
-import MatchCard from '@renderer-shared/components/match-card/MatchCard.vue'
 import type { MatchPreviewPayload } from '@renderer-shared/components/match-preview'
 import { useInstance } from '@renderer-shared/shards'
 import { useAppCommonStore } from '@renderer-shared/shards/app-common/store'
@@ -87,6 +87,7 @@ import { usePlayerTabsStore } from '@main-window/shards/player-tabs/store'
 import { usePlayerTab } from '../context'
 import { useMatchHistory } from '../data/match-history'
 import { useMatchHistoryFilters } from '../data/match-history-filters'
+import { MatchHistoryCard, type MatchHistoryCardOptimizationMode } from './match-history-card'
 
 const as = useAppCommonStore()
 const lcs = useLeagueClientStore()
@@ -109,6 +110,8 @@ const {
 } = useMatchHistory()
 
 const { rootHasCombinator, clearPredicate } = useMatchHistoryFilters()
+
+const matchCardOptimizationMode: MatchHistoryCardOptimizationMode = 'once'
 
 const toGameKey = (game: LcuOrSgpGameSummary) => {
   return `${game.source}:${game.gameId}`
