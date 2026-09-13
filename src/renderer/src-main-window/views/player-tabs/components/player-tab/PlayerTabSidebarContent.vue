@@ -1,22 +1,12 @@
 <template>
-  <div class="flex flex-col gap-2">
-    <MatchHistoryPagination />
-    <NormalTagBlock />
-    <SummaryPane />
-    <ChampionMasteryPane />
-    <RecentlyPlayers side="ally" />
-    <RecentlyPlayers side="enemy" />
-    <PlayerChallenges />
-    <EncounteredGames />
+  <div class="flex flex-col gap-3">
+    <PlayerTabCol2 />
+    <div class="my-1 border-t border-black/10 dark:border-white/10" />
+    <PlayerTabCol1 />
   </div>
 </template>
 
 <script setup lang="ts">
-import ChampionMasteryPane from './widgets/ChampionMasteryPane.vue'
-import EncounteredGames from './widgets/EncounteredGames.vue'
-import MatchHistoryPagination from './widgets/match-history-pagination'
-import NormalTagBlock from './widgets/NormalTagBlock.vue'
-import PlayerChallenges from './widgets/PlayerChallenges.vue'
-import RecentlyPlayers from './widgets/RecentlyPlayers.vue'
-import SummaryPane from './widgets/SummaryPane.vue'
+import PlayerTabCol1 from './widgets/PlayerTabCol1.vue'
+import PlayerTabCol2 from './widgets/PlayerTabCol2.vue'
 </script>

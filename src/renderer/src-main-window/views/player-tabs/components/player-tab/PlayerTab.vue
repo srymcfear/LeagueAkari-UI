@@ -2,19 +2,26 @@
   <div ref="playerTabRootEl" class="relative h-full">
     <NScrollbar x-scrollable :theme-overrides="{ width: '8px' }" ref="scrollbarEl">
       <div ref="layoutContainerEl" class="@container w-full">
-        <div class="mx-auto w-full max-w-191 pt-10 pb-4 @[1064px]:max-w-266">
-          <PlayerTabHeader class="mb-6 h-28 px-4" />
+        <div class="mx-auto w-full max-w-[760px] pt-8 pb-4 px-4 @[1100px]:max-w-[1460px] @[1280px]:px-6">
+          <PlayerTabHeader class="mb-6 h-28" />
 
-          <div class="box-border px-4 @[764px]:px-0">
+          <div class="box-border">
             <div ref="stickySentinelEl" class="h-0 w-full"></div>
 
             <div
-              class="grid grid-cols-1 items-start gap-3 @[1064px]:grid-cols-[300px_minmax(0,1fr)]"
+              class="grid grid-cols-1 items-start gap-3.5 @[1100px]:grid-cols-[260px_285px_minmax(0,1fr)] @[1360px]:grid-cols-[280px_310px_minmax(0,1fr)]"
             >
-              <StickyBox v-if="!isCompactLayout" class="w-75" :offset-top="8" :offset-bottom="8">
-                <PlayerTabSidebarContent />
+              <!-- Cột 1: Vật phẩm , Thành thạo tướng -->
+              <StickyBox v-if="!isCompactLayout" class="w-full" :offset-top="8" :offset-bottom="8">
+                <PlayerTabCol1 />
               </StickyBox>
 
+              <!-- Cột 2: Chế độ , Tổng quan , Đồng đội - đối thủ gần đây -->
+              <StickyBox v-if="!isCompactLayout" class="w-full" :offset-top="8" :offset-bottom="8">
+                <PlayerTabCol2 />
+              </StickyBox>
+
+              <!-- Cột 3: List lịch sử đấu -->
               <div class="min-w-0">
                 <div
                   v-if="isCompactLayout"
@@ -135,6 +142,8 @@ import MatchHistoryPagination from './widgets/match-history-pagination'
 import PlayerTabHeader from './widgets/PlayerTabHeader.vue'
 import CollectModeProgress from './widgets/match-history-filters/CollectModeProgress.vue'
 import PlayerTabSidebarContent from './PlayerTabSidebarContent.vue'
+import PlayerTabCol1 from './widgets/PlayerTabCol1.vue'
+import PlayerTabCol2 from './widgets/PlayerTabCol2.vue'
 
 const { id, puuid, sgpServerId } = defineProps<{
   id: string

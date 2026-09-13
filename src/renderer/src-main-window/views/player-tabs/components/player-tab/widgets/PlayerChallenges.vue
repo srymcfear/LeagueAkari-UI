@@ -1,9 +1,15 @@
 <template>
-  <div class="rounded bg-black/5 px-4 py-2 dark:bg-white/5" v-if="items.length > 0">
+  <div class="rounded bg-black/5 px-4 py-2 dark:bg-white/5" v-if="items.length > 0 || isLoading">
     <div class="mb-3 text-base font-bold text-gray-900 dark:text-white">
       {{ t('playerTabs.challenges.titleAssets') }}
     </div>
-    <div class="grid grid-cols-2 gap-2">
+    <div v-if="isLoading" class="grid grid-cols-2 gap-2">
+      <div v-for="i of 6" :key="i" class="flex flex-col gap-1">
+        <NSkeleton :sharp="false" text :height="12" :width="50" />
+        <NSkeleton :sharp="false" text :height="20" :width="40" />
+      </div>
+    </div>
+    <div v-else class="grid grid-cols-2 gap-2">
       <div class="flex flex-col" v-for="item of items" :key="item.id">
         <div class="text-xs text-black/60 dark:text-white/60">{{ item.name }}</div>
         <div class="text-lg font-bold text-black dark:text-white">{{ item.currentValue }}</div>
@@ -15,6 +21,7 @@
 <script setup lang="ts">
 import { PlayerChallenge } from '@shared/types/sgp/challenges-client'
 import { useTranslation } from 'i18next-vue'
+import { NSkeleton } from 'naive-ui'
 import { computed } from 'vue'
 
 import {
@@ -29,7 +36,7 @@ import { useChallengesPlayerData } from '../data/challenges'
 
 const { t } = useTranslation()
 
-const { challengesPlayerData } = useChallengesPlayerData()
+const { challengesPlayerData, isLoading } = useChallengesPlayerData()
 
 const challengeMap = computed(() => {
   if (!challengesPlayerData.value) {
