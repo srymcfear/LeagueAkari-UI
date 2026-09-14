@@ -166,51 +166,51 @@ ongoingGame:
     position:
       recentlyPlayed: 'Ưu tiên:'
       selection: 'Chọn:'
-    cherryWinRatePopover_one: Trong {count} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%. Trong số {{cherryCount}} trận Đấu Trường, tỉ lệ hạng nhất của họ là {{top1Rate}}%.
-    cherryWinRatePopover_other: Trong {count} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%. Trong số {{cherryCount}} trận Đấu Trường, tỉ lệ hạng nhất của họ là {{top1Rate}}%.
-    winRatePopover_one: Trong {count} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%, {{wins}} thắng và {{losses}} thua.
-    winRatePopover_other: Trong {count} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%, {{wins}} thắng và {{losses}} thua.
-    kdaPopover_one: Trong {count} trận gần đây, KDA trung bình của người chơi này là {{kda}} ({{kills}} / {{deaths}} / {{assists}})
-    kdaPopover_other: Trong {count} trận gần đây, KDA trung bình của người chơi này là {{kda}} ({{kills}} / {{deaths}} / {{assists}})
+    cherryWinRatePopover_one: Trong {{count}} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%. Trong số {{cherryCount}} trận Đấu Trường, tỉ lệ hạng nhất của họ là {{top1Rate}}%.
+    cherryWinRatePopover_other: Trong {{count}} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%. Trong số {{cherryCount}} trận Đấu Trường, tỉ lệ hạng nhất của họ là {{top1Rate}}%.
+    winRatePopover_one: Trong {{count}} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%, {{wins}} thắng và {{losses}} thua.
+    winRatePopover_other: Trong {{count}} trận gần đây, tỉ lệ thắng của người chơi này là {{winRate}}%, {{wins}} thắng và {{losses}} thua.
+    kdaPopover_one: Trong {{count}} trận gần đây, KDA trung bình của người chơi này là {{kda}} ({{kills}} / {{deaths}} / {{assists}})
+    kdaPopover_other: Trong {{count}} trận gần đây, KDA trung bình của người chơi này là {{kda}} ({{kills}} / {{deaths}} / {{assists}})
     premadePopover: Họ là đồng đội đi cùng. Được gắn nhãn là Đội {{team}}.
     editTag: Gắn thẻ người chơi
     collectByChampion: Thu thập trận {{champion}}
     collectByPosition: Thu thập trận {{position}}
     sameChampionHistory: Lịch Sử Tướng
-    highWinRatePopover_one: Tỉ lệ thắng của người chơi này rất cao. Trong {count} trận gần đây, họ đã thắng {{winCount}} trận.
-    highWinRatePopover_other: Tỉ lệ thắng của người chơi này rất cao. Trong {count} trận gần đây, họ đã thắng {{winCount}} trận.
+    highWinRatePopover_one: Tỉ lệ thắng của người chơi này rất cao. Trong {{count}} trận gần đây, họ đã thắng {{winCount}} trận.
+    highWinRatePopover_other: Tỉ lệ thắng của người chơi này rất cao. Trong {{count}} trận gần đây, họ đã thắng {{winCount}} trận.
     teamDamageShare: ST Đội {{rate}}%
-    teamDamageSharePopover_one: Trong {count} trận gần đây, tỉ lệ sát thương đội trung bình của người chơi này là {{rate}}%
-    teamDamageSharePopover_other: Trong {count} trận gần đây, tỉ lệ sát thương đội trung bình của người chơi này là {{rate}}%
+    teamDamageSharePopover_one: Trong {{count}} trận gần đây, tỉ lệ sát thương đội trung bình của người chơi này là {{rate}}%
+    teamDamageSharePopover_other: Trong {{count}} trận gần đây, tỉ lệ sát thương đội trung bình của người chơi này là {{rate}}%
     teamDamageTakenShare: ST Nhận {{rate}}%
-    teamDamageTakenSharePopover_one: Trong {count} trận gần đây, tỉ lệ sát thương nhận trung bình của người chơi này là {{rate}}%
-    teamDamageTakenSharePopover_other: Trong {count} trận gần đây, tỉ lệ sát thương nhận trung bình của người chơi này là {{rate}}%
+    teamDamageTakenSharePopover_one: Trong {{count}} trận gần đây, tỉ lệ sát thương nhận trung bình của người chơi này là {{rate}}%
+    teamDamageTakenSharePopover_other: Trong {{count}} trận gần đây, tỉ lệ sát thương nhận trung bình của người chơi này là {{rate}}%
     teamGoldShare: Vàng {{rate}}%
-    teamGoldSharePopover_one: Trong {count} trận gần đây, tỉ lệ vàng đội trung bình của người chơi này là {{rate}}%
-    teamGoldSharePopover_other: Trong {count} trận gần đây, tỉ lệ vàng đội trung bình của người chơi này là {{rate}}%
+    teamGoldSharePopover_one: Trong {{count}} trận gần đây, tỉ lệ vàng đội trung bình của người chơi này là {{rate}}%
+    teamGoldSharePopover_other: Trong {{count}} trận gần đây, tỉ lệ vàng đội trung bình của người chơi này là {{rate}}%
     csPerMinute: '{{value}} CS / phút'
-    csPerMinutePopover_one: Trong {count} trận gần đây, người chơi này kiếm trung bình {{value}} CS mỗi phút.
-    csPerMinutePopover_other: Trong {count} trận gần đây, người chơi này kiếm trung bình {{value}} CS mỗi phút.
+    csPerMinutePopover_one: Trong {{count}} trận gần đây, người chơi này kiếm trung bình {{value}} CS mỗi phút.
+    csPerMinutePopover_other: Trong {{count}} trận gần đây, người chơi này kiếm trung bình {{value}} CS mỗi phút.
     csTeamSharePopover: Tỉ lệ CS đội trung bình của họ là {{rate}}%.
     damageGoldEfficiency: ST-Vàng {{rate}}%
-    damageGoldEfficiencyPopover_one: Trong {count} trận gần đây, hiệu quả sát thương trên vàng trung bình của người chơi này là {{rate}}%
-    damageGoldEfficiencyPopover_other: Trong {count} trận gần đây, hiệu quả sát thương trên vàng trung bình của người chơi này là {{rate}}%
+    damageGoldEfficiencyPopover_one: Trong {{count}} trận gần đây, hiệu quả sát thương trên vàng trung bình của người chơi này là {{rate}}%
+    damageGoldEfficiencyPopover_other: Trong {{count}} trận gần đây, hiệu quả sát thương trên vàng trung bình của người chơi này là {{rate}}%
     damageGoldEfficiencyPopoverDefinition: Hiệu quả sát thương-vàng = tổng sát thương lên tướng chia cho vàng kiếm được, cho thấy mỗi vàng chuyển đổi thành bao nhiêu sát thương lên tướng.
     damageGoldEfficiencyPopoverUsage: Dùng để đánh giá hiệu quả người chơi chuyển đổi vàng thành sát thương lên tướng.
     enemyMissingPings: Ping Mất {{count}}
-    enemyMissingPingsPopover_one: Người chơi này đã gửi ping mất tướng trung bình {count} lần mỗi trận
-    enemyMissingPingsPopover_other: Người chơi này đã gửi ping mất tướng trung bình {count} lần mỗi trận
+    enemyMissingPingsPopover_one: Người chơi này đã gửi ping mất tướng trung bình {{count}} lần mỗi trận
+    enemyMissingPingsPopover_other: Người chơi này đã gửi ping mất tướng trung bình {{count}} lần mỗi trận
     visionScore: Tầm Nhìn {{count}}
     visionScorePopover: Điểm tầm nhìn trung bình của người chơi này là {{count}}
     killDamageEfficiencyHigh: Cướp Mạng
     killDamageEfficiencyLow: Xả Sát Thương
-    killDamageEfficiencyHighPopover: Trong {count} trận gần đây, hiệu quả sát thương hạ gục trung bình của người chơi này là {{rate}}%, đạt được nhiều hạ gục hơn với ít sát thương đội hơn.
-    killDamageEfficiencyLowPopover: Trong {count} trận gần đây, hiệu quả sát thương hạ gục trung bình của người chơi này là {{rate}}%, đạt được ít hạ gục hơn với nhiều sát thương đội hơn.
+    killDamageEfficiencyHighPopover: Trong {{count}} trận gần đây, hiệu quả sát thương hạ gục trung bình của người chơi này là {{rate}}%, đạt được nhiều hạ gục hơn với ít sát thương đội hơn.
+    killDamageEfficiencyLowPopover: Trong {{count}} trận gần đây, hiệu quả sát thương hạ gục trung bình của người chơi này là {{rate}}%, đạt được ít hạ gục hơn với nhiều sát thương đội hơn.
     metPopover:
-      title_one: Đã từng gặp người chơi này vào {{date}}. Tổng cộng {count} lần.
-      title_other: Đã từng gặp người chơi này vào {{date}}. Tổng cộng {count} lần.
-      titleNote_one: Chỉ hiện {count} trận gần nhất.
-      titleNote_other: Chỉ hiện {count} trận gần nhất.
+      title_one: Đã từng gặp người chơi này vào {{date}}. Tổng cộng {{count}} lần.
+      title_other: Đã từng gặp người chơi này vào {{date}}. Tổng cộng {{count}} lần.
+      titleNote_one: Chỉ hiện {{count}} trận gần nhất.
+      titleNote_other: Chỉ hiện {{count}} trận gần nhất.
       gameId: ID Trận
       inspectByGameId: Xem {{gameId}}
       date: Ngày Đấu
@@ -229,30 +229,30 @@ ongoingGame:
       title: Gần đây gặp người chơi này vào {{date}}, tổng cộng đã gặp {{count}} lần
       titleNote: Chỉ hiển thị {{count}} trận gần nhất
     privatePopover: Người chơi này đã đặt trang cá nhân ở chế độ riêng tư, ngăn người khác xem trang cá nhân, lịch sử đấu và thành tích của họ. Ngoài ra, họ không thể bị xem trận.
-    winningStreakPopover_one: Đang có chuỗi thắng {count} trận. Xuất sắc!
-    winningStreakPopover_other: Đang có chuỗi thắng {count} trận. Xuất sắc!
-    losingStreakPopover_one: Đang có chuỗi thua {count} trận.
-    losingStreakPopover_other: Đang có chuỗi thua {count} trận.
+    winningStreakPopover_one: Đang có chuỗi thắng {{count}} trận. Xuất sắc!
+    winningStreakPopover_other: Đang có chuỗi thắng {{count}} trận. Xuất sắc!
+    losingStreakPopover_one: Đang có chuỗi thua {{count}} trận.
+    losingStreakPopover_other: Đang có chuỗi thua {{count}} trận.
     akariScorePopoverDescription: Điểm Akari tổng hợp các chỉ số người chơi gần đây và chỉ mang tính tham khảo.
     suspiciousFlashPosition: Tốc Biến Lạ
     suspiciousFlashPositionPopoverTitle: Phân Bố Phím Tốc Biến
     suspiciousFlashPositionPopoverDescription: Người chơi này gần đây đã dùng Tốc Biến ở cả phím D và F, vì vậy ưu tiên phím có vẻ không nhất quán.
     suspiciousFlashPositionPopoverDLabel: Phím D
     suspiciousFlashPositionPopoverFLabel: Phím F
-    suspiciousFlashPositionPopoverDCount_one: Phím D {count} trận ({{rate}}%)
-    suspiciousFlashPositionPopoverDCount_other: Phím D {count} trận ({{rate}}%)
-    suspiciousFlashPositionPopoverFCount_one: Phím F {count} trận ({{rate}}%)
-    suspiciousFlashPositionPopoverFCount_other: Phím F {count} trận ({{rate}}%)
-    suspiciousFlashPositionPopoverTotal_one: Dựa trên {count} trận phân tích gần nhất
-    suspiciousFlashPositionPopoverTotal_other: Dựa trên {count} trận phân tích gần nhất
+    suspiciousFlashPositionPopoverDCount_one: Phím D {{count}} trận ({{rate}}%)
+    suspiciousFlashPositionPopoverDCount_other: Phím D {{count}} trận ({{rate}}%)
+    suspiciousFlashPositionPopoverFCount_one: Phím F {{count}} trận ({{rate}}%)
+    suspiciousFlashPositionPopoverFCount_other: Phím F {{count}} trận ({{rate}}%)
+    suspiciousFlashPositionPopoverTotal_one: Dựa trên {{count}} trận phân tích gần nhất
+    suspiciousFlashPositionPopoverTotal_other: Dựa trên {{count}} trận phân tích gần nhất
     hardGank: Khó Gank
     easyGank: Dễ Gank
     veryEasyGank: Rất Dễ Gank
-    easyGankPopover_one: Qua {count} trận Bản Đồ Ma Thuật được phân tích gần nhất, người chơi này trung bình {{times}} lần chết trước 15 phút có sự tham gia của rừng địch
-    easyGankPopover_other: Qua {count} trận Bản Đồ Ma Thuật được phân tích gần nhất, người chơi này trung bình {{times}} lần chết trước 15 phút có sự tham gia của rừng địch
+    easyGankPopover_one: Qua {{count}} trận Bản Đồ Ma Thuật được phân tích gần nhất, người chơi này trung bình {{times}} lần chết trước 15 phút có sự tham gia của rừng địch
+    easyGankPopover_other: Qua {{count}} trận Bản Đồ Ma Thuật được phân tích gần nhất, người chơi này trung bình {{times}} lần chết trước 15 phút có sự tham gia của rừng địch
     soloKills: '{{times}} Hạ Gục Đơn'
-    soloKillsPopover_one: Trong {count} trận gần đây, người chơi này hạ gục đơn trung bình {{times}} lần
-    soloKillsPopover_other: Trong {count} trận gần đây, người chơi này hạ gục đơn trung bình {{times}} lần
+    soloKillsPopover_one: Trong {{count}} trận gần đây, người chơi này hạ gục đơn trung bình {{times}} lần
+    soloKillsPopover_other: Trong {{count}} trận gần đây, người chơi này hạ gục đơn trung bình {{times}} lần
     akariLoved:
       outstanding: Nổi Bật
       extraordinary: Phi Thường
@@ -260,8 +260,8 @@ ongoingGame:
       extraordinaryPopover: Người chơi này đã thể hiện xuất sắc trong các trận gần đây.
     champion:
       recentStats: Chỉ Số Gần Đây
-      winRate_one: '{count} trận gần đây, tỉ lệ thắng {{winRate}}%'
-      winRate_other: '{count} trận gần đây, tỉ lệ thắng {{winRate}}%'
+      winRate_one: '{{count}} trận gần đây, tỉ lệ thắng {{winRate}}%'
+      winRate_other: '{{count}} trận gần đây, tỉ lệ thắng {{winRate}}%'
       winRate: Gần đây {{count}} trận, tỉ lệ thắng {{winRate}}%
     matchHistory:
       winResult:
