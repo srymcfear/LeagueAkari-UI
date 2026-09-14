@@ -163,6 +163,16 @@ settings:
         enableConfirmation: 将启用硬件加速，重启应用以应用更改
         positiveText: 重启应用并退出
         negativeText: 取消
+      fullGpuAcceleration:
+        label: 最大化 GPU 性能
+        description: 强制开启 GPU 光栅化并忽略 GPU 黑名单以完全利用 GPU。若显卡性能较弱可能在游戏时造成轻微资源竞争
+      fullGpuAccelerationDialog:
+        enableText: 开启最大化 GPU 性能
+        disableText: 关闭最大化 GPU 性能
+        disableConfirmation: 将关闭最大化 GPU 性能，重启应用以应用更改
+        enableConfirmation: 将开启最大化 GPU 性能，重启应用以应用更改
+        positiveText: 重启应用并退出
+        negativeText: 取消
       uninstallApp:
         label: 卸载应用
         description: 卸载应用，将删除所有数据和配置

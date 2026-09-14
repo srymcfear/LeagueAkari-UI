@@ -13,6 +13,8 @@ export class AppCommonState {
    */
   disableHardwareAcceleration: boolean = false
 
+  fullGpuAcceleration: boolean = false
+
   baseConfig: BaseConfig | null = null
 
   shouldUseDarkColors: boolean = false
@@ -36,6 +38,10 @@ export class AppCommonState {
 
   setDisableHardwareAcceleration(s: boolean) {
     this.disableHardwareAcceleration = s
+  }
+
+  setFullGpuAcceleration(s: boolean) {
+    this.fullGpuAcceleration = s
   }
 
   setBaseConfig(s: BaseConfig | null) {

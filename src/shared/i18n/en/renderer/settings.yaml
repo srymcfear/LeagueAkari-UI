@@ -163,6 +163,16 @@ settings:
         enableConfirmation: Will enable hardware acceleration, restart the application to apply changes
         positiveText: Restart and Quit
         negativeText: Cancel
+      fullGpuAcceleration:
+        label: Maximize GPU Acceleration
+        description: Enforces GPU rasterization and ignores GPU blocklists for maximum graphics acceleration. May cause slight contention on low-end GPUs during gaming
+      fullGpuAccelerationDialog:
+        enableText: Enable Max GPU Acceleration
+        disableText: Disable Max GPU Acceleration
+        disableConfirmation: Max GPU acceleration will be disabled, restart the application to apply changes
+        enableConfirmation: Max GPU acceleration will be enabled, restart the application to apply changes
+        positiveText: Restart and Quit
+        negativeText: Cancel
       uninstallApp:
         label: Uninstall Application
         description: Uninstall the application, which will delete all data and configurations

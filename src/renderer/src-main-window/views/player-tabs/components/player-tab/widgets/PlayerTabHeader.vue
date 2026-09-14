@@ -122,3 +122,21 @@ const handleTagSaved = async () => {
   await loadTags()
 }
 </script>
+
+<style scoped>
+/* Avatar pop-in khi load */
+:deep(.lcu-image) {
+  animation: avatar-enter 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes avatar-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>

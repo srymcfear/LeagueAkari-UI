@@ -479,6 +479,19 @@
           />
         </SettingsRow>
         <SettingsRow
+          setting-id="app.misc.full-gpu-acceleration"
+          :label="t('settings.app.misc.fullGpuAcceleration.label')"
+          :label-description="t('settings.app.misc.fullGpuAcceleration.description')"
+          :label-width="400"
+        >
+          <NSwitch
+            size="small"
+            :disabled="as.baseConfig?.disableHardwareAcceleration ?? false"
+            :value="as.baseConfig?.fullGpuAcceleration ?? false"
+            @update:value="(val: boolean) => handleFullGpuAcceleration(val)"
+          />
+        </SettingsRow>
+        <SettingsRow
           setting-id="app.misc.uninstall"
           :label="t('settings.app.misc.uninstallApp.label')"
           :label-description="t('settings.app.misc.uninstallApp.description')"
@@ -699,6 +712,22 @@ const handleDisableHardwareAcceleration = (val: boolean) => {
     negativeText: t('settings.app.misc.disableHardwareAccelerationDialog.negativeText'),
     onPositiveClick: async () => {
       await app.setDisableHardwareAcceleration(val)
+    }
+  })
+}
+
+const handleFullGpuAcceleration = (val: boolean) => {
+  dialog.warning({
+    title: val
+      ? t('settings.app.misc.fullGpuAccelerationDialog.enableText')
+      : t('settings.app.misc.fullGpuAccelerationDialog.disableText'),
+    content: val
+      ? t('settings.app.misc.fullGpuAccelerationDialog.enableConfirmation')
+      : t('settings.app.misc.fullGpuAccelerationDialog.disableConfirmation'),
+    positiveText: t('settings.app.misc.fullGpuAccelerationDialog.positiveText'),
+    negativeText: t('settings.app.misc.fullGpuAccelerationDialog.negativeText'),
+    onPositiveClick: async () => {
+      await app.setFullGpuAcceleration(val)
     }
   })
 }

@@ -141,6 +141,16 @@ settings:
         enableConfirmation: Sẽ bật tăng tốc phần cứng, khởi động lại ứng dụng để áp dụng thay đổi
         positiveText: Khởi động lại & Thoát
         negativeText: Hủy
+      fullGpuAcceleration:
+        label: Sử dụng Tối đa GPU
+        description: Ép bật GPU Rasterization và bỏ qua danh sách chặn để tận dụng tối đa GPU. Có thể gây xung đột nhẹ nếu máy có GPU yếu khi chơi game
+      fullGpuAccelerationDialog:
+        enableText: Bật Sử dụng Tối đa GPU
+        disableText: Tắt Sử dụng Tối đa GPU
+        disableConfirmation: Sẽ tắt chế độ sử dụng tối đa GPU, khởi động lại ứng dụng để áp dụng thay đổi
+        enableConfirmation: Sẽ bật chế độ sử dụng tối đa GPU, khởi động lại ứng dụng để áp dụng thay đổi
+        positiveText: Khởi động lại & Thoát
+        negativeText: Hủy
       httpProxy:
         strategy:
           label: HTTP Proxy

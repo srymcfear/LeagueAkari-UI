@@ -562,20 +562,17 @@
   height: 5px;
   border-radius: 50%;
   background: #c084fc;
-  box-shadow: 0 0 6px #c084fc;
-  animation: viewing-pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 5px rgba(192, 132, 252, 0.7);
+  animation: viewing-blink 2s ease-in-out infinite;
 }
 
-@keyframes viewing-pulse {
+@keyframes viewing-blink {
   0%,
   100% {
-    transform: scale(0.85);
-    opacity: 0.6;
+    opacity: 1;
   }
   50% {
-    transform: scale(1.35);
-    opacity: 1;
-    box-shadow: 0 0 10px #e9d5ff;
+    opacity: 0.3;
   }
 }
 

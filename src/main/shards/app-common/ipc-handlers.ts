@@ -16,6 +16,10 @@ export class AppCommonIpcHandlers {
       this.appCommon.setDisableHardwareAccelerationAndRelaunch(disabled)
     })
 
+    ipc.onCall(namespace, 'setFullGpuAcceleration', (_, enabled: boolean) => {
+      this.appCommon.setFullGpuAccelerationAndRelaunch(enabled)
+    })
+
     ipc.onCall(namespace, 'relaunchAsAdministrator', () => {
       return this.appCommon.relaunchAsAdministrator()
     })

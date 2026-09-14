@@ -260,6 +260,13 @@ export function bootstrap() {
       baseConfig.disableHardwareAcceleration === true
     ) {
       app.disableHardwareAcceleration()
+    } else if (baseConfig?.fullGpuAcceleration) {
+      app.commandLine.appendSwitch('enable-gpu-rasterization')
+      app.commandLine.appendSwitch('enable-zero-copy')
+      app.commandLine.appendSwitch('ignore-gpu-blocklist')
+      if (process.platform === 'win32') {
+        app.commandLine.appendSwitch('use-angle', 'd3d11')
+      }
     }
 
     // 处理应用级别的错误

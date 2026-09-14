@@ -2,6 +2,7 @@ export type AkariSupportedPlatform = 'darwin' | 'win32' | 'unknown'
 
 export interface BaseConfig {
   disableHardwareAcceleration?: boolean
+  fullGpuAcceleration?: boolean
   logLevel?: string
 }
 

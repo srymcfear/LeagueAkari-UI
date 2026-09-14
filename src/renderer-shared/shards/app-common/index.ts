@@ -42,6 +42,10 @@ export class AppCommonRenderer implements IAkariShardInitDispose {
     return this._ipc.call(MAIN_SHARD_NAMESPACE, 'setDisableHardwareAcceleration', s)
   }
 
+  setFullGpuAcceleration(s: boolean) {
+    return this._ipc.call(MAIN_SHARD_NAMESPACE, 'setFullGpuAcceleration', s)
+  }
+
   setLocale(s: string) {
     return this._settingUtils.set(MAIN_SHARD_NAMESPACE, 'locale', s)
   }

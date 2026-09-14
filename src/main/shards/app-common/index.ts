@@ -137,6 +137,28 @@ export class AppCommonMain implements IAkariShardInitDispose {
     this._shared.global.restart()
   }
 
+  setFullGpuAccelerationAndRelaunch(enabled: boolean) {
+    if (enabled) {
+      if (this.state.fullGpuAcceleration) {
+        return
+      }
+
+      this._shared.global.baseConfig.write({
+        fullGpuAcceleration: true
+      })
+    } else {
+      if (!this.state.fullGpuAcceleration) {
+        return
+      }
+
+      this._shared.global.baseConfig.write({
+        fullGpuAcceleration: false
+      })
+    }
+
+    this._shared.global.restart()
+  }
+
   openUserDataDir() {
     return shell.openPath(app.getPath('userData'))
   }
@@ -209,6 +231,7 @@ export class AppCommonMain implements IAkariShardInitDispose {
       'isElevated',
       'platform',
       'disableHardwareAcceleration',
+      'fullGpuAcceleration',
       'baseConfig',
       'startupDeepLink',
       'isRunInTempDir',
@@ -218,6 +241,9 @@ export class AppCommonMain implements IAkariShardInitDispose {
     // 状态指示, 是否禁用硬件加速
     this.state.setDisableHardwareAcceleration(
       this._shared.global.baseConfig.value?.disableHardwareAcceleration || false
+    )
+    this.state.setFullGpuAcceleration(
+      this._shared.global.baseConfig.value?.fullGpuAcceleration || false
     )
   }
 

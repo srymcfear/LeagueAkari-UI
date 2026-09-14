@@ -282,19 +282,17 @@ watchEffect(() => {
   height: 6px;
   border-radius: 50%;
   background: var(--la-color-link, #38bdf8);
-  box-shadow: 0 0 8px var(--la-color-link, #38bdf8);
-  animation: pulse-dot 1.8s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--la-color-link, #38bdf8);
+  animation: dot-blink 2.4s ease-in-out infinite;
 }
 
-@keyframes pulse-dot {
+@keyframes dot-blink {
   0%,
   100% {
-    opacity: 0.65;
-    transform: scale(1);
+    opacity: 1;
   }
   50% {
-    opacity: 1;
-    transform: scale(1.3);
+    opacity: 0.25;
   }
 }
 

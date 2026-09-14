@@ -586,10 +586,26 @@ const formatHighestTier = (entry: Partial<RankedEntry>) => {
   background: rgba(18, 20, 26, 0.72);
   backdrop-filter: blur(12px);
   user-select: none;
+  animation: card-enter 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
-    transform 0.2s ease;
+    transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ranked-hud-secondary {
+  animation-delay: 0.06s;
 }
 
 .ranked-hud-card:hover {
@@ -640,6 +656,18 @@ const formatHighestTier = (entry: Partial<RankedEntry>) => {
   position: relative;
   z-index: 2;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+  animation: crest-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+@keyframes crest-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ── Center: Info ── */
@@ -731,6 +759,23 @@ const formatHighestTier = (entry: Partial<RankedEntry>) => {
   inset: 0;
 }
 
+/* Gauge ring draw-in on mount */
+.hud-gauge-svg circle:last-child {
+  animation: gauge-draw 0.65s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both;
+  transform-origin: center;
+}
+
+@keyframes gauge-draw {
+  from {
+    stroke-dashoffset: 94.2;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    /* stroke-dashoffset is controlled by binding, so we only animate opacity at the end */
+  }
+}
+
 .hud-gauge-text {
   position: relative;
   z-index: 2;
@@ -738,6 +783,7 @@ const formatHighestTier = (entry: Partial<RankedEntry>) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation: card-enter 0.3s ease 0.2s both;
 }
 
 .hud-gauge-bg-circle {

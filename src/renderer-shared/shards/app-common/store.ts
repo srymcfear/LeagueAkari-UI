@@ -37,6 +37,7 @@ export const useAppCommonStore = defineStore('shard:app-common-renderer', () => 
   const overrideAppTitle = ref('') // 可以覆盖掉
   const appTitle = computed(() => overrideAppTitle.value || t('appName', { ns: 'common' }))
   const disableHardwareAcceleration = ref(false)
+  const fullGpuAcceleration = ref(false)
   const baseConfig = shallowRef<BaseConfig | null>(null)
   const isRunInTempDir = ref(false)
 
@@ -104,6 +105,7 @@ export const useAppCommonStore = defineStore('shard:app-common-renderer', () => 
     isWindows,
     isMacOS,
     disableHardwareAcceleration,
+    fullGpuAcceleration,
     version,
     isRabiVersion,
     baseConfig,

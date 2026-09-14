@@ -25,141 +25,162 @@
         <div v-if="lcs.gameflow.phase === 'ReadyCheck'" class="ready-shockwave shockwave-2" />
 
         <!-- Queue / Map Emblem Icon -->
-        <LcuImage
-          v-if="lcs.gameflow.session?.map?.assets?.['game-select-icon-hover']"
-          class="emblem-img h-16 w-16"
-          :src="lcs.gameflow.session?.map?.assets?.['game-select-icon-hover']"
-        />
+        <Transition name="emblem-swap" mode="out-in">
+          <LcuImage
+            v-if="lcs.gameflow.session?.map?.assets?.['game-select-icon-hover']"
+            :key="lcs.gameflow.session?.map?.assets?.['game-select-icon-hover']"
+            class="emblem-img h-16 w-16"
+            :src="lcs.gameflow.session?.map?.assets?.['game-select-icon-hover']"
+          />
+        </Transition>
       </div>
 
-      <template v-if="lcs.gameflow.phase === 'ReadyCheck'">
-        <template v-if="agfs.willAcceptAt > 0">
-          <div class="ready-accept-countdown-badge mb-2">
-            <span class="countdown-blip" />
-            <span class="text-sm font-bold text-purple-200">
-              {{
-                t('auxWindow.lounge.panel.autoAccept.acceptIn', {
-                  seconds: willAcceptIn.toFixed(1)
-                })
-              }}
-            </span>
+      <!-- Phase content panel với crossfade transition -->
+      <Transition name="phase-panel" mode="out-in">
+        <template v-if="lcs.gameflow.phase === 'ReadyCheck'" :key="'readycheck'">
+          <div class="flex flex-col items-center">
+            <template v-if="agfs.willAcceptAt > 0">
+              <div class="ready-accept-countdown-badge mb-2">
+                <span class="countdown-blip" />
+                <span class="text-sm font-bold text-purple-200">
+                  {{
+                    t('auxWindow.lounge.panel.autoAccept.acceptIn', {
+                      seconds: willAcceptIn.toFixed(1)
+                    })
+                  }}
+                </span>
+              </div>
+              <NButton
+                type="primary"
+                secondary
+                size="tiny"
+                @click="() => handleCancelAutoAccept()"
+                >{{ t('auxWindow.lounge.panel.autoAccept.cancelButton') }}</NButton
+              >
+            </template>
+            <template v-else-if="lcs.matchmaking.readyCheck?.playerResponse === 'Accepted'">
+              <div class="accepted-badge mb-2">
+                <span class="accepted-check">✓</span>
+                <span class="text-sm font-bold text-cyan-300">
+                  {{ t('auxWindow.lounge.panel.autoAccept.accepted') }}
+                </span>
+              </div>
+              <span class="mb-2 text-xs text-purple-300/70">
+                {{ t('auxWindow.lounge.panel.autoAccept.subtitle1') }}
+              </span>
+              <NButton type="error" secondary size="tiny" @click="() => handleDecline()">{{
+                t('auxWindow.lounge.panel.autoAccept.declineButton')
+              }}</NButton>
+            </template>
+
+            <template v-else-if="lcs.matchmaking.readyCheck?.playerResponse === 'Declined'">
+              <span class="mb-2 text-base font-bold text-gray-900 dark:text-gray-100">{{
+                t('auxWindow.lounge.panel.autoAccept.declined')
+              }}</span>
+              <span class="mb-2 text-[13px] text-gray-500 dark:text-gray-400">{{
+                t('auxWindow.lounge.panel.autoAccept.subtitle2')
+              }}</span>
+              <button class="cyber-accept-btn" @click="() => handleAccept()">
+                <span>{{ t('auxWindow.lounge.panel.autoAccept.acceptButton') }}</span>
+              </button>
+            </template>
+            <template v-else>
+              <span
+                class="mb-2 text-base font-extrabold tracking-wide text-gray-900 dark:text-gray-100"
+                >{{ t('auxWindow.lounge.panel.autoAccept.pending') }}</span
+              >
+              <div class="flex items-center gap-2">
+                <button class="cyber-accept-btn" @click="() => handleAccept()">
+                  <span>{{ t('auxWindow.lounge.panel.autoAccept.acceptButton') }}</span>
+                </button>
+                <NButton type="error" secondary size="tiny" @click="() => handleDecline()">{{
+                  t('auxWindow.lounge.panel.autoAccept.declineButton')
+                }}</NButton>
+              </div>
+            </template>
           </div>
-          <NButton type="primary" secondary size="tiny" @click="() => handleCancelAutoAccept()">{{
-            t('auxWindow.lounge.panel.autoAccept.cancelButton')
-          }}</NButton>
-        </template>
-        <template v-else-if="lcs.matchmaking.readyCheck?.playerResponse === 'Accepted'">
-          <div class="accepted-badge mb-2">
-            <span class="accepted-check">✓</span>
-            <span class="text-sm font-bold text-cyan-300">
-              {{ t('auxWindow.lounge.panel.autoAccept.accepted') }}
-            </span>
-          </div>
-          <span class="mb-2 text-xs text-purple-300/70">
-            {{ t('auxWindow.lounge.panel.autoAccept.subtitle1') }}
-          </span>
-          <NButton type="error" secondary size="tiny" @click="() => handleDecline()">{{
-            t('auxWindow.lounge.panel.autoAccept.declineButton')
-          }}</NButton>
         </template>
 
-        <template v-else-if="lcs.matchmaking.readyCheck?.playerResponse === 'Declined'">
-          <span class="mb-2 text-base font-bold text-gray-900 dark:text-gray-100">{{
-            t('auxWindow.lounge.panel.autoAccept.declined')
-          }}</span>
-          <span class="mb-2 text-[13px] text-gray-500 dark:text-gray-400">{{
-            t('auxWindow.lounge.panel.autoAccept.subtitle2')
-          }}</span>
-          <button class="cyber-accept-btn" @click="() => handleAccept()">
-            <span>{{ t('auxWindow.lounge.panel.autoAccept.acceptButton') }}</span>
-          </button>
-        </template>
-        <template v-else>
+        <div
+          v-else-if="lcs.gameflow.phase === 'Matchmaking'"
+          :key="'matchmaking'"
+          class="flex flex-col items-center"
+        >
+          <div class="searching-hud-badge mb-2">
+            <span class="searching-radar-dot" />
+            <span class="text-sm font-bold tracking-wider text-purple-300 uppercase">
+              {{ t('auxWindow.lounge.panel.matchmaking.searching') }}
+            </span>
+          </div>
           <span
-            class="mb-2 text-base font-extrabold tracking-wide text-gray-900 dark:text-gray-100"
-            >{{ t('auxWindow.lounge.panel.autoAccept.pending') }}</span
+            class="mb-2.5 font-mono text-xs text-gray-500 dark:text-purple-200/70"
+            v-if="lcs.matchmaking.search"
+            >{{ formatMatchmakingSearchText(lcs.matchmaking.search) }}</span
           >
-          <div class="flex items-center gap-2">
-            <button class="cyber-accept-btn" @click="() => handleAccept()">
-              <span>{{ t('auxWindow.lounge.panel.autoAccept.acceptButton') }}</span>
-            </button>
-            <NButton type="error" secondary size="tiny" @click="() => handleDecline()">{{
-              t('auxWindow.lounge.panel.autoAccept.declineButton')
-            }}</NButton>
-          </div>
-        </template>
-      </template>
-
-      <template v-else-if="lcs.gameflow.phase === 'Matchmaking'">
-        <div class="searching-hud-badge mb-2">
-          <span class="searching-radar-dot" />
-          <span class="text-sm font-bold tracking-wider text-purple-300 uppercase">
-            {{ t('auxWindow.lounge.panel.matchmaking.searching') }}
-          </span>
+          <NButton
+            :loading="isCancelingSearching"
+            type="error"
+            secondary
+            size="tiny"
+            @click="() => handleCancelSearching()"
+            ><template v-if="agfs.settings.autoMatchmakingEnabled">{{
+              t('auxWindow.lounge.panel.matchmaking.stopAndDisable')
+            }}</template
+            ><template v-else>{{ t('auxWindow.lounge.panel.matchmaking.stop') }}</template></NButton
+          >
         </div>
-        <span
-          class="mb-2.5 font-mono text-xs text-gray-500 dark:text-purple-200/70"
-          v-if="lcs.matchmaking.search"
-          >{{ formatMatchmakingSearchText(lcs.matchmaking.search) }}</span
-        >
-        <NButton
-          :loading="isCancelingSearching"
-          type="error"
-          secondary
-          size="tiny"
-          @click="() => handleCancelSearching()"
-          ><template v-if="agfs.settings.autoMatchmakingEnabled">{{
-            t('auxWindow.lounge.panel.matchmaking.stopAndDisable')
-          }}</template
-          ><template v-else>{{ t('auxWindow.lounge.panel.matchmaking.stop') }}</template></NButton
-        >
-      </template>
-      <template v-else-if="agfs.willSearchMatch">
-        <span class="mb-2 text-base font-bold text-gray-900 dark:text-gray-100">
-          {{
-            t('auxWindow.lounge.panel.matchmaking.searchIn', {
-              seconds: willSearchMatchIn.toFixed(1)
-            })
-          }}
-        </span>
-        <NButton
-          type="primary"
-          secondary
-          size="tiny"
-          @click="() => handleCancelAutoSearchMatch()"
-          >{{ t('auxWindow.lounge.panel.matchmaking.cancel') }}</NButton
-        >
-      </template>
 
-      <template v-else>
-        <span
-          class="mb-2 block max-w-70 overflow-hidden text-base font-bold text-ellipsis whitespace-nowrap text-gray-900 dark:text-gray-100"
-          :title="`${lcs.gameflow.session?.gameData.queue.name || t('auxWindow.lounge.panel.gameMode')} · ${lcs.gameflow.session?.map.name || t('auxWindow.lounge.panel.map')}`"
-          >{{ formatMapModeText() }}</span
+        <div
+          v-else-if="agfs.willSearchMatch"
+          :key="'will-search'"
+          class="flex flex-col items-center"
         >
-        <template v-if="agfs.settings.autoMatchmakingEnabled">
-          <span class="mb-2 text-[13px] text-gray-500 dark:text-gray-400" v-if="penaltyTime">{{
-            t('auxWindow.lounge.panel.matchmaking.waitingForPenalty', {
-              seconds: penaltyTime.toFixed()
-            })
-          }}</span>
-          <span
-            class="mb-2 text-[13px] text-gray-500 dark:text-gray-400"
-            v-else-if="agfs.activityStartStatus === 'insufficient-members'"
-          >
+          <span class="mb-2 text-base font-bold text-gray-900 dark:text-gray-100">
             {{
-              t('auxWindow.lounge.panel.matchmaking.waitingForMembers', {
-                count: agfs.settings.autoMatchmakingMinimumMembers
+              t('auxWindow.lounge.panel.matchmaking.searchIn', {
+                seconds: willSearchMatchIn.toFixed(1)
               })
             }}
           </span>
-          <span
-            class="mb-2 text-[13px] text-gray-500 dark:text-gray-400"
-            v-else-if="agfs.activityStartStatus === 'waiting-for-invitees'"
-            >{{ t('auxWindow.lounge.panel.matchmaking.waitingForInvitees') }}</span
+          <NButton
+            type="primary"
+            secondary
+            size="tiny"
+            @click="() => handleCancelAutoSearchMatch()"
+            >{{ t('auxWindow.lounge.panel.matchmaking.cancel') }}</NButton
           >
-        </template>
-      </template>
+        </div>
+
+        <div v-else :key="'idle'" class="flex flex-col items-center">
+          <span
+            class="mb-2 block max-w-70 overflow-hidden text-base font-bold text-ellipsis whitespace-nowrap text-gray-900 dark:text-gray-100"
+            :title="`${lcs.gameflow.session?.gameData.queue.name || t('auxWindow.lounge.panel.gameMode')} · ${lcs.gameflow.session?.map.name || t('auxWindow.lounge.panel.map')}`"
+            >{{ formatMapModeText() }}</span
+          >
+          <template v-if="agfs.settings.autoMatchmakingEnabled">
+            <span class="mb-2 text-[13px] text-gray-500 dark:text-gray-400" v-if="penaltyTime">{{
+              t('auxWindow.lounge.panel.matchmaking.waitingForPenalty', {
+                seconds: penaltyTime.toFixed()
+              })
+            }}</span>
+            <span
+              class="mb-2 text-[13px] text-gray-500 dark:text-gray-400"
+              v-else-if="agfs.activityStartStatus === 'insufficient-members'"
+            >
+              {{
+                t('auxWindow.lounge.panel.matchmaking.waitingForMembers', {
+                  count: agfs.settings.autoMatchmakingMinimumMembers
+                })
+              }}
+            </span>
+            <span
+              class="mb-2 text-[13px] text-gray-500 dark:text-gray-400"
+              v-else-if="agfs.activityStartStatus === 'waiting-for-invitees'"
+              >{{ t('auxWindow.lounge.panel.matchmaking.waitingForInvitees') }}</span
+            >
+          </template>
+        </div>
+      </Transition>
     </div>
 
     <div class="w-full">
@@ -331,7 +352,49 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
 </script>
 
 <style scoped>
-/* ── Cyberpunk Emblem Hub Animation ── */
+/* ── Vue Transition Classes ── */
+
+/* Phase panel crossfade: khi phase thay đổi (Idle → Matchmaking → ReadyCheck) */
+.phase-panel-enter-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.phase-panel-leave-active {
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+.phase-panel-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.phase-panel-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* Emblem icon swap khi đổi map */
+.emblem-swap-enter-active {
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.emblem-swap-leave-active {
+  transition:
+    opacity 0.15s ease,
+    transform 0.12s ease;
+}
+.emblem-swap-enter-from {
+  opacity: 0;
+  transform: scale(0.85);
+}
+.emblem-swap-leave-to {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+/* ── Emblem Hub ── */
 .mini-emblem-hub {
   position: relative;
   width: 96px;
@@ -346,206 +409,118 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
   position: absolute;
   inset: 10px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(139, 74, 255, 0.35) 0%,
-    rgba(56, 189, 248, 0.15) 50%,
-    transparent 75%
-  );
-  filter: blur(12px);
+  background: radial-gradient(circle, rgba(139, 74, 255, 0.18) 0%, transparent 70%);
+  filter: blur(10px);
   pointer-events: none;
-  transition: all 0.5s ease;
+  transition:
+    background 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .emblem-orbit-ring {
   position: absolute;
   inset: 4px;
   border-radius: 50%;
-  border: 1px dashed rgba(166, 124, 255, 0.35);
+  border: 1px solid rgba(166, 124, 255, 0.2);
   pointer-events: none;
-  transition: all 0.4s ease;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .emblem-img {
   position: relative;
   z-index: 2;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  filter: drop-shadow(0 0 10px rgba(139, 74, 255, 0.45));
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.3s ease;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
-/* Idle / Default Floating */
-.mini-emblem-hub .emblem-img {
-  animation: emblem-float 3.2s ease-in-out infinite;
-}
-
-/* Phase: Matchmaking (Chờ / Tìm trận) */
+/* Phase: Matchmaking */
 .phase-matchmaking .emblem-orbit-ring {
-  border: 1.5px dashed rgba(166, 124, 255, 0.6);
-  border-top-color: #38bdf8;
-  animation: cyber-spin 8s linear infinite;
-  box-shadow: 0 0 12px rgba(139, 74, 255, 0.25);
+  border: 1px solid rgba(166, 124, 255, 0.4);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.1);
 }
-
 .phase-matchmaking .emblem-halo {
   background: radial-gradient(
     circle,
-    rgba(139, 74, 255, 0.5) 0%,
-    rgba(56, 189, 248, 0.25) 50%,
-    transparent 75%
+    rgba(139, 74, 255, 0.22) 0%,
+    rgba(56, 189, 248, 0.08) 60%,
+    transparent 80%
   );
-  animation: halo-pulse 2.2s ease-in-out infinite;
+}
+.phase-matchmaking .emblem-img {
+  filter: drop-shadow(0 2px 12px rgba(139, 74, 255, 0.35));
 }
 
+/* Phase: ReadyCheck */
+.phase-ready-check .emblem-orbit-ring {
+  border: 1.5px solid rgba(192, 132, 252, 0.6);
+  box-shadow:
+    0 0 12px rgba(139, 74, 255, 0.25),
+    inset 0 0 8px rgba(139, 74, 255, 0.08);
+}
+.phase-ready-check .emblem-halo {
+  background: radial-gradient(
+    circle,
+    rgba(192, 132, 252, 0.28) 0%,
+    rgba(99, 102, 241, 0.12) 55%,
+    transparent 80%
+  );
+}
+.phase-ready-check .emblem-img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 14px rgba(166, 124, 255, 0.55));
+}
+
+/* Radar Waves - Matchmaking (2 static rings, no animation) */
 .radar-wave {
   position: absolute;
-  inset: 8px;
   border-radius: 50%;
-  border: 1.5px solid rgba(166, 124, 255, 0.7);
+  border: 1px solid rgba(166, 124, 255, 0.18);
   pointer-events: none;
-  opacity: 0;
-  animation: radar-ping 2.4s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
 }
-
+.radar-wave.wave-1 {
+  inset: -8px;
+}
 .radar-wave.wave-2 {
-  animation-delay: 1.2s;
-  border-color: rgba(56, 189, 248, 0.6);
+  inset: -18px;
+  border-color: rgba(56, 189, 248, 0.1);
 }
 
-/* Phase: ReadyCheck (Có trận! Chấp nhận trận đấu!) */
-.phase-ready-check .emblem-img {
-  animation: ready-heartbeat 1.2s ease-in-out infinite;
-  filter: drop-shadow(0 0 18px rgba(166, 124, 255, 0.95))
-    drop-shadow(0 0 35px rgba(56, 189, 248, 0.5));
-}
-
-.phase-ready-check .emblem-orbit-ring {
-  border: 2px solid rgba(166, 124, 255, 0.8);
-  border-top-color: #38bdf8;
-  border-bottom-color: #c084fc;
-  animation: cyber-spin 3s linear infinite;
-  box-shadow: 0 0 20px rgba(139, 74, 255, 0.6);
-}
-
+/* Ready Check Shockwave - only shown, no animation */
 .ready-shockwave {
   position: absolute;
-  inset: 4px;
   border-radius: 50%;
-  border: 2px solid rgba(192, 132, 252, 0.9);
+  border: 1.5px solid rgba(192, 132, 252, 0.35);
   pointer-events: none;
-  opacity: 0;
-  animation: ready-burst 1.5s cubic-bezier(0.1, 0.85, 0.3, 1) infinite;
 }
-
+.ready-shockwave.shockwave-1 {
+  inset: -6px;
+}
 .ready-shockwave.shockwave-2 {
-  animation-delay: 0.75s;
-  border-color: rgba(56, 189, 248, 0.85);
+  inset: -16px;
+  border-color: rgba(56, 189, 248, 0.2);
 }
 
 /* Accepted State */
-.is-accepted .emblem-img {
-  animation: accepted-glow 2.5s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.85));
-}
-
 .is-accepted .emblem-orbit-ring {
-  border: 2px solid rgba(56, 189, 248, 0.7);
-  animation: cyber-spin 12s linear infinite;
+  border: 1.5px solid rgba(56, 189, 248, 0.55);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.18);
+}
+.is-accepted .emblem-img {
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.45));
 }
 
-/* ── Keyframes ── */
-@keyframes emblem-float {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-4px) scale(1.02);
-  }
-}
-
-@keyframes cyber-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes halo-pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(0.95);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.15);
-  }
-}
-
-@keyframes radar-ping {
-  0% {
-    transform: scale(0.85);
-    opacity: 0.85;
-  }
-  100% {
-    transform: scale(2.3);
-    opacity: 0;
-  }
-}
-
-@keyframes ready-heartbeat {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(1.08);
-  }
-  50% {
-    transform: scale(1.02);
-  }
-  75% {
-    transform: scale(1.12);
-  }
-}
-
-@keyframes ready-burst {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.95;
-    box-shadow: 0 0 10px rgba(166, 124, 255, 0.8);
-  }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
-    box-shadow: 0 0 30px rgba(166, 124, 255, 0);
-  }
-}
-
-@keyframes accepted-glow {
-  0%,
-  100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.8));
-  }
-  50% {
-    transform: scale(1.04);
-    filter: drop-shadow(0 0 26px rgba(139, 74, 255, 0.9));
-  }
-}
-
-/* ── HUD Badges and Buttons ── */
 .searching-hud-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 3px 12px;
   border-radius: 9999px;
-  background: rgba(139, 74, 255, 0.15);
-  border: 1px solid rgba(166, 124, 255, 0.35);
-  box-shadow: 0 0 12px rgba(139, 74, 255, 0.2);
+  background: rgba(139, 74, 255, 0.1);
+  border: 1px solid rgba(166, 124, 255, 0.28);
 }
 
 .searching-radar-dot {
@@ -553,20 +528,17 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
   height: 6px;
   border-radius: 50%;
   background: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
-  animation: radar-blip 1.4s ease-in-out infinite;
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.7);
+  animation: status-blink 2s ease-in-out infinite;
 }
 
-@keyframes radar-blip {
+@keyframes status-blink {
   0%,
   100% {
-    transform: scale(0.8);
-    opacity: 0.6;
+    opacity: 1;
   }
   50% {
-    transform: scale(1.4);
-    opacity: 1;
-    box-shadow: 0 0 12px #38bdf8;
+    opacity: 0.3;
   }
 }
 
@@ -576,22 +548,8 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
   gap: 6px;
   padding: 3px 12px;
   border-radius: 9999px;
-  background: rgba(139, 74, 255, 0.22);
-  border: 1px solid rgba(192, 132, 252, 0.5);
-  box-shadow: 0 0 15px rgba(139, 74, 255, 0.4);
-  animation: countdown-glow 1.5s ease-in-out infinite;
-}
-
-@keyframes countdown-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 12px rgba(139, 74, 255, 0.3);
-  }
-  50% {
-    box-shadow:
-      0 0 22px rgba(168, 85, 247, 0.65),
-      0 0 35px rgba(56, 189, 248, 0.35);
-  }
+  background: rgba(139, 74, 255, 0.12);
+  border: 1px solid rgba(192, 132, 252, 0.38);
 }
 
 .countdown-blip {
@@ -599,8 +557,8 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
   height: 6px;
   border-radius: 50%;
   background: #c084fc;
-  box-shadow: 0 0 8px #c084fc;
-  animation: radar-blip 1s ease-in-out infinite;
+  box-shadow: 0 0 5px rgba(192, 132, 252, 0.7);
+  animation: status-blink 1.2s ease-in-out infinite;
 }
 
 .cyber-accept-btn {
@@ -610,40 +568,31 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
   justify-content: center;
   padding: 5px 18px;
   font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   color: #ffffff;
   border-radius: 6px;
-  border: 1px solid rgba(192, 132, 252, 0.7);
-  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #6366f1 100%);
-  box-shadow: 0 0 18px rgba(139, 74, 255, 0.6);
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  background: rgba(109, 40, 217, 0.75);
+  backdrop-filter: blur(6px);
   cursor: pointer;
   user-select: none;
-  transition: all 0.25s ease;
-  animation: cyber-btn-pulse 1.8s ease-in-out infinite;
-  overflow: hidden;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.12s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.15s ease;
 }
 
 .cyber-accept-btn:hover {
-  transform: scale(1.05);
-  filter: brightness(1.15);
-  box-shadow: 0 0 26px rgba(168, 85, 247, 0.85);
+  background: rgba(124, 58, 237, 0.9);
+  border-color: rgba(192, 132, 252, 0.7);
+  box-shadow: 0 4px 16px rgba(139, 74, 255, 0.35);
 }
 
 .cyber-accept-btn:active {
-  transform: scale(0.98);
-}
-
-@keyframes cyber-btn-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 15px rgba(139, 74, 255, 0.5);
-  }
-  50% {
-    box-shadow:
-      0 0 26px rgba(168, 85, 247, 0.85),
-      0 0 40px rgba(99, 102, 241, 0.4);
-  }
+  transform: scale(0.97);
+  background: rgba(91, 33, 182, 0.95);
 }
 
 .accepted-badge {
@@ -652,9 +601,8 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
   gap: 6px;
   padding: 3px 12px;
   border-radius: 9999px;
-  background: rgba(6, 182, 212, 0.15);
-  border: 1px solid rgba(56, 189, 248, 0.5);
-  box-shadow: 0 0 16px rgba(6, 182, 212, 0.3);
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.35);
 }
 
 .accepted-check {

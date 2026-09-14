@@ -272,6 +272,13 @@ const targetDefinitions = [
     descriptionKey: 'settings.app.misc.disableHardwareAcceleration.description'
   },
   {
+    id: 'app.misc.full-gpu-acceleration',
+    route: { tab: 'basic' },
+    parentId: 'app.misc',
+    labelKey: 'settings.app.misc.fullGpuAcceleration.label',
+    descriptionKey: 'settings.app.misc.fullGpuAcceleration.description'
+  },
+  {
     id: 'app.misc.uninstall',
     route: { tab: 'basic' },
     parentId: 'app.misc',
