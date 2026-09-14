@@ -62,6 +62,9 @@ settings:
           aurora: Aurora Violet
           neon: Neon Purple
           butter: Butter Yellow
+      enableAnimations:
+        label: Animations & Motion
+        description: Enable vivid UI animations, Game HUD glow auras, and radar pulses
     selfUpdate:
       title: Application Update
       temporarilyUnsupported: In-app updates are not currently supported on this platform. Update checks and automatic updates are disabled.

@@ -66,6 +66,10 @@ export class AppCommonMain implements IAkariShardInitDispose {
         preferredLolSource: {
           default: this.settings.preferredLolSource,
           schema: z.enum(['sgp', 'lcu'])
+        },
+        enableAnimations: {
+          default: this.settings.enableAnimations,
+          schema: z.boolean()
         }
       },
       this.settings

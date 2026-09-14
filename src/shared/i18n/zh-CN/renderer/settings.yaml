@@ -62,6 +62,9 @@ settings:
           aurora: 极光紫
           neon: 霓虹紫
           butter: 奶油黄
+      enableAnimations:
+        label: 动效与动画效果
+        description: 启用生动的界面动态动效、Game HUD 光晕与雷达脉冲
     selfUpdate:
       title: 应用更新
       temporarilyUnsupported: 当前平台暂不支持应用内更新。更新检查与自动更新已停用。

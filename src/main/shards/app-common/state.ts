@@ -95,6 +95,11 @@ export class AppCommonSettings {
    */
   preferredLolSource: 'sgp' | 'lcu' = 'sgp'
 
+  /**
+   * 是否启用动画效果
+   */
+  enableAnimations: boolean = true
+
   setShowFreeSoftwareDeclaration(s: boolean) {
     this.showFreeSoftwareDeclaration = s
   }
@@ -105,6 +110,10 @@ export class AppCommonSettings {
 
   setTheme(s: AppThemeSetting) {
     this.theme = s
+  }
+
+  setEnableAnimations(s: boolean) {
+    this.enableAnimations = s
   }
 
   setStreamerMode(s: boolean) {

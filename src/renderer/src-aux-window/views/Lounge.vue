@@ -1,7 +1,10 @@
 <template>
-  <div class="relative box-border flex h-full flex-col items-center justify-center p-3">
+  <div
+    class="relative box-border flex h-full flex-col items-center justify-center p-3"
+    :data-motion="enableAnimations ? 'full' : 'reduced'"
+  >
     <div class="flex flex-1 flex-col items-center justify-center">
-      <!-- Cyberpunk Emblem Hub with cool animations -->
+      <!-- Cyberpunk Emblem Hub -->
       <div
         class="mini-emblem-hub"
         :class="{
@@ -13,8 +16,9 @@
         <!-- Ambient Glow Aura -->
         <div class="emblem-halo" />
 
-        <!-- Rotating Cyber HUD Ring -->
+        <!-- Rotating Cyber HUD Rings -->
         <div class="emblem-orbit-ring" />
+        <div class="emblem-inner-ring" />
 
         <!-- Radar Pulse Rings (Matchmaking Waiting) -->
         <div v-if="lcs.gameflow.phase === 'Matchmaking'" class="radar-wave wave-1" />
@@ -32,6 +36,9 @@
             class="emblem-img h-16 w-16"
             :src="lcs.gameflow.session?.map?.assets?.['game-select-icon-hover']"
           />
+          <div v-else class="emblem-placeholder flex h-16 w-16 items-center justify-center">
+            <div class="emblem-placeholder-core" />
+          </div>
         </Transition>
       </div>
 
@@ -194,6 +201,7 @@ import LoungeOperations from '@aux-window/components/LoungeOperations.vue'
 import LcuImage from '@renderer-shared/components/LcuImage.vue'
 import { useComponentName } from '@renderer-shared/composables/useComponentName'
 import { useInstance } from '@renderer-shared/shards'
+import { useAppCommonStore } from '@renderer-shared/shards/app-common/store'
 import { AutoGameflowRenderer } from '@renderer-shared/shards/auto-gameflow'
 import { useAutoGameflowStore } from '@renderer-shared/shards/auto-gameflow/store'
 import { LeagueClientRenderer } from '@renderer-shared/shards/league-client'
@@ -204,6 +212,9 @@ import { useIntervalFn } from '@vueuse/core'
 import { useTranslation } from 'i18next-vue'
 import { NButton } from 'naive-ui'
 import { computed, ref, watch } from 'vue'
+
+const acs = useAppCommonStore()
+const enableAnimations = computed(() => acs.settings.enableAnimations ?? true)
 
 const { t } = useTranslation()
 const componentName = useComponentName()
@@ -407,25 +418,54 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
 
 .emblem-halo {
   position: absolute;
-  inset: 10px;
+  inset: 6px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(139, 74, 255, 0.18) 0%, transparent 70%);
-  filter: blur(10px);
+  background: radial-gradient(
+    circle,
+    rgba(139, 74, 255, 0.28) 0%,
+    rgba(56, 189, 248, 0.1) 50%,
+    transparent 72%
+  );
+  filter: blur(12px);
   pointer-events: none;
   transition:
     background 0.4s ease,
+    filter 0.4s ease,
     opacity 0.4s ease;
+}
+
+[data-motion='full'] .emblem-halo {
+  animation: halo-breathe 4.5s ease-in-out infinite;
 }
 
 .emblem-orbit-ring {
   position: absolute;
-  inset: 4px;
+  inset: 2px;
   border-radius: 50%;
-  border: 1px solid rgba(166, 124, 255, 0.2);
+  border: 1px dashed rgba(166, 124, 255, 0.35);
   pointer-events: none;
   transition:
     border-color 0.35s ease,
     box-shadow 0.35s ease;
+}
+
+[data-motion='full'] .emblem-orbit-ring {
+  animation: ring-spin-cw 28s linear infinite;
+}
+
+.emblem-inner-ring {
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(139, 74, 255, 0.2);
+  pointer-events: none;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+[data-motion='full'] .emblem-inner-ring {
+  animation: ring-spin-ccw 20s linear infinite;
 }
 
 .emblem-img {
@@ -434,83 +474,251 @@ const formatMatchmakingSearchText = (search: GetSearch) => {
   transition:
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     filter 0.3s ease;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.45));
+}
+
+[data-motion='full'] .emblem-img {
+  animation: emblem-hover-float 4s ease-in-out infinite;
+}
+
+.emblem-placeholder {
+  position: relative;
+  z-index: 2;
+}
+
+.emblem-placeholder-core {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(56, 189, 248, 0.4));
+  border: 1px solid rgba(192, 132, 252, 0.6);
+  box-shadow: 0 0 10px rgba(139, 74, 255, 0.4);
 }
 
 /* Phase: Matchmaking */
 .phase-matchmaking .emblem-orbit-ring {
-  border: 1px solid rgba(166, 124, 255, 0.4);
-  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.22);
 }
+
+[data-motion='full'] .phase-matchmaking .emblem-orbit-ring {
+  animation: ring-spin-cw 8s linear infinite;
+}
+
+.phase-matchmaking .emblem-inner-ring {
+  border-color: rgba(166, 124, 255, 0.45);
+}
+
+[data-motion='full'] .phase-matchmaking .emblem-inner-ring {
+  animation: ring-spin-ccw 6s linear infinite;
+}
+
 .phase-matchmaking .emblem-halo {
   background: radial-gradient(
     circle,
-    rgba(139, 74, 255, 0.22) 0%,
-    rgba(56, 189, 248, 0.08) 60%,
-    transparent 80%
+    rgba(139, 74, 255, 0.35) 0%,
+    rgba(56, 189, 248, 0.18) 55%,
+    transparent 78%
   );
+  filter: blur(14px);
 }
+
+[data-motion='full'] .phase-matchmaking .emblem-halo {
+  animation: halo-breathe 2.6s ease-in-out infinite;
+}
+
 .phase-matchmaking .emblem-img {
-  filter: drop-shadow(0 2px 12px rgba(139, 74, 255, 0.35));
+  filter: drop-shadow(0 0 12px rgba(139, 74, 255, 0.45));
 }
 
 /* Phase: ReadyCheck */
 .phase-ready-check .emblem-orbit-ring {
-  border: 1.5px solid rgba(192, 132, 252, 0.6);
+  border: 1.5px dashed rgba(192, 132, 252, 0.85);
   box-shadow:
-    0 0 12px rgba(139, 74, 255, 0.25),
-    inset 0 0 8px rgba(139, 74, 255, 0.08);
+    0 0 16px rgba(139, 74, 255, 0.4),
+    inset 0 0 8px rgba(139, 74, 255, 0.15);
 }
+
+[data-motion='full'] .phase-ready-check .emblem-orbit-ring {
+  animation: ring-spin-cw 2.8s linear infinite;
+}
+
+.phase-ready-check .emblem-inner-ring {
+  border-color: rgba(192, 132, 252, 0.65);
+}
+
+[data-motion='full'] .phase-ready-check .emblem-inner-ring {
+  animation: ring-spin-ccw 2.2s linear infinite;
+}
+
 .phase-ready-check .emblem-halo {
   background: radial-gradient(
     circle,
-    rgba(192, 132, 252, 0.28) 0%,
-    rgba(99, 102, 241, 0.12) 55%,
+    rgba(192, 132, 252, 0.45) 0%,
+    rgba(139, 74, 255, 0.25) 55%,
     transparent 80%
   );
-}
-.phase-ready-check .emblem-img {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 14px rgba(166, 124, 255, 0.55));
+  filter: blur(16px);
 }
 
-/* Radar Waves - Matchmaking (2 static rings, no animation) */
+[data-motion='full'] .phase-ready-check .emblem-halo {
+  animation: halo-breathe 1.4s ease-in-out infinite;
+}
+
+[data-motion='full'] .phase-ready-check .emblem-img {
+  animation: emblem-ready-pop 1.1s ease-in-out infinite alternate;
+}
+
+/* Radar Waves - Matchmaking Outward Pulse */
 .radar-wave {
   position: absolute;
+  inset: 0;
   border-radius: 50%;
-  border: 1px solid rgba(166, 124, 255, 0.18);
+  border: 1.5px solid rgba(166, 124, 255, 0.5);
   pointer-events: none;
-}
-.radar-wave.wave-1 {
-  inset: -8px;
-}
-.radar-wave.wave-2 {
-  inset: -18px;
-  border-color: rgba(56, 189, 248, 0.1);
+  opacity: 0;
 }
 
-/* Ready Check Shockwave - only shown, no animation */
+[data-motion='full'] .phase-matchmaking .radar-wave.wave-1 {
+  animation: radar-ping 2.6s cubic-bezier(0.15, 0.85, 0.35, 1) infinite;
+}
+
+[data-motion='full'] .phase-matchmaking .radar-wave.wave-2 {
+  animation: radar-ping 2.6s cubic-bezier(0.15, 0.85, 0.35, 1) 1.3s infinite;
+}
+
+/* Ready Check Shockwave - Energetic Expansion */
 .ready-shockwave {
   position: absolute;
+  inset: 0;
   border-radius: 50%;
-  border: 1.5px solid rgba(192, 132, 252, 0.35);
+  border: 1.5px solid rgba(192, 132, 252, 0.6);
   pointer-events: none;
+  opacity: 0;
 }
-.ready-shockwave.shockwave-1 {
-  inset: -6px;
+
+[data-motion='full'] .phase-ready-check .ready-shockwave.shockwave-1 {
+  animation: shockwave-ping 1.8s cubic-bezier(0.1, 0.9, 0.2, 1) infinite;
 }
-.ready-shockwave.shockwave-2 {
-  inset: -16px;
-  border-color: rgba(56, 189, 248, 0.2);
+
+[data-motion='full'] .phase-ready-check .ready-shockwave.shockwave-2 {
+  animation: shockwave-ping 1.8s cubic-bezier(0.1, 0.9, 0.2, 1) 0.9s infinite;
 }
 
 /* Accepted State */
 .is-accepted .emblem-orbit-ring {
-  border: 1.5px solid rgba(56, 189, 248, 0.55);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.18);
+  border: 1.5px solid rgba(56, 189, 248, 0.75);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
 }
+
+.is-accepted .emblem-halo {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, transparent 70%);
+}
+
 .is-accepted .emblem-img {
-  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.45));
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.65));
+  transform: scale(1.05);
+}
+
+/* Reduced Motion Mode (Animations Turned Off) */
+[data-motion='reduced'] .emblem-halo,
+[data-motion='reduced'] .emblem-orbit-ring,
+[data-motion='reduced'] .emblem-inner-ring,
+[data-motion='reduced'] .radar-wave,
+[data-motion='reduced'] .ready-shockwave,
+[data-motion='reduced'] .emblem-img,
+[data-motion='reduced'] .searching-radar-dot,
+[data-motion='reduced'] .countdown-blip {
+  animation: none !important;
+}
+
+[data-motion='reduced'] .radar-wave,
+[data-motion='reduced'] .ready-shockwave {
+  display: none !important;
+}
+
+/* ── HUD Keyframe Animations ── */
+@keyframes halo-breathe {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.95;
+  }
+}
+
+@keyframes ring-spin-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ring-spin-ccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes radar-ping {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.95;
+    box-shadow: 0 0 8px rgba(139, 74, 255, 0.5);
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.85);
+    opacity: 0;
+    box-shadow: 0 0 2px rgba(56, 189, 248, 0);
+  }
+}
+
+@keyframes shockwave-ping {
+  0% {
+    transform: scale(0.85);
+    opacity: 1;
+    border-color: rgba(192, 132, 252, 0.9);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+  }
+  100% {
+    transform: scale(1.95);
+    opacity: 0;
+    border-color: rgba(56, 189, 248, 0);
+    box-shadow: 0 0 0 rgba(168, 85, 247, 0);
+  }
+}
+
+@keyframes emblem-hover-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.02);
+  }
+}
+
+@keyframes emblem-ready-pop {
+  0% {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+  }
+  100% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 22px rgba(192, 132, 252, 0.85));
+  }
 }
 
 .searching-hud-badge {

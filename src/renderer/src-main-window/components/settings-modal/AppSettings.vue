@@ -123,6 +123,18 @@
             :options="themes"
           />
         </SettingsRow>
+        <SettingsRow
+          setting-id="app.basic.enable-animations"
+          :label="t('settings.app.basic.enableAnimations.label')"
+          :label-description="t('settings.app.basic.enableAnimations.description')"
+          :label-width="400"
+        >
+          <NSwitch
+            size="small"
+            :value="as.settings.enableAnimations"
+            @update:value="(val: boolean) => app.setEnableAnimations(val)"
+          />
+        </SettingsRow>
       </SettingsSection>
       <SettingsSection
         setting-id="app.self-update"

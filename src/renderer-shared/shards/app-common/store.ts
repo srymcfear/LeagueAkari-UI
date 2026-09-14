@@ -17,7 +17,8 @@ export const useAppCommonStore = defineStore('shard:app-common-renderer', () => 
     theme: 'default' as AppThemeSetting,
     streamerMode: false,
     streamerModeUseAkariStyledName: false,
-    preferredLolSource: 'sgp' as 'sgp' | 'lcu'
+    preferredLolSource: 'sgp' as 'sgp' | 'lcu',
+    enableAnimations: true
   })
 
   const { t } = useTranslation()

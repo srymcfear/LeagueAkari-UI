@@ -54,6 +54,10 @@ export class AppCommonRenderer implements IAkariShardInitDispose {
     return this._settingUtils.set(MAIN_SHARD_NAMESPACE, 'theme', s)
   }
 
+  setEnableAnimations(s: boolean) {
+    return this._settingUtils.set(MAIN_SHARD_NAMESPACE, 'enableAnimations', s)
+  }
+
   setStreamerMode(s: boolean) {
     return this._settingUtils.set(MAIN_SHARD_NAMESPACE, 'streamerMode', s)
   }

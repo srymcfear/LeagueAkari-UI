@@ -56,6 +56,9 @@ settings:
       locale:
         label: Ngôn ngữ
         description: Chọn ngôn ngữ giao diện của ứng dụng
+      enableAnimations:
+        label: Hiệu ứng Hoạt họa (Animations)
+        description: Bật hiệu ứng chuyển động sống động, hào quang Game HUD và nhịp xung radar
     selfUpdate:
       title: Cập nhật Ứng dụng
       temporarilyUnsupported: Cập nhật trong ứng dụng hiện không được hỗ trợ trên nền tảng này. Kiểm tra cập nhật và tự động cập nhật đã bị tắt.
