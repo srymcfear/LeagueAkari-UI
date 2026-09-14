@@ -10,11 +10,11 @@ toolkit:
         description: Ngắt kết nối $t(common:appName) khỏi Client Liên Minh.
         button: Ngắt kết nối
       quitClient:
-        label: Thoát Tiến trình Client 
+        label: Thoát Tiến trình Client
         description: Đóng Client Liên Minh.
-        button: Thoát Tiến trình Client 
+        button: Thoát Tiến trình Client
         dialog:
-          title: Thoát Tiến trình Client 
+          title: Thoát Tiến trình Client
           content: Bạn có chắc chắn muốn thoát tiến trình Client ? Thao tác này sẽ đóng trực tiếp game.
           positiveText: Thoát
           negativeText: Hủy
@@ -40,6 +40,7 @@ toolkit:
         setToReadonly: Đã khóa cài đặt game
         setToWritable: Đã mở khóa cài đặt game
         failedToSet: 'Không thể chuyển đổi khóa cài đặt: {{reason}}'
+      nativeAddonInitializationFailed: Khởi tạo mô-đun client gốc thất bại
     leagueClientUx:
       title: Giao diện Client Liên Minh
       fixWindowMethodAOptions:
@@ -55,7 +56,7 @@ toolkit:
           positiveText: Điều chỉnh
           negativeText: Hủy
       restartUx:
-        label: Khởi động lại Giao diện Client 
+        label: Khởi động lại Giao diện Client
         description: Khởi động lại ngay tiến trình kết xuất. Thao tác này không ảnh hưởng đến các hoạt động đang diễn ra và có thể được sử dụng để sửa lỗi giao diện Client .
         button: Khởi động lại Tiến trình UX
         dialog:
@@ -314,6 +315,7 @@ toolkit:
         needAdmin: chạy với quyền quản trị viên
         unsupported: không được hỗ trợ trên nền tảng hiện tại
         unavailable: hiện không khả dụng
+        initializationFailed: Khởi tạo phím ảo gốc thất bại
       teams:
         friendly: Đồng minh
         enemy: Địch
@@ -475,6 +477,18 @@ toolkit:
           saveFirst: Lưu các chỉnh sửa hiện tại trước
           draftOnly: Chế độ nháp không thể gửi.
           unavailable: Chỉ khả dụng trong chọn tướng, phòng chờ hoặc trong game.
+        unsaved: Chưa lưu
+        expand: Mở rộng
+        expandedTitle: Mở rộng trình soạn thảo văn bản cố định
+        editorLoadFailed: Tải trình soạn thảo thất bại
+        revert: Khôi phục
+        dragHandle: Kéo để đổi thứ tự
+      customTemplate:
+        label: Mẫu tùy chỉnh
+        risk:
+          title: Cảnh báo rủi ro
+        disabled:
+          saveFirst: Vui lòng lưu các thay đổi hiện tại trước
   claim:
     rewards:
       title: Phần thưởng
@@ -536,7 +550,8 @@ toolkit:
       groupName: Nhóm Bạn bè
       lastGameDate: Ngày Trận Cuối
       friendSince: Kết bạn Từ
+    deleteSuccess: Đã xóa {{count}} người bạn
   loot:
-    title: Báu Vật 
+    title: Báu Vật
     refreshSuccess: Đã làm mới
     refreshFailed: Không thể tải {{reason}}

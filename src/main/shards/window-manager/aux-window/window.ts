@@ -66,14 +66,6 @@ export class AkariAuxWindow extends BaseAkariWindow<AuxWindowState, AuxWindowSet
             return 'ignore'
           }
 
-          if (
-            this._windowManager.opggWindow.settings.enabled &&
-            (this._windowManager.opggWindow.settings.autoShow ||
-              this._windowManager.opggWindow.state.show)
-          ) {
-            return 'hide'
-          }
-
           return 'show'
         case 'Lobby':
         case 'Matchmaking':

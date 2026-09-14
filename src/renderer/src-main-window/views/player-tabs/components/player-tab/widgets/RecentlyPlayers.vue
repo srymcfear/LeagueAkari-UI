@@ -1,6 +1,9 @@
 <template>
-  <div class="rounded bg-black/5 px-4 py-2 dark:bg-white/5" v-if="players.length">
-    <div class="mb-3 text-base font-bold text-gray-900 dark:text-white">
+  <div
+    class="rounded-lg border border-black/5 bg-black/5 p-2.5 dark:border-white/5 dark:bg-white/5"
+    v-if="players.length"
+  >
+    <div class="mb-2 text-xs font-bold tracking-wider text-gray-900 uppercase dark:text-white">
       {{
         side === 'ally'
           ? t('playerTabs.recentPlayers.teammatesTitle')

@@ -1,5 +1,5 @@
 :root {
-  --la-color-bg-primary: #f3f3f4;
+  --la-color-bg-primary: #eaedf1;
   --la-color-text-primary: rgba(0, 0, 0, 0.86);
   --la-color-text-themed: rgba(0, 0, 0, 0.86);
   --la-color-link: rgb(88, 124, 102);
@@ -11,14 +11,14 @@
   --la-color-popover-border: rgba(0, 0, 0, 0.2);
   --la-sidebar-bg: rgba(160, 160, 166, 0.22);
   --la-sidebar-border: transparent;
-  --la-wallpaper-overlay-start: rgba(243, 243, 244, 0.9);
-  --la-wallpaper-overlay-mid: rgba(243, 243, 244, 0.95);
-  --la-wallpaper-overlay-end: rgba(243, 243, 244, 0.95);
+  --la-wallpaper-overlay-start: rgba(234, 237, 241, 0.9);
+  --la-wallpaper-overlay-mid: rgba(234, 237, 241, 0.95);
+  --la-wallpaper-overlay-end: rgba(234, 237, 241, 0.95);
   --la-card-tint-rgb: 22 26 33;
   --la-card-border-rgb: 22 26 33;
-  --la-card-surface-95: rgba(247, 248, 250, 0.95);
-  --la-card-surface-90: rgba(247, 248, 250, 0.9);
-  --la-card-muted-surface: rgba(229, 231, 235, 0.9);
+  --la-card-surface-95: rgba(255, 255, 255, 0.96);
+  --la-card-surface-90: rgba(255, 255, 255, 0.9);
+  --la-card-muted-surface: rgba(235, 239, 244, 0.9);
   --la-match-win-solid: rgba(96, 165, 250, 0.35);
   --la-match-win-grad-start: rgba(0, 0, 0, 0);
   --la-match-win-grad-end: rgba(0, 0, 0, 0);
@@ -30,8 +30,20 @@
   --la-match-neutral-grad-end: rgba(0, 0, 0, 0);
 }
 
+:root[data-theme='light'] {
+  --la-hud-dock-bg: rgba(255, 255, 255, 0.88);
+  --la-hud-dock-border: rgba(0, 0, 0, 0.08);
+  --la-hud-dock-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme='dark'] {
+  --la-hud-dock-bg: rgba(18, 18, 24, 0.88);
+  --la-hud-dock-border: rgba(255, 255, 255, 0.12);
+  --la-hud-dock-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 16px rgba(0, 0, 0, 0.4);
+}
+
 :root[data-theme-id='light'] {
-  --la-color-bg-primary: #f3f3f4;
+  --la-color-bg-primary: #eaedf1;
   --la-color-text-primary: rgba(0, 0, 0, 0.86);
   --la-color-link: rgb(88, 124, 102);
   --la-color-scrollbar-thumb: #c0c0c0;
@@ -42,14 +54,17 @@
   --la-color-popover-border: rgba(0, 0, 0, 0.2);
   --la-sidebar-bg: rgba(160, 160, 166, 0.22);
   --la-sidebar-border: transparent;
-  --la-wallpaper-overlay-start: rgba(243, 243, 244, 0.9);
-  --la-wallpaper-overlay-mid: rgba(243, 243, 244, 0.95);
-  --la-wallpaper-overlay-end: rgba(243, 243, 244, 0.95);
+  --la-wallpaper-overlay-start: rgba(234, 237, 241, 0.9);
+  --la-wallpaper-overlay-mid: rgba(234, 237, 241, 0.95);
+  --la-wallpaper-overlay-end: rgba(234, 237, 241, 0.95);
   --la-card-tint-rgb: 22 26 33;
   --la-card-border-rgb: 22 26 33;
-  --la-card-surface-95: rgba(247, 248, 250, 0.95);
-  --la-card-surface-90: rgba(247, 248, 250, 0.9);
-  --la-card-muted-surface: rgba(229, 231, 235, 0.9);
+  --la-card-surface-95: rgba(255, 255, 255, 0.96);
+  --la-card-surface-90: rgba(255, 255, 255, 0.9);
+  --la-card-muted-surface: rgba(235, 239, 244, 0.9);
+  --la-hud-dock-bg: rgba(255, 255, 255, 0.86);
+  --la-hud-dock-border: rgba(0, 0, 0, 0.08);
+  --la-hud-dock-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
   --la-match-win-solid: rgba(96, 165, 250, 0.35);
   --la-match-win-grad-start: rgba(0, 0, 0, 0);
   --la-match-win-grad-end: rgba(0, 0, 0, 0);
@@ -62,7 +77,7 @@
 }
 
 :root[data-theme-id='butter'] {
-  --la-color-bg-primary: #fdf7ea;
+  --la-color-bg-primary: #f3ecdc;
   --la-color-text-primary: rgba(66, 57, 48, 0.93);
   --la-color-link: #c27f22;
   --la-color-scrollbar-thumb: #e4b86e;
@@ -73,14 +88,17 @@
   --la-color-popover-border: rgba(182, 121, 27, 0.24);
   --la-sidebar-bg: rgba(244, 236, 216, 0.58);
   --la-sidebar-border: rgba(182, 121, 27, 0.18);
-  --la-wallpaper-overlay-start: rgba(250, 248, 238, 0.84);
-  --la-wallpaper-overlay-mid: rgba(247, 242, 227, 0.9);
-  --la-wallpaper-overlay-end: rgba(242, 236, 216, 0.94);
+  --la-wallpaper-overlay-start: rgba(243, 236, 220, 0.84);
+  --la-wallpaper-overlay-mid: rgba(243, 236, 220, 0.9);
+  --la-wallpaper-overlay-end: rgba(240, 233, 218, 0.94);
   --la-card-tint-rgb: 182 121 27;
   --la-card-border-rgb: 193 131 33;
-  --la-card-surface-95: rgba(250, 248, 240, 0.95);
-  --la-card-surface-90: rgba(247, 243, 231, 0.9);
-  --la-card-muted-surface: rgba(240, 234, 218, 0.92);
+  --la-card-surface-95: rgba(255, 255, 255, 0.96);
+  --la-card-surface-90: rgba(255, 255, 255, 0.9);
+  --la-card-muted-surface: rgba(240, 233, 218, 0.92);
+  --la-hud-dock-bg: rgba(255, 252, 245, 0.88);
+  --la-hud-dock-border: rgba(182, 121, 27, 0.18);
+  --la-hud-dock-shadow: 0 8px 24px rgba(182, 121, 27, 0.1);
   --la-match-win-solid: rgba(89, 155, 211, 0.24);
   --la-match-win-grad-start: rgba(89, 155, 211, 0.28);
   --la-match-win-grad-end: rgba(104, 173, 222, 0.14);
@@ -163,6 +181,9 @@
   --la-match-neutral-solid: rgba(168, 168, 168, 0.24);
   --la-match-neutral-grad-start: rgba(255, 255, 255, 0.18);
   --la-match-neutral-grad-end: rgba(255, 255, 255, 0.08);
+  --la-hud-dock-bg: rgba(22, 22, 28, 0.88);
+  --la-hud-dock-border: rgba(255, 255, 255, 0.12);
+  --la-hud-dock-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 16px rgba(255, 255, 255, 0.04);
 }
 
 :root[data-theme-id='graphite'] {
@@ -194,6 +215,9 @@
   --la-match-neutral-solid: rgba(96, 118, 139, 0.18);
   --la-match-neutral-grad-start: rgba(170, 190, 209, 0.2);
   --la-match-neutral-grad-end: rgba(148, 173, 197, 0.08);
+  --la-hud-dock-bg: rgba(12, 23, 36, 0.88);
+  --la-hud-dock-border: rgba(148, 173, 197, 0.22);
+  --la-hud-dock-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 16px rgba(74, 195, 255, 0.15);
 }
 
 :root[data-theme-id='cyber'] {
@@ -225,10 +249,13 @@
   --la-match-neutral-solid: rgba(142, 162, 0, 0.18);
   --la-match-neutral-grad-start: rgba(223, 255, 0, 0.2);
   --la-match-neutral-grad-end: rgba(223, 255, 0, 0.08);
+  --la-hud-dock-bg: rgba(14, 14, 14, 0.92);
+  --la-hud-dock-border: rgba(223, 255, 0, 0.28);
+  --la-hud-dock-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 20px rgba(223, 255, 0, 0.16);
 }
 
 :root[data-theme-id='sakura'] {
-  --la-color-bg-primary: #fff4f6;
+  --la-color-bg-primary: #f7e8ec;
   --la-color-text-primary: rgba(49, 44, 52, 0.92);
   --la-color-link: #d45a86;
   --la-color-scrollbar-thumb: #ebb0ca;
@@ -239,14 +266,17 @@
   --la-color-popover-border: rgba(200, 88, 135, 0.24);
   --la-sidebar-bg: rgba(245, 231, 236, 0.58);
   --la-sidebar-border: rgba(200, 88, 135, 0.18);
-  --la-wallpaper-overlay-start: rgba(255, 248, 250, 0.84);
-  --la-wallpaper-overlay-mid: rgba(250, 240, 245, 0.9);
-  --la-wallpaper-overlay-end: rgba(247, 232, 239, 0.94);
+  --la-wallpaper-overlay-start: rgba(247, 232, 236, 0.84);
+  --la-wallpaper-overlay-mid: rgba(247, 232, 236, 0.9);
+  --la-wallpaper-overlay-end: rgba(245, 230, 236, 0.94);
   --la-card-tint-rgb: 200 88 135;
   --la-card-border-rgb: 200 88 135;
-  --la-card-surface-95: rgba(255, 247, 249, 0.95);
-  --la-card-surface-90: rgba(250, 241, 245, 0.9);
+  --la-card-surface-95: rgba(255, 255, 255, 0.96);
+  --la-card-surface-90: rgba(255, 255, 255, 0.9);
   --la-card-muted-surface: rgba(245, 231, 237, 0.92);
+  --la-hud-dock-bg: rgba(255, 250, 252, 0.88);
+  --la-hud-dock-border: rgba(200, 88, 135, 0.18);
+  --la-hud-dock-shadow: 0 8px 24px rgba(200, 88, 135, 0.1);
   --la-match-win-solid: rgba(118, 171, 233, 0.24);
   --la-match-win-grad-start: rgba(118, 171, 233, 0.28);
   --la-match-win-grad-end: rgba(118, 171, 233, 0.12);
@@ -259,7 +289,7 @@
 }
 
 :root[data-theme-id='mint'] {
-  --la-color-bg-primary: #f3f8f5;
+  --la-color-bg-primary: #e2ede7;
   --la-color-text-primary: rgba(33, 45, 42, 0.94);
   --la-color-link: #248873;
   --la-color-scrollbar-thumb: #8dcab1;
@@ -270,14 +300,17 @@
   --la-color-popover-border: rgba(50, 142, 108, 0.24);
   --la-sidebar-bg: rgba(225, 235, 230, 0.58);
   --la-sidebar-border: rgba(50, 142, 108, 0.18);
-  --la-wallpaper-overlay-start: rgba(248, 251, 249, 0.84);
-  --la-wallpaper-overlay-mid: rgba(241, 247, 243, 0.9);
-  --la-wallpaper-overlay-end: rgba(233, 240, 236, 0.94);
+  --la-wallpaper-overlay-start: rgba(226, 237, 231, 0.84);
+  --la-wallpaper-overlay-mid: rgba(226, 237, 231, 0.9);
+  --la-wallpaper-overlay-end: rgba(224, 235, 230, 0.94);
   --la-card-tint-rgb: 50 142 108;
   --la-card-border-rgb: 50 142 108;
-  --la-card-surface-95: rgba(250, 252, 251, 0.95);
-  --la-card-surface-90: rgba(243, 248, 245, 0.9);
-  --la-card-muted-surface: rgba(231, 238, 234, 0.92);
+  --la-card-surface-95: rgba(255, 255, 255, 0.96);
+  --la-card-surface-90: rgba(255, 255, 255, 0.9);
+  --la-card-muted-surface: rgba(228, 238, 233, 0.92);
+  --la-hud-dock-bg: rgba(250, 255, 252, 0.88);
+  --la-hud-dock-border: rgba(50, 142, 108, 0.18);
+  --la-hud-dock-shadow: 0 8px 24px rgba(50, 142, 108, 0.1);
   --la-match-win-solid: rgba(89, 159, 214, 0.24);
   --la-match-win-grad-start: rgba(89, 159, 214, 0.28);
   --la-match-win-grad-end: rgba(89, 159, 214, 0.12);
@@ -318,6 +351,9 @@
   --la-match-neutral-solid: rgba(104, 91, 153, 0.18);
   --la-match-neutral-grad-start: rgba(167, 149, 226, 0.22);
   --la-match-neutral-grad-end: rgba(167, 149, 226, 0.08);
+  --la-hud-dock-bg: rgba(27, 25, 42, 0.88);
+  --la-hud-dock-border: rgba(167, 149, 226, 0.25);
+  --la-hud-dock-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 20px rgba(167, 149, 226, 0.16);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -788,7 +824,11 @@
   right: -20%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(var(--la-wallpaper-dynamic-glow-1, 139, 74, 255), 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(var(--la-wallpaper-dynamic-glow-1, 139, 74, 255), 0.1) 0%,
+    transparent 70%
+  );
   pointer-events: none;
   z-index: 0;
   transition: background 0.6s ease;
@@ -801,7 +841,11 @@
   left: -10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(var(--la-wallpaper-dynamic-glow-2, 166, 124, 255), 0.07) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(var(--la-wallpaper-dynamic-glow-2, 166, 124, 255), 0.07) 0%,
+    transparent 70%
+  );
   pointer-events: none;
   z-index: 0;
   transition: background 0.6s ease;

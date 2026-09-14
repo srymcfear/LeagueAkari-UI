@@ -16,11 +16,7 @@ export type CombinatorArgParam<T = unknown> = {
 // 约定上，所有的 node arg 都应该放在最后面
 export type CombinatorArg<T = unknown> = CombinatorArgNodeRef | CombinatorArgParam<T>
 export type NumberBetweenMeasureMode =
-  | 'value'
-  | 'teamShare'
-  | 'teamMaxShare'
-  | 'gameShare'
-  | 'gameMaxShare'
+  'value' | 'teamShare' | 'teamMaxShare' | 'gameShare' | 'gameMaxShare'
 export type NumberBetweenArgs =
   | [CombinatorArgParam<number>, CombinatorArgParam<number>]
   | [

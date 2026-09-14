@@ -1,7 +1,7 @@
 gameAssets:
   summonerSpell:
     cooldown: 'Hồi chiêu: {{time}}s'
-    levelRequirement: 'Yêu cầu Cấp {{level}}'
+    levelRequirement: Yêu cầu Cấp {{level}}
   item:
     combinePrice: Kết hợp với {{gold}} V
   augment:
@@ -15,3 +15,7 @@ gameAssets:
     copyableText:
       copy: Sao Chép
       copied: Đã sao chép
+sharedUi:
+  copyableText:
+    copy: Sao chép
+    copied: Đã sao chép vào bộ nhớ tạm

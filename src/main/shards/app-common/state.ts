@@ -68,7 +68,7 @@ export class AppCommonSettings {
   /**
    * 语言
    */
-  locale: string = 'zh-CN'
+  locale: string = 'vi'
 
   /**
    * 主题色

@@ -1,15 +1,12 @@
 appName: League Akari
 default: Mặc Định
-
-yes: Có
-no: Không
+'yes': Có
+'no': Không
 confirm: Xác Nhận
 na: N/A
-
 summonerPlaceholder: Người Chơi {{index}}
 summoner: Người Chơi
 region: Khu Vực
-
 positions:
   all: Không
   ALL: Không
@@ -29,7 +26,6 @@ positions:
   BOTTOM: Đường Dưới
   SUPPORT: Hỗ Trợ
   UTILITY: Hỗ Trợ
-
 positionAssignmentReason:
   FILL_SECONDARY: Ưu Tiên Phụ Bù
   FILL_PRIMARY: Ưu Tiên Chính Bù
@@ -37,7 +33,6 @@ positionAssignmentReason:
   SECONDARY: Ưu Tiên Phụ
   AUTOFILL: Tự Động Bù
   AUTOFILL_SHORT: Bù
-
 teams:
   TEAM-ALL: Tất Cả
   TEAM-100: Đội Xanh
@@ -53,7 +48,6 @@ teams:
   CHERRY-7: Sói
   CHERRY-8: Ếch Thung Lũng
   unknown: Không Rõ
-
 queueTypes:
   RANKED_SOLO_5x5: Xếp Hạng Đơn/Đôi
   RANKED_FLEX_SR: Xếp Hạng Linh Hoạt
@@ -68,13 +62,12 @@ queueTypes:
   RANKED_TFT: TFT Xếp Hạng
   RANKED_TFT_TURBO: TFT Tăng Tốc
   RANKED_TFT_DOUBLE_UP: TFT Đôi
-
+  JADE_RANKED_SOLO_5x5: Cổ điển
 gameModes:
   CLASSIC: Cổ Điển
   ARAM: ARAM
   URF: URF
   TFT: TFT
-
 sgpMatchHistoryTags:
   groupGeneral: Chung
   groupGameModes: Chế Độ
@@ -93,7 +86,6 @@ sgpMatchHistoryTags:
   q_1750: Đấu Trường
   q_1900: URF
   q_2300: Brawl
-
 tiers:
   UNRANKED: CHƯA XẾP HẠNG
   IRON: SẮT
@@ -106,7 +98,6 @@ tiers:
   MASTER: CAO THỦ
   GRANDMASTER: ĐẠI CAO THỦ
   CHALLENGER: THÁCH ĐẤU
-
 shortTiers:
   UNRANKED: N/A
   IRON: SẮT
@@ -119,7 +110,6 @@ shortTiers:
   MASTER: CT
   GRANDMASTER: ĐCT
   CHALLENGER: TĐ
-
 sgpServers:
   AKARI_CURRENT: Hiện Tại
   TENCENT_HN10: Hắc Mi
@@ -148,11 +138,9 @@ sgpServers:
   TR1: Thổ Nhĩ Kỳ
   RU: Nga
   JP: Nhật Bản
-
 champions:
   bravery: Ngẫu Nhiên
   dummy: Giả
-
 championAnalysis:
   overviewTab: Tổng Quan
   positionTab: Vị Trí
@@ -209,6 +197,10 @@ championAnalysis:
   gamesAnalyzed_other: '{{count}} mẫu chi tiết'
   collectMatches: Thu Thập Trận {{champion}}
   collectShort: Thu Thập
-
+  games: '{{count}} trận đấu'
+  winningStreak: Chuỗi thắng {{count}}
+  losingStreak: Chuỗi thua {{count}}
+  arenaSummary: '{{count}} trận · Top 2 {{topHalfRate}} · Top 1 {{top1Rate}} · Hạng TB #{{placement}}'
+  gamesAnalyzed: '{{count}} trận mẫu chi tiết'
 app:
-  singleton:  chỉ có thể mở MỘT Akari tại một thời điểm
+  singleton: chỉ có thể mở MỘT Akari tại một thời điểm

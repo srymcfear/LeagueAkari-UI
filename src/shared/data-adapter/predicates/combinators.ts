@@ -24,11 +24,7 @@ export type ParticipantsScope = {
 }
 
 export type ParticipantNumberMeasureMode =
-  | 'value'
-  | 'teamShare'
-  | 'teamMaxShare'
-  | 'gameShare'
-  | 'gameMaxShare'
+  'value' | 'teamShare' | 'teamMaxShare' | 'gameShare' | 'gameMaxShare'
 
 export function and<T>(...predicates: Predicate<T>[]) {
   return (value: T) => predicates.every((predicate) => predicate(value))

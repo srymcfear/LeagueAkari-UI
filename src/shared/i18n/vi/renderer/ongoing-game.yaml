@@ -126,7 +126,7 @@ ongoingGame:
     loadedJungleSamples_one: '{{count}} trận đi rừng'
     loadedJungleSamples_other: '{{count}} trận đi rừng'
     algorithmDetails: Thuật Toán
-    algorithmDetailZoneWeight: "{zoneWeight} = Σ {positionWeight} + Σ {takedownWeight}. {positionWeight}: trong {first14Minutes}, mỗi khung phút cộng {pointOne} vào khu vực Trên / Giữa / Dưới hiện tại của người đi rừng. {takedownWeight}: mỗi lần tham gia hạ gục trong 14 phút cộng {pointFive} vào khu vực vị trí hạ gục."
+    algorithmDetailZoneWeight: '{zoneWeight} = Σ {positionWeight} + Σ {takedownWeight}. {positionWeight}: trong {first14Minutes}, mỗi khung phút cộng {pointOne} vào khu vực Trên / Giữa / Dưới hiện tại của người đi rừng. {takedownWeight}: mỗi lần tham gia hạ gục trong 14 phút cộng {pointFive} vào khu vực vị trí hạ gục.'
     algorithmDetailPreference: '{preferenceDecision}: tỉ lệ giữa + dưới ≥ 70% và tỉ lệ trên ≤ 28% là {midBot}. Tỉ lệ trên + giữa ≥ 70% và tỉ lệ dưới ≤ 28% là {topMid}. {singleZone} tỉ lệ ≥ 40% và cao hơn ít nhất 8 điểm phần trăm so với khu vực cao thứ hai là Trên / Giữa / Dưới. Còn lại là {balanced}.'
     algorithmDetailFirstClear: '{firstClearDecision}: dùng bãi quái rừng gần nhất với {oneMinutePosition}. Nếu bãi quái nằm ở nửa địch, nó được tính là {invadeStart}.'
     algorithmDetailLevel3Gank: '{level3Decision}: tại {threeMinuteFrame}, CS (lính + rừng) là {csRange}, cấp là {level3}, và {championDamage} được phát hiện. Nếu không có dữ liệu sát thương chi tiết, {takedownParticipation} trong vòng 3 phút được dùng làm điều kiện sát thương.'
@@ -149,6 +149,12 @@ ongoingGame:
       bot: D
     gamesAnalyzed_one: '{{count}} trận'
     gamesAnalyzed_other: '{{count}} trận'
+    campPopoverCampGames: Bãi quái này {{count}} trận
+    campPopoverKindGames: Mẫu {{kind}} {{count}} trận
+    campPopoverSideGames: Tổng mẫu phe {{side}} {{count}} trận
+    loadedDetailedSamples: '{{count}} trận mẫu chi tiết'
+    loadedJungleSamples: '{{count}} trận chơi vị trí đi rừng'
+    gamesAnalyzed: '{{count}} trận'
   playerCard:
     reload: Tải Lại
     empty: Không tìm thấy trận đấu nào cho chế độ này
@@ -220,6 +226,8 @@ ongoingGame:
       team:
         teammate: Đồng Minh
         opponent: Địch
+      title: Gần đây gặp người chơi này vào {{date}}, tổng cộng đã gặp {{count}} lần
+      titleNote: Chỉ hiển thị {{count}} trận gần nhất
     privatePopover: Người chơi này đã đặt trang cá nhân ở chế độ riêng tư, ngăn người khác xem trang cá nhân, lịch sử đấu và thành tích của họ. Ngoài ra, họ không thể bị xem trận.
     winningStreakPopover_one: Đang có chuỗi thắng {count} trận. Xuất sắc!
     winningStreakPopover_other: Đang có chuỗi thắng {count} trận. Xuất sắc!
@@ -254,6 +262,7 @@ ongoingGame:
       recentStats: Chỉ Số Gần Đây
       winRate_one: '{count} trận gần đây, tỉ lệ thắng {{winRate}}%'
       winRate_other: '{count} trận gần đây, tỉ lệ thắng {{winRate}}%'
+      winRate: Gần đây {{count}} trận, tỉ lệ thắng {{winRate}}%
     matchHistory:
       winResult:
         na: '-'
@@ -277,6 +286,22 @@ ongoingGame:
     losingStreak_one: '{{count}} Thua'
     losingStreak_other: '{{count}} Thua'
     reloadMatchHistory: Tải Lại
+    cherryWinRatePopover: Trong {{count}} trận gần đây, tỉ lệ thắng là {{winRate}}%. Trong đó, {{cherryCount}} trận Đấu Trường Sinh Tử đạt tỉ lệ top 1 là {{top1Rate}}%
+    winRatePopover: Trong {{count}} trận gần đây, tỉ lệ thắng là {{winRate}}%, {{wins}} Thắng {{losses}} Thua
+    kdaPopover: Trong {{count}} trận gần đây, KDA trung bình là {{kda}} ({{kills}} / {{deaths}} / {{assists}})
+    highWinRatePopover: Tỉ lệ thắng cực cao. Trong {{count}} trận gần đây, đã thắng {{winCount}} trận
+    teamDamageSharePopover: Trong {{count}} trận gần đây, tỉ lệ sát thương toàn đội trung bình là {{rate}}%
+    teamDamageTakenSharePopover: Trong {{count}} trận gần đây, tỉ lệ gánh chịu sát thương trung bình là {{rate}}%
+    teamGoldSharePopover: Trong {{count}} trận gần đây, tỉ lệ vàng toàn đội trung bình là {{rate}}%
+    csPerMinutePopover: Trong {{count}} trận gần đây, chỉ số lính mỗi phút trung bình là {{value}}.
+    damageGoldEfficiencyPopover: Trong {{count}} trận gần đây, tỉ lệ chuyển hóa sát thương từ vàng là {{rate}}%
+    enemyMissingPingsPopover: Trung bình mỗi trận người chơi ping đối thủ mất tích {{count}} lần
+    winningStreakPopover: Tính đến hiện tại, người chơi này đang có chuỗi thắng {{count}} trận
+    losingStreakPopover: Tính đến hiện tại, người chơi này đang có chuỗi thua {{count}} trận
+    easyGankPopover: Trong {{count}} trận Summoner's Rift gần đây, số lần bị rừng đối phương gank trước phút 15 trung bình là {{times}} lần
+    soloKillsPopover: Trong {{count}} trận gần đây, trung bình solo kill {{times}} lần/trận
+    winningStreak: Chuỗi thắng {{count}}
+    losingStreak: Chuỗi thua {{count}}
   teamTags:
     winRateTeam: Đội Tỉ Lệ Thắng Cao
     loseRateTeam: Đội Tỉ Lệ Thua Cao

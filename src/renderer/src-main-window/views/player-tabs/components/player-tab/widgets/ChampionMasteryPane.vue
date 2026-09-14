@@ -1,7 +1,10 @@
 <template>
-  <div class="rounded-lg bg-black/5 p-3 dark:bg-white/5 border border-black/5 dark:border-white/5" v-if="shouldRender">
+  <div
+    class="rounded-lg border border-black/5 bg-black/5 p-2.5 dark:border-white/5 dark:bg-white/5"
+    v-if="shouldRender"
+  >
     <div class="mb-2 flex items-center justify-between gap-2">
-      <div class="text-sm font-bold text-gray-900 dark:text-white">
+      <div class="text-xs font-bold tracking-wider text-gray-900 uppercase dark:text-white">
         {{ t('playerTabs.championMastery.title') }}
       </div>
       <div>
@@ -23,15 +26,15 @@
 
     <div class="flex flex-col gap-2" v-if="isLoading">
       <div class="flex items-center gap-2" v-for="i of CHAMPION_MASTERY_SKELETON_COUNT" :key="i">
-        <NSkeleton :sharp="false" circle :width="28" :height="28" />
+        <NSkeleton :sharp="false" circle :width="24" :height="24" />
         <div class="flex-1">
-          <NSkeleton :sharp="false" text :height="14" />
-          <NSkeleton :sharp="false" text :height="12" :width="80" />
+          <NSkeleton :sharp="false" text :height="12" />
+          <NSkeleton :sharp="false" text :height="10" :width="60" />
         </div>
       </div>
     </div>
 
-    <div class="flex flex-col gap-2" v-else>
+    <div class="flex flex-col gap-1.5" v-else>
       <NPopover
         v-for="mastery of masteries"
         :key="mastery.championId"
@@ -41,9 +44,9 @@
       >
         <template #trigger>
           <div
-            class="grid cursor-default grid-cols-[28px_minmax(0,1fr)_76px] items-center gap-2 rounded-sm"
+            class="grid cursor-default grid-cols-[24px_minmax(0,1fr)_60px] items-center gap-2 rounded-sm"
           >
-            <ChampionIcon class="h-7 w-7 shrink-0 rounded" :champion-id="mastery.championId" />
+            <ChampionIcon class="h-6 w-6 shrink-0 rounded" :champion-id="mastery.championId" />
             <div class="min-w-0">
               <div class="truncate text-xs font-bold text-gray-900 dark:text-white">
                 {{ championName(mastery.championId) }}

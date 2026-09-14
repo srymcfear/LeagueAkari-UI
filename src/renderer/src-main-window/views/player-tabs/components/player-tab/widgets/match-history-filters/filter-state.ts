@@ -25,13 +25,7 @@ export const SIMPLE_STATE_VERSION = 1
 export type MatchHistoryFilterMode = 'simple' | 'advanced'
 export type SimpleWinLossFilter = 'all' | 'win' | 'loss'
 export type SimpleTimeRangeFilter =
-  | 'all'
-  | 'last3Hours'
-  | 'last12Hours'
-  | 'last24Hours'
-  | 'last3Days'
-  | 'last7Days'
-  | 'last30Days'
+  'all' | 'last3Hours' | 'last12Hours' | 'last24Hours' | 'last3Days' | 'last7Days' | 'last30Days'
 
 export type MatchHistoryFilterState = {
   version: typeof STATE_VERSION

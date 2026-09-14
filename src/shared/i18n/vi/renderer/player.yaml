@@ -33,6 +33,19 @@ playerTags:
     save: Lưu
     cancel: Hủy
     placeholder: Nhập thẻ cho người chơi {{name}}
+    phrases:
+      title: Cụm từ nhanh
+      count: '{{count}} / {{max}}'
+      clearTag: Xóa thẻ
+      clearTagConfirm: Bạn có chắc chắn muốn xóa thẻ hiện tại?
+      confirmClearTag: Xóa
+      addPlaceholder: Thêm cụm từ nhanh
+      add: Thêm cụm từ
+      cancelAdd: Hủy
+      delete: Xóa "{{phrase}}"
+      empty: Chưa có cụm từ nhanh, thêm để chèn nhanh vào thẻ người chơi
+      duplicate: Cụm từ này đã tồn tại
+      updateFailed: Lưu cụm từ nhanh thất bại
 akariScore:
   title: Điểm Akari
   na: N/A
@@ -130,6 +143,7 @@ playerTabs:
     copiedToClipboard: Đã sao chép vào clipboard
     failedToLaunchReplay: 'Không thể mở replay: {{reason}}'
     failedToDownloadReplay: 'Không thể tải replay: {{reason}}'
+    itemPerPage: '{{count}} mục'
   matchHistory:
     filters:
       title: Bộ lọc
@@ -555,6 +569,9 @@ playerTabs:
         gold: Vàng
         item: Trang bị
         augment: Tăng cường
+    pagination: Phân trang
+    sidebar:
+      open: Mở thanh bên lịch sử đấu
   profilePrivacy:
     title: Hồ sơ Ẩn
     content: Người chơi này đã đặt hồ sơ ở chế độ riêng tư.
@@ -589,10 +606,12 @@ playerTabs:
     activeSession: Thắng/Thua Phiên Hiện tại
     level3Short: Cấp3
     level4Short: Cấp4
-    winningStreak_one: 'Chuỗi {{count}} Thắng'
-    winningStreak_other: 'Chuỗi {{count}} Thắng'
-    losingStreak_one: 'Chuỗi {{count}} Thua'
-    losingStreak_other: 'Chuỗi {{count}} Thua'
+    winningStreak_one: Chuỗi {{count}} Thắng
+    winningStreak_other: Chuỗi {{count}} Thắng
+    losingStreak_one: Chuỗi {{count}} Thua
+    losingStreak_other: Chuỗi {{count}} Thua
+    winningStreak: Chuỗi thắng {{count}}
+    losingStreak: Chuỗi thua {{count}}
   championMastery:
     title: Thành thạo Tướng
     viewAll: Thêm

@@ -53,6 +53,9 @@ settings:
           aurora: Tím Aurora
           neon: Tím Neon
           butter: Vàng Bơ
+      locale:
+        label: Ngôn ngữ
+        description: Chọn ngôn ngữ giao diện của ứng dụng
     selfUpdate:
       title: Cập nhật Ứng dụng
       temporarilyUnsupported: Cập nhật trong ứng dụng hiện không được hỗ trợ trên nền tảng này. Kiểm tra cập nhật và tự động cập nhật đã bị tắt.
@@ -94,10 +97,13 @@ settings:
           profileSkin: Nền Tướng
           none: Không
           mica: Mica
+          customImage: Hình ảnh tùy chỉnh
+          system: Mặc định hệ thống
         tooltips:
           profileSkin: Sử dụng nền trang phục hồ sơ của người chơi hiện tại làm nền cửa sổ chính
           mica: Chỉ khả dụng trên các phiên bản Windows mới hơn. Nếu không được hỗ trợ trên nền tảng hiện tại, sẽ tự động chuyển về Không
           micaUnsupported: Mica không được hỗ trợ trên nền tảng hiện tại và sẽ chuyển về Không
+          system: Sử dụng hình nền mặc định của hệ thống
       useProfileSkinAsBackground:
         label: Sử dụng Nền Trang phục Hồ sơ
         description: $t(common:appName) sẽ sử dụng nền trang phục hồ sơ của người chơi hiện tại làm nền. Nếu nền đã được đặt, tùy chọn này sẽ không có hiệu lực
@@ -520,3 +526,9 @@ settings:
     ok: Xác nhận
     cancel: Hủy
     select: Chọn
+  commandPalette:
+    searchPlaceholder: Tìm kiếm cài đặt hoặc chức năng...
+    searchAriaLabel: Bảng lệnh tìm kiếm
+    empty: Không tìm thấy kết quả phù hợp
+    openHint: Mở bảng lệnh
+    closeHint: Đóng bảng lệnh

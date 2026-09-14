@@ -108,7 +108,11 @@ export class AppCommonMain implements IAkariShardInitDispose {
       return 'zh-CN'
     }
 
-    return 'en'
+    if (systemLocale.startsWith('en')) {
+      return 'en'
+    }
+
+    return 'vi'
   }
 
   setDisableHardwareAccelerationAndRelaunch(disabled: boolean) {

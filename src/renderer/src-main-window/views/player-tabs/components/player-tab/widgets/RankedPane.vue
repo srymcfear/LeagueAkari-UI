@@ -1,93 +1,235 @@
 <template>
-  <div v-if="shouldRender" class="relative flex gap-3 items-stretch">
+  <div v-if="shouldRender" class="relative flex items-center gap-3">
     <!-- Cross Region Unsupported Card -->
     <div
       v-if="isCrossRegion"
-      class="glass-card rank-card-cross relative flex flex-col items-center justify-center rounded-lg bg-black/5 dark:bg-white/5 w-52 @[1064px]:w-72"
+      class="ranked-hud-card flex h-[78px] w-72 items-center justify-center"
+      style="--tier-accent: rgba(140, 150, 164, 0.4)"
     >
-      <div class="text-xs text-[var(--la-color-text-primary)]/60">{{ t('playerTabs.ranked.crossRegion', 'Cross Region') }}</div>
-      <div class="text-xs text-[var(--la-color-text-primary)]/40">{{ t('playerTabs.ranked.unavailable', 'Unavailable') }}</div>
+      <div class="flex flex-col items-center justify-center text-center">
+        <div class="text-xs font-bold tracking-wide text-neutral-800 uppercase dark:text-white/70">
+          {{ t('playerTabs.ranked.crossRegion', 'Cross Region') }}
+        </div>
+        <div class="mt-0.5 text-[11px] text-neutral-500 dark:text-white/40">
+          {{ t('playerTabs.ranked.unavailable', 'Unavailable') }}
+        </div>
+      </div>
     </div>
 
-    <!-- Ranked Cards: Concept A — Solo chính + Flex phụ -->
+    <!-- Ranked Cards: Clean Modern HUD Cards -->
     <template v-else>
-      <!-- Solo Queue (primary) -->
+      <!-- Primary Card (Solo/Duo or Fallback) -->
       <div
-        v-if="soloEntry"
-        class="glass-card rank-card-primary rounded-lg bg-black/5 dark:bg-white/5 w-60 @[1064px]:w-72"
-        :style="rankGlowVars(soloEntry, 0.15)"
+        v-if="primaryEntry"
+        class="ranked-hud-card ranked-hud-primary"
+        :style="{
+          '--tier-accent': tierHexColor(primaryEntry)
+        }"
       >
-        <div class="rank-card-inner">
-          <div class="rank-emblem-wrap">
-            <div class="rank-emblem-glow"></div>
-            <img
-              :src="rankedImageMap[getCurrentTier(soloEntry)] || rankedImageMap['UNRANKED']"
-            />
-          </div>
-          <div class="rank-info-col">
-            <span class="queue-label">
-              {{ t(`queueTypes.${soloEntry.queueType}`, { defaultValue: soloEntry.queueType, ns: 'common' }) }}
+        <!-- Left: Rank Crest -->
+        <div class="hud-crest-wrap">
+          <div class="hud-crest-glow" :style="tierGlowStyle(primaryEntry)"></div>
+          <img
+            class="hud-crest-img"
+            :src="rankedImageMap[getCurrentTier(primaryEntry)] || rankedImageMap['UNRANKED']"
+          />
+        </div>
+
+        <!-- Center: Info -->
+        <div class="hud-info-wrap">
+          <!-- Queue row -->
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="hud-queue-badge">{{ getQueueShortCode(primaryEntry.queueType) }}</span>
+            <span class="hud-queue-title">
+              {{
+                t(`queueTypes.${primaryEntry.queueType}`, {
+                  defaultValue: primaryEntry.queueType,
+                  ns: 'common'
+                })
+              }}
             </span>
-            <span class="tier-text">{{ formatTier(soloEntry) }}</span>
-            <span v-if="isRankedEntry(soloEntry)" class="lp-text">{{ soloEntry.leaguePoints }} LP</span>
-            <span v-if="isRankedEntry(soloEntry)" class="record-text">{{ formatShortRecord(soloEntry) }}</span>
-            <div
-              v-if="soloEntry.highestTier && soloEntry.highestTier !== 'NA'"
-              class="highest-row"
+          </div>
+
+          <!-- Tier name & LP -->
+          <div class="mt-1 flex items-center gap-2">
+            <span class="hud-tier-name" :style="{ backgroundImage: getTierGradient(primaryEntry) }">
+              {{ formatTier(primaryEntry).toUpperCase() }}
+            </span>
+            <span v-if="isRankedEntry(primaryEntry)" class="hud-lp-pill">
+              {{ primaryEntry.leaguePoints }} LP
+            </span>
+          </div>
+
+          <!-- Record & Highest Tier -->
+          <div
+            v-if="isRankedEntry(primaryEntry)"
+            class="mt-1 flex items-center gap-1.5 text-[11px]"
+          >
+            <span class="font-bold text-sky-600 dark:text-sky-400"
+              >{{ primaryEntry.wins ?? 0 }}W</span
             >
-              <span>{{ t('playerTabs.ranked.highest') }}</span>
-              <img v-if="rankedMedalMap[soloEntry.highestTier]" :src="rankedMedalMap[soloEntry.highestTier]" />
-              <span>{{ formatHighestTier(soloEntry) }}</span>
-            </div>
+            <template v-if="hasLosses(primaryEntry)">
+              <span class="text-neutral-800 opacity-30 dark:text-white">·</span>
+              <span class="font-bold text-rose-600 dark:text-rose-400"
+                >{{ primaryEntry.losses }}L</span
+              >
+            </template>
+            <template v-if="primaryEntry.highestTier && primaryEntry.highestTier !== 'NA'">
+              <span class="text-neutral-800 opacity-30 dark:text-white">·</span>
+              <span
+                class="hud-highest-pill"
+                :title="t('ranked.display.highest', { ns: 'ranked', defaultValue: 'Cao nhất' })"
+              >
+                <span class="mr-0.5 text-[9px] opacity-60">{{
+                  t('ranked.display.highest', { ns: 'ranked', defaultValue: 'Cao nhất' })
+                }}</span>
+                <img
+                  v-if="rankedMedalMap[primaryEntry.highestTier]"
+                  :src="rankedMedalMap[primaryEntry.highestTier]"
+                  class="inline size-3 object-contain"
+                />
+                {{ formatHighestTier(primaryEntry).toUpperCase() }}
+              </span>
+            </template>
           </div>
         </div>
-        <span
-          v-if="isRankedEntry(soloEntry)"
-          class="rank-wr-chip"
-        >{{ formatEntryTopRecord(soloEntry) }}</span>
-      </div>
 
-      <!-- Flex Queue (secondary) -->
-      <div
-        v-if="flexEntry"
-        class="glass-card rank-card-secondary hidden @[1064px]:block rounded-lg bg-black/5 dark:bg-white/5"
-        :style="rankGlowVars(flexEntry, 0.1)"
-      >
-        <div class="rank-card-inner-sm">
-          <div class="rank-emblem-wrap-sm">
-            <div class="rank-emblem-glow-sm"></div>
-            <img
-              :src="rankedImageMap[getCurrentTier(flexEntry)] || rankedImageMap['UNRANKED']"
+        <!-- Right: Clean Minimal Win Rate Ring (only when losses are known) -->
+        <div v-if="isRankedEntry(primaryEntry) && hasLosses(primaryEntry)" class="hud-gauge-wrap">
+          <svg class="hud-gauge-svg" width="40" height="40" viewBox="0 0 40 40">
+            <circle
+              class="hud-gauge-bg-circle"
+              cx="20"
+              cy="20"
+              r="15"
+              fill="none"
+              stroke-width="2.5"
             />
-          </div>
-          <div class="rank-info-col">
-            <span class="queue-label">
-              {{ t(`queueTypes.${flexEntry.queueType}`, { defaultValue: flexEntry.queueType, ns: 'common' }) }}
-            </span>
-            <span class="tier-text">{{ formatTier(flexEntry) }}</span>
-            <span v-if="isRankedEntry(flexEntry)" class="lp-text">{{ flexEntry.leaguePoints }} LP</span>
-            <span v-if="isRankedEntry(flexEntry)" class="record-text">{{ formatShortRecord(flexEntry) }}</span>
+            <circle
+              cx="20"
+              cy="20"
+              r="15"
+              fill="none"
+              :stroke="tierHexColor(primaryEntry)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-dasharray="94.2"
+              :stroke-dashoffset="
+                94.2 *
+                (1 - Math.min(100, Math.max(0, parseFloat(formatWinRate(primaryEntry)))) / 100)
+              "
+              transform="rotate(-90 20 20)"
+            />
+          </svg>
+          <div class="hud-gauge-text">
+            <span class="text-[11px] leading-none font-bold text-neutral-900 dark:text-white"
+              >{{ formatWinRate(primaryEntry) }}%</span
+            >
+            <span
+              class="mt-0.5 text-[8px] leading-none font-semibold tracking-tighter text-neutral-500 uppercase dark:text-white/40"
+              >T/T</span
+            >
           </div>
         </div>
       </div>
 
-      <!-- More Button -->
+      <!-- Secondary Companion Card (Flex or other) -->
       <div
-        class="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/3"
-        v-if="displayedRankedEntries.length > 1"
+        v-if="secondaryEntry"
+        class="ranked-hud-card ranked-hud-secondary hidden @[1100px]:flex"
+        :style="{
+          '--tier-accent': tierHexColor(secondaryEntry)
+        }"
       >
-        <NButton
-          :focusable="false"
-          :title="t('playerTabs.profile.rankedMore', '更多排位信息')"
-          size="small"
-          secondary
-          @click="isShowingRankedModal = true"
+        <!-- Left: Crest -->
+        <div
+          class="hud-crest-wrap"
+          :class="{ 'opacity-40 grayscale': !isRankedEntry(secondaryEntry) }"
         >
-          <template #icon>
-            <NIcon><MoreHorizFilled /></NIcon>
-          </template>
-        </NButton>
+          <div
+            v-if="isRankedEntry(secondaryEntry)"
+            class="hud-crest-glow"
+            :style="tierGlowStyle(secondaryEntry)"
+          ></div>
+          <img
+            class="hud-crest-img"
+            :src="rankedImageMap[getCurrentTier(secondaryEntry)] || rankedImageMap['UNRANKED']"
+          />
+        </div>
+
+        <!-- Center: Info -->
+        <div class="hud-info-wrap">
+          <!-- Queue row -->
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="hud-queue-badge">{{ getQueueShortCode(secondaryEntry.queueType) }}</span>
+            <span class="hud-queue-title">
+              {{
+                t(`queueTypes.${secondaryEntry.queueType}`, {
+                  defaultValue: secondaryEntry.queueType,
+                  ns: 'common'
+                })
+              }}
+            </span>
+          </div>
+
+          <!-- Tier name & LP -->
+          <div class="mt-1 flex items-center gap-2">
+            <span
+              class="hud-tier-name"
+              :class="{
+                'text-[14px]! text-neutral-500 dark:text-white/50': !isRankedEntry(secondaryEntry)
+              }"
+              :style="
+                isRankedEntry(secondaryEntry)
+                  ? { backgroundImage: getTierGradient(secondaryEntry) }
+                  : {}
+              "
+            >
+              {{ formatTier(secondaryEntry).toUpperCase() }}
+            </span>
+            <span v-if="isRankedEntry(secondaryEntry)" class="hud-lp-pill">
+              {{ secondaryEntry.leaguePoints }} LP
+            </span>
+          </div>
+
+          <!-- Record or Unranked text -->
+          <div
+            v-if="isRankedEntry(secondaryEntry)"
+            class="mt-1 flex items-center gap-1.5 text-[11px]"
+          >
+            <span class="font-bold text-sky-600 dark:text-sky-400"
+              >{{ secondaryEntry.wins ?? 0 }}W</span
+            >
+            <template v-if="hasLosses(secondaryEntry)">
+              <span class="text-neutral-800 opacity-30 dark:text-white">·</span>
+              <span class="font-bold text-rose-600 dark:text-rose-400"
+                >{{ secondaryEntry.losses }}L</span
+              >
+              <span class="text-neutral-800 opacity-30 dark:text-white">·</span>
+              <span class="font-medium text-neutral-600 dark:text-white/60"
+                >{{ formatWinRate(secondaryEntry) }}%</span
+              >
+            </template>
+          </div>
+          <div v-else class="mt-0.5 text-[10.5px] text-neutral-400 dark:text-white/30">0 trận</div>
+        </div>
       </div>
+
+      <!-- More Button in natural flow -->
+      <NButton
+        v-if="displayedRankedEntries.length > 1"
+        :focusable="false"
+        :title="t('playerTabs.profile.rankedMore', 'Xem thêm thông tin xếp hạng')"
+        size="small"
+        secondary
+        circle
+        class="shrink-0 text-neutral-500 hover:text-black dark:text-white/50 dark:hover:text-white"
+        @click="isShowingRankedModal = true"
+      >
+        <template #icon>
+          <NIcon size="16"><MoreHorizFilled /></NIcon>
+        </template>
+      </NButton>
     </template>
   </div>
 
@@ -97,31 +239,46 @@
         <div
           v-for="entry in displayedRankedEntries"
           :key="entry.queueType"
-          class="glass-card rank-card-primary rounded-lg bg-black/5 dark:bg-white/5 w-60"
-          :style="rankGlowVars(entry, 0.12)"
+          class="ranked-hud-card h-[78px] w-80 p-2"
+          :style="{
+            '--tier-accent': tierHexColor(entry)
+          }"
         >
-          <div class="rank-card-inner">
-            <div class="rank-emblem-wrap rank-emblem-wrap-md">
-              <div class="rank-emblem-glow"></div>
-              <img
-                :src="rankedImageMap[getCurrentTier(entry)] || rankedImageMap['UNRANKED']"
-              />
-            </div>
-            <div class="rank-info-col">
-              <span class="queue-label">
-                {{ t(`queueTypes.${entry.queueType}`, { defaultValue: entry.queueType, ns: 'common' }) }}
+          <div class="hud-crest-wrap">
+            <div class="hud-crest-glow" :style="tierGlowStyle(entry)"></div>
+            <img
+              class="hud-crest-img"
+              :src="rankedImageMap[getCurrentTier(entry)] || rankedImageMap['UNRANKED']"
+            />
+          </div>
+          <div class="hud-info-wrap">
+            <div class="flex items-center gap-1.5 leading-none">
+              <span class="hud-queue-badge">{{ getQueueShortCode(entry.queueType) }}</span>
+              <span class="hud-queue-title">
+                {{
+                  t(`queueTypes.${entry.queueType}`, {
+                    defaultValue: entry.queueType,
+                    ns: 'common'
+                  })
+                }}
               </span>
-              <span class="tier-text">{{ formatTier(entry) }}</span>
-              <span v-if="isRankedEntry(entry)" class="lp-text">{{ entry.leaguePoints }} LP</span>
-              <span v-if="isRankedEntry(entry)" class="record-text">{{ formatShortRecord(entry) }}</span>
-              <div
-                v-if="entry.highestTier && entry.highestTier !== 'NA'"
-                class="highest-row"
-              >
-                <span>{{ t('playerTabs.ranked.highest') }}</span>
-                <img v-if="rankedMedalMap[entry.highestTier]" :src="rankedMedalMap[entry.highestTier]" />
-                <span>{{ formatHighestTier(entry) }}</span>
-              </div>
+            </div>
+            <div class="mt-1 flex items-center gap-2">
+              <span class="hud-tier-name" :style="{ backgroundImage: getTierGradient(entry) }">
+                {{ formatTier(entry).toUpperCase() }}
+              </span>
+              <span v-if="isRankedEntry(entry)" class="hud-lp-pill">
+                {{ entry.leaguePoints }} LP
+              </span>
+            </div>
+            <div v-if="isRankedEntry(entry)" class="mt-1 flex items-center gap-1.5 text-[11px]">
+              <span class="font-bold text-sky-400">{{ entry.wins ?? 0 }}W</span>
+              <template v-if="hasLosses(entry)">
+                <span class="text-white opacity-30">·</span>
+                <span class="font-bold text-rose-400">{{ entry.losses }}L</span>
+                <span class="text-white opacity-30">·</span>
+                <span class="font-medium text-white/60">{{ formatWinRate(entry) }}%</span>
+              </template>
             </div>
           </div>
         </div>
@@ -170,7 +327,6 @@ const isShowingRankedModal = ref(false)
 
 const { rankedStats, isLoading } = useRankedStats()
 
-// 只显示单双排和灵活组排
 const DISPLAY_QUEUE_TYPES: Array<keyof RankedStats['queueMap']> = [
   'RANKED_SOLO_5x5',
   'RANKED_FLEX_SR'
@@ -214,33 +370,138 @@ const rankedMedalMap: Record<string, string> = {
   CHALLENGER: ChallengerMedal
 }
 
-const soloEntry = computed(() => displayedRankedEntries.value[0] || null)
-const flexEntry = computed(() => displayedRankedEntries.value[1] || null)
+const soloEntry = computed(
+  () => displayedRankedEntries.value.find((e) => e.queueType === 'RANKED_SOLO_5x5') ?? null
+)
+const flexEntry = computed(
+  () => displayedRankedEntries.value.find((e) => e.queueType === 'RANKED_FLEX_SR') ?? null
+)
 
-const RANK_GLOW_RGB: Record<string, [number, number, number]> = {
-  IRON: [89, 89, 89],
-  BRONZE: [205, 127, 50],
-  SILVER: [192, 192, 192],
-  GOLD: [255, 215, 0],
-  PLATINUM: [39, 184, 196],
-  EMERALD: [80, 200, 120],
-  DIAMOND: [122, 93, 255],
-  MASTER: [211, 47, 47],
-  GRANDMASTER: [255, 69, 0],
-  CHALLENGER: [0, 191, 255],
+const primaryEntry = computed(() => soloEntry.value ?? flexEntry.value ?? null)
+const secondaryEntry = computed(() => {
+  if (soloEntry.value && flexEntry.value) {
+    return flexEntry.value
+  }
+  return null
+})
+
+interface TierTheme {
+  gradient: string
+  glowRgb: [number, number, number]
+  hexColor: string
+  borderColor: string
+  innerBorderColor: string
 }
 
-const rankGlowVars = (entry: Partial<RankedEntry>, intensity: number) => {
-  const rgb = RANK_GLOW_RGB[entry.tier || '']
-  if (!rgb) return {}
-  return { '--rank-glow': `${rgb[0]} ${rgb[1]} ${rgb[2]}`, '--rank-glow-a': String(intensity) }
+const TIER_THEMES: Record<string, TierTheme> = {
+  IRON: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #d0c8c0 30%, #8c827c 70%, #463d38 100%)',
+    glowRgb: [140, 130, 124],
+    hexColor: '#a89f91',
+    borderColor: 'rgba(168, 159, 145, 0.5)',
+    innerBorderColor: 'rgba(168, 159, 145, 0.22)'
+  },
+  BRONZE: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #f6bca0 30%, #b86b45 70%, #5a2e18 100%)',
+    glowRgb: [184, 107, 69],
+    hexColor: '#cd7f32',
+    borderColor: 'rgba(205, 127, 50, 0.55)',
+    innerBorderColor: 'rgba(205, 127, 50, 0.25)'
+  },
+  SILVER: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #e8f0f8 30%, #9cb4ca 70%, #4b6278 100%)',
+    glowRgb: [160, 185, 210],
+    hexColor: '#b0c4de',
+    borderColor: 'rgba(176, 196, 222, 0.55)',
+    innerBorderColor: 'rgba(176, 196, 222, 0.25)'
+  },
+  GOLD: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #faeab8 25%, #d8ae48 60%, #825e1c 100%)',
+    glowRgb: [230, 180, 60],
+    hexColor: '#d4af37',
+    borderColor: 'rgba(218, 175, 55, 0.6)',
+    innerBorderColor: 'rgba(218, 175, 55, 0.28)'
+  },
+  PLATINUM: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #baf8ee 30%, #3ec2ae 70%, #155e54 100%)',
+    glowRgb: [62, 194, 174],
+    hexColor: '#2eb8a2',
+    borderColor: 'rgba(46, 184, 162, 0.55)',
+    innerBorderColor: 'rgba(46, 184, 162, 0.25)'
+  },
+  EMERALD: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #bafad2 30%, #34d47c 70%, #0f6334 100%)',
+    glowRgb: [52, 212, 124],
+    hexColor: '#2ec872',
+    borderColor: 'rgba(46, 200, 114, 0.55)',
+    innerBorderColor: 'rgba(46, 200, 114, 0.25)'
+  },
+  DIAMOND: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #e2deff 30%, #9587ff 65%, #3d2eb0 100%)',
+    glowRgb: [149, 135, 255],
+    hexColor: '#8b7df8',
+    borderColor: 'rgba(139, 125, 248, 0.6)',
+    innerBorderColor: 'rgba(139, 125, 248, 0.28)'
+  },
+  MASTER: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #fcc2ff 30%, #d44afc 65%, #621480 100%)',
+    glowRgb: [212, 74, 252],
+    hexColor: '#c840f0',
+    borderColor: 'rgba(200, 64, 240, 0.6)',
+    innerBorderColor: 'rgba(200, 64, 240, 0.28)'
+  },
+  GRANDMASTER: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #ffd8c4 30%, #fc5030 65%, #881808 100%)',
+    glowRgb: [252, 80, 48],
+    hexColor: '#f44828',
+    borderColor: 'rgba(244, 72, 40, 0.6)',
+    innerBorderColor: 'rgba(244, 72, 40, 0.28)'
+  },
+  CHALLENGER: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #c4f4ff 30%, #28c4fc 65%, #0c567c 100%)',
+    glowRgb: [40, 196, 252],
+    hexColor: '#20b8f0',
+    borderColor: 'rgba(32, 184, 240, 0.6)',
+    innerBorderColor: 'rgba(32, 184, 240, 0.28)'
+  },
+  UNRANKED: {
+    gradient: 'linear-gradient(180deg, #ffffff 0%, #ccd4de 40%, #7e8898 80%, #3e444e 100%)',
+    glowRgb: [126, 136, 152],
+    hexColor: '#8c96a4',
+    borderColor: 'rgba(140, 150, 164, 0.4)',
+    innerBorderColor: 'rgba(140, 150, 164, 0.18)'
+  }
+}
+
+const getTierTheme = (entry?: Partial<RankedEntry> | null): TierTheme => {
+  if (!entry) return TIER_THEMES.UNRANKED
+  const tier = getCurrentTier(entry)
+  return TIER_THEMES[tier] || TIER_THEMES.UNRANKED
+}
+
+const tierHexColor = (entry?: Partial<RankedEntry> | null) => getTierTheme(entry).hexColor
+const getTierGradient = (entry?: Partial<RankedEntry> | null) => getTierTheme(entry).gradient
+
+const tierGlowStyle = (entry?: Partial<RankedEntry> | null) => {
+  const theme = getTierTheme(entry)
+  return {
+    background: `radial-gradient(circle, rgba(${theme.glowRgb.join(',')}, 0.32) 0%, transparent 70%)`
+  }
+}
+
+const getQueueShortCode = (queueType?: string) => {
+  if (!queueType) return 'R'
+  if (queueType.includes('SOLO')) return 'S'
+  if (queueType.includes('FLEX')) return 'F'
+  if (queueType.includes('CHERRY')) return 'A'
+  return 'R'
 }
 
 const shouldRender = computed(() => {
   if (isCrossRegion.value) {
     return true
   }
-  return soloEntry.value !== null || isLoading.value
+  return primaryEntry.value !== null || isLoading.value
 })
 
 const isUnrankedTier = (tier: string | undefined | null) => {
@@ -255,22 +516,15 @@ const getCurrentTier = (entry: Partial<RankedEntry>) => {
   return isUnrankedTier(entry.tier) ? 'UNRANKED' : entry.tier!
 }
 
-const formatEntryTopRecord = (entry: Partial<RankedEntry>) => {
-  const wins = entry.wins ?? 0
-  const losses = entry.losses ?? 0
-  const total = wins + losses
-  const winRate = total > 0 ? ((wins / total) * 100).toFixed(1) : '0.0'
-
-  return `${t('playerTabs.ranked.winRate')} ${winRate}%`
+const hasLosses = (entry?: Partial<RankedEntry> | null) => {
+  return typeof entry?.losses === 'number' && entry.losses > 0
 }
 
-const formatShortRecord = (entry: Partial<RankedEntry>) => {
-  if (!isRankedEntry(entry)) return '—'
+const formatWinRate = (entry: Partial<RankedEntry>) => {
   const wins = entry.wins ?? 0
   const losses = entry.losses ?? 0
   const total = wins + losses
-  const wr = total > 0 ? ((wins / total) * 100).toFixed(1) : '0.0'
-  return `${wins}W / ${losses}L · ${wr}%`
+  return total > 0 ? ((wins / total) * 100).toFixed(1) : '0.0'
 }
 
 const formatTier = (entry: Partial<RankedEntry>) => {
@@ -279,7 +533,7 @@ const formatTier = (entry: Partial<RankedEntry>) => {
   const rawTier = entry.tier
 
   if (isUnrankedTier(rawTier)) {
-    return t('playerTabs.ranked.unranked', 'unranked')
+    return t('playerTabs.ranked.unranked', 'Chưa xếp hạng')
   }
 
   const tier = t(`tiers.${rawTier}`, {
@@ -300,7 +554,7 @@ const formatHighestTier = (entry: Partial<RankedEntry>) => {
   if (!entry) return ''
 
   if (isUnrankedTier(entry.highestTier)) {
-    return t('playerTabs.ranked.unranked', 'unranked')
+    return t('playerTabs.ranked.unranked', 'Chưa xếp hạng')
   }
 
   const tier = t(`tiers.${entry.highestTier}`, {
@@ -319,173 +573,223 @@ const formatHighestTier = (entry: Partial<RankedEntry>) => {
 </script>
 
 <style scoped>
-/* ── Override glass-card for rank cards: dimmer bg ── */
-.rank-card-primary.glass-card,
-.rank-card-secondary.glass-card {
-  background: rgba(22, 18, 38, 0.25);
-}
-
-/* ── Rank Glow (tier-based ambient glow around emblem) ── */
-.rank-emblem-glow {
-  position: absolute;
-  inset: -28px;
-  background: radial-gradient(circle, rgb(var(--rank-glow, 139 74 255) / var(--rank-glow-a, 0.15)) 0%, transparent 70%);
-  pointer-events: none;
-  border-radius: 50%;
-}
-
-.rank-emblem-glow-sm {
-  position: absolute;
-  inset: -14px;
-  background: radial-gradient(circle, rgb(var(--rank-glow, 139 74 255) / var(--rank-glow-a, 0.1)) 0%, transparent 70%);
-  pointer-events: none;
-  border-radius: 50%;
-}
-
-/* ── Card: Solo (primary) ── */
-.rank-card-primary {
-  min-height: 140px;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+/* ── Modern HUD Card Outer Container ── */
+.ranked-hud-card {
   position: relative;
-  overflow: hidden;
-}
-
-.rank-card-inner {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3.5px solid var(--tier-accent, rgba(255, 255, 255, 0.2));
+  background: rgba(18, 20, 26, 0.72);
+  backdrop-filter: blur(12px);
+  user-select: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-.rank-emblem-wrap {
-  width: 120px;
-  height: 120px;
+.ranked-hud-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  border-left-color: var(--tier-accent, rgba(255, 255, 255, 0.45));
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.ranked-hud-primary {
+  min-width: 330px;
+  max-width: 390px;
+  height: 78px;
+  padding: 6px 12px 6px 8px;
+}
+
+.ranked-hud-secondary {
+  min-width: 210px;
+  max-width: 270px;
+  height: 78px;
+  padding: 6px 12px 6px 8px;
+}
+
+/* ── Left: Crest ── */
+.hud-crest-wrap {
+  position: relative;
+  width: 58px;
+  height: 58px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  z-index: 2;
 }
 
-.rank-emblem-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  position: relative;
+.hud-crest-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  pointer-events: none;
   z-index: 1;
 }
 
-/* ── Card: Flex (secondary) ── */
-.rank-card-secondary {
-  min-height: 140px;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  overflow: hidden;
-}
-
-.rank-card-inner-sm {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-}
-
-.rank-emblem-wrap-sm {
-  width: 72px;
-  height: 72px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.rank-emblem-wrap-sm img {
-  width: 100%;
-  height: 100%;
+.hud-crest-img {
+  width: 52px;
+  height: 52px;
   object-fit: contain;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
 }
 
-/* ── Info column (shared) ── */
-.rank-info-col {
+/* ── Center: Info ── */
+.hud-info-wrap {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  justify-content: center;
   min-width: 0;
+  flex: 1;
+  padding-left: 6px;
+  z-index: 2;
 }
 
-.queue-label {
+.hud-queue-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #c084fc;
+  font-size: 8.5px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hud-queue-title {
   font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  color: var(--la-color-text-primary);
-  opacity: 0.45;
-  margin-bottom: 2px;
-}
-
-.tier-text {
-  font-size: 18px;
   font-weight: 700;
-  color: var(--la-color-text-primary);
-  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.55);
 }
 
-.lp-text {
-  font-size: 13px;
+.hud-tier-name {
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.4px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hud-lp-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 10px;
+  font-weight: 700;
   font-family: 'JetBrains Mono', 'Consolas', monospace;
-  color: var(--la-color-text-primary);
-  opacity: 0.55;
+  line-height: 1;
 }
 
-.record-text {
-  font-size: 11px;
-  color: var(--la-color-text-primary);
-  opacity: 0.38;
-}
-
-.highest-row {
-  display: flex;
+.hud-highest-pill {
+  display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 10px;
-  color: var(--la-color-text-primary);
-  opacity: 0.38;
-  margin-top: 2px;
-}
-
-.highest-row img {
-  width: 12px;
-  height: 12px;
-}
-
-/* ── Win rate chip (top-right corner on solo card) ── */
-.rank-wr-chip {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  font-size: 10px;
+  padding: 0 4px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  font-size: 9.5px;
   font-weight: 600;
-  color: var(--la-color-text-primary);
-  opacity: 0.5;
-  letter-spacing: 0.2px;
+  color: rgba(255, 255, 255, 0.65);
 }
 
-/* ── Cross region ── */
-.rank-card-cross {
-  min-height: 116px;
+/* ── Right: Mini Ring Gauge ── */
+.hud-gauge-wrap {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 8px;
+  z-index: 2;
 }
 
-/* ── Emblem size in modal ── */
-.rank-emblem-wrap-md {
-  width: 72px;
-  height: 72px;
+.hud-gauge-svg {
+  position: absolute;
+  inset: 0;
+}
+
+.hud-gauge-text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hud-gauge-bg-circle {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Light Mode Adaptations (Anti-Glare & High Readability) ── */
+[data-theme='light'] .ranked-hud-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 3.5px solid var(--tier-accent, rgba(0, 0, 0, 0.2));
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme='light'] .ranked-hud-card:hover {
+  border-color: rgba(0, 0, 0, 0.16);
+  border-left-color: var(--tier-accent, rgba(0, 0, 0, 0.45));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='light'] .hud-queue-badge {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: rgba(168, 85, 247, 0.25);
+  color: #7e22ce;
+}
+
+[data-theme='light'] .hud-queue-title {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+[data-theme='light'] .hud-tier-name {
+  color: var(--tier-accent, #2563eb);
+  background-image: none !important;
+  -webkit-text-fill-color: var(--tier-accent, #2563eb) !important;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
+}
+
+[data-theme='light'] .hud-lp-pill {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme='light'] .hud-highest-pill {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme='light'] .hud-gauge-bg-circle {
+  stroke: rgba(0, 0, 0, 0.08);
 }
 </style>

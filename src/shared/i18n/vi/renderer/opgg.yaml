@@ -5,6 +5,7 @@ opgg:
     pin: Ghim
     unpin: Bỏ Ghim
     repositionToAlignLeagueClientUx: Căn chỉnh với giao diện máy khách
+    title: Dữ liệu tướng
   filters:
     toOpgg: Đến OP.GG
     refresh: Làm Mới
@@ -23,6 +24,8 @@ opgg:
       nexus_blitz: Nexus Blitz
       urf: URF
       none: Không Có
+      classic: Cổ điển
+      aram_mayhem: 'ARAM: Mayhem'
     positions:
       top: Đường Trên
       jungle: Đi Rừng
@@ -63,6 +66,13 @@ opgg:
       challenger: Thách Đấu
     settings:
       button: Cài Đặt
+    source: Nguồn dữ liệu
+    openSource: Mở {{source}}
+    sourceActive: 'Nguồn dữ liệu hiện tại: {{source}}'
+    sourceFallback: Nguồn ưu tiên không khả dụng, đã tự động chuyển sang {{source}}
+    sources:
+      opgg: OP.GG
+      qq101: 101 (CN)
   championTable:
     searchPlaceholder: Tìm theo tên
     columns:
@@ -99,6 +109,9 @@ opgg:
       autoApplyItems:
         label: Tự Động Áp Trang Bị
         description: Tự động áp dụng trang bị nếu dữ liệu tướng khớp với chế độ hiện tại. Chỉ hiệu quả khi cửa sổ OP.GG được bật và hiển thị
+      defaultSource:
+        label: Nguồn dữ liệu mặc định
+        description: Nguồn dữ liệu ưu tiên khi mở cửa sổ; nguồn không khả dụng sẽ bị tắt
     success: 'Yêu cầu đã gửi: {{reason}}'
     summonerSpells: Phép Bổ Trợ
     runes: Bảng Ngọc
@@ -108,6 +121,7 @@ opgg:
     runesSet: '[$t(common:appName)] {{action}} bảng ngọc: {{name}}'
     sessionChampions:
       title: Tướng Trong Phiên
+    dataUnavailable: Nguồn dữ liệu hiện tại không hỗ trợ chế độ này hoặc tạm thời không khả dụng
   champion:
     boots: Giày
     adorableRabi: Thỏ Con Dễ Thương
@@ -167,3 +181,22 @@ opgg:
     coreItem: 'Trang Bị Chính #{{index}} | Tỉ Lệ Chọn {{pickRate}}%'
     starterItem: 'Trang Bị Khởi Đầu #{{index}} | Tỉ Lệ Chọn {{pickRate}}%'
     cancel: Hủy
+  mayhemOverview:
+    dataDate: Ngày dữ liệu {{date}}
+    noDataToday: Không có dữ liệu trong ngày này
+    sections:
+      champions: Bảng xếp hạng tướng
+      augments: Lõi nâng cấp
+      synergies: Tổ hợp tướng
+    columns:
+      augment: Lõi nâng cấp
+      rarity: Phẩm chất
+      bestChampions: Tướng phù hợp
+      combination: Tổ hợp tướng
+  workspace:
+    data: Dữ liệu tướng
+    champSelect: Trợ thủ chọn tướng
+  champSelectAssistant:
+    status: Trạng thái & Thao tác chọn tướng
+    active: Đang diễn ra
+    waitingForChampion: Đang chờ chọn tướng

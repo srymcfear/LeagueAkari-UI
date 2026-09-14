@@ -71,10 +71,7 @@ const { nodeMap, updateNode, deleteNode } = useMatchHistoryFilterEditor()
 const node = computed(
   () =>
     nodeMap.value[nodeId] as
-      | IsAbortCombinator
-      | IsRemakeCombinator
-      | IsWinCombinator
-      | IsLossCombinator
+      IsAbortCombinator | IsRemakeCombinator | IsWinCombinator | IsLossCombinator
 )
 
 const handleUpdateIsSurrender = (value: boolean) => {

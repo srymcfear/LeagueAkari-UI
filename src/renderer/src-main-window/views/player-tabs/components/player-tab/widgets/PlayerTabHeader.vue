@@ -1,16 +1,16 @@
 <template>
-  <div class="flex items-center">
-    <!-- name & something -->
-    <div class="flex h-16 min-w-0 flex-1">
+  <div class="flex items-center justify-between gap-4">
+    <!-- name & something (Left) -->
+    <div class="flex h-16 min-w-0 flex-1 basis-0 items-center">
       <!-- profile icon / summoner level -->
-      <div class="relative size-16">
+      <div class="relative size-14 shrink-0">
         <LcuImage
-          class="size-full rounded"
+          class="size-full rounded-full ring-2 ring-purple-500/20"
           :src="summoner ? profileIconUri(summoner.profileIconId) : undefined"
         />
         <div
           v-if="summoner"
-          class="absolute -right-1 -bottom-1 rounded px-1 py-0.5 text-[10px] dark:bg-black/40 dark:text-white"
+          class="absolute -right-1 -bottom-1 rounded-full bg-black/80 px-1.5 py-0.5 text-[10px] font-bold text-white"
         >
           {{ summoner.level }}
         </div>
@@ -19,37 +19,36 @@
       <!-- name & tag -->
       <StreamerModeMaskedText>
         <template #masked>
-          <div class="ml-3 flex flex-col gap-1 self-center">
-            <div class="flex items-center gap-1">
-              <span class="text-xl font-bold text-black dark:text-white">{{ maskedName }}</span>
-            </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400">
+          <div class="ml-3 flex min-w-0 flex-col justify-center">
+            <span class="truncate text-lg leading-tight font-bold text-black dark:text-white">{{
+              maskedName
+            }}</span>
+            <div class="text-xs text-gray-500 dark:text-gray-400">
               {{ maskedTagLine }}
             </div>
           </div>
         </template>
-        <div class="ml-3 flex flex-col gap-1 self-center">
-          <div class="flex items-center gap-1">
-            <CopyableText
-              class="font-bold text-black dark:text-white"
-              :class="summoner && summoner.gameName.length >= 16 ? 'text-sm' : 'text-xl'"
-              :text="summoner ? `${summoner.gameName}#${summoner.tagLine}` : '—'"
-            >
-              {{ summoner?.gameName || '—' }}
-            </CopyableText>
-          </div>
-          <div class="text-sm text-gray-500 dark:text-gray-400">
+        <div class="ml-3 flex min-w-0 flex-col justify-center">
+          <CopyableText
+            class="truncate text-lg leading-tight font-bold text-black dark:text-white"
+            :text="summoner ? `${summoner.gameName}#${summoner.tagLine}` : '—'"
+          >
+            {{ summoner?.gameName || '—' }}
+          </CopyableText>
+          <div class="text-xs text-gray-500 dark:text-gray-400">
             {{ summoner ? `#${summoner.tagLine}` : '—' }}
           </div>
         </div>
       </StreamerModeMaskedText>
     </div>
 
-    <!-- ranked -->
-    <RankedPane />
+    <!-- ranked (Center) -->
+    <div class="flex shrink-0 items-center justify-center">
+      <RankedPane />
+    </div>
 
-    <!-- buttons -->
-    <div class="ml-8 flex justify-end gap-2">
+    <!-- buttons (Right) -->
+    <div class="flex flex-1 basis-0 items-center justify-end gap-1.5">
       <!-- tag edit -->
       <NPopover
         v-if="!isSelfTab && !isCrossRegion"
@@ -58,7 +57,7 @@
         placement="bottom-end"
       >
         <template #trigger>
-          <NButton secondary class="size-10.5!">
+          <NButton secondary size="small" circle>
             <template #icon>
               <NIcon><Edit20Filled /></NIcon>
             </template>
@@ -74,7 +73,7 @@
       </NPopover>
 
       <!-- refresh -->
-      <NButton secondary class="size-10.5!" :loading="isSomethingLoading" @click="refresh">
+      <NButton secondary size="small" circle :loading="isSomethingLoading" @click="refresh">
         <template #icon>
           <NIcon><RefreshSharp /></NIcon>
         </template>

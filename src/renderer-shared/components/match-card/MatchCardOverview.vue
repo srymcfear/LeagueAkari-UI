@@ -10,44 +10,48 @@
     :style="cardStyle"
   >
     <div class="match-card-inner">
-      <div class="champion-block">
+      <!-- 1. Meta Column: Mode, Result, Duration, Time -->
+      <div class="meta-col">
+        <div class="meta-queue" :title="resources.queues.name(basicInfo.queueId)">
+          {{ resources.queues.name(basicInfo.queueId) }}
+        </div>
+        <div class="meta-time">{{ formattedRelativeTime }}</div>
+        <div class="meta-result" :class="winStyleType">{{ resultLabel }}</div>
+        <div class="meta-duration">{{ formatSeconds(basicInfo.gameDuration) }}</div>
+      </div>
+
+      <!-- 2. Champion Column: Icon + Spells & Runes -->
+      <div class="champion-col">
         <div class="champion-icon">
           <ChampionIcon :champion-id="participant.championId" class="champ-img" />
           <span class="champion-level">{{ participant.level }}</span>
           <div v-if="shouldShowCrown" class="champ-crown">
-            <NIcon class="text-orange-600 dark:text-yellow-500 text-xs"><Crown /></NIcon>
+            <NIcon class="text-xs text-orange-500"><Crown /></NIcon>
           </div>
         </div>
-        <div class="spells-row">
-          <SummonerSpellDisplay :spell-id="participant.spells[0]" :size="20" />
-          <SummonerSpellDisplay :spell-id="participant.spells[1]" :size="20" />
-        </div>
-        <div v-if="displayParts.runes && perks" class="runes-row">
-          <PerkDisplay :perk-id="perks.primaryPerkId" :size="16" />
-          <PerkstyleDisplay :perkstyle-id="perks.subPerkStyleId" :size="16" />
-        </div>
-        <div v-if="displayParts.augments" class="augments-row">
-          <AugmentDisplay v-for="aug in participant.augments" :key="aug" :augment-id="aug" :size="20" />
+        <div class="spells-runes-wrap">
+          <div class="spells-col">
+            <SummonerSpellDisplay :spell-id="participant.spells[0]" :size="16" />
+            <SummonerSpellDisplay :spell-id="participant.spells[1]" :size="16" />
+          </div>
+          <div v-if="displayParts.runes && perks" class="runes-col">
+            <PerkDisplay :perk-id="perks.primaryPerkId" :size="15" />
+            <PerkstyleDisplay :perkstyle-id="perks.subPerkStyleId" :size="15" />
+          </div>
+          <div v-if="displayParts.augments" class="augments-col">
+            <AugmentDisplay
+              v-for="aug in participant.augments.slice(0, 4)"
+              :key="aug"
+              :augment-id="aug"
+              :size="15"
+            />
+          </div>
         </div>
       </div>
 
-      <div class="match-info">
-        <div class="match-header">
-          <div class="summoner-name">
-            <span v-if="!hidePrivacy && participant.gameName" class="sname-text">{{ participant.gameName }}</span>
-            <span v-else class="sname-text">{{ resources.champions.name(participant.championId) }}</span>
-            <span class="result-badge">{{ resultLabel }}</span>
-          </div>
-          <div class="result-meta">
-            <span>{{ resources.queues.name(basicInfo.queueId) }}</span>
-            <span class="sep">·</span>
-            <span>{{ formatSeconds(basicInfo.gameDuration) }}</span>
-            <span class="sep">·</span>
-            <span>{{ formattedRelativeTime }}</span>
-          </div>
-        </div>
-
-        <div class="kda-stats-row">
+      <!-- 3. KDA & Items Column -->
+      <div class="kda-items-col">
+        <div class="kda-header">
           <div class="kda-numbers">
             <span class="kills">{{ participant.kills }}</span>
             <span class="sep">/</span>
@@ -62,97 +66,122 @@
                 : participant.kda.toFixed(1) + ' KDA'
             }}
           </span>
-          <div class="stats-mini">
-          <div class="stat-item">
-            <span class="stat-value">{{ formatExtremeNumber(participant.cs) }}</span>
-            <span class="stat-label">CS</span>
-            <span v-if="displayParts.cs" class="stat-sub">({{ (participant.cs / (basicInfo.gameDuration / 60)).toFixed(1) }}/m)</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">{{ formatExtremeNumber(participant.totalDamageDealtToChampions) }}</span>
-            <span class="stat-label">DMG</span>
-          </div>
-          <div class="stat-item dmg-bar-item">
-            <span class="stat-label">DMG Share</span>
-            <div class="dmg-bar">
-              <div
-                class="dmg-bar-fill"
-                :style="{ width: dmgSharePct + '%' }"
-              />
-            </div>
-            <span class="stat-value dmg-pct">{{ dmgSharePct }}%</span>
-          </div>
         </div>
-
-        </div>
-
-        <div class="items-row" style="margin-top: 2px">
+        <div class="items-row">
           <ItemDisplay
             v-for="item of participant.items.slice(0, 6)"
             :key="item"
             :item-id="item"
-            :size="28"
+            :size="20"
           />
-          <ItemDisplay v-if="participant.items[6]" :item-id="participant.items[6]" :size="18" is-trinket />
+          <ItemDisplay
+            v-if="participant.items[6]"
+            :item-id="participant.items[6]"
+            :size="16"
+            is-trinket
+          />
         </div>
+      </div>
 
-        <div v-if="basicInfo.isTwoTeam" class="players-section">
-          <div class="teammates-row" v-if="teammateChips.length">
-            <div
-              v-for="t in teammateChips"
-              :key="t.puuid"
-              class="teammate-chip chip-ally"
-              @click="navigateToSummonerByPuuid(t.puuid)"
-              @mousedown="handleMouseDown"
-              @mouseup="handleMouseUp($event, t.puuid)"
-            >
-              <ChampionIcon :champion-id="t.championId" class="chip-champ" />
-              <span class="chip-name" :class="{ 'chip-self': t.puuid === puuid }">
-                {{ hidePrivacy ? resources.champions.name(t.championId) : t.gameName }}
-              </span>
-            </div>
+      <!-- 4. Stats Column (Damage + CS) -->
+      <div class="stats-col">
+        <div class="stat-line">
+          <span class="stat-label">Sát thương</span>
+          <span class="stat-value">{{
+            formatExtremeNumber(participant.totalDamageDealtToChampions)
+          }}</span>
+        </div>
+        <div class="dmg-bar-wrap">
+          <div class="dmg-bar">
+            <div class="dmg-bar-fill" :style="{ width: dmgSharePct + '%' }" />
           </div>
-          <div class="teammates-row" v-if="enemyChips.length">
-            <div
-              v-for="e in enemyChips"
-              :key="e.puuid"
-              class="teammate-chip chip-enemy"
-              @click="navigateToSummonerByPuuid(e.puuid)"
-              @mousedown="handleMouseDown"
-              @mouseup="handleMouseUp($event, e.puuid)"
+          <span class="dmg-pct">{{ dmgSharePct }}%</span>
+        </div>
+        <div class="stat-line">
+          <span class="stat-label">Chỉ số lính</span>
+          <span class="stat-value">
+            {{ formatExtremeNumber(participant.cs) }}
+            <span v-if="displayParts.cs" class="stat-sub"
+              >({{ (participant.cs / (basicInfo.gameDuration / 60)).toFixed(1) }})</span
             >
-              <ChampionIcon :champion-id="e.championId" class="chip-champ" />
-              <span class="chip-name">{{ hidePrivacy ? resources.champions.name(e.championId) : e.gameName }}</span>
-            </div>
+          </span>
+        </div>
+      </div>
+
+      <!-- 5. Players Column (5 allies on left, 5 enemies on right) -->
+      <div v-if="basicInfo.isTwoTeam" class="players-col">
+        <div class="players-team">
+          <div
+            v-for="p in allyTeamPlayers"
+            :key="p.puuid"
+            class="player-item"
+            :class="{ 'player-self': p.puuid === puuid }"
+            @click="navigateToSummonerByPuuid(p.puuid)"
+            @mousedown="handleMouseDown"
+            @mouseup="handleMouseUp($event, p.puuid)"
+          >
+            <ChampionIcon :champion-id="p.championId" class="player-icon" />
+            <span class="player-name">{{
+              hidePrivacy ? resources.champions.name(p.championId) : p.gameName
+            }}</span>
           </div>
         </div>
+        <div class="players-team">
+          <div
+            v-for="p in enemyTeamPlayers"
+            :key="p.puuid"
+            class="player-item"
+            @click="navigateToSummonerByPuuid(p.puuid)"
+            @mousedown="handleMouseDown"
+            @mouseup="handleMouseUp($event, p.puuid)"
+          >
+            <ChampionIcon :champion-id="p.championId" class="player-icon" />
+            <span class="player-name">{{
+              hidePrivacy ? resources.champions.name(p.championId) : p.gameName
+            }}</span>
+          </div>
+        </div>
+      </div>
 
-        <div v-else-if="basicInfo.isCherrySubteam" class="teammates-row">
-          <template v-for="team of cherryTeams" :key="team[0].teamIdentifier">
+      <!-- Cherry Arena Players -->
+      <div v-else-if="basicInfo.isCherrySubteam" class="cherry-col">
+        <template v-for="team of cherryTeams.slice(0, 4)" :key="team[0].teamIdentifier">
+          <div class="cherry-team-row">
+            <span class="cherry-rank">{{ team[0].subteamPlacement }}</span>
             <div
               v-for="player in team"
               :key="player.puuid"
-              class="teammate-chip"
+              class="player-item"
               @click="navigateToSummonerByPuuid(player.puuid)"
               @mousedown="handleMouseDown"
               @mouseup="handleMouseUp($event, player.puuid)"
             >
-              <span class="cherry-pl">{{ player.subteamPlacement }}</span>
-              <ChampionIcon :champion-id="player.championId" class="chip-champ" />
-              <span class="chip-name">{{ hidePrivacy ? resources.champions.name(player.championId) : player.gameName }}</span>
+              <ChampionIcon :champion-id="player.championId" class="player-icon" />
+              <span class="player-name">{{
+                hidePrivacy ? resources.champions.name(player.championId) : player.gameName
+              }}</span>
             </div>
-          </template>
-        </div>
+          </div>
+        </template>
       </div>
-    </div>
 
-    <div class="match-card-footer" @click="$emit('toggle-expand')">
-      <button class="expand-btn" :class="{ active: isExpanded }">
-        {{ isExpanded ? 'Hide Details' : 'Details' }}
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </button>
+      <!-- 6. Expand Action -->
+      <div class="action-col" @click="$emit('toggle-expand')">
+        <button class="expand-btn-icon" :class="{ active: isExpanded }">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -216,7 +245,8 @@ const perks = computed(() => {
   const { styles } = participant.value.perks
   const primaryStyle = styles[0]
   const subStyle = styles[1]
-  if (!primaryStyle || !subStyle || !primaryStyle.selections[0]?.perk || !subStyle.style) return null
+  if (!primaryStyle || !subStyle || !primaryStyle.selections[0]?.perk || !subStyle.style)
+    return null
   return {
     primaryPerkId: primaryStyle.selections[0].perk,
     subPerkStyleId: subStyle.style
@@ -245,27 +275,26 @@ const resultLabel = computed(() => {
 
 const dmgSharePct = computed(() => {
   if (!participant.value || !team.value) return 0
-  const teamDmg = teams.value.teamStatMap[participant.value.teamIdentifier]?.totalDamageDealtToChampions
+  const teamDmg =
+    teams.value.teamStatMap[participant.value.teamIdentifier]?.totalDamageDealtToChampions
   if (!teamDmg) return 0
   return Math.min(100, Math.round((participant.value.totalDamageDealtToChampions / teamDmg) * 100))
 })
 
-const teammateChips = computed(() => {
+const allyTeamPlayers = computed(() => {
   if (!basicInfo.value.isTwoTeam || !participant.value) return []
   return participants.value
-    .filter((p) => p.teamIdentifier === participant.value!.teamIdentifier && p.puuid !== puuid.value)
-    .slice(0, 4)
+    .filter((p) => p.teamIdentifier === participant.value!.teamIdentifier)
+    .slice(0, 5)
 })
 
-const enemyChips = computed(() => {
+const enemyTeamPlayers = computed(() => {
   if (!basicInfo.value.isTwoTeam || !participant.value) return []
   const enemyId = teams.value.teamStatsArr.find(
     (t) => t.teamIdentifier !== participant.value!.teamIdentifier
   )?.teamIdentifier
   if (!enemyId) return []
-  return participants.value
-    .filter((p) => p.teamIdentifier === enemyId)
-    .slice(0, 5)
+  return participants.value.filter((p) => p.teamIdentifier === enemyId).slice(0, 5)
 })
 
 const cherryTeams = computed(() => {

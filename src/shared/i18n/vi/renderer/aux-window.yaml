@@ -100,12 +100,14 @@ auxWindow:
         waitingForMembers_one: Ghép trận tự động cần {{count}} người chơi
         waitingForMembers_other: Ghép trận tự động cần {{count}} người chơi
         waitingForInvitees: Đang chờ thành viên được mời
+        waitingForMembers: Ghép đội tự động cần đủ {{count}} người
   skinSelection:
     skins_one: '{{count}} trang phục khả dụng'
     skins_other: '{{count}} trang phục khả dụng'
     button: Áp Dụng
     success: Áp dụng trang phục thành công
     failed: Áp dụng trang phục thất bại
+    skins: '{{count}} trang phục có sẵn'
   placeholder:
     inProgress: Đang Tiến Hành
     idle: Không có hoạt động nào

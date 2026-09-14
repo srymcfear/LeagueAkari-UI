@@ -113,8 +113,8 @@ const rendererZhCN = mergeRendererResources(
 )
 
 i18next.init({
-  lng: 'en',
-  fallbackLng: 'zh-CN',
+  lng: 'vi',
+  fallbackLng: ['vi', 'en'],
   debug: import.meta.env.DEV,
   interpolation: {
     escapeValue: false

@@ -13,10 +13,12 @@ notifications:
     noUpdateMd: Không có ghi chú phát hành
     ignoreThisVersion: Bỏ Qua Phiên Bản Này
     noUpdate: Không có bản cập nhật
+    cancelUpdate: Hủy cập nhật
+    retryUpdate: Thử lại cập nhật
   simple:
     elevatedStartup:
       title: Đang chạy với quyền quản trị
-      content: '$t(common:appName) hiện đang chạy với đặc quyền nâng cao'
+      content: $t(common:appName) hiện đang chạy với đặc quyền nâng cao
     newReleaseHints:
       title: Đã Có Phiên Bản Mới
       content: Phiên bản mới {{version}} đã có sẵn
@@ -28,8 +30,8 @@ notifications:
       toSettings: Đến Cài Đặt
       detected:
         title: Bạn đang phát trực tiếp?
-        liveTools: '$t(common:appName) đã phát hiện một hoặc nhiều công cụ phát trực tiếp đang chạy. Bạn có thể bật Chế Độ Streamer để ẩn thông tin nhạy cảm'
-        bySettings: '$t(common:appName) đã phát hiện chế độ phát trực tiếp của máy chủ Liên Minh đang bật. Bạn có thể bật chế độ phát trực tiếp để ẩn thông tin nhạy cảm'
+        liveTools: $t(common:appName) đã phát hiện một hoặc nhiều công cụ phát trực tiếp đang chạy. Bạn có thể bật Chế Độ Streamer để ẩn thông tin nhạy cảm
+        bySettings: $t(common:appName) đã phát hiện chế độ phát trực tiếp của máy chủ Liên Minh đang bật. Bạn có thể bật chế độ phát trực tiếp để ẩn thông tin nhạy cảm
     login-queue-task:
       name: Hàng Đợi Đăng Nhập
       description: 'Đang xếp hàng: {{position}} / {{maxPosition}} (dự kiến {{waitTime}})'
@@ -80,6 +82,9 @@ notifications:
       content: 'Không thể tải bản cập nhật: {{error}}. Vui lòng kiểm tra kết nối mạng hoặc xem thông báo để biết thêm giải pháp khả thi.'
       positiveText: Xem Thông Báo
       negativeText: Bỏ Qua
+    nativeInputInitializationFailed:
+      title: Khởi tạo đầu vào nguyên bản thất bại
+      content: Phím tắt và chức năng mô phỏng phím trong game đã bị tắt. Vui lòng kiểm tra xem phần mềm diệt virus có chặn tệp hay không, sau đó khởi động lại $t(common:appName). Xem chi tiết tại nhật ký.
   selfUpdate:
     tasks:
       title: Tự Động Cập Nhật
@@ -87,3 +92,10 @@ notifications:
       updateOnQuit: Đã áp dụng bản cập nhật. Khởi động lại ứng dụng để áp dụng
       lastUpdateFailed: Lần cập nhật trước thất bại, vui lòng kiểm tra nhật ký và thử tải phiên bản mới nhất từ kho chính thức
       lastUpdateSuccess: Đã cập nhật lên {{version}}
+selfUpdate:
+  tasks:
+    title: Tự động cập nhật
+    start-update: Đang bắt đầu cập nhật $t(common:appName)
+    updateOnQuit: Cập nhật đã tải xong, khởi động lại ứng dụng để áp dụng bản cập nhật
+    lastUpdateFailed: Lần cập nhật trước không thành công, vui lòng kiểm tra nhật ký và tải bản mới nhất từ kho lưu trữ
+    lastUpdateSuccess: Đã cập nhật thành công lên {{version}}

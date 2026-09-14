@@ -10,13 +10,7 @@ import { AxiosInstance } from 'axios'
 import type { HttpApiRequestOptions } from '../request-options'
 
 export type AvailabilityType =
-  | 'chat'
-  | 'mobile'
-  | 'dnd'
-  | 'away'
-  | 'offline'
-  | 'online'
-  | 'spectating'
+  'chat' | 'mobile' | 'dnd' | 'away' | 'offline' | 'online' | 'spectating'
 
 export class ChatHttpApi {
   constructor(private _http: AxiosInstance) {}

@@ -91,6 +91,7 @@ matchCard:
     itemPurchases: Trang Bị Đã Mua
     noItemPurchases: Không có trang bị
     evolved: Tiến Hóa
+    anvils: Đe trang bị
   detailsTab:
     gameId: ID Trận
     gameVersion: Phiên Bản Trận
@@ -188,6 +189,7 @@ matchCard:
         minion: Lính
         monster: Quái
         other: Khác
+    plateCount: '{{count}} Giáp trụ'
   tags:
     times: '{{label}}×{{count}}'
     multiKill:

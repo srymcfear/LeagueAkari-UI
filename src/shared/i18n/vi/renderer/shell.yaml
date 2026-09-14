@@ -136,6 +136,35 @@ titlebar:
     maximize: Phóng to
     restore: Khôi phục
     close: Đóng
+  automation:
+    trigger: Kích hoạt
+    title: Tự động hóa
+    configuredModes_one: '{{count}} chế độ đã cấu hình'
+    configuredModes_other: '{{count}} chế độ đã cấu hình'
+    configuredChampions_one: '{{count}} tướng đã chọn'
+    configuredChampions_other: '{{count}} tướng đã chọn'
+    scheduledFriends_one: '{{count}} bạn bè đã hẹn lịch'
+    scheduledFriends_other: '{{count}} bạn bè đã hẹn lịch'
+    items:
+      autoAccept: Tự động chấp nhận
+      autoHonor: Tự động vinh danh
+      autoPickChamp: Tự động chọn tướng
+      autoBanChamp: Tự động cấm tướng
+      autoMatchmaking: Tự động ghép trận
+      autoHandleGameExit: Tự động xử lý kết thúc trận
+      autoReconnect: Tự động kết nối lại
+      autoReply: Tự động trả lời
+      autoAcceptInvitation: Tự động nhận lời mời
+    status:
+      active: Đang hoạt động
+      idle: Chờ lệnh
+      disabled: Đã tắt
+      allDisabled: Tất cả tự động hóa đang tắt
+    groups:
+      gameflow: Tiến trình trận đấu
+      champSelect: Chọn tướng
+      lobby: Phòng chờ & Bạn bè
+    viewSettings: Mở cài đặt
 window:
   closeConfirm:
     title: Thoát $t(common:appName)

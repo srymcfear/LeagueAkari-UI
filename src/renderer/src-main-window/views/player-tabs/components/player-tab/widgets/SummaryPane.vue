@@ -1,5 +1,8 @@
 <template>
-  <div class="rounded-lg bg-black/5 p-3 dark:bg-white/5 border border-black/5 dark:border-white/5" v-if="analysis">
+  <div
+    class="rounded-lg border border-black/5 bg-black/5 p-3 dark:border-white/5 dark:bg-white/5"
+    v-if="analysis"
+  >
     <div class="mb-2.5 text-sm font-bold text-gray-900 dark:text-white">
       {{ t('playerTabs.summary.title') }}
     </div>

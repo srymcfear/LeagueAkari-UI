@@ -61,4 +61,13 @@ describe('RankedPane', () => {
     expect(html).toContain('MASTER I')
     expect(html).not.toContain('DIAMOND IV')
   })
+
+  it('omits loss count and win rate gauge when losses are 0 or not available', async () => {
+    rankedStats.queueMap.RANKED_SOLO_5x5.losses = 0
+    const html = await renderToString(createSSRApp(RankedPane))
+
+    expect(html).toContain('138W')
+    expect(html).not.toContain('0L')
+    expect(html).not.toContain('100.0%')
+  })
 })

@@ -7,9 +7,9 @@ import mainZhCN from '@shared/i18n/zh-CN/main.yaml'
 import i18next from 'i18next'
 
 i18next.init({
-  lng: 'zh-CN',
+  lng: 'vi',
   debug: process.env.NODE_ENV === 'development',
-  fallbackLng: 'zh-CN',
+  fallbackLng: ['vi', 'en'],
   interpolation: {
     escapeValue: false
   },

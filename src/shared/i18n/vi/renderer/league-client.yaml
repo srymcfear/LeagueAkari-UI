@@ -23,3 +23,5 @@ leagueClient:
       target: Đang thử kết nối đến {{target}}...
   selfHostedLcuData:
     reloadFriendsFailed: Tải lại danh sách bạn bè thất bại
+selfHostedLcuData:
+  reloadFriendsFailed: Tải lại danh sách bạn bè thất bại

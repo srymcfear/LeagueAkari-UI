@@ -191,6 +191,21 @@ automation:
     unselected: Chưa Chọn
     moveUp: Di Chuyển Lên
     moveDown: Di Chuyển Xuống
+    pickModalTitle: Chọn tướng ưu tiên
+    banModalTitle: Cấm tướng ưu tiên
+    close: Đóng
+    candidateTitle: Danh sách tướng
+    selectedTitle: Tướng đã chọn
+    positionFilter: Vị trí
+    clear: Xóa toàn bộ
+    clearConfirm: Bạn có chắc chắn muốn xóa toàn bộ tướng đã chọn không?
+    confirmClear: Xác nhận xóa
+    cancel: Hủy
+    up: Lên
+    down: Xuống
+    remove: Xóa
+    empty: Chưa có tướng nào được chọn
+    searchPlaceholder: Tìm tướng...
   champConfig:
     championConfig:
       targetMode: Chế Độ Mục Tiêu

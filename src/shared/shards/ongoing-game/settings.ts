@@ -1,10 +1,5 @@
 export type OngoingGamePanelOrderPlayerBy =
-  | 'win-rate'
-  | 'kda'
-  | 'default'
-  | 'akari-score'
-  | 'position'
-  | 'premade-team'
+  'win-rate' | 'kda' | 'default' | 'akari-score' | 'position' | 'premade-team'
 
 export type OngoingGamePanelChampionUsage = 'recent' | 'mastery' | 'none'
 

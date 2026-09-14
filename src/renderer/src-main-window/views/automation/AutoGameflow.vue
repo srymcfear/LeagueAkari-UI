@@ -132,7 +132,7 @@
               class="w-25!"
               :value="store.settings.autoMatchmakingDelaySeconds"
               @update:value="(value) => shard.setAutoMatchmakingDelaySeconds(value || 0)"
-              placeholder="秒"
+              placeholder="giây"
               :min="0"
               size="small"
             />

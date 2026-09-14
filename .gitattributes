@@ -1,2 +1,12 @@
 resources/rebuild_WMI.bat text eol=crlf
 yarn.lock whitespace=cr-at-eol
+
+# Preserve custom UI layout and components during upstream merges
+src/renderer/src-main-window/components/BottomNavBar.vue merge=ours
+src/renderer/src-main-window/views/player-tabs/components/player-tab/widgets/PlayerTabCol1.vue merge=ours
+src/renderer/src-main-window/views/player-tabs/components/player-tab/widgets/PlayerTabCol2.vue merge=ours
+src/renderer/src-main-window/views/player-tabs/components/player-tab/widgets/RankedPane.vue merge=ours
+src/renderer/src-main-window/views/player-tabs/components/player-tab/PlayerTab.vue merge=ours
+src/renderer-shared/assets/css/theme-system.css merge=ours
+src/renderer-shared/components/match-card/match-card.css merge=ours
+src/renderer-shared/components/match-card/MatchCardOverview.vue merge=ours

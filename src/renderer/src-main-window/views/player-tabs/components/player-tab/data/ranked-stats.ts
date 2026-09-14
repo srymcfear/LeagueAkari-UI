@@ -109,7 +109,9 @@ export function provideRankedStats(props: {
     isLoading.value = true
 
     try {
-      const { data } = await lc.api.ranked.getRankedStats(puuid.value)
+      const { data } = isSelfTab.value
+        ? await lc.api.ranked.getCurrentRankedStats()
+        : await lc.api.ranked.getRankedStats(puuid.value)
       rankedStats.value = data
     } catch (error: any) {
       if (!silent) {

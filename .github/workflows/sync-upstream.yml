@@ -1,0 +1,50 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    # Chạy tự động mỗi 6 tiếng (00:00, 06:00, 12:00, 18:00 UTC)
+    - cron: '0 */6 * * *'
+  # Cho phép bấm nút "Run workflow" thủ công trên GitHub bất kỳ lúc nào
+  workflow_dispatch:
+
+jobs:
+  sync:
+    name: Sync with LeagueAkari Upstream
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config merge.ours.driver true
+          git config rerere.enabled true
+
+      - name: Add and fetch upstream
+        run: |
+          git remote add upstream https://github.com/LeagueAkari/LeagueAkari.git || true
+          git fetch upstream dev
+
+      - name: Check for updates and merge
+        run: |
+          git checkout dev
+          UPSTREAM_REV=$(git rev-parse upstream/dev)
+          BASE_REV=$(git merge-base HEAD upstream/dev)
+
+          if [ "$UPSTREAM_REV" = "$BASE_REV" ]; then
+            echo "Already up to date with upstream/dev. No action needed."
+            exit 0
+          fi
+
+          echo "New updates found in upstream/dev. Merging..."
+          git merge upstream/dev -m "chore(sync): auto-merge upstream updates while preserving custom layout"
+          git push origin dev
+          echo "Successfully synced and pushed to origin/dev!"

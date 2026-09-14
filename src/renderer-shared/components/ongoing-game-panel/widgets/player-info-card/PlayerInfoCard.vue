@@ -11,7 +11,6 @@
         : undefined
     }"
   >
-
     <PlayerInfoCardHeader :puuid="puuid" />
     <PlayerInfoCardStats :puuid="puuid" />
     <PlayerInfoCardJunglePathing :puuid="puuid" />

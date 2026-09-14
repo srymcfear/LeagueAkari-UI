@@ -382,8 +382,7 @@ export class AkariManager {
 
     const configParamIndex = Reflect.getMetadata('akari:configParamIndex', target) || -1
     const depOverrides = Reflect.getMetadata('akari:depOverrides', target) as
-      | Map<number, string | Constructor>
-      | undefined
+      Map<number, string | Constructor> | undefined
 
     const paramTypes: any[] = Reflect.getMetadata('design:paramtypes', target) || []
     const ctorParamDepIds = paramTypes.map((p: Function) => {

@@ -34,7 +34,11 @@
           :step="0.01"
           :format-tooltip="(v) => `${(v * 100).toFixed()}%`"
           :value="pts.frontendSettings.matchCardOpacity"
-          @update:value="(val) => { pts.frontendSettings.matchCardOpacity = val }"
+          @update:value="
+            (val) => {
+              pts.frontendSettings.matchCardOpacity = val
+            }
+          "
         />
       </SettingsRow>
     </SettingsSection>
