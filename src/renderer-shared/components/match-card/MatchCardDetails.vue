@@ -1,8 +1,15 @@
 <template>
   <!-- expanded details -->
   <div
-    class="transition-width @container relative mt-1 box-border w-full overflow-hidden rounded border border-solid bg-neutral-100/95 p-2 dark:bg-neutral-900/95"
-    :class="cardBorderClass"
+    class="match-card-details transition-width @container relative box-border w-full overflow-hidden border border-solid p-2.5"
+    :class="[
+      cardBorderClass,
+      team?.winResult === 'win'
+        ? 'match-details--win'
+        : team?.winResult === 'loss'
+          ? 'match-details--loss'
+          : 'match-details--neutral'
+    ]"
   >
     <!-- header -->
     <div class="mb-2 flex items-center gap-1">

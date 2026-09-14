@@ -5,15 +5,22 @@
     :class="{
       win: winStyleType === 'win',
       loss: winStyleType === 'loss',
-      remake: winStyleType === 'neutral'
+      remake: winStyleType === 'neutral',
+      'is-expanded': isExpanded
     }"
     :style="cardStyle"
   >
     <div class="match-card-inner">
       <!-- 1. Meta Column: Mode, Result, Duration, Time -->
       <div class="meta-col">
-        <div class="meta-queue" :title="resources.queues.name(basicInfo.queueId)">
-          {{ resources.queues.name(basicInfo.queueId) }}
+        <div class="meta-queue-row">
+          <div class="meta-queue" :title="resources.queues.name(basicInfo.queueId)">
+            {{ resources.queues.name(basicInfo.queueId) }}
+          </div>
+          <span v-if="isExpanded" class="viewing-badge">
+            <span class="viewing-pulse-dot" />
+            <span>Đang xem</span>
+          </span>
         </div>
         <div class="meta-time">{{ formattedRelativeTime }}</div>
         <div class="meta-result" :class="winStyleType">{{ resultLabel }}</div>

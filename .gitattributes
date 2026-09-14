@@ -10,3 +10,6 @@ src/renderer/src-main-window/views/player-tabs/components/player-tab/PlayerTab.v
 src/renderer-shared/assets/css/theme-system.css merge=ours
 src/renderer-shared/components/match-card/match-card.css merge=ours
 src/renderer-shared/components/match-card/MatchCardOverview.vue merge=ours
+src/renderer-shared/components/match-card/MatchCardDetails.vue merge=ours
+src/renderer/src-aux-window/views/Lounge.vue merge=ours
+
