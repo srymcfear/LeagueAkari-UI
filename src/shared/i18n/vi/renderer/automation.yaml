@@ -105,6 +105,16 @@ automation:
       description: Tính năng này đã bị tạm thời tắt trong LƯỢT chọn tướng này.
     groupTitle: Chế Độ Hoạt Động
     groupEmpty: Không Có Nhóm
+    groupNames:
+      ranked: Đấu Xếp Hạng
+      normal: Đấu Thường
+      aram: ARAM
+      cherry: Đấu Trường (Arena)
+      urf: Ultra Rapid Fire (URF)
+      oneforall: Một Cho Tất Cả
+      ultbook: Sách Phép Tối Thượng
+      bot: Đấu Với Máy
+      custom: Tùy Chọn
     pick:
       title: Tự Động Chọn
       enabled:

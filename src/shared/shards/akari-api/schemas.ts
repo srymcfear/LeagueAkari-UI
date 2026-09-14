@@ -119,10 +119,12 @@ export const AkariAutoSelectGroupsConfigSchema: z.ZodType<AkariAutoSelectGroupsC
       z
         .object({
           groupId: z.string(),
-          name: z.object({
-            'zh-CN': z.string(),
-            en: z.string()
-          }),
+          name: z
+            .object({
+              'zh-CN': z.string(),
+              en: z.string()
+            })
+            .catchall(z.string()),
           iconPath: z.string().regex(/^\/lol-game-data\/assets\/.+/),
           isCustom: z.boolean(),
           supportedSgpServers: z.array(z.string()).min(1),

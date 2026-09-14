@@ -105,6 +105,16 @@ automation:
       description: The feature have been temporarily disabled in THIS champion selection.
     groupTitle: Active Mode
     groupEmpty: No Groups
+    groupNames:
+      ranked: Ranked
+      normal: Normal
+      aram: ARAM
+      cherry: Arena
+      urf: URF
+      oneforall: One for All
+      ultbook: Ultimate Spellbook
+      bot: Bot
+      custom: Custom
     pick:
       title: Auto Pick
       enabled:

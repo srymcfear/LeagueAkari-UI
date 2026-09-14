@@ -213,7 +213,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
   groups: [
     {
       groupId: 'ranked',
-      name: { 'zh-CN': '排位模式', en: 'Ranked' },
+      name: { 'zh-CN': '排位模式', en: 'Ranked', vi: 'Đấu Xếp Hạng' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Classic_SRU/img/game-select-icon-hover.png',
       isCustom: false,
@@ -232,7 +232,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
     },
     {
       groupId: 'normal',
-      name: { 'zh-CN': '普通模式', en: 'Normal' },
+      name: { 'zh-CN': '普通模式', en: 'Normal', vi: 'Đấu Thường' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Classic_SRU/img/game-select-icon-hover.png',
       isCustom: false,
@@ -251,7 +251,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
     },
     {
       groupId: 'aram',
-      name: { 'zh-CN': '大乱斗类', en: 'ARAM-like' },
+      name: { 'zh-CN': '大乱斗类', en: 'ARAM-like', vi: 'ARAM' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/ARAM/img/game-select-icon-hover.png',
       isCustom: false,
@@ -274,7 +274,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
     },
     {
       groupId: 'cherry',
-      name: { 'zh-CN': '斗魂竞技场', en: 'Arena' },
+      name: { 'zh-CN': '斗魂竞技场', en: 'Arena', vi: 'Đấu Trường (Arena)' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Cherry/img/game-select-icon-hover.png',
       isCustom: false,
@@ -293,7 +293,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
     },
     {
       groupId: 'urf',
-      name: { 'zh-CN': '无限火力', en: 'URF' },
+      name: { 'zh-CN': '无限火力', en: 'URF', vi: 'Ultra Rapid Fire (URF)' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Shared/img/icon-rgm-hover.png',
       isCustom: false,
@@ -312,7 +312,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
     },
     {
       groupId: 'oneforall',
-      name: { 'zh-CN': '克隆模式', en: 'One for All' },
+      name: { 'zh-CN': '克隆模式', en: 'One for All', vi: 'Một Cho Tất Cả' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Shared/img/icon-rgm-hover.png',
       isCustom: false,
@@ -331,7 +331,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
     },
     {
       groupId: 'ultbook',
-      name: { 'zh-CN': '终极魔典', en: 'Ultbook' },
+      name: { 'zh-CN': '终极魔典', en: 'Ultbook', vi: 'Sách Phép Tối Thượng' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Shared/img/icon-rgm-hover.png',
       isCustom: false,
@@ -350,7 +350,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
     },
     {
       groupId: 'bot',
-      name: { 'zh-CN': '人机模式', en: 'Bot' },
+      name: { 'zh-CN': '人机模式', en: 'Bot', vi: 'Đấu Với Máy' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Classic_SRU/img/game-select-icon-hover.png',
       isCustom: false,
@@ -369,7 +369,7 @@ export const BUILTIN_AUTO_SELECT_GROUPS: AkariAutoSelectGroupsConfig = {
     },
     {
       groupId: 'custom',
-      name: { 'zh-CN': '自定义对局', en: 'Custom' },
+      name: { 'zh-CN': '自定义对局', en: 'Custom', vi: 'Tùy Chọn' },
       iconPath:
         '/lol-game-data/assets/content/src/LeagueClient/GameModeAssets/Classic_SRU/img/game-select-icon-hover.png',
       isCustom: true,

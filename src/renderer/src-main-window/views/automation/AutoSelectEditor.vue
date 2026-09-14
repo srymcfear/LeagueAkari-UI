@@ -31,7 +31,7 @@
           >
             <LcuImage class="mr-2 h-4 w-4" :src="group.iconPath" />
             <span class="flex-1 truncate">
-              {{ group.name[app.settings.locale === 'en' ? 'en' : 'zh-CN'] }}
+              {{ getGroupName(group) }}
             </span>
             <div class="ml-auto flex gap-1">
               <NIcon
@@ -427,8 +427,12 @@ import { useAppCommonStore } from '@renderer-shared/shards/app-common/store'
 import { AutoSelectRenderer } from '@renderer-shared/shards/auto-select'
 import { useAutoSelectStore } from '@renderer-shared/shards/auto-select/store'
 import { useSgpStore } from '@renderer-shared/shards/sgp/store'
-import { isAutoSelectGroupSupportedOnSgpServer } from '@shared/shards/akari-api'
+import {
+  isAutoSelectGroupSupportedOnSgpServer,
+  type AkariAutoSelectGroup
+} from '@shared/shards/akari-api'
 import { Checkmark as CheckmarkIcon } from '@vicons/carbon'
+import i18next from 'i18next'
 import { useTranslation } from 'i18next-vue'
 import {
   NAlert,
@@ -453,6 +457,18 @@ import {
 import OrderedChampionList from './components/ordered-champion-list/OrderedChampionList.vue'
 
 const { t } = useTranslation()
+
+const getGroupName = (group: AkariAutoSelectGroup) => {
+  const locale = app.settings.locale
+  if (group.name && group.name[locale]) {
+    return group.name[locale]
+  }
+  const i18nKey = `automation.champSelect.groupNames.${group.groupId}`
+  if (i18next.exists(i18nKey)) {
+    return t(i18nKey)
+  }
+  return group.name?.[locale] || group.name?.en || group.name?.['zh-CN'] || group.groupId
+}
 
 const app = useAppCommonStore()
 const as = useInstance(AutoSelectRenderer)

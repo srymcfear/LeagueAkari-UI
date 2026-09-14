@@ -104,6 +104,7 @@ export interface AkariAutoSelectGroup {
   name: {
     'zh-CN': string
     en: string
+    [key: string]: string
   }
   iconPath: string
   isCustom: boolean
