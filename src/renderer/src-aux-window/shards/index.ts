@@ -4,6 +4,7 @@ import { AkariProtocolRenderer } from '@renderer-shared/shards/akari-protocol'
 import { AppCommonRenderer } from '@renderer-shared/shards/app-common'
 import { AutoGameflowRenderer } from '@renderer-shared/shards/auto-gameflow'
 import { AutoSelectRenderer } from '@renderer-shared/shards/auto-select'
+import { ChampSelectAiRenderer } from '@renderer-shared/shards/champ-select-ai'
 import { ExtraAssetsRenderer } from '@renderer-shared/shards/extra-assets'
 import { FeatureGatingRenderer } from '@renderer-shared/shards/feature-gating'
 import { AkariIpcRenderer } from '@renderer-shared/shards/ipc'
@@ -30,5 +31,6 @@ manager.use(PiniaMobxUtilsRenderer)
 manager.use(SettingUtilsRenderer)
 manager.use(SetupInAppScopeRenderer)
 manager.use(WindowManagerRenderer)
+manager.use(ChampSelectAiRenderer)
 
 export { manager }

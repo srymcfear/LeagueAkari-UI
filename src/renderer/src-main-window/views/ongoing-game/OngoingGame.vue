@@ -31,7 +31,7 @@
         (aiStore.settings.uiStyle === 'cyberpunk' ? 'Style 01' : 'Style 03') +
         ')'
       "
-      @click="showAiPopup = !showAiPopup"
+      @click="handleToggleAiRadar"
     >
       <span class="icon">⚡</span>
       <span class="text">AI RADAR</span>
@@ -60,6 +60,7 @@ import { useAppCommonStore } from '@renderer-shared/shards/app-common/store'
 import { useChampSelectAiStore } from '@renderer-shared/shards/champ-select-ai/store'
 import { useLeagueClientStore } from '@renderer-shared/shards/league-client/store'
 import { OngoingGameRenderer } from '@renderer-shared/shards/ongoing-game'
+import { WindowManagerRenderer } from '@renderer-shared/shards/window-manager'
 import { DraftOptions } from '@shared/shards/ongoing-game'
 import { ref, shallowRef, watch } from 'vue'
 
@@ -70,6 +71,7 @@ const { contentWidth, contentHeight, openSettingsModal } = useMainWindowAppConte
 
 const pt = useInstance(PlayerTabsRenderer)
 const og = useInstance(OngoingGameRenderer)
+const wm = useInstance(WindowManagerRenderer)
 const ongoingGame = createAkariOngoingGameProvider()
 
 const as = useAppCommonStore()
@@ -80,6 +82,18 @@ const { navigateToTabByPuuid } = pt.useNavigateToTab()
 
 const showPreviewModal = ref(false)
 const showAiPopup = ref(false)
+
+const handleToggleAiRadar = () => {
+  try {
+    const channel = new BroadcastChannel('akari-aux-window-nav')
+    channel.postMessage({ tab: 'radar' })
+    channel.close()
+    wm.auxWindow.show()
+  } catch {
+    // ignore
+  }
+  showAiPopup.value = !showAiPopup.value
+}
 
 const previewingGame = shallowRef<MatchPreviewState>({
   gameId: 0,
