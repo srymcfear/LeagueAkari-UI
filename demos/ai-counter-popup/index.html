@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FEΔR — League Akari AI Assistant Prototype Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-dark: #07090e;
+        --cyan: #00f0ff;
+        --purple: #a855f7;
+        --magenta: #d946ef;
+        --blue: #3b82f6;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #06080d;
+        color: #f1f5f9;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+        padding: 24px 36px;
+        background: rgba(15, 23, 42, 0.6);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-family: 'Orbitron', monospace;
+        font-weight: 900;
+        font-size: 20px;
+        letter-spacing: 2px;
+        color: var(--cyan);
+        text-shadow: 0 0 16px rgba(0, 240, 255, 0.5);
+      }
+      .badge {
+        font-size: 11px;
+        background: rgba(168, 85, 247, 0.2);
+        border: 1px solid var(--purple);
+        color: #f3e8ff;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        padding: 36px;
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .style-card {
+        background: rgba(17, 24, 39, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+      }
+      .style-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+      }
+      .card-1:hover {
+        border-color: var(--cyan);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+      }
+      .card-2:hover {
+        border-color: var(--purple);
+        box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+      }
+      .card-3:hover {
+        border-color: var(--blue);
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+      }
+
+      .preview-box {
+        height: 220px;
+        background: #0a0d14;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .preview-box iframe {
+        width: 200%;
+        height: 200%;
+        transform: scale(0.5);
+        transform-origin: 0 0;
+        pointer-events: none;
+        border: none;
+      }
+      .card-body {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 12px;
+      }
+      .style-number {
+        font-size: 11px;
+        font-family: 'Orbitron', monospace;
+        letter-spacing: 1.5px;
+        color: #94a3b8;
+      }
+      .style-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .style-desc {
+        font-size: 13.5px;
+        color: #94a3b8;
+        line-height: 1.5;
+        flex: 1;
+      }
+      .style-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 8px 0;
+      }
+      .feature-tag {
+        font-size: 11px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #cbd5e1;
+      }
+      .open-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 13px;
+        padding: 10px 16px;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+      .card-1 .open-btn:hover {
+        background: var(--cyan);
+        color: #000;
+        border-color: var(--cyan);
+      }
+      .card-2 .open-btn:hover {
+        background: var(--purple);
+        color: #fff;
+        border-color: var(--purple);
+      }
+      .card-3 .open-btn:hover {
+        background: var(--blue);
+        color: #fff;
+        border-color: var(--blue);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">FEΔR // LEAGUE AKARI AI HUD</div>
+      <div class="badge">GEMINI 2.5 FLASH PROTOTYPE SHOWCASE</div>
+    </div>
+
+    <div class="showcase-grid">
+      <!-- Style 1 -->
+      <div class="style-card card-1">
+        <div class="preview-box">
+          <iframe src="demo-1-cyberpunk.html"></iframe>
+        </div>
+        <div class="card-body">
+          <div class="style-number">STYLE 01 // CYBERPUNK</div>
+          <div class="style-title">Cyberpunk Neon HUD</div>
+          <div class="style-desc">
+            Viền góc cắt vát sắc nhọn, hiệu ứng Neon Cyan & Magenta Glow, đường quét scanlines mô
+            phỏng thiết bị đầu cuối AI. Phù hợp phong cách Cyberpunk / Game HUD.
+          </div>
+          <div class="style-features">
+            <span class="feature-tag">Neon Cyan/Magenta</span>
+            <span class="feature-tag">Scanlines Hologram</span>
+            <span class="feature-tag">GSAP Micro-interactions</span>
+          </div>
+          <a href="demo-1-cyberpunk.html" class="open-btn">MỞ BẢN DEMO ĐỘC LẬP ↗</a>
+        </div>
+      </div>
+
+      <!-- Style 2 -->
+      <div class="style-card card-2">
+        <div class="preview-box">
+          <iframe src="demo-2-modern-dark.html"></iframe>
+        </div>
+        <div class="card-body">
+          <div class="style-number">STYLE 02 // GLASSMORPHISM</div>
+          <div class="style-title">Modern Dark Glassmorphism</div>
+          <div class="style-desc">
+            Mặt kính mờ cao cấp (Backdrop Blur 28px), góc bo mượt, ánh sáng tím Violet & Ice Blue.
+            Phân tab chuyên sâu: Đi đường, Giao tranh, Trang bị kèm thanh tỉ lệ thắng đối đầu.
+          </div>
+          <div class="style-features">
+            <span class="feature-tag">Frosted Glass</span>
+            <span class="feature-tag">Head-to-Head Winrate</span>
+            <span class="feature-tag">Tabbed Deep Breakdown</span>
+          </div>
+          <a href="demo-2-modern-dark.html" class="open-btn">MỞ BẢN DEMO ĐỘC LẬP ↗</a>
+        </div>
+      </div>
+
+      <!-- Style 3 -->
+      <div class="style-card card-3">
+        <div class="preview-box">
+          <iframe src="demo-3-tactical-hud.html"></iframe>
+        </div>
+        <div class="card-body">
+          <div class="style-number">STYLE 03 // MILITARY SCI-FI</div>
+          <div class="style-title">Tactical Game HUD Overlay</div>
+          <div class="style-desc">
+            Giao diện Trung Tâm Chỉ Huy Tác Chiến. Tone màu Obsidian & Cobalt Blue, thẻ chỉ số đe
+            dọa (Threat Rating), danh sách Top 3 tướng khắc chế cứng kèm tỉ lệ thắng.
+          </div>
+          <div class="style-features">
+            <span class="feature-tag">Threat Matrix</span>
+            <span class="feature-tag">Hard-Counter Picks</span>
+            <span class="feature-tag">Tactical Brackets [ ]</span>
+          </div>
+          <a href="demo-3-tactical-hud.html" class="open-btn">MỞ BẢN DEMO ĐỘC LẬP ↗</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

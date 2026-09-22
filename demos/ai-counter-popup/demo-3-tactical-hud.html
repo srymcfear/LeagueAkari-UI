@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Akari AI Counter — Tactical Game HUD Overlay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      :root {
+        --bg-tactical: #0a0c10;
+        --panel-surface: #0f131a;
+        --hud-border: #1e2638;
+        --hud-cobalt: #3b82f6;
+        --hud-violet: #a855f7;
+        --hud-crimson: #f43f5e;
+        --hud-cyan: #06b6d4;
+        --text-main: #f1f5f9;
+        --text-sub: #8492a6;
+        --tactical-accent: #60a5fa;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+      }
+
+      body {
+        background: radial-gradient(circle at 50% 30%, #151b27 0%, #06070a 100%);
+        color: var(--text-main);
+        font-family: 'Chakra Petch', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      /* Floating Widget Box */
+      .tactical-frame {
+        width: 100%;
+        max-width: 800px;
+        background: var(--panel-surface);
+        border: 1px solid var(--hud-border);
+        box-shadow:
+          0 20px 40px rgba(0, 0, 0, 0.7),
+          0 0 0 1px rgba(59, 130, 246, 0.15);
+        position: relative;
+      }
+
+      /* Tactical Corner Brackets */
+      .tactical-frame::before {
+        content: '[ TAC-HUD // FEAR ]';
+        position: absolute;
+        top: -10px;
+        left: 16px;
+        background: #0a0c10;
+        padding: 0 8px;
+        font-size: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--tactical-accent);
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+
+      /* Top Command Header */
+      .command-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 20px;
+        background: linear-gradient(90deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.8));
+        border-bottom: 2px solid #1e2638;
+      }
+
+      .title-area {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .status-light {
+        width: 8px;
+        height: 8px;
+        border-radius: 2px;
+        background: var(--hud-cyan);
+        box-shadow: 0 0 8px var(--hud-cyan);
+      }
+
+      .hud-label {
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        color: #ffffff;
+        text-transform: uppercase;
+      }
+
+      .threat-level-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        background: rgba(244, 63, 94, 0.15);
+        border: 1px solid rgba(244, 63, 94, 0.4);
+        color: #fecdd3;
+        padding: 4px 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      /* 5 Slots Lineup */
+      .enemy-matrix {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1px;
+        background: var(--hud-border);
+        padding: 1px;
+      }
+
+      .matrix-slot {
+        background: #0d1117;
+        padding: 14px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s;
+      }
+
+      .matrix-slot:hover {
+        background: #141b24;
+      }
+
+      .matrix-slot.selected {
+        background: #192231;
+      }
+
+      .matrix-slot.selected::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--tactical-accent);
+        box-shadow: 0 0 10px var(--tactical-accent);
+      }
+
+      .slot-avatar {
+        width: 52px;
+        height: 52px;
+        position: relative;
+      }
+
+      .slot-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .matrix-slot.selected .slot-avatar img {
+        border: 1px solid var(--tactical-accent);
+        box-shadow: 0 0 12px rgba(96, 165, 250, 0.4);
+      }
+
+      .slot-pos {
+        font-size: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+        color: var(--hud-cyan);
+        letter-spacing: 0.5px;
+      }
+
+      .slot-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      /* Tactical Intelligence Display */
+      .tactical-body {
+        display: grid;
+        grid-template-columns: 2fr 1.2fr;
+        padding: 20px;
+        gap: 20px;
+        background: #0b0e14;
+      }
+
+      .intel-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+        padding-bottom: 8px;
+        border-bottom: 1px dashed #242e42;
+      }
+
+      .target-code {
+        font-size: 13px;
+        color: var(--tactical-accent);
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 600;
+      }
+
+      .action-tactical-btn {
+        background: transparent;
+        border: 1px solid var(--hud-cobalt);
+        color: var(--tactical-accent);
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.2s;
+      }
+
+      .action-tactical-btn:hover {
+        background: rgba(59, 130, 246, 0.2);
+        box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+        color: #fff;
+      }
+
+      /* Strategy Logs */
+      .strategy-terminal {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 13.5px;
+        line-height: 1.5;
+      }
+
+      .strategy-item {
+        background: rgba(18, 24, 38, 0.6);
+        border-left: 3px solid var(--tactical-accent);
+        padding: 10px 14px;
+      }
+
+      .strategy-item.danger {
+        border-left-color: var(--hud-crimson);
+      }
+
+      .strategy-item.purple {
+        border-left-color: var(--hud-violet);
+      }
+
+      .strategy-title {
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+        color: var(--text-sub);
+        margin-bottom: 4px;
+        text-transform: uppercase;
+      }
+
+      .strategy-item.danger .strategy-title {
+        color: #fda4af;
+      }
+
+      .strategy-item.purple .strategy-title {
+        color: #d8b4fe;
+      }
+
+      .strategy-desc {
+        color: #e2e8f0;
+      }
+
+      .strategy-desc b {
+        color: #ffffff;
+      }
+
+      /* Right Side Radar & Quick Counter Pick */
+      .tactical-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .side-card {
+        background: rgba(18, 24, 38, 0.5);
+        border: 1px solid #1f2a3e;
+        padding: 14px;
+      }
+
+      .side-title {
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 700;
+        color: var(--hud-cyan);
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .counter-pick-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .counter-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(11, 15, 25, 0.8);
+        border: 1px solid #28354d;
+        padding: 6px 10px;
+      }
+
+      .counter-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .counter-info img {
+        width: 26px;
+        height: 26px;
+      }
+
+      .counter-score {
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--tactical-accent);
+        font-weight: 700;
+      }
+
+      .item-tactical-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 6px;
+      }
+
+      .item-chip {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid #334155;
+        font-size: 11.5px;
+        padding: 4px 8px;
+        color: #e2e8f0;
+      }
+
+      /* Bottom Status Bar */
+      .tactical-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 20px;
+        background: #07090d;
+        border-top: 1px solid #1a2232;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        color: var(--text-sub);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tactical-frame">
+      <!-- Top Command Header -->
+      <div class="command-header">
+        <div class="title-area">
+          <span class="status-light"></span>
+          <div class="hud-label">TACTICAL OPPONENT COUNTER RADAR</div>
+        </div>
+        <div class="threat-level-badge" id="threat-indicator">
+          <span>THREAT LEVEL:</span>
+          <span id="threat-val" style="color: #fb7185">CRITICAL (8.8/10)</span>
+        </div>
+      </div>
+
+      <!-- 5 Enemy Slots Matrix -->
+      <div class="enemy-matrix">
+        <div class="matrix-slot" onclick="switchSlot(this, 'Aatrox', 'TOP', '6.5/10', 'ELEVATED')">
+          <div class="slot-avatar">
+            <img
+              src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/Aatrox.png"
+              alt="Aatrox"
+            />
+          </div>
+          <span class="slot-pos">TOP // P1</span>
+          <span class="slot-name">Aatrox</span>
+        </div>
+
+        <div
+          class="matrix-slot"
+          onclick="switchSlot(this, 'LeeSin', 'JUG', '7.2/10', 'HIGH THREAT')"
+        >
+          <div class="slot-avatar">
+            <img
+              src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/LeeSin.png"
+              alt="Lee Sin"
+            />
+          </div>
+          <span class="slot-pos">JUG // P2</span>
+          <span class="slot-name">Lee Sin</span>
+        </div>
+
+        <div
+          class="matrix-slot selected"
+          onclick="switchSlot(this, 'Yasuo', 'MID', '8.8/10', 'CRITICAL')"
+        >
+          <div class="slot-avatar">
+            <img
+              src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/Yasuo.png"
+              alt="Yasuo"
+            />
+          </div>
+          <span class="slot-pos">MID // P3</span>
+          <span class="slot-name">Yasuo</span>
+        </div>
+
+        <div
+          class="matrix-slot"
+          onclick="switchSlot(this, 'Kaisa', 'ADC', '8.1/10', 'HIGH THREAT')"
+        >
+          <div class="slot-avatar">
+            <img
+              src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/Kaisa.png"
+              alt="Kai'Sa"
+            />
+          </div>
+          <span class="slot-pos">ADC // P4</span>
+          <span class="slot-name">Kai'Sa</span>
+        </div>
+
+        <div
+          class="matrix-slot"
+          onclick="switchSlot(this, 'Nautilus', 'SUP', '5.4/10', 'MODERATE')"
+        >
+          <div class="slot-avatar">
+            <img
+              src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/Nautilus.png"
+              alt="Nautilus"
+            />
+          </div>
+          <span class="slot-pos">SUP // P5</span>
+          <span class="slot-name">Nautilus</span>
+        </div>
+      </div>
+
+      <!-- Tactical Intelligence Body -->
+      <div class="tactical-body">
+        <!-- Strategy Section -->
+        <div class="tactical-main">
+          <div class="intel-header-row">
+            <div class="target-code" id="target-header">[ TARGET_ID: YASUO // MATCHUP INTEL ]</div>
+            <button class="action-tactical-btn" onclick="rerunSimulation()">
+              [ ↻ RESCAN INTEL ]
+            </button>
+          </div>
+
+          <div class="strategy-terminal" id="strategy-log">
+            <div class="strategy-item danger">
+              <div class="strategy-title">! VÙNG NGUY HIỂM — TƯỜNG GIÓ W</div>
+              <div class="strategy-desc">
+                <b>Chặn đứng 100% cầu đen:</b> Chiêu W của Yasuo có thể xóa bỏ hoàn toàn Chiêu Cuối
+                (R) của Syndra. Tuyệt đối không xả chiêu cuối khi chưa thấy hoạt ảnh Tường Gió xuất
+                hiện.
+              </div>
+            </div>
+
+            <div class="strategy-item purple">
+              <div class="strategy-title">⚡ ĐÒN TRỪNG PHẠT — BỘ PHÁP LƯỚT E</div>
+              <div class="strategy-desc">
+                <b>Canh góc ngắt lướt:</b> Khi hắn lướt vào đợt lính gần vị trí bạn, bấm ngay E
+                (Quét Tan Kẻ Yếu) để đẩy văng và vô hiệu hóa chiêu đâm Q xoay vòng.
+              </div>
+            </div>
+
+            <div class="strategy-item">
+              <div class="strategy-title">🛡️ ĐIỀU PHỐI ĐƯỜNG — NỘI TẠI KHIÊN GIÓ</div>
+              <div class="strategy-desc">
+                <b>Bào khiên trước:</b> Trước khi tung chuỗi chiêu dồn sát thương, tung 1 đòn đánh
+                thường (AA) từ khoảng cách xa để khiên nội tại tự tiêu hao.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side Recommendations -->
+        <div class="tactical-sidebar">
+          <div class="side-card">
+            <div class="side-title">// GỢI Ý TƯỚNG KHẮC CHẾ ĐƯỜNG</div>
+            <div class="counter-pick-list" id="counter-list">
+              <div class="counter-row">
+                <div class="counter-info">
+                  <img
+                    src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/Renekton.png"
+                    alt="Renekton"
+                  />
+                  <span style="color: #fff; font-weight: 700">Renekton</span>
+                </div>
+                <span class="counter-score">57.4% WIN</span>
+              </div>
+              <div class="counter-row">
+                <div class="counter-info">
+                  <img
+                    src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/Pantheon.png"
+                    alt="Pantheon"
+                  />
+                  <span style="color: #fff; font-weight: 700">Pantheon</span>
+                </div>
+                <span class="counter-score">56.1% WIN</span>
+              </div>
+              <div class="counter-row">
+                <div class="counter-info">
+                  <img
+                    src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/Vex.png"
+                    alt="Vex"
+                  />
+                  <span style="color: #fff; font-weight: 700">Vex</span>
+                </div>
+                <span class="counter-score">54.8% WIN</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <div class="side-title">// TRANG BỊ TIÊN QUYẾT</div>
+            <div class="item-tactical-badges" id="tactical-items">
+              <span class="item-chip">Đồng Hồ Cát Zhonya</span>
+              <span class="item-chip">Giày Thép Gai</span>
+              <span class="item-chip">Dây Chuyền Chữ Thập</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Status Bar -->
+      <div class="tactical-footer">
+        <div>AI ENGINE: GEMINI 2.5 FLASH • ZERO-TOKEN TIER</div>
+        <div>FEΔR PROTOCOL • STYLE 03 // TACTICAL HUD</div>
+      </div>
+    </div>
+
+    <script>
+      const database = {
+        Yasuo: {
+          threat: 'CRITICAL (8.8/10)',
+          threatColor: '#fb7185',
+          items: ['Đồng Hồ Cát Zhonya', 'Giày Thép Gai', 'Dây Chuyền Chữ Thập'],
+          counters: [
+            { name: 'Renekton', win: '57.4% WIN' },
+            { name: 'Pantheon', win: '56.1% WIN' },
+            { name: 'Vex', win: '54.8% WIN' }
+          ],
+          logs: [
+            {
+              type: 'danger',
+              title: '! VÙNG NGUY HIỂM — TƯỜNG GIÓ W',
+              desc: '<b>Chặn đứng 100% cầu đen:</b> Chiêu W của Yasuo có thể xóa bỏ hoàn toàn Chiêu Cuối (R) của Syndra. Tuyệt đối không xả chiêu cuối khi chưa thấy hoạt ảnh Tường Gió xuất hiện.'
+            },
+            {
+              type: 'purple',
+              title: '⚡ ĐÒN TRỪNG PHẠT — BỘ PHÁP LƯỚT E',
+              desc: '<b>Canh góc ngắt lướt:</b> Khi hắn lướt vào đợt lính gần vị trí bạn, bấm ngay E (Quét Tan Kẻ Yếu) để đẩy văng và vô hiệu hóa chiêu đâm Q xoay vòng.'
+            },
+            {
+              type: '',
+              title: '🛡️ ĐIỀU PHỐI ĐƯỜNG — NỘI TẠI KHIÊN GIÓ',
+              desc: '<b>Bào khiên trước:</b> Trước khi tung chuỗi chiêu dồn sát thương, tung 1 đòn đánh thường (AA) từ khoảng cách xa để khiên nội tại tự tiêu hao.'
+            }
+          ]
+        },
+        Aatrox: {
+          threat: 'ELEVATED (6.5/10)',
+          threatColor: '#c084fc',
+          items: ['Bình Thải Hóa Kỹ', 'Giáp Gai', 'Đồng Hồ Cát'],
+          counters: [
+            { name: 'Fiora', win: '55.8% WIN' },
+            { name: 'Irelia', win: '54.2% WIN' },
+            { name: 'Kled', win: '53.6% WIN' }
+          ],
+          logs: [
+            {
+              type: 'danger',
+              title: '! SÁT THƯƠNG DIỆN RỘNG — RÌA KIẾM Q',
+              desc: '<b>Cự ly rìa kiếm:</b> Q1/Q2 gây sát thương hất tung cực mạnh ở viền ngoài. Di chuyển áp sát vào thân kiếm hoặc lùi hẳn.'
+            },
+            {
+              type: 'purple',
+              title: '⚡ HỒI PHỤC CHIẾN BINH TẬN THẾ',
+              desc: '<b>Đầu tư Vết Thương Sâu:</b> 800 vàng sớm cho Ngọc Quả Báo hoặc Áo Choàng Gai sẽ bẻ gãy 60% sức mạnh lật kèo của hắn.'
+            }
+          ]
+        },
+        LeeSin: {
+          threat: 'HIGH THREAT (7.2/10)',
+          threatColor: '#fb7185',
+          items: ['Dây Chuyền Chữ Thập', 'Mắt Kiểm Soát', 'Giày Thép Gai'],
+          counters: [
+            { name: 'Poppy', win: '56.3% WIN' },
+            { name: 'RekSai', win: '55.0% WIN' },
+            { name: 'Vi', win: '53.9% WIN' }
+          ],
+          logs: [
+            {
+              type: 'danger',
+              title: '! ĐÒN TIẾP CẬN — SÓNG ÂM Q',
+              desc: '<b>Ẩn nấp sau lính to:</b> Lee Sin mất 75% khả năng bắt bớ nếu không có cú Q1 mở đường.'
+            },
+            {
+              type: 'purple',
+              title: '⚡ BẮT BÀI INSEC CẮM MẮT',
+              desc: '<b>Dự đoán điểm xuất hiện:</b> Giữ kỹ năng khống chế định hướng ngay sau lưng vị trí của bạn để ngắt cú đá Nộ Long Cước.'
+            }
+          ]
+        },
+        Kaisa: {
+          threat: 'HIGH THREAT (8.1/10)',
+          threatColor: '#fb7185',
+          items: ['Tim Băng', 'Khiên Băng Randuin', 'Đồng Hồ Cát'],
+          counters: [
+            { name: 'Draven', win: '56.0% WIN' },
+            { name: 'Caitlyn', win: '54.9% WIN' },
+            { name: 'Ashe', win: '53.2% WIN' }
+          ],
+          logs: [
+            {
+              type: 'danger',
+              title: '! SÁT THƯƠNG ĐƠN MỤC TIÊU — MƯA ICATHIA',
+              desc: "<b>Tránh đứng đơn độc:</b> Q của Kai'Sa dồn toàn bộ 12 tên lửa vào mục tiêu đơn độc gây lượng sát thương sốc cực lớn."
+            },
+            {
+              type: 'purple',
+              title: '⚡ NẮM BẮT ĐIỂM ĐẾN CHIÊU CUỐI R',
+              desc: "<b>Đón đầu vị trí:</b> Kai'Sa luôn lướt về phía rìa sau của mục tiêu dính Điện Dịch, sẵn sàng xả khống chế đón đầu."
+            }
+          ]
+        },
+        Nautilus: {
+          threat: 'MODERATE (5.4/10)',
+          threatColor: '#60a5fa',
+          items: ['Khăn Giải Thuật', 'Dây Chuyền Chữ Thập', 'Giày Thủy Ngân'],
+          counters: [
+            { name: 'Morgana', win: '58.2% WIN' },
+            { name: 'Braum', win: '55.5% WIN' },
+            { name: 'Janna', win: '54.0% WIN' }
+          ],
+          logs: [
+            {
+              type: 'danger',
+              title: '! KHỐNG CHẾ CHỈ ĐỊNH — THỦY LÔI TẦM NHIỆT',
+              desc: '<b>Di chuyển cô lập khi dính R:</b> Lùi ra xa đồng đội để tránh làm vạ lây hất tung cả đội hình.'
+            },
+            {
+              type: '',
+              title: '⚡ TRỪNG PHẠT MỎ NEO HỤT',
+              desc: '<b>Khai thác thời gian hồi chiêu:</b> Khi Q hụt, Nautilus hoàn toàn không có khả năng đe dọa trong 12 giây.'
+            }
+          ]
+        }
+      }
+
+      function switchSlot(el, name, pos, threatScore, threatTag) {
+        document.querySelectorAll('.matrix-slot').forEach((s) => s.classList.remove('selected'))
+        el.classList.add('selected')
+
+        const data = database[name]
+        if (!data) return
+
+        document.getElementById('target-header').innerText =
+          `[ TARGET_ID: ${name.toUpperCase()} // MATCHUP INTEL ]`
+        const threatVal = document.getElementById('threat-val')
+        threatVal.innerText = `${threatTag} (${threatScore})`
+        threatVal.style.color = data.threatColor
+
+        // Animate logs
+        gsap.fromTo('#strategy-log', { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.25 })
+
+        // Update logs
+        document.getElementById('strategy-log').innerHTML = data.logs
+          .map(
+            (l) => `
+        <div class="strategy-item ${l.type}">
+          <div class="strategy-title">${l.title}</div>
+          <div class="strategy-desc">${l.desc}</div>
+        </div>
+      `
+          )
+          .join('')
+
+        // Update counters
+        document.getElementById('counter-list').innerHTML = data.counters
+          .map(
+            (c) => `
+        <div class="counter-row">
+          <div class="counter-info">
+            <img src="https://ddragon.leagueoflegends.com/cdn/14.18.1/img/champion/${c.name}.png" alt="${c.name}">
+            <span style="color: #fff; font-weight: 700;">${c.name}</span>
+          </div>
+          <span class="counter-score">${c.win}</span>
+        </div>
+      `
+          )
+          .join('')
+
+        // Update items
+        document.getElementById('tactical-items').innerHTML = data.items
+          .map(
+            (i) => `
+        <span class="item-chip">${i}</span>
+      `
+          )
+          .join('')
+      }
+
+      function rerunSimulation() {
+        const btn = document.querySelector('.action-tactical-btn')
+        btn.innerText = '[ SCANNING... ]'
+        gsap.to('#strategy-log', { opacity: 0.2, duration: 0.2 })
+
+        setTimeout(() => {
+          btn.innerText = '[ ↻ RESCAN INTEL ]'
+          gsap.to('#strategy-log', { opacity: 1, duration: 0.25 })
+        }, 500)
+      }
+    </script>
+  </body>
+</html>
