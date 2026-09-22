@@ -393,6 +393,27 @@ settings:
       contentProtection:
         label: Content Protection
         description: Enable content protection, which will prevent other applications from capturing the window content. Note that this may affect the normal use of some screen recording tools.
+    champSelectAi:
+      title: Champ Select Gemini AI Assistant
+      enabled:
+        label: Enable AI Assistant
+        description: Detects the 5 enemy champions in Champ Select and provides AI tactical matchup counter analysis when clicking on an enemy champion.
+      uiStyle:
+        label: UI Display Style
+        description: Select your preferred visual aesthetic for the counter analysis HUD.
+        cyberpunk: '⚡ Style 01: Cyberpunk Neon HUD (Neon Cyan/Magenta)'
+        tactical: '🎯 Style 03: Tactical Game HUD (Obsidian & Cobalt Blue)'
+      apiKey:
+        label: Google Gemini API Key
+        description: Free API Key obtained from Google AI Studio (1,500 req/day zero-cost tier).
+        placeholder: Enter your Gemini API Key here
+        testButton: Test Connection
+        testSuccess: Gemini API connection successful!
+        testFailed: Connection failed
+        getKeyHint: Get free API Key from Google AI Studio
+      autoPopup:
+        label: Auto-open in Champ Select
+        description: Automatically display the AI assistant overlay when entering Champ Select.
   debug:
     title: Debug
     electron:

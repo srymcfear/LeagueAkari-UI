@@ -385,6 +385,27 @@ settings:
       contentProtection:
         label: Bảo vệ Nội dung
         description: Bật bảo vệ nội dung, sẽ ngăn các ứng dụng khác chụp nội dung cửa sổ. Lưu ý rằng điều này có thể ảnh hưởng đến việc sử dụng bình thường của một số công cụ ghi màn hình.
+    champSelectAi:
+      title: Trợ lý AI Gemini (Chọn Tướng)
+      enabled:
+        label: Bật Trợ lý AI
+        description: Tự động phát hiện 5 tướng đối phương trong màn hình Chọn Tướng và đưa ra phân tích khắc chế khi nhấp vào tướng đó.
+      uiStyle:
+        label: Phong cách Giao diện
+        description: Lựa chọn phong cách thị giác hiển thị bảng phân tích.
+        cyberpunk: '⚡ Style 01: Cyberpunk Neon HUD (Neon Cyan/Magenta)'
+        tactical: '🎯 Style 03: Tactical Game HUD (Obsidian & Cobalt Blue)'
+      apiKey:
+        label: Google Gemini API Key
+        description: API Key lấy miễn phí từ Google AI Studio (hạn mức 1.500 lượt/ngày không tốn phí).
+        placeholder: Nhập Gemini API Key tại đây
+        testButton: Kiểm tra kết nối
+        testSuccess: Kết nối Gemini API thành công!
+        testFailed: Kết nối thất bại
+        getKeyHint: Lấy API Key miễn phí tại Google AI Studio
+      autoPopup:
+        label: Tự động mở khi vào Chọn Tướng
+        description: Tự động hiển thị khung trợ lý AI khi giai đoạn Chọn Tướng bắt đầu.
   debug:
     title: Gỡ lỗi
     electron:
