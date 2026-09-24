@@ -5,7 +5,7 @@ export class ChampSelectAiSettingsState implements ChampSelectAiSettings {
   enabled: boolean = true
   apiKey: string = ''
   uiStyle: ChampSelectAiUiStyle = 'cyberpunk'
-  model: string = 'gemini-2.5-flash'
+  model: string = 'gemini-3.6-flash'
   autoPopup: boolean = true
 
   setEnabled(enabled: boolean) {

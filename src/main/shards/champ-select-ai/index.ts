@@ -48,7 +48,7 @@ export class ChampSelectAiMain implements IAkariShardInitDispose {
           schema: z.enum(['cyberpunk', 'tactical'])
         },
         model: {
-          default: 'gemini-2.5-flash',
+          default: 'gemini-3.6-flash',
           schema: z.string()
         },
         autoPopup: {
@@ -62,6 +62,11 @@ export class ChampSelectAiMain implements IAkariShardInitDispose {
 
   async onInit() {
     await this._settingService.applyToState()
+
+    if (!this.settings.model || this.settings.model === 'gemini-2.5-flash') {
+      this.settings.setModel('gemini-3.6-flash')
+      await this._settingService.save('model', 'gemini-3.6-flash')
+    }
 
     this._mobxUtils.propSync(ChampSelectAiMain.id, 'settings', this.settings, [
       'enabled',

@@ -403,6 +403,13 @@ settings:
         description: Select your preferred visual aesthetic for the counter analysis HUD.
         cyberpunk: '⚡ Style 01: Cyberpunk Neon HUD (Neon Cyan/Magenta)'
         tactical: '🎯 Style 03: Tactical Game HUD (Obsidian & Cobalt Blue)'
+      model:
+        label: Gemini AI Model
+        description: Choose the Gemini model version (default gemini-3.6-flash, fastest and most accurate).
+        gemini36Flash: 'Gemini 3.6 Flash (Recommended)'
+        gemini25Flash: 'Gemini 2.5 Flash'
+        gemini20Flash: 'Gemini 2.0 Flash'
+        gemini15Flash: 'Gemini 1.5 Flash'
       apiKey:
         label: Google Gemini API Key
         description: Free API Key obtained from Google AI Studio (1,500 req/day zero-cost tier).

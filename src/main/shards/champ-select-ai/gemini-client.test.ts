@@ -21,4 +21,11 @@ describe('parseGeminiJsonResponse', () => {
     const result = parseGeminiJsonResponse(raw)
     expect(result.threatLevel).toBe('MODERATE')
   })
+
+  it('should return error if apiKey is empty', async () => {
+    const { GeminiClient } = await import('./gemini-client')
+    const result = await GeminiClient.testApiKey('')
+    expect(result.success).toBe(false)
+    expect(result.message).toContain('API Key')
+  })
 })

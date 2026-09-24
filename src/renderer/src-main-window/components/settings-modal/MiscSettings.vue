@@ -97,6 +97,21 @@
           </SettingsRow>
 
           <SettingsRow
+            setting-id="misc.champ-select-ai.model"
+            :label="t('settings.misc.champSelectAi.model.label')"
+            :label-description="t('settings.misc.champSelectAi.model.description')"
+            :label-width="400"
+          >
+            <NSelect
+              size="small"
+              class="w-64"
+              :value="aiStore.settings.model"
+              :options="modelOptions"
+              @update:value="(val) => aiRenderer.setModel(val)"
+            />
+          </SettingsRow>
+
+          <SettingsRow
             setting-id="misc.champ-select-ai.api-key"
             :label="t('settings.misc.champSelectAi.apiKey.label')"
             :label-description="t('settings.misc.champSelectAi.apiKey.description')"
@@ -191,6 +206,25 @@ const uiStyleOptions = computed(() => [
   }
 ])
 
+const modelOptions = computed(() => [
+  {
+    label: t('settings.misc.champSelectAi.model.gemini36Flash'),
+    value: 'gemini-3.6-flash'
+  },
+  {
+    label: t('settings.misc.champSelectAi.model.gemini25Flash'),
+    value: 'gemini-2.5-flash'
+  },
+  {
+    label: t('settings.misc.champSelectAi.model.gemini20Flash'),
+    value: 'gemini-2.0-flash'
+  },
+  {
+    label: t('settings.misc.champSelectAi.model.gemini15Flash'),
+    value: 'gemini-1.5-flash'
+  }
+])
+
 async function handleTestApiKey() {
   if (!aiStore.settings.apiKey || aiStore.settings.apiKey.trim().length === 0) {
     message.warning(t('settings.misc.champSelectAi.apiKey.placeholder'))
@@ -199,7 +233,7 @@ async function handleTestApiKey() {
 
   isTestingKey.value = true
   try {
-    const res = await aiRenderer.testApiKey()
+    const res = await aiRenderer.testApiKey(aiStore.settings.apiKey, aiStore.settings.model)
     if (res.success) {
       message.success(t('settings.misc.champSelectAi.apiKey.testSuccess'))
     } else {

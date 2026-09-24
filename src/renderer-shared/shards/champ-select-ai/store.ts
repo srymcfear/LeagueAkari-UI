@@ -7,7 +7,7 @@ export const useChampSelectAiStore = defineStore('shard:champ-select-ai-renderer
     enabled: true,
     apiKey: '',
     uiStyle: 'cyberpunk',
-    model: 'gemini-2.5-flash',
+    model: 'gemini-3.6-flash',
     autoPopup: true
   })
 
