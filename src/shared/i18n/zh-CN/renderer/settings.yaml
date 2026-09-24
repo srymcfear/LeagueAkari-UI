@@ -403,11 +403,12 @@ settings:
         tactical: '🎯 Style 03: Tactical 战术 HUD'
       model:
         label: Gemini 模型
-        description: 选择 Gemini AI 模型版本 (推荐最新 gemini-3.6-flash)。
-        gemini36Flash: 'Gemini 3.6 Flash (推荐)'
-        gemini25Flash: 'Gemini 2.5 Flash'
+        description: 选择 Gemini AI 模型版本 (默认 gemini-3.1-flash-lite 超快且免费，或选择 3.8 / 自定义输入)。
+        gemini31FlashLite: '⚡ Gemini 3.1 Flash-Lite (推荐 / 免费且超快)'
+        gemini38Flash: '🧠 Gemini 3.8 Flash (高级智能 / 可选)'
+        gemini36Flash: 'Gemini 3.6 Flash'
+        gemini25FlashLite: 'Gemini 2.5 Flash-Lite'
         gemini20Flash: 'Gemini 2.0 Flash'
-        gemini15Flash: 'Gemini 1.5 Flash'
       apiKey:
         label: Google Gemini API Key
         description: 从 Google AI Studio 免费获取的 API Key。

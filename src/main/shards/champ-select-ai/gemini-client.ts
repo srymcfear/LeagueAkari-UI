@@ -26,13 +26,13 @@ export function parseGeminiJsonResponse(rawText: string): any {
 export class GeminiClient {
   static async testApiKey(
     apiKey: string,
-    model: string = 'gemini-3.6-flash'
+    model: string = 'gemini-3.1-flash-lite'
   ): Promise<{ success: boolean; message?: string }> {
     if (!apiKey || apiKey.trim().length === 0) {
       return { success: false, message: 'API Key không được để trống' }
     }
 
-    const effectiveModel = !model || model === 'gemini-2.5-flash' ? 'gemini-3.6-flash' : model
+    const effectiveModel = !model || model === 'gemini-2.5-flash' ? 'gemini-3.1-flash-lite' : model
 
     try {
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${effectiveModel}:generateContent?key=${apiKey.trim()}`
@@ -61,7 +61,7 @@ export class GeminiClient {
   static async analyzeMatchup(params: AnalyzeMatchupParams): Promise<MatchupIntel> {
     const {
       apiKey,
-      model = 'gemini-3.6-flash',
+      model = 'gemini-3.1-flash-lite',
       myChampionName,
       myChampionId,
       enemyChampionName,
@@ -69,7 +69,7 @@ export class GeminiClient {
       enemyPosition = 'MID'
     } = params
 
-    const effectiveModel = !model || model === 'gemini-2.5-flash' ? 'gemini-3.6-flash' : model
+    const effectiveModel = !model || model === 'gemini-2.5-flash' ? 'gemini-3.1-flash-lite' : model
 
     if (!apiKey || apiKey.trim().length === 0) {
       throw new Error('Chưa thiết lập Gemini API Key. Vui lòng vào Cài đặt để nhập Key.')

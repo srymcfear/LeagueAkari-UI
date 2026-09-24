@@ -405,11 +405,12 @@ settings:
         tactical: '🎯 Style 03: Tactical Game HUD (Obsidian & Cobalt Blue)'
       model:
         label: Gemini AI Model
-        description: Choose the Gemini model version (default gemini-3.6-flash, fastest and most accurate).
-        gemini36Flash: 'Gemini 3.6 Flash (Recommended)'
-        gemini25Flash: 'Gemini 2.5 Flash'
+        description: Choose the Gemini model version (default gemini-3.1-flash-lite free & ultra fast, or 3.8 / custom).
+        gemini31FlashLite: '⚡ Gemini 3.1 Flash-Lite (Recommended / Free & Ultra Fast)'
+        gemini38Flash: '🧠 Gemini 3.8 Flash (Advanced Intelligence / Optional)'
+        gemini36Flash: 'Gemini 3.6 Flash'
+        gemini25FlashLite: 'Gemini 2.5 Flash-Lite'
         gemini20Flash: 'Gemini 2.0 Flash'
-        gemini15Flash: 'Gemini 1.5 Flash'
       apiKey:
         label: Google Gemini API Key
         description: Free API Key obtained from Google AI Studio (1,500 req/day zero-cost tier).

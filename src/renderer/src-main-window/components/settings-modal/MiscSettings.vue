@@ -104,7 +104,9 @@
           >
             <NSelect
               size="small"
-              class="w-64"
+              class="w-72"
+              filterable
+              tag
               :value="aiStore.settings.model"
               :options="modelOptions"
               @update:value="(val) => aiRenderer.setModel(val)"
@@ -208,20 +210,24 @@ const uiStyleOptions = computed(() => [
 
 const modelOptions = computed(() => [
   {
+    label: t('settings.misc.champSelectAi.model.gemini31FlashLite'),
+    value: 'gemini-3.1-flash-lite'
+  },
+  {
+    label: t('settings.misc.champSelectAi.model.gemini38Flash'),
+    value: 'gemini-3.8-flash'
+  },
+  {
     label: t('settings.misc.champSelectAi.model.gemini36Flash'),
     value: 'gemini-3.6-flash'
   },
   {
-    label: t('settings.misc.champSelectAi.model.gemini25Flash'),
-    value: 'gemini-2.5-flash'
+    label: t('settings.misc.champSelectAi.model.gemini25FlashLite'),
+    value: 'gemini-2.5-flash-lite'
   },
   {
     label: t('settings.misc.champSelectAi.model.gemini20Flash'),
     value: 'gemini-2.0-flash'
-  },
-  {
-    label: t('settings.misc.champSelectAi.model.gemini15Flash'),
-    value: 'gemini-1.5-flash'
   }
 ])
 

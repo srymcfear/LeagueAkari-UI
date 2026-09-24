@@ -397,11 +397,12 @@ settings:
         tactical: '🎯 Style 03: Tactical Game HUD (Obsidian & Cobalt Blue)'
       model:
         label: Mô hình AI Gemini
-        description: Chọn phiên bản mô hình Gemini (khuyên dùng gemini-3.6-flash mới và nhanh nhất).
-        gemini36Flash: 'Gemini 3.6 Flash (Khuyên dùng)'
-        gemini25Flash: 'Gemini 2.5 Flash'
+        description: Chọn phiên bản mô hình Gemini (mặc định gemini-3.1-flash-lite siêu nhanh & miễn phí, có thể chọn 3.8 hoặc gõ tên model tùy chỉnh).
+        gemini31FlashLite: '⚡ Gemini 3.1 Flash-Lite (Khuyên dùng / Miễn phí & Siêu nhanh)'
+        gemini38Flash: '🧠 Gemini 3.8 Flash (Thông minh cao cấp / Tùy chọn)'
+        gemini36Flash: 'Gemini 3.6 Flash'
+        gemini25FlashLite: 'Gemini 2.5 Flash-Lite'
         gemini20Flash: 'Gemini 2.0 Flash'
-        gemini15Flash: 'Gemini 1.5 Flash'
       apiKey:
         label: Google Gemini API Key
         description: API Key lấy miễn phí từ Google AI Studio (hạn mức 1.500 lượt/ngày không tốn phí).
