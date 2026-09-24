@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { parseGeminiJsonResponse } from './gemini-client'
+import { GeminiClient, parseGeminiJsonResponse } from './gemini-client'
 
 describe('parseGeminiJsonResponse', () => {
   it('should parse valid plain JSON', () => {
@@ -23,7 +23,6 @@ describe('parseGeminiJsonResponse', () => {
   })
 
   it('should return error if apiKey is empty', async () => {
-    const { GeminiClient } = await import('./gemini-client')
     const result = await GeminiClient.testApiKey('')
     expect(result.success).toBe(false)
     expect(result.message).toContain('API Key')

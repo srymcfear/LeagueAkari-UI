@@ -65,7 +65,7 @@ export class ChampSelectAiMain implements IAkariShardInitDispose {
 
     if (!this.settings.model || this.settings.model === 'gemini-2.5-flash') {
       this.settings.setModel('gemini-3.6-flash')
-      await this._settingService.save('model', 'gemini-3.6-flash')
+      await this._settingService.set('model', 'gemini-3.6-flash')
     }
 
     this._mobxUtils.propSync(ChampSelectAiMain.id, 'settings', this.settings, [
