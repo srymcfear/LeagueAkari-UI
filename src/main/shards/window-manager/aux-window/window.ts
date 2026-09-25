@@ -70,6 +70,9 @@ export class AkariAuxWindow extends BaseAkariWindow<AuxWindowState, AuxWindowSet
         case 'Lobby':
         case 'Matchmaking':
         case 'ReadyCheck':
+        case 'GameStart':
+        case 'InProgress':
+        case 'Reconnect':
           return 'show'
       }
 

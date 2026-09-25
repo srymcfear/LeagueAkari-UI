@@ -46,6 +46,8 @@ const currentTab = ref<'assistant' | 'radar'>('assistant')
 const aiStore = useChampSelectAiStore()
 const leagueClientStore = useLeagueClientStore()
 
+const rememberedIsAramMayhem = ref(false)
+
 const isAramMayhem = computed(() => {
   const gfSession = leagueClientStore.gameflow.session
   const csSession = leagueClientStore.champSelect.session
@@ -72,7 +74,21 @@ const isAramMayhem = computed(() => {
 
   const isAram = gameMode === 'ARAM' || Boolean(csSession?.benchEnabled)
 
-  return isKiwi || isAram
+  if (isKiwi || isAram) {
+    rememberedIsAramMayhem.value = true
+    return true
+  }
+
+  // During in-game phases, retain remembered ARAM Mayhem state
+  const phase = leagueClientStore.gameflow.phase
+  if (
+    rememberedIsAramMayhem.value &&
+    (phase === 'GameStart' || phase === 'InProgress' || phase === 'Reconnect')
+  ) {
+    return true
+  }
+
+  return false
 })
 
 let navChannel: BroadcastChannel | null = null
@@ -88,19 +104,30 @@ onMounted(() => {
   } catch (err) {
     // ignore
   }
+
+  // If opening during champ select or in-game, automatically show radar if autoPopup is enabled
+  const phase = leagueClientStore.gameflow.phase
+  if (
+    (phase === 'ChampSelect' || phase === 'GameStart' || phase === 'InProgress') &&
+    aiStore.settings.enabled &&
+    aiStore.settings.autoPopup
+  ) {
+    currentTab.value = 'radar'
+  }
 })
 
 onUnmounted(() => {
   navChannel?.close()
 })
 
-// Auto-switch to radar tab when entering Champ Select if autoPopup enabled
+// Auto-switch tab based on gameflow phase
 watch(
   () => leagueClientStore.gameflow.phase,
-  (newPhase, oldPhase) => {
+  (newPhase) => {
     if (newPhase === 'ChampSelect' && aiStore.settings.enabled && aiStore.settings.autoPopup) {
       currentTab.value = 'radar'
-    } else if (oldPhase === 'ChampSelect' && newPhase !== 'ChampSelect') {
+    } else if (newPhase === 'Lobby' || newPhase === 'None' || newPhase === 'EndOfGame') {
+      rememberedIsAramMayhem.value = false
       currentTab.value = 'assistant'
     }
   }

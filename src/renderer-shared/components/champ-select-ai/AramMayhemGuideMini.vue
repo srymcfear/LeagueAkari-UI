@@ -272,11 +272,39 @@ const resources = useAkariResourceProvider()
 const aiIntel = ref<AramChampionIntel | null>(null)
 const isLoading = ref(false)
 
-const currentChampionId = computed(() => leagueClientStore.champSelect.currentChampion ?? 0)
+const currentChampionId = computed(() => {
+  // 1. Check active champ select
+  const csChamp = leagueClientStore.champSelect.currentChampion
+  if (csChamp && csChamp > 0) {
+    return csChamp
+  }
+
+  // 2. Check gameflow playerChampionSelections during GameStart / InProgress
+  const myPuuid = leagueClientStore.summoner.me?.puuid
+  if (myPuuid) {
+    const gfChamp = leagueClientStore.gameflow.session?.gameData?.playerChampionSelections?.find(
+      (p) => p.puuid === myPuuid
+    )?.championId
+    if (gfChamp && gfChamp > 0) {
+      return gfChamp
+    }
+  }
+
+  // 3. Fallback to remembered champion in aiStore
+  if (aiStore.lastChampionId > 0) {
+    return aiStore.lastChampionId
+  }
+
+  return 0
+})
 
 const currentChampionName = computed(() => {
   if (currentChampionId.value <= 0) return 'Đang chờ chọn tướng...'
-  return resources.champions.name(currentChampionId.value) || `Tướng #${currentChampionId.value}`
+  return (
+    resources.champions.name(currentChampionId.value) ||
+    aiStore.lastChampionName ||
+    `Tướng #${currentChampionId.value}`
+  )
 })
 
 const currentChampionIconUrl = computed(() => {
@@ -416,21 +444,41 @@ async function loadAllData(forceRefresh = false) {
   isLoading.value = false
 }
 
-// Watch champion pick changes in ARAM Champ Select
+// Watch champion pick changes in ARAM Champ Select or In-Game
 watch(
   () => currentChampionId.value,
-  (newChampId) => {
+  (newChampId, oldChampId) => {
     if (newChampId > 0) {
-      realAugments.value = []
-      champStats.value = null
-      loadAllData(false)
+      aiStore.setLastChampion(newChampId, resources.champions.name(newChampId))
+      // Load data if champion changed or if we don't have augments/intel loaded yet
+      if (newChampId !== oldChampId || (!realAugments.value.length && !aiIntel.value)) {
+        realAugments.value = []
+        champStats.value = null
+        loadAllData(false)
+      }
     } else {
+      const phase = leagueClientStore.gameflow.phase
+      if (phase === 'Lobby' || phase === 'None' || phase === 'EndOfGame') {
+        aiIntel.value = null
+        realAugments.value = []
+        champStats.value = null
+      }
+    }
+  },
+  { immediate: true }
+)
+
+// Clear cache and reset when returning to lobby or after match ends
+watch(
+  () => leagueClientStore.gameflow.phase,
+  (phase) => {
+    if (phase === 'Lobby' || phase === 'None' || phase === 'EndOfGame') {
+      aiStore.clearLastChampion()
       aiIntel.value = null
       realAugments.value = []
       champStats.value = null
     }
-  },
-  { immediate: true }
+  }
 )
 </script>
 

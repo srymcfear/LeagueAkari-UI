@@ -181,34 +181,87 @@ const defaultItems: string[] = ['Đồng Hồ Cát Zhonya', 'Giày Thép Gai', '
 
 const enemySlots = computed<EnemySlotDisplay[]>(() => {
   const session = leagueClientStore.champSelect.session
-  if (!session || !session.theirTeam || session.theirTeam.length === 0) {
-    return defaultMockEnemies
+  if (session && session.theirTeam && session.theirTeam.length > 0) {
+    const result: EnemySlotDisplay[] = []
+    session.theirTeam.forEach((member, index) => {
+      const champId = member.championId || member.championPickIntent || 0
+      let champName = champId > 0 ? resources.champions.name(champId) : `Enemy ${index + 1}`
+      if (!champName || champName.length === 0) {
+        champName = `Enemy ${index + 1}`
+      }
+
+      result.push({
+        cellId: member.cellId,
+        championId: champId,
+        name: champName,
+        position: member.assignedPosition?.toUpperCase() || `P${index + 1}`
+      })
+    })
+    return result
   }
 
-  const result: EnemySlotDisplay[] = []
-  session.theirTeam.forEach((member, index) => {
-    const champId = member.championId || member.championPickIntent || 0
-    let champName = champId > 0 ? resources.champions.name(champId) : `Enemy ${index + 1}`
-    if (!champName || champName.length === 0) {
-      champName = `Enemy ${index + 1}`
+  // During InProgress or GameStart, resolve enemy team from gameData
+  const gameData = leagueClientStore.gameflow.session?.gameData
+  if (gameData) {
+    const myPuuid = leagueClientStore.summoner.me?.puuid
+    const isTeamOne = gameData.teamOne?.some((p) => p.puuid === myPuuid)
+    const enemyTeam = isTeamOne ? gameData.teamTwo : gameData.teamOne
+    if (enemyTeam && enemyTeam.length > 0) {
+      const result: EnemySlotDisplay[] = []
+      enemyTeam.forEach((member, index) => {
+        const champId = member.championId || 0
+        const champName =
+          (champId > 0 ? resources.champions.name(champId) : '') || `Enemy ${index + 1}`
+        result.push({
+          cellId: index + 1,
+          championId: champId,
+          name: champName,
+          position: `P${index + 1}`
+        })
+      })
+      if (result.length > 0) {
+        return result
+      }
     }
+  }
 
-    result.push({
-      cellId: member.cellId,
-      championId: champId,
-      name: champName,
-      position: member.assignedPosition?.toUpperCase() || `P${index + 1}`
-    })
-  })
-
-  return result.length > 0 ? result : defaultMockEnemies
+  return defaultMockEnemies
 })
 
-const myChampionId = computed(() => leagueClientStore.champSelect.currentChampion ?? 0)
+const myChampionId = computed(() => {
+  const csChamp = leagueClientStore.champSelect.currentChampion
+  if (csChamp && csChamp > 0) {
+    return csChamp
+  }
+  const myPuuid = leagueClientStore.summoner.me?.puuid
+  if (myPuuid) {
+    const gfChamp = leagueClientStore.gameflow.session?.gameData?.playerChampionSelections?.find(
+      (p) => p.puuid === myPuuid
+    )?.championId
+    if (gfChamp && gfChamp > 0) {
+      return gfChamp
+    }
+  }
+  if (aiStore.lastChampionId > 0) {
+    return aiStore.lastChampionId
+  }
+  return 0
+})
+
 const myChampionName = computed(() => {
   if (myChampionId.value <= 0) return 'Đang chọn...'
-  return resources.champions.name(myChampionId.value) || 'Đang chọn...'
+  return resources.champions.name(myChampionId.value) || aiStore.lastChampionName || 'Đang chọn...'
 })
+
+watch(
+  () => myChampionId.value,
+  (champId) => {
+    if (champId > 0) {
+      aiStore.setLastChampion(champId, resources.champions.name(champId))
+    }
+  },
+  { immediate: true }
+)
 
 const selectedEnemy = ref<EnemySlotDisplay>(enemySlots.value[2] || enemySlots.value[0])
 
@@ -223,6 +276,16 @@ watch(
     }
   },
   { immediate: true }
+)
+
+// Clear intel when match ends
+watch(
+  () => leagueClientStore.gameflow.phase,
+  (phase) => {
+    if (phase === 'Lobby' || phase === 'None' || phase === 'EndOfGame') {
+      intel.value = null
+    }
+  }
 )
 
 function selectEnemy(enemy: EnemySlotDisplay) {
