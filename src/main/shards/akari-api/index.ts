@@ -66,7 +66,8 @@ export class AkariApiMain implements IAkariShardInitDispose {
       settingService: this._settingService,
       mobxUtils: _mobxUtils,
       appCommon: _appCommon,
-      api: this.api
+      api: this.api,
+      network: _network
     }
     this._configLoader = new AkariApiConfigLoader(this._context)
     this._noticeLoader = new AkariApiNoticeLoader(this._context)

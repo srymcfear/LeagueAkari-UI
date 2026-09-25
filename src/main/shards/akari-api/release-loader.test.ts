@@ -105,4 +105,91 @@ describe('Akari API release loader', () => {
     expect(context.state.latestRelease).toBeNull()
     expect(context.logger.warn).toHaveBeenCalled()
   })
+
+  it('parses GitHub release response with .7z asset correctly', async () => {
+    const ghData = {
+      tag_name: 'v1.5.3',
+      name: 'League Akari 1.5.3 Release',
+      body: 'Changelog: New features added',
+      published_at: '2026-09-25T12:00:00.000Z',
+      assets: [
+        {
+          name: 'LeagueAkari-1.5.3-win-x64.7z',
+          size: 1048576,
+          content_type: 'application/x-7z-compressed',
+          browser_download_url:
+            'https://github.com/srymcfear/LeagueAkari-UI/releases/download/v1.5.3/LeagueAkari-1.5.3-win-x64.7z'
+        }
+      ]
+    }
+
+    const githubHttp = {
+      get: vi.fn().mockResolvedValue({ data: ghData })
+    }
+
+    const context = {
+      ...createContext(),
+      githubHttp
+    } as unknown as AkariApiMainContext
+
+    const loader = new AkariApiReleaseLoader(context)
+    const release = await loader.updateLatestRelease('zh-CN')
+
+    expect(release.version).toBe('1.5.3')
+    expect(release.artifacts).toHaveLength(1)
+    expect(release.artifacts[0].fileName).toBe('LeagueAkari-1.5.3-win-x64.7z')
+    expect(release.artifacts[0].downloadUrl).toContain('LeagueAkari-1.5.3-win-x64.7z')
+  })
+
+  it('extracts version from name when tag_name is main', async () => {
+    const ghData = {
+      tag_name: 'main',
+      name: 'League Akari NEW UI 1.5.0-win',
+      body: 'Main release',
+      published_at: '2026-09-25T12:00:00.000Z',
+      assets: [
+        {
+          name: 'League.Akari-NEW.UI.1.5.0-win.7z',
+          size: 88593199,
+          content_type: 'application/x-7z-compressed',
+          browser_download_url:
+            'https://github.com/srymcfear/LeagueAkari-UI/releases/download/main/League.Akari-NEW.UI.1.5.0-win.7z'
+        }
+      ]
+    }
+
+    const githubHttp = {
+      get: vi.fn().mockResolvedValue({ data: ghData })
+    }
+
+    const context = {
+      ...createContext(),
+      githubHttp
+    } as unknown as AkariApiMainContext
+
+    const loader = new AkariApiReleaseLoader(context)
+    const release = await loader.updateLatestRelease('zh-CN')
+
+    expect(release.version).toBe('1.5.0')
+    expect(release.artifacts[0].fileName).toBe('League.Akari-NEW.UI.1.5.0-win.7z')
+  })
+
+  it('falls back to Akari API when GitHub fetch fails', async () => {
+    const githubHttp = {
+      get: vi.fn().mockRejectedValue(new Error('GitHub 403 Rate Limited'))
+    }
+
+    const getLatestRelease = vi.fn().mockResolvedValue({ data: latestRelease })
+    const context = {
+      ...createContext(getLatestRelease),
+      githubHttp
+    } as unknown as AkariApiMainContext
+
+    const loader = new AkariApiReleaseLoader(context)
+    const release = await loader.updateLatestRelease('zh-CN')
+
+    expect(release).toEqual(latestRelease)
+    expect(context.logger.warn).toHaveBeenCalled()
+    expect(getLatestRelease).toHaveBeenCalledTimes(1)
+  })
 })
