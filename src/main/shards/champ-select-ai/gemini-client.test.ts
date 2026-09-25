@@ -27,4 +27,20 @@ describe('parseGeminiJsonResponse', () => {
     expect(result.success).toBe(false)
     expect(result.message).toContain('API Key')
   })
+
+  it('should return default fallback intel when optimizing ARAM champion without apiKey', async () => {
+    const intel = await GeminiClient.optimizeAramChampion({
+      apiKey: '',
+      championName: 'Syndra',
+      championId: 134
+    })
+
+    expect(intel.championName).toBe('Syndra')
+    expect(intel.championId).toBe(134)
+    expect(intel.augments.length).toBeGreaterThan(0)
+    expect(intel.coreItems.length).toBeGreaterThan(0)
+    expect(intel.summonerSpells.length).toBeGreaterThan(0)
+    expect(intel.tactics.length).toBeGreaterThan(0)
+    expect(intel.tierGrade).toBeDefined()
+  })
 })

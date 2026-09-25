@@ -1,5 +1,5 @@
 import { IAkariShardInitDispose, Shard } from '@shared/akari-shard'
-import type { MatchupIntel } from '@shared/types/champ-select-ai'
+import type { AramChampionIntel, MatchupIntel } from '@shared/types/champ-select-ai'
 import { z } from 'zod'
 
 import { AkariIpcMain } from '../ipc'
@@ -23,6 +23,7 @@ export class ChampSelectAiMain implements IAkariShardInitDispose {
   private readonly _logger: AkariLogger
   private readonly _settingService: SetterSettingService<ChampSelectAiSettingsState>
   private readonly _cache = new Map<string, MatchupIntel>()
+  private readonly _aramCache = new Map<number, AramChampionIntel>()
 
   constructor(
     private readonly _ipc: AkariIpcMain,
@@ -161,8 +162,51 @@ export class ChampSelectAiMain implements IAkariShardInitDispose {
       }
     )
 
+    this._ipc.onCall(
+      ChampSelectAiMain.id,
+      'optimizeAramChampion',
+      async (
+        _,
+        params: {
+          championName: string
+          championId: number
+          forceRefresh?: boolean
+        }
+      ) => {
+        const { championName, championId, forceRefresh = false } = params
+
+        if (!forceRefresh && this._aramCache.has(championId)) {
+          const cached = this._aramCache.get(championId)!
+          return { ...cached, cached: true }
+        }
+
+        this.state.setIsAnalyzing(true)
+        this.state.setLastError(null)
+
+        try {
+          const intel = await GeminiClient.optimizeAramChampion({
+            apiKey: this.settings.apiKey,
+            model: this.settings.model,
+            championName,
+            championId
+          })
+
+          this._aramCache.set(championId, intel)
+          return intel
+        } catch (err: any) {
+          const message = err?.message || 'Lỗi khi tối ưu tướng ARAM Hỗn Loạn'
+          this.state.setLastError(message)
+          this._logger.error(`Error optimizing ARAM champion: ${message}`)
+          throw err
+        } finally {
+          this.state.setIsAnalyzing(false)
+        }
+      }
+    )
+
     this._ipc.onCall(ChampSelectAiMain.id, 'clearCache', async () => {
       this._cache.clear()
+      this._aramCache.clear()
       return true
     })
   }
@@ -174,6 +218,7 @@ export class ChampSelectAiMain implements IAkariShardInitDispose {
       (gameId) => {
         if (gameId) {
           this._cache.clear()
+          this._aramCache.clear()
         }
       }
     )

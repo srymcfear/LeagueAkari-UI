@@ -1,5 +1,9 @@
 import { Dep, IAkariShardInitDispose, Shard } from '@shared/akari-shard'
-import type { ChampSelectAiUiStyle, MatchupIntel } from '@shared/types/champ-select-ai'
+import type {
+  AramChampionIntel,
+  ChampSelectAiUiStyle,
+  MatchupIntel
+} from '@shared/types/champ-select-ai'
 
 import { AkariIpcRenderer } from '../ipc'
 import { PiniaMobxUtilsRenderer } from '../pinia-mobx-utils'
@@ -66,6 +70,14 @@ export class ChampSelectAiRenderer implements IAkariShardInitDispose {
     forceRefresh?: boolean
   }): Promise<MatchupIntel> {
     return this._context.ipc.call(CHAMP_SELECT_AI_MAIN_NAMESPACE, 'analyzeMatchup', params)
+  }
+
+  optimizeAramChampion(params: {
+    championName: string
+    championId: number
+    forceRefresh?: boolean
+  }): Promise<AramChampionIntel> {
+    return this._context.ipc.call(CHAMP_SELECT_AI_MAIN_NAMESPACE, 'optimizeAramChampion', params)
   }
 
   clearCache(): Promise<boolean> {

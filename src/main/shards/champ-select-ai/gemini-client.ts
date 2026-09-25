@@ -1,4 +1,4 @@
-import type { MatchupIntel } from '@shared/types/champ-select-ai'
+import type { AramChampionIntel, MatchupIntel } from '@shared/types/champ-select-ai'
 import axios from 'axios'
 
 export interface AnalyzeMatchupParams {
@@ -11,6 +11,13 @@ export interface AnalyzeMatchupParams {
   enemyPosition?: string
 }
 
+export interface OptimizeAramChampionParams {
+  apiKey: string
+  model?: string
+  championName: string
+  championId: number
+}
+
 export function parseGeminiJsonResponse(rawText: string): any {
   let clean = rawText.trim()
   // Remove markdown code fence if present
@@ -21,6 +28,63 @@ export function parseGeminiJsonResponse(rawText: string): any {
   }
   clean = clean.trim()
   return JSON.parse(clean)
+}
+
+function getDefaultAramIntel(championId: number, championName: string): AramChampionIntel {
+  return {
+    championId,
+    championName,
+    buildStyle: 'Chiến Binh Đột Biến Vực Gió Hú',
+    tierGrade: 'S TIER',
+    augments: [
+      {
+        name: 'Gia Tốc Thần Tốc (Accelerating Sorcery)',
+        tier: 'S',
+        desc: 'Tăng vĩnh viễn điểm hồi kỹ năng và tốc độ tung chiêu thức.',
+        synergy: 'Cho phép xả kỹ năng liên tục trong giao tranh ARAM không ngừng nghỉ.'
+      },
+      {
+        name: 'Đòn Đánh Bùng Nổ (Apex Inventor / Heavy Hitter)',
+        tier: 'S',
+        desc: 'Cường hóa sát thương đột biến và hồi chiêu trang bị thần tốc.',
+        synergy: 'Khuếch đại sát thương dứt điểm mục tiêu yếu máu cực nhanh.'
+      },
+      {
+        name: 'Hồi Phục Sinh Mệnh (Restorative Regimen)',
+        tier: 'A',
+        desc: 'Hồi phục máu và tài nguyên liên tục sau khi tham gia hạ gục.',
+        synergy: 'Giữ nhịp chiến đấu bền bỉ mà không cần phải hi sinh để về nhà mua đồ.'
+      }
+    ],
+    coreItems: ['Đồng Hồ Cát Zhonya', 'Ngọn Lửa Hắc Hóa', 'Mũ Phù Thủy Rabadon', 'Giày Pháp Sư'],
+    summonerSpells: ['Tốc Biến', 'Đánh Dấu (Cầu Tuyết)'],
+    tactics: [
+      {
+        title: 'Tận Dụng Góc Hẹp Cầu Vực',
+        text: 'Chiêu thức diện rộng ở ARAM có tỉ lệ trúng cực cao do địa hình hẹp một đường thẳng.',
+        type: 'purple'
+      },
+      {
+        title: 'Tranh Đoạt Mũ & Túi Hồi Máu',
+        text: 'Kiểm soát nhịp xuất hiện của túi máu và nhặt Mũ tăng chỉ số ngay khi hạ gục tướng địch.',
+        type: 'info'
+      },
+      {
+        title: 'Băng Trụ & Đánh Dấu Cầu Tuyết',
+        text: 'Dùng Cầu Tuyết để tiếp cận bất ngờ từ xa hoặc kiểm tra bụi cỏ ven vực.',
+        type: 'danger'
+      }
+    ],
+    combatTips: [
+      'Đứng phía sau đội hình chống chịu nếu là pháp sư/xạ thủ, tránh bị kéo vào vùng nguy hiểm.',
+      'Ưu tiên chọn các lõi nâng cấp giảm hồi chiêu hoặc tăng phạm vi kỹ năng.',
+      'Nhớ dùng Poro Snax và kiểm tra bụi rậm trung tâm để phát hiện sát thủ địch áp sát.'
+    ],
+    mayhemBuffNotes:
+      'Chế độ ARAM Hỗn Loạn gia tăng tốc độ trận đấu và sát thương bộc phát cực mạnh.',
+    cached: false,
+    timestamp: Date.now()
+  }
 }
 
 export class GeminiClient {
@@ -151,6 +215,122 @@ Hãy đưa ra chiến thuật thực chiến chính xác, súc tích và bằng 
       recommendedItems: parsed.recommendedItems || [],
       cached: false,
       timestamp: Date.now()
+    }
+  }
+
+  static async optimizeAramChampion(
+    params: OptimizeAramChampionParams
+  ): Promise<AramChampionIntel> {
+    const { apiKey, model = 'gemini-3.1-flash-lite', championName, championId } = params
+
+    if (!apiKey || apiKey.trim().length === 0) {
+      return getDefaultAramIntel(championId, championName)
+    }
+
+    const effectiveModel = !model || model === 'gemini-2.5-flash' ? 'gemini-3.1-flash-lite' : model
+
+    const systemPrompt = `Bạn là chuyên gia phân tích chiến thuật cấp cao và huấn luyện viên thi đấu Liên Minh Huyền Thoại (League of Legends), am hiểu sâu sắc chế độ "ARAM: HỖN LOẠN" (ARAM MAYHEM - Đấu Trường Vực Gió Hú với Lõi Nâng Cấp Thần Thoại/Kim Cương/Vàng, nhặt Mũ, giao tranh tổng liên tục).
+Nhiệm vụ: Hướng dẫn người chơi cách TỐI ƯU HÓA vị tướng "${championName}" để gánh đội và outplay đối thủ trong ARAM Hỗn Loạn.
+Yêu cầu định dạng: BẮT BUỘC trả về DUY NHẤT 1 đối tượng JSON thuần túy (không kèm giải thích bên ngoài):
+{
+  "buildStyle": "Lối chơi tối ưu đột biến (ví dụ: 'Pháp Sư Xả Sát Thương Tầm Xa', 'Đấu Sĩ Càn Quét Bất Tử', 'Sát Thủ Sát Lực Đột Biến')",
+  "tierGrade": "S+ TIER" | "S TIER" | "A TIER",
+  "augments": [
+    {
+      "name": "Tên Lõi Nâng Cấp 1 (Lõi S-Tier trong ARAM Mayhem/Arena)",
+      "tier": "S",
+      "desc": "Mô tả ngắn hiệu ứng lõi",
+      "synergy": "Vì sao cực kỳ đột biến với chiêu thức của ${championName}"
+    },
+    {
+      "name": "Tên Lõi Nâng Cấp 2",
+      "tier": "S",
+      "desc": "Mô tả ngắn hiệu ứng lõi",
+      "synergy": "Khả năng cộng hưởng với chất tướng"
+    },
+    {
+      "name": "Tên Lõi Nâng Cấp 3",
+      "tier": "A",
+      "desc": "Mô tả ngắn hiệu ứng lõi",
+      "synergy": "Khả năng cộng hưởng với chất tướng"
+    }
+  ],
+  "coreItems": [
+    "Trang bị trấn phái 1",
+    "Trang bị trấn phái 2",
+    "Trang bị trấn phái 3",
+    "Trang bị tình huống"
+  ],
+  "summonerSpells": [
+    "Tốc Biến",
+    "Đánh Dấu (Cầu Tuyết)"
+  ],
+  "tactics": [
+    {
+      "title": "Combo Chiêu Đột Biến Khi Có Lõi",
+      "text": "Thứ tự ra chiêu và mẹo tối đa sát thương/khống chế trong không gian hẹp.",
+      "type": "purple"
+    },
+    {
+      "title": "Vị Trí & Nhịp Giao Tranh Tổng",
+      "text": "Cách giữ vị trí né cấu rỉa, góc băng vào và mục tiêu ưu tiên số 1.",
+      "type": "info"
+    },
+    {
+      "title": "Tận Dụng Cơ Chế ARAM Hỗn Loạn",
+      "text": "Mẹo nhặt Mũ, dùng Cổng Dịch Chuyển Hextech, và phối hợp Hồi Máu.",
+      "type": "danger"
+    }
+  ],
+  "combatTips": [
+    "Mẹo thực chiến 1 trong combat liên tục",
+    "Mẹo thực chiến 2 khi đối đầu số đông",
+    "Mẹo thực chiến 3 kiểm soát năng lượng/máu"
+  ],
+  "mayhemBuffNotes": "Lưu ý cân bằng riêng hoặc sức mạnh của tướng trong bản ARAM Hỗn Loạn."
+}
+Ngôn ngữ: Tiếng Việt súc tích, thực chiến, không dùng các từ ngữ rườm rà.`
+
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${effectiveModel}:generateContent?key=${apiKey.trim()}`
+      const response = await axios.post(
+        url,
+        {
+          contents: [{ parts: [{ text: systemPrompt }] }],
+          generationConfig: {
+            temperature: 0.2,
+            maxOutputTokens: 1200,
+            responseMimeType: 'application/json'
+          }
+        },
+        {
+          timeout: 15000,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      )
+
+      const rawText = response.data?.candidates?.[0]?.content?.parts?.[0]?.text
+      if (!rawText) {
+        return getDefaultAramIntel(championId, championName)
+      }
+
+      const parsed = parseGeminiJsonResponse(rawText)
+      return {
+        championId,
+        championName,
+        buildStyle: parsed.buildStyle || 'Chiến Binh Đột Biến Vực Gió Hú',
+        tierGrade: parsed.tierGrade || 'S TIER',
+        augments: parsed.augments || [],
+        coreItems: parsed.coreItems || [],
+        summonerSpells: parsed.summonerSpells || ['Tốc Biến', 'Đánh Dấu (Cầu Tuyết)'],
+        tactics: parsed.tactics || [],
+        combatTips: parsed.combatTips || [],
+        mayhemBuffNotes: parsed.mayhemBuffNotes || '',
+        cached: false,
+        timestamp: Date.now()
+      }
+    } catch {
+      return getDefaultAramIntel(championId, championName)
     }
   }
 }

@@ -42,3 +42,31 @@ export interface ChampSelectEnemySlot {
   championName: string
   position: string
 }
+
+export interface AramAugmentTip {
+  name: string
+  tier?: 'S' | 'A' | 'B'
+  desc: string
+  synergy: string
+}
+
+export interface AramTacticsBullet {
+  title: string
+  text: string
+  type?: 'danger' | 'purple' | 'info'
+}
+
+export interface AramChampionIntel {
+  championId: number
+  championName: string
+  buildStyle: string
+  tierGrade: string
+  augments: AramAugmentTip[]
+  coreItems: string[]
+  summonerSpells: string[]
+  tactics: AramTacticsBullet[]
+  combatTips: string[]
+  mayhemBuffNotes?: string
+  cached?: boolean
+  timestamp?: number
+}

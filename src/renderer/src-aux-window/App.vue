@@ -17,14 +17,15 @@
         :class="{ active: currentTab === 'radar' }"
         @click="currentTab = 'radar'"
       >
-        <span class="radar-label">⚡ AI RADAR</span>
+        <span class="radar-label">{{ isAramMayhem ? '⚡ TỐI ƯU ARAM' : '⚡ AI RADAR' }}</span>
         <span v-if="aiStore.isAnalyzing" class="radar-dot"></span>
       </button>
     </div>
 
     <div class="content">
       <KeepAlive>
-        <AiRadarMini v-if="currentTab === 'radar'" />
+        <AramMayhemGuideMini v-if="currentTab === 'radar' && isAramMayhem" />
+        <AiRadarMini v-else-if="currentTab === 'radar'" />
         <IndicatorView v-else />
       </KeepAlive>
     </div>
@@ -35,8 +36,8 @@
 import { SetupInAppScope } from '@renderer-shared/shards/setup-in-app-scope/setup-in-app-scope-component'
 import { useChampSelectAiStore } from '@renderer-shared/shards/champ-select-ai/store'
 import { useLeagueClientStore } from '@renderer-shared/shards/league-client/store'
-import { AiRadarMini } from '@renderer-shared/components/champ-select-ai'
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { AiRadarMini, AramMayhemGuideMini } from '@renderer-shared/components/champ-select-ai'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 import AuxWindowTitlebar from './components/AuxWindowTitlebar.vue'
 import IndicatorView from './views/Indicator.vue'
@@ -44,6 +45,35 @@ import IndicatorView from './views/Indicator.vue'
 const currentTab = ref<'assistant' | 'radar'>('assistant')
 const aiStore = useChampSelectAiStore()
 const leagueClientStore = useLeagueClientStore()
+
+const isAramMayhem = computed(() => {
+  const gfSession = leagueClientStore.gameflow.session
+  const csSession = leagueClientStore.champSelect.session
+
+  const gameMode = (
+    gfSession?.map?.gameMode ||
+    gfSession?.gameData?.queue?.gameMode ||
+    ''
+  ).toUpperCase()
+
+  const queueId = gfSession?.gameData?.queue?.id
+  const queueName = (
+    gfSession?.gameData?.queue?.name ||
+    gfSession?.gameData?.queue?.description ||
+    ''
+  ).toLowerCase()
+
+  const isKiwi =
+    gameMode === 'KIWI' ||
+    queueId === 2400 ||
+    queueName.includes('kiwi') ||
+    queueName.includes('mayhem') ||
+    queueName.includes('hỗn loạn')
+
+  const isAram = gameMode === 'ARAM' || Boolean(csSession?.benchEnabled)
+
+  return isKiwi || isAram
+})
 
 let navChannel: BroadcastChannel | null = null
 
